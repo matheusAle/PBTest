@@ -8,7 +8,6 @@ import resources.Strings;
 import view.Componetes.Painel;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 /**
@@ -17,17 +16,17 @@ import java.awt.*;
 public class Painel_Projetos {
 
     private Painel painel;
-
+    private ItemListaProjeto projetoAtivo;
     private PainelProjetoAtivo painelProjetoAtivo;
     private Dimension tamanhoItemLista = new Dimension(900, 120);
 
     public Painel_Projetos (){
         painel = new Painel(Strings.TITULO_PAINEL_PROJETOS);
         painel.setAlturaELarguraDosItensDoConteudo(tamanhoItemLista.height, tamanhoItemLista.width);
-        carregarprojetos();
+        carregarProjetos();
     }
 
-    public void carregarprojetos (){
+    public void carregarProjetos (){
         ProjetoController.listaDeprojetos.forEach(projetoMetaData -> {
             painel.addConteudo(new ItemListaProjeto(projetoMetaData));
         });
@@ -49,12 +48,11 @@ public class Painel_Projetos {
             super.add(gemPainelLegenda(), BorderLayout.WEST);
 
             JPanel painelInfo = new JPanel(new GridLayout(4, 1, 0, 0));
-            painelInfo.setBorder(new EmptyBorder(5, 5, 5, 5));
             painelInfo.setBackground(Cores._9fb3a5);
-            painelInfo.add(new JLabel(projeto.getNome()));
-            painelInfo.add(new JLabel(projeto.getCodigo()));
-            painelInfo.add(new JLabel(projeto.getSrc()));
-            painelInfo.add(new JLabel(projeto.getDescricao()));
+            painelInfo.add(new JLabel("  "+ projeto.getNome()));
+            painelInfo.add(new JLabel("  "+ projeto.getCodigo()));
+            painelInfo.add(new JLabel("  "+ projeto.getSrc()));
+            painelInfo.add(new JLabel("  "+ projeto.getDescricao()));
             for (Component c : painelInfo.getComponents()){
                 c.setForeground(Cores._ffffff);
                 c.setFont(Fontes.ITEM_LISTA_PROJETO_LEGENDA);
