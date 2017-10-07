@@ -1,13 +1,10 @@
 package controller;
 
 import model.Usuario;
-import sun.swing.SwingUtilities2;
 import view.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.io.IOException;
 
 /**
@@ -37,7 +34,7 @@ public class Sistema_Controller {
 
     public static void main(String[] args) throws IOException, FontFormatException {
         abrir(UsuarioController.listaUsuario.get(0));
-        setPainelDeTrabalho(Estacoes_de_Tabalho.PROJETOS);
+        setPainelDeTrabalho(PaineisDeTabalho.PROJETOS);
         JANELA.setVisible(true);
     }
 
@@ -45,12 +42,12 @@ public class Sistema_Controller {
      * Mantem referencias para cada uma das "estações" de trabalho do programa.<br/>
      * Todas as referencias são estaticas e finais.
      */
-    public static class Estacoes_de_Tabalho {
-        public static final JScrollPane USUARIOS = new Painel_Usuarios().getPainel();
-        public static final JScrollPane PROJETOS = new Painel_Projetos().getPainel();
-        public static final JScrollPane CASOS_TESTE = new Painel_Casos_de_Teste();
-        public static final JScrollPane ROTEIROS_TESTE = new Painel_Roteiros_de_Teste();
-        public static final JScrollPane MATRIZ_RASTREABIBLIDADE = new Painel_Matriz_de_Rastreabilidade();
+    public static class PaineisDeTabalho {
+        public static final JScrollPane USUARIOS = new UsuariosPainel().getPainel();
+        public static final JScrollPane PROJETOS = new ProjetosPainel().getPainel();
+        public static final JScrollPane CASOS_TESTE = new CasosDeTestePainel();
+        public static final JScrollPane ROTEIROS_TESTE = new RoteirosDeTestesPainel();
+        public static final JScrollPane MATRIZ_RASTREABIBLIDADE = new MatrizDeRastreabilidadePainel();
     }
 
 

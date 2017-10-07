@@ -113,7 +113,7 @@ public class Janela extends JFrame{
                 btn_usuarios.addMouseListener(new MouseListener() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        Sistema_Controller.setPainelDeTrabalho(Sistema_Controller.Estacoes_de_Tabalho.USUARIOS);
+                        Sistema_Controller.setPainelDeTrabalho(Sistema_Controller.PaineisDeTabalho.USUARIOS);
                     }
 
                     @Override
@@ -139,7 +139,7 @@ public class Janela extends JFrame{
                 btn_projetos.addMouseListener(new MouseListener() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        Sistema_Controller.setPainelDeTrabalho(Sistema_Controller.Estacoes_de_Tabalho.PROJETOS);
+                        Sistema_Controller.setPainelDeTrabalho(Sistema_Controller.PaineisDeTabalho.PROJETOS);
                     }
 
                     @Override

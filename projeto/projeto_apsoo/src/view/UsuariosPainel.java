@@ -17,12 +17,12 @@ import java.awt.event.MouseListener;
 /**
  * Classe responsavel pelo view da aba usuarios
  */
-public class Painel_Usuarios {
+public class UsuariosPainel {
 
     private Painel painel;
     private Dimension tamanhoItens = new Dimension(200, 200);
 
-    public Painel_Usuarios (){
+    public UsuariosPainel(){
         painel = new Painel(Strings.TITULO_PAINEL_USUARIO);
         painel.setAlturaELarguraDosItensDoConteudo(tamanhoItens.height, tamanhoItens.width);
         carregarListaDeUsuario();

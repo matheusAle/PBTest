@@ -13,14 +13,14 @@ import java.awt.*;
 /**
  * Classe responsavel pelo view da aba Projetos
  */
-public class Painel_Projetos {
+public class ProjetosPainel {
 
     private Painel painel;
     private ItemListaProjeto projetoAtivo;
     private PainelProjetoAtivo painelProjetoAtivo;
     private Dimension tamanhoItemLista = new Dimension(900, 120);
 
-    public Painel_Projetos (){
+    public ProjetosPainel(){
         painel = new Painel(Strings.TITULO_PAINEL_PROJETOS);
         painel.setAlturaELarguraDosItensDoConteudo(tamanhoItemLista.height, tamanhoItemLista.width);
         carregarProjetos();
