@@ -25,6 +25,10 @@ public final class Strings {
 
 
     /*Textos do painel de cadastro de projetos*/
+    public static final String LG_CRIAR_PROJ_NOME = "NOME";
+    public static final String LG_CRIAR_PROJ_PROFIXOS = "PREFIXOS";
+    public static final String LG_CRIAR_PROJ_DIRETORIO_RAIZ = "DIRETORIO RAIZ";
+    public static final String LG_CRIAR_PROJ_DESCRICAO = "DESCRIÇÃO";
 
 
     /*Titulos de paineis*/

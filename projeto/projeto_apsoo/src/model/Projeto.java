@@ -5,18 +5,31 @@ package model;
  */
 public class Projeto {
 
+    private String codigo;
     private String nome;
     private String descricao;
     private String src;
     private Prefixos PREFIXOS;
 
-    public Projeto(String nome, String descricao, String src, Prefixo CASO_DE_USO, Prefixo CASO_DE_TESTE, Prefixo ROTEIRO_DE_TESTE) {
+    public Projeto(
+            String codigo,
+            String nome,
+            String descricao,
+            String src,
+            String CASO_DE_USO,
+            String CASO_DE_TESTE,
+            String ROTEIRO_DE_TESTE,
+            int contadorCU,
+            int contadorCT,
+            int contadorRT
+    ) {
+        this.codigo = codigo;
         this.nome = nome;
         this.descricao = descricao;
         this.src = src;
-        this.PREFIXOS.CASO_DE_USO = CASO_DE_USO;
-        this.PREFIXOS.CASO_DE_TESTE = CASO_DE_TESTE;
-        this.PREFIXOS.ROTEIRO_DE_TESTE = ROTEIRO_DE_TESTE;
+        this.PREFIXOS.CASO_DE_USO = new Prefixo(CASO_DE_USO, contadorCU);
+        this.PREFIXOS.CASO_DE_TESTE = new Prefixo(CASO_DE_TESTE, contadorCT);
+        this.PREFIXOS.ROTEIRO_DE_TESTE = new Prefixo(ROTEIRO_DE_TESTE, contadorRT);
     }
 
     public String getNome() {

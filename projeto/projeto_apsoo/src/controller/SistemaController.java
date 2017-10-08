@@ -11,17 +11,14 @@ import java.io.IOException;
  * Classe resposavel por manter informações sobre o estado do sistema.<br/>
  *
  */
-public class Sistema_Controller {
+public class SistemaController {
 
     public static Janela JANELA;
     private static JScrollPane estacaoAtiva = new JScrollPane();
-    private static Usuario usuarioAtivo;
-
 
     public static void abrir(Usuario usuario) throws IOException, FontFormatException {
-        usuarioAtivo = usuario;
-
-        JANELA = new Janela().iniciarNav(usuario.getNome(), usuario.getCargo().toString().replaceAll("_", " "));
+        UsuarioController.setUsuario(usuario);
+        JANELA = new Janela().iniciarNavegacao(usuario.getNome(), usuario.getCargo());
     }
 
     public static synchronized void setPainelDeTrabalho (JScrollPane p){
@@ -32,12 +29,6 @@ public class Sistema_Controller {
         JANELA.repaint();
     }
 
-    public static void main(String[] args) throws IOException, FontFormatException {
-        abrir(UsuarioController.listaUsuario.get(0));
-        setPainelDeTrabalho(PaineisDeTabalho.PROJETOS);
-        JANELA.setVisible(true);
-    }
-
     /**
      * Mantem referencias para cada uma das "estações" de trabalho do programa.<br/>
      * Todas as referencias são estaticas e finais.
@@ -45,6 +36,7 @@ public class Sistema_Controller {
     public static class PaineisDeTabalho {
         public static final JScrollPane USUARIOS = new UsuariosPainel().getPainel();
         public static final JScrollPane PROJETOS = new ProjetosPainel().getPainel();
+        public static final JScrollPane CRIAR_PROJETO = new CriarProjetoPainel().getPainel();
         public static final JScrollPane CASOS_TESTE = new CasosDeTestePainel();
         public static final JScrollPane ROTEIROS_TESTE = new RoteirosDeTestesPainel();
         public static final JScrollPane MATRIZ_RASTREABIBLIDADE = new MatrizDeRastreabilidadePainel();

@@ -1,20 +1,27 @@
 package controller;
 
 import model.Usuario;
+import model.UsuarioDOA;
 
-import java.util.LinkedList;
+import java.util.Collection;
 
 public class UsuarioController {
-    public static LinkedList<Usuario> listaUsuario = new LinkedList<Usuario>();
 
-    static {
-        listaUsuario.add(new Usuario("Matheus Ale", "m@a", Usuario.Cargo.GERENTE_DE_PROJETO));
-        listaUsuario.add(new Usuario("Marcos", "m@a", Usuario.Cargo.TESTADOR));
-        listaUsuario.add(new Usuario("Amanda ", "m@a", Usuario.Cargo.GERENTE_DE_TESTES));
-        listaUsuario.add(new Usuario("Thiago Souza", "m@a", Usuario.Cargo.TESTADOR));
-        listaUsuario.add(new Usuario("Hercules silva", "m@a", Usuario.Cargo.TESTADOR));
-        listaUsuario.add(new Usuario("Eduardo silva", "m@a", Usuario.Cargo.TESTADOR));
-        listaUsuario.add(new Usuario("Ulisses carlos", "m@a", Usuario.Cargo.TESTADOR));
-        listaUsuario.add(new Usuario("Silvio santos", "m@a", Usuario.Cargo.TESTADOR));
+    private static Collection<UsuarioMetaData> listaDeUsuario = UsuarioDOA.buscarTodosOSUsuarios();
+    private static Usuario usuarioAtivo;
+
+
+    public static Collection<UsuarioMetaData> getListaDeUsuarios(){
+        return listaDeUsuario;
     }
+
+    public static Usuario fazerLogin (String email, String senha){
+        return UsuarioDOA.fazerLogin(email, senha);
+    }
+
+    static void setUsuario(Usuario u){
+        usuarioAtivo = u;
+    }
+
+
 }

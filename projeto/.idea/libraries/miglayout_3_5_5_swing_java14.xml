@@ -2,6 +2,7 @@
   <library name="miglayout-3.5.5-swing-java14">
     <CLASSES>
       <root url="jar://$USER_HOME$/Downloads/miglayout-3.5.5-swing-java14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/projeto_apsoo/libs/mysql-connector-java-5.1.44-bin.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

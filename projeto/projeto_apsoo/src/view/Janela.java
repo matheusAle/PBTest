@@ -1,11 +1,11 @@
 package view;
 
-import controller.Sistema_Controller;
+import controller.SistemaController;
 import resources.Cores;
 import resources.Fontes;
 import resources.Icones;
 import resources.Strings;
-import view.Componetes.Meu_Botao_Nav;
+import view.Componetes.BotaoDeNavegacao;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,8 +16,8 @@ import java.awt.event.MouseListener;
  * Essa classe é a responsavel por gerenciar os elementos não mutaveis da janela.
  */
 public class Janela extends JFrame{
-    public Nav painel_nav;
-    static Controlador_de_Contexto controlador_de_contexto;
+    private Nav painel_nav;
+    private OpcoesDeEstacao opcoes;
 
     public Janela(){
         super.setLayout(new BorderLayout());
@@ -25,27 +25,35 @@ public class Janela extends JFrame{
         super.setLocationRelativeTo(null);
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        controlador_de_contexto = new Controlador_de_Contexto();
-        super.add(controlador_de_contexto, BorderLayout.NORTH);
+        opcoes = new OpcoesDeEstacao();
+        super.add(opcoes, BorderLayout.NORTH);
 
     }
 
-    public Janela iniciarNav(String nomeUser, String cargoUser){
+    /**
+     * adiciona o painel a barra de opções de contexto da janela.
+     * @param painel
+     */
+    public void setOpcoes (JPanel painel){
+        opcoes.set(painel);
+    }
+
+    public Janela iniciarNavegacao(String nomeUser, String cargoUser){
         painel_nav = new Nav(nomeUser, cargoUser);
         super.add(painel_nav, BorderLayout.WEST);
         return this;
     }
 
     /**
-     * classe que gerencia os elementos do menu de navegação no sistema
+     * classe que gerencia os elementos da lateral esqueda da janela.
      */
     public class Nav extends JPanel{
 
-        public String nome_usuario;
-        public String cargo_usuario;
-        public Icon imgPerfil = Icones.imgPerfil;
+        private String nome_usuario;
+        private String cargo_usuario;
+        private Icon imgPerfil = Icones.imgPerfil;
 
-        public Nav(String nome_usuario, String cargo_usuario){
+        Nav(String nome_usuario, String cargo_usuario){
             this.cargo_usuario = cargo_usuario;
             this.nome_usuario = nome_usuario;
             super.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
@@ -54,10 +62,13 @@ public class Janela extends JFrame{
             super.add(new Navegacao());
         }
 
+        /**
+         * Classe respinsavel pelo card do usuario logado no sistema.
+         */
         class Usuario_logado extends JPanel {
 
             {
-                super.setBackground(Cores._2eb398);
+                super.setBackground(Cores.FUNDO_USUARIO_LOGADO);
                 super.setPreferredSize(new Dimension(200, 140));
                 super.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 5));
 
@@ -65,11 +76,11 @@ public class Janela extends JFrame{
 
                 JLabel nome = new JLabel(nome_usuario);
                 nome.setFont(Fontes.NOME_USUARIO);
-                nome.setForeground(Cores._ffffff);
+                nome.setForeground(Cores.TEXTOS);
 
                 JLabel cargo = new JLabel(cargo_usuario);
                 cargo.setFont(Fontes.CARGO_USUARIO);
-                cargo.setForeground(Cores._ffffff);
+                cargo.setForeground(Cores.TEXTOS);
 
                 super.add(lImgPerfil);
                 super.add(nome);
@@ -77,12 +88,15 @@ public class Janela extends JFrame{
             }
         }
 
-        public class Navegacao extends JPanel {
-            private Meu_Botao_Nav btn_usuarios;
-            private Meu_Botao_Nav btn_projetos;
-            private Meu_Botao_Nav btn_casos_teste;
-            private Meu_Botao_Nav btn_roteiros_testes;
-            private Meu_Botao_Nav btn_matriz_rastreabilidade;
+        /**
+         * classe que cuida das opções de navegação do sistema.
+         */
+        class Navegacao extends JPanel {
+            private BotaoDeNavegacao btn_usuarios;
+            private BotaoDeNavegacao btn_projetos;
+            private BotaoDeNavegacao btn_casos_teste;
+            private BotaoDeNavegacao btn_roteiros_testes;
+            private BotaoDeNavegacao btn_matriz_rastreabilidade;
 
             {
                 iniciarLayout();
@@ -96,79 +110,34 @@ public class Janela extends JFrame{
             }
 
             private void iniciarLayout() {
-                super.setBackground(Cores._232b2d);
+                super.setBackground(Cores.FUNDO_MENU_ESQUERDO);
                 super.setPreferredSize(new Dimension(200, Janela.super.getHeight()));
                 super.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
             }
 
             private void iniciarCompomentes(){
-                btn_usuarios = new Meu_Botao_Nav(Strings.nav_usuarios);
-                btn_projetos = new Meu_Botao_Nav(Strings.nav_projetos);
-                btn_casos_teste = new Meu_Botao_Nav(Strings.nav_casos_de_teste);
-                btn_roteiros_testes = new Meu_Botao_Nav(Strings.nav_roteiro_de_teste);
-                btn_matriz_rastreabilidade = new Meu_Botao_Nav(Strings.nav_matriz_de_rastreabilidade);
+                btn_usuarios = new BotaoDeNavegacao(Strings.nav_usuarios);
+                btn_projetos = new BotaoDeNavegacao(Strings.nav_projetos);
+                btn_casos_teste = new BotaoDeNavegacao(Strings.nav_casos_de_teste);
+                btn_roteiros_testes = new BotaoDeNavegacao(Strings.nav_roteiro_de_teste);
+                btn_matriz_rastreabilidade = new BotaoDeNavegacao(Strings.nav_matriz_de_rastreabilidade);
             }
 
             private void initListeners() {
-                btn_usuarios.addMouseListener(new MouseListener() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        Sistema_Controller.setPainelDeTrabalho(Sistema_Controller.PaineisDeTabalho.USUARIOS);
-                    }
-
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-
-                    }
-
-                    @Override
-                    public void mouseReleased(MouseEvent e) {
-
-                    }
-
-                    @Override
-                    public void mouseEntered(MouseEvent e) {
-
-                    }
-
-                    @Override
-                    public void mouseExited(MouseEvent e) {
-
-                    }
-                });
-                btn_projetos.addMouseListener(new MouseListener() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        Sistema_Controller.setPainelDeTrabalho(Sistema_Controller.PaineisDeTabalho.PROJETOS);
-                    }
-
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-
-                    }
-
-                    @Override
-                    public void mouseReleased(MouseEvent e) {
-
-                    }
-
-                    @Override
-                    public void mouseEntered(MouseEvent e) {
-
-                    }
-
-                    @Override
-                    public void mouseExited(MouseEvent e) {
-
-                    }
-                });
+                btn_usuarios.setOnClick((e) -> {SistemaController.setPainelDeTrabalho(SistemaController.PaineisDeTabalho.USUARIOS);});
+                btn_projetos.setOnClick((e) -> {SistemaController.setPainelDeTrabalho(SistemaController.PaineisDeTabalho.PROJETOS);});
             }
         }
     }
 
 
-    private class Controlador_de_Contexto extends JPanel{
+    /**
+     * Classe que modela a barra superior do sistema que contem as opçoes da estação de trabalho ativa
+     */
+    class OpcoesDeEstacao extends JPanel{
+
         JPanel painel_logo;
+
         {
             super.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 5));
             painel_logo = new JPanel();
@@ -176,44 +145,19 @@ public class Janela extends JFrame{
             super.setPreferredSize(new Dimension(Janela.super.getWidth(), 50));
             painel_logo.setPreferredSize(new Dimension(200, 75));
 
-            super.setBackground(Cores._1b2224);
-            painel_logo.setBackground(Cores._1b2224);
+            super.setBackground(Cores.FUNDO_BARRA_SUPERIOR);
+            painel_logo.setBackground(Cores.FUNDO_BARRA_SUPERIOR);
 
             super.add(painel_logo);
 
         }
 
-        @Override
-        public Component add(Component comp) {
-            return super.add(comp);
+        public void set(JPanel painel){
+            this.limpar();
+            super.add(painel);
         }
 
-        @Override
-        public Component add(String name, Component comp) {
-            return super.add(name, comp);
-        }
-
-        @Override
-        public Component add(Component comp, int index) {
-            return super.add(comp, index);
-        }
-
-        @Override
-        public void add(Component comp, Object constraints) {
-            super.add(comp, constraints);
-        }
-
-        @Override
-        public void add(Component comp, Object constraints, int index) {
-            super.add(comp, constraints, index);
-        }
-
-        @Override
-        protected void addImpl(Component comp, Object constraints, int index) {
-            super.addImpl(comp, constraints, index);
-        }
-
-        public void limpar (){
+        void limpar(){
             super.removeAll();
             super.repaint();
             super.add(painel_logo);

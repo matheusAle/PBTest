@@ -1,4 +1,5 @@
-DROP TABLE projeto;
+CREATE SCHEMA pbtest DEFAULT CHARACTER SET utf8;
+
 
 #tabela de usuarios
 CREATE TABLE usuario (
@@ -10,20 +11,23 @@ CREATE TABLE usuario (
     PRIMARY KEY (email, senha)
 );
 
-
-
 #tabela de projetos
 CREATE TABLE projeto (
-	id INTEGER(5) AUTO_INCREMENT PRIMARY KEY,
-    srcRaiz VARCHAR(100) NOT NULL,
     nome VARCHAR(45) NOT NULL,
+    srcRaiz VARCHAR(100) NOT NULL,
     prefixoCT VARCHAR(10) NOT NULL,
     prefixoCU VARCHAR(10) NOT NULL,
     prefixoRT VARCHAR(10) NOT NULL,
     descricao TEXT NOT NULL,
     usuario_dono VARCHAR(45) NOT NULL,
-    CONSTRAINT FOREIGN KEY (usuario_dono) REFERENCES usuario(email) 
+	id INTEGER(5) AUTO_INCREMENT,
+    contadorCT INT DEFAULT 0000,
+    contadorCU INT DEFAULT 0000,
+    contadorRT INT DEFAULT 0000,
+    CONSTRAINT FOREIGN KEY (usuario_dono) REFERENCES usuario(email) ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY(id)
 );
+
 
 # tabela de casos de uso
 CREATE TABLE caso_de_uso (
@@ -32,8 +36,8 @@ CREATE TABLE caso_de_uso (
     texto TEXT NOT NULL,
     projetoID INTEGER NOT NULL,
     usuario_dono VARCHAR(45) NOT NULL,
-    CONSTRAINT FOREIGN KEY (usuario_dono) REFERENCES usuario(email),
-    CONSTRAINT FOREIGN KEY (projetoID) REFERENCES projeto(id)
+    CONSTRAINT FOREIGN KEY (usuario_dono) REFERENCES usuario(email)  ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FOREIGN KEY (projetoID) REFERENCES projeto(id)  ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 # tabela de casos de teste
@@ -45,8 +49,8 @@ CREATE TABLE caso_de_teste (
     descricao TEXT NOT NULL,
     projetoID INTEGER NOT NULL,
     emailUsuario VARCHAR(45) NOT NULL,
-    CONSTRAINT FOREIGN KEY (emailUsuario) REFERENCES usuario (email),
-    CONSTRAINT FOREIGN KEY (projetoID) REFERENCES projeto(id)
+    CONSTRAINT FOREIGN KEY (emailUsuario) REFERENCES usuario (email)  ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FOREIGN KEY (projetoID) REFERENCES projeto(id)  ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE roteiros_teste (
@@ -55,8 +59,8 @@ CREATE TABLE roteiros_teste (
     situacao INT NOT NULL,
     projetoID INTEGER NOT NULL,
     emailUsuario VARCHAR(45) NOT NULL,
-    CONSTRAINT FOREIGN KEY (emailUsuario) REFERENCES usuario (email),
-    CONSTRAINT FOREIGN KEY (projetoID) REFERENCES projeto(id)
+    CONSTRAINT FOREIGN KEY (emailUsuario) REFERENCES usuario (email)  ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FOREIGN KEY (projetoID) REFERENCES projeto(id)  ON DELETE CASCADE ON UPDATE CASCADE
 );
     
 INSERT INTO usuario VALUES ('root', 'root@root', 'root', null, 1);
@@ -64,7 +68,7 @@ INSERT INTO usuario VALUES ('Matheus Ale da Silva', 'm.matheus.ale@gmail.com', '
 INSERT INTO usuario VALUES ('Buno silva', 'bruno@live.com', 'jurubeba', null, 2);
 INSERT INTO usuario VALUES ('Eduardo Gonsaga', 'ginsaghinha@gmail.com', 'gugulegal123', null, 3);
 INSERT INTO usuario VALUES ('Isabella Bitencurt', 'bela.curt@gmail.com', 'belabela', null, 3);
-INSERT INTO usuausuariorio VALUES ('Amanda Souza', 'amanda_sozinha@gmail.com', 'WWFFEaw@445UffOOpp', null, 3);
+INSERT INTO usuario VALUES ('Amanda Souza', 'amanda_sozinha@gmail.com', 'WWFFEaw@445UffOOpp', null, 3);
 
 
     

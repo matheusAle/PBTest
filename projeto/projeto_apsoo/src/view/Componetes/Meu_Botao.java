@@ -46,13 +46,10 @@ public class Meu_Botao extends JButton {
         super.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println("afçmadsfkmadsfadsf");
-                Meu_Botao.super.setBackground(corOnClick);
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                Meu_Botao.super.setBackground(corOnClick);
             }
 
             @Override

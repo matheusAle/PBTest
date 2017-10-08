@@ -1,12 +1,10 @@
 package view;
 
-import controller.Sistema_Controller;
 import controller.UsuarioController;
 import resources.Cores;
 import resources.Fontes;
 import resources.Icones;
 import resources.Strings;
-import view.Componetes.Meu_Scroll_Painel;
 import view.Componetes.Painel;
 
 import javax.swing.*;
@@ -15,7 +13,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- * Classe responsavel pelo view da aba usuarios
+ * Classe responsavel pelo view da aba usuarios.
  */
 public class UsuariosPainel {
 
@@ -28,36 +26,42 @@ public class UsuariosPainel {
         carregarListaDeUsuario();
     }
 
-    //TODO termianr a omplemetação dos usuarios
+    /**
+     * Carrega/atualiza a lista de usuarios no painel.
+     */
     private void carregarListaDeUsuario () {
         painel.setVisible(false);
         painel.limparConteudo();
 
-        UsuarioController.listaUsuario.forEach(u -> {
-            painel.addConteudo(new PainelInfos(null, u.getNome(), u.getCargo().toString()));
+        UsuarioController.getListaDeUsuarios().forEach(u -> {
+            painel.addConteudo(new PainelInfos(u.getImgPerfil(), u.getNome(), u.getCargo()));
         });
 
         painel.setVisible(true);
     }
 
+    /**
+     * Retorna um objeto swing do tipo <link>JScrollPane</link>.
+     * @return
+     */
     public JScrollPane getPainel() {
         return painel.getPainel();
     }
 
     /**
-     * classe que modela em confugora a disposição dos elementos dos itens da lista de usuarios
+     * classe que modela o painel que contem as informações de um usuario visivel a todos os usuarios.
      */
     private class PainelInfos extends JPanel{
+
         JLabel imgPerfil;
         JLabel nomeUsuario;
         JLabel cargoUsuario;
-        JLabel Detalhes;
 
         public PainelInfos(ImageIcon imgPerfil, String nomeUsuario, String cargoUsuario) {
             super.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 10));
             super.setPreferredSize(tamanhoItens);
             super.setMaximumSize(tamanhoItens);
-            super.setBackground(Cores._9fb3a5);
+            super.setBackground(Cores.FUNDO_ITEM_LISTA);
             if (imgPerfil != null)
                 this.imgPerfil = new JLabel(imgPerfil);
             else
@@ -65,11 +69,11 @@ public class UsuariosPainel {
 
             this.nomeUsuario = new JLabel(nomeUsuario);
             this.nomeUsuario.setFont(Fontes.CARD_NOME_USUARIO);
-            this.nomeUsuario.setForeground(Cores._ffffff);
+            this.nomeUsuario.setForeground(Cores.TEXTOS);
 
             this.cargoUsuario = new JLabel(cargoUsuario);
             this.cargoUsuario.setFont(Fontes.CARD_CARGO_USUARIO);
-            this.cargoUsuario.setForeground(Cores._ffffff);
+            this.cargoUsuario.setForeground(Cores.TEXTOS);
 
             super.add(this.imgPerfil);
             super.add(this.nomeUsuario);
@@ -93,12 +97,12 @@ public class UsuariosPainel {
 
                 @Override
                 public void mouseEntered(MouseEvent e) {
-                    PainelInfos.super.setBackground(Cores._bfc8c3);
+                    PainelInfos.super.setBackground(Cores.FUNDO_ITEM_LISTA_HOVER);
                 }
 
                 @Override
                 public void mouseExited(MouseEvent e) {
-                    PainelInfos.super.setBackground(Cores._9fb3a5);
+                    PainelInfos.super.setBackground(Cores.FUNDO_ITEM_LISTA);
                 }
             });
         }

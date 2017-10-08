@@ -16,7 +16,7 @@ public class Fontes {
     public static final Font CARD_CARGO_USUARIO = Arq_Fontes.BLACK_ITALIC.deriveFont(14f);
     public static final Font PAINEL_TITULO = Arq_Fontes.LIGHT.deriveFont(24f);
     public static final Font ITEM_LISTA_PROJETO_LEGENDA = Arq_Fontes.BOLD.deriveFont(16f);
-
+    public static final Font CAMPO_DE_TEXTO = Arq_Fontes.MEDIUM.deriveFont(14f);
 
     private static class Arq_Fontes {
 

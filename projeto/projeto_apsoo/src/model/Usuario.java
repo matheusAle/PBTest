@@ -13,14 +13,17 @@ public class Usuario {
    private String biografia;
    private ImageIcon imgPerfil;
 
-    public Usuario(String nome, String email, Cargo cargo) {
+    public Usuario(String nome, String email, Cargo cargo, String telefone, String bio, ImageIcon img) {
         this.nome = nome;
         this.email = email;
         this.cargo = cargo;
+        this.telefone = telefone;
+        this.biografia = bio;
+        this.imgPerfil = img;
     }
 
     /**
-     * Metodo para realizar altenticar as informações do usuario que deseja <br/> acessar sua conta
+     * Metodo para realizar altenticar as informações do usuario que deseja acessar sua conta
      * no sistema
      * @return retorma uma instancia da classe Usuario
      */
@@ -31,14 +34,6 @@ public class Usuario {
     }
 
 
-    /**
-     * letodo chamado quando o usuario for fazer o logOut do sistema
-     * @return retorna sim se for bem sucedido.
-     */
-    public boolean fazerLogOut(){
-        return UsuarioDOA.logout();
-    }
-
     public String getNome() {
         return nome;
     }
@@ -47,8 +42,8 @@ public class Usuario {
         return email;
     }
 
-    public Cargo getCargo() {
-        return cargo;
+    public String getCargo() {
+        return cargo.toString().replaceAll("_", " ");
     }
 
     public ImageIcon getImgPerfil() {
@@ -60,4 +55,16 @@ public class Usuario {
         TESTADOR,
         GERENTE_DE_TESTES,
    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", cargo=" + cargo +
+                ", telefone='" + telefone + '\'' +
+                ", biografia='" + biografia + '\'' +
+                ", imgPerfil=" + imgPerfil +
+                '}';
+    }
 }

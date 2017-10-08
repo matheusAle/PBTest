@@ -1,6 +1,6 @@
 package view.Componetes;
 
-import controller.Sistema_Controller;
+import controller.SistemaController;
 import resources.Fontes;
 
 import javax.swing.*;
@@ -14,7 +14,7 @@ public class Painel{
     private String labelTitulo;
     private Meu_PainelPrincipal painel;
     private Meu_painelConteudo painelConteudo;
-    private Meu_Scroll_Painel painelScroll;
+    private MeuScrollPainel painelScroll;
 
     private int alturaConteudo;
     private int larguraConteudo;
@@ -37,7 +37,7 @@ public class Painel{
         painelConteudo = new Meu_painelConteudo();
         painelConteudo.setLayout(new FlowLayout());
         painel.add(painelConteudo, BorderLayout.CENTER);
-        painelScroll = new Meu_Scroll_Painel(painel);
+        painelScroll = new MeuScrollPainel(painel);
     }
 
 
@@ -89,7 +89,7 @@ public class Painel{
     private class Meu_painelConteudo extends JPanel {
         @Override
         public Dimension getPreferredSize() {
-            int ht = Sistema_Controller.JANELA.getWidth();
+            int ht = SistemaController.JANELA.getWidth();
             return new Dimension(950, alturaConteudo/((ht-200)/larguraConteudo)*quantidadeDeItens);
         }
 

@@ -6,11 +6,14 @@ import javax.swing.*;
 
 public class UsuarioMetaData {
 
-    String nome;
-    String cargo;
-    ImageIcon imgPerfil;
+    private String email;
+    private String nome;
+    private String cargo;
+    private ImageIcon imgPerfil;
 
-    public UsuarioMetaData(String nome, Usuario.Cargo cargo, ImageIcon imgPerfil) {
+
+    public UsuarioMetaData(String email, String nome, Usuario.Cargo cargo, ImageIcon imgPerfil) {
+        this.email = email;
         this.nome = nome;
         this.cargo = cargo.toString().replaceAll("_", " ");
         this.imgPerfil = imgPerfil;
@@ -26,5 +29,9 @@ public class UsuarioMetaData {
 
     public ImageIcon getImgPerfil() {
         return imgPerfil;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

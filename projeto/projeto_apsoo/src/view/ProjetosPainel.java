@@ -9,6 +9,7 @@ import view.Componetes.Painel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 /**
  * Classe responsavel pelo view da aba Projetos
@@ -48,13 +49,13 @@ public class ProjetosPainel {
             super.add(gemPainelLegenda(), BorderLayout.WEST);
 
             JPanel painelInfo = new JPanel(new GridLayout(4, 1, 0, 0));
-            painelInfo.setBackground(Cores._9fb3a5);
+            painelInfo.setBackground(Cores.FUNDO_ITEM_LISTA);
             painelInfo.add(new JLabel("  "+ projeto.getNome()));
             painelInfo.add(new JLabel("  "+ projeto.getCodigo()));
             painelInfo.add(new JLabel("  "+ projeto.getSrc()));
             painelInfo.add(new JLabel("  "+ projeto.getDescricao()));
             for (Component c : painelInfo.getComponents()){
-                c.setForeground(Cores._ffffff);
+                c.setForeground(Cores.TEXTOS);
                 c.setFont(Fontes.ITEM_LISTA_PROJETO_LEGENDA);
             }
             super.add(painelInfo, BorderLayout.CENTER);
@@ -62,7 +63,7 @@ public class ProjetosPainel {
 
         private JPanel gemPainelLegenda() {
             JPanel panel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 5,10));
-            panel.setBackground(Cores._232b2d);
+            panel.setBackground(Cores.FUNDO_MENU_ESQUERDO);
             panel.setPreferredSize(new Dimension(100, tamanhoItemLista.height));
             panel.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
             panel.add(new JLabel(Strings.LG_PROJETO_NOME), BorderLayout.AFTER_LAST_LINE);
@@ -70,7 +71,7 @@ public class ProjetosPainel {
             panel.add(new JLabel(Strings.LG_PROJETO_SRC), BorderLayout.AFTER_LAST_LINE);
             panel.add(new JLabel(Strings.LG_PROJETO_DESCRI), BorderLayout.AFTER_LAST_LINE);
             for (Component c : panel.getComponents()){
-                c.setForeground(Cores._ffffff);
+                c.setForeground(Cores.TEXTOS);
                 c.setFont(Fontes.ITEM_LISTA_PROJETO_LEGENDA);
             }
             return panel;

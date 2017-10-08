@@ -23,13 +23,13 @@ public class Meu_ScrollbarUI extends MetalScrollBarUI {
 
     public Meu_ScrollbarUI() {
 
-        imageThumb = FauxImage.create(5, 5, Cores._db5b5b);
-        imageTrack = FauxImage.create(10, 10, Cores._bfc8c3);
+        imageThumb = FauxImage.create(5, 5, Cores.FUNDO_BOTOAO);
+        imageTrack = FauxImage.create(10, 10, Color.white);
     }
 
     @Override
     protected void paintThumb(Graphics g, JComponent c, Rectangle r) {
-        g.setColor(Cores._db5b5b);
+        g.setColor(Color.white);
         ((Graphics2D) g).drawImage(imageThumb,
                 r.x, r.y, r.width, r.height, null);
     }
