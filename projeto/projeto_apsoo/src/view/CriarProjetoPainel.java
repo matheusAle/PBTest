@@ -73,6 +73,10 @@ public class CriarProjetoPainel extends Painel{
         super.addOpcao(cancelar);
     }
 
+    /**
+     * clamado quando o usario clicar em "Cancelar cadastro".
+     * Todos os campos serão limpos e o uruari sera levado de volta para a lsita de projetos.
+     */
     private void cancelarCadastro(){
         limpar();
         SistemaController.setPainelDeTrabalho(SistemaController.PaineisDeTabalho.PROJETOS);
@@ -97,8 +101,20 @@ public class CriarProjetoPainel extends Painel{
      * valida as informações dos campos do formilario
      * @return retorna true apenas quando todos os campos forem validos.
      */
-    //TODO Implementar a validação dos campos!
     private boolean todosOsCamposEstaoValidos() {
+        if (!campoNome.campoValido()){
+            JOptionPane.showMessageDialog(SistemaController.JANELA, "Informe o nome do projeto!", "O nome não pode ser nulo", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        if (!campoPrefixoCT.campoValido() || !campoPrefixoCU.campoValido() || !campoPrefixoRT.campoValido()){
+            JOptionPane.showMessageDialog(SistemaController.JANELA, "Os prefixos devem ter no maximo 5 caractes cada!", "Prefixo invalido", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        if (srcDiretorio.getText().equals(" ")){
+            JOptionPane.showMessageDialog(SistemaController.JANELA, "Você deve imformar o diretório raiz do projeto!", "src invalido", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+
         return true;
     }
 
@@ -106,10 +122,10 @@ public class CriarProjetoPainel extends Painel{
      * Limpa todas as informações de todos os campos do formulario.
      */
     public void limpar (){
-        campoPrefixoCT.setPlaceHolder(Strings.PLACEHOLDER_PREF_CASO_DE_TESTE);
-        campoPrefixoCU.setPlaceHolder(Strings.PLACEHOLDER_PREF_CASO_DE_USO);
-        campoPrefixoRT.setPlaceHolder(Strings.PLACEHOLDER_PREF_ROTEIRO_DE_TESTE);
-        srcDiretorio.setText("");
+        campoPrefixoCT.setText(null);
+        campoPrefixoCU.setText(null);
+        campoPrefixoRT.setText(null);
+        srcDiretorio.setText(" ");
         campoNome.setText("");
         campoDescricao.setText("");
     }
@@ -140,10 +156,14 @@ public class CriarProjetoPainel extends Painel{
             campoNome = new MeuCampoDeTexto();
             campoPrefixoCU = new MeuCampoDeTexto();
             campoPrefixoRT = new MeuCampoDeTexto();
+            campoPrefixoCT = new MeuCampoDeTexto();
             btmEscolherDiretorio = new Botao();
             campoDescricao = new javax.swing.JTextArea();
             jScrollPane1 = new MeuScrollPainel(campoDescricao);
-            campoPrefixoCT = new MeuCampoDeTexto();
+
+            campoPrefixoCU.setQuantidadeMaximaDeCaracteres(5);
+            campoPrefixoRT.setQuantidadeMaximaDeCaracteres(5);
+            campoPrefixoCT.setQuantidadeMaximaDeCaracteres(5);
         }
 
         private void iniciarTextos(){
@@ -152,7 +172,7 @@ public class CriarProjetoPainel extends Painel{
             labelSrc.setText(Strings.LG_CRIAR_PROJ_DIRETORIO_RAIZ);
             labelDescricao.setText(Strings.LG_CRIAR_PROJ_DESCRICAO);
             btmEscolherDiretorio.setText(Strings.LG_BTN_ESCOLHER_RAIZ);
-
+            srcDiretorio.setText(" ");
             campoPrefixoCT.setPlaceHolder(Strings.PLACEHOLDER_PREF_CASO_DE_TESTE);
             campoPrefixoCU.setPlaceHolder(Strings.PLACEHOLDER_PREF_CASO_DE_USO);
             campoPrefixoRT.setPlaceHolder(Strings.PLACEHOLDER_PREF_ROTEIRO_DE_TESTE);

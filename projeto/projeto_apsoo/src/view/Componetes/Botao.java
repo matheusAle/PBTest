@@ -1,5 +1,7 @@
 package view.Componetes;
 
+import resources.Fontes;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -36,6 +38,7 @@ public class Botao extends JButton implements MouseListener{
         super.setFocusPainted(false);
         super.setBorderPainted(false);
         super.addMouseListener(this);
+        super.setFont(Fontes.TEXTO_BTN);
     }
 
 
