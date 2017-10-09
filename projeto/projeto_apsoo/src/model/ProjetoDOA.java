@@ -1,6 +1,7 @@
 package model;
 
 import controller.ProjetoMetaData;
+import controller.UsuarioController;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +19,7 @@ public class ProjetoDOA {
      */
     public static Collection<ProjetoMetaData> buscarTodosOsProjetos (){
         String query = "SELECT id, srcRaiz, descricao FROM projeto";
-        ResultSet resultSet = DOA.execultar(query);
+        ResultSet resultSet = DOA.execultarSELECT(query);
         if (resultSet != null){
             try {
                 LinkedList<ProjetoMetaData> lista = new LinkedList<>();
@@ -40,7 +41,7 @@ public class ProjetoDOA {
     public static Projeto pegarProjetoDeCodigo(String codigo){
         try {
             String query = "SELECT * FROM projeto WHERE id = " + codigo;
-            ResultSet resultSet = DOA.execultar(query);
+            ResultSet resultSet = DOA.execultarSELECT(query);
             return new Projeto(
                     resultSet.getString("id"),
                     resultSet.getString("nome"),
@@ -58,6 +59,29 @@ public class ProjetoDOA {
         }
 
         return null;
+    }
+
+    public static boolean persistirProjeto(
+            String nome,
+            String src,
+            String CASO_DE_TESTE,
+            String CASO_DE_USO,
+            String ROTEIRO_DE_TESTE,
+            String descricao,
+            String email
+    ){
+        String query = "INSERT INTO projeto " +
+                        "(nome, srcRaiz, prefixoCT, prefixoCU, prefixoRT, descricao, usuario_dono)" +
+                        "VALUES (" +
+                        "'" + nome + "', " +
+                        "'" + src.replaceAll("\\\\", "\\\\\\\\") + "', " +
+                        "'" + CASO_DE_TESTE + "', " +
+                        "'" + CASO_DE_USO + "', " +
+                        "'" + ROTEIRO_DE_TESTE + "', " +
+                        "'" + descricao + "', " +
+                        "'" + email + "')";
+        int status = DOA.execultarINSERT(query);
+        return status == 1;
     }
 
 }

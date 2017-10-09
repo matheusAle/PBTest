@@ -11,10 +11,12 @@ import java.awt.*;
  * classe que abistrai o componente de painel das abas de navegação do software
  */
 public class Painel{
+
     private String labelTitulo;
     private Meu_PainelPrincipal painel;
     private Meu_painelConteudo painelConteudo;
     private MeuScrollPainel painelScroll;
+    private PainelDeOpcoes opcoes;
 
     private int alturaConteudo;
     private int larguraConteudo;
@@ -24,6 +26,11 @@ public class Painel{
      * cria um novo painel com um tulo de conteudo.
      * @param titulo titulo
      */
+
+    protected Painel (){
+
+    }
+
     public Painel(String titulo){
         this.labelTitulo = titulo;
         painel = new Meu_PainelPrincipal();
@@ -38,6 +45,8 @@ public class Painel{
         painelConteudo.setLayout(new FlowLayout());
         painel.add(painelConteudo, BorderLayout.CENTER);
         painelScroll = new MeuScrollPainel(painel);
+
+        opcoes = new PainelDeOpcoes();
     }
 
 
@@ -76,6 +85,10 @@ public class Painel{
         return painelScroll;
     }
 
+    public void addOpcao(Component c) {
+        opcoes.addComponente(c);
+    }
+
 
     private class Meu_PainelPrincipal extends JPanel {
 
@@ -93,6 +106,10 @@ public class Painel{
             return new Dimension(950, alturaConteudo/((ht-200)/larguraConteudo)*quantidadeDeItens);
         }
 
+    }
+
+    public JPanel getOpcoes(){
+        return opcoes.getPainel();
     }
 
 

@@ -101,7 +101,7 @@ public class Janela extends JFrame{
             {
                 iniciarLayout();
                 iniciarCompomentes();
-                initListeners();
+                iniciarListeners();
                 super.add(btn_usuarios, 0);
                 super.add(btn_projetos);
                 super.add(btn_casos_teste);
@@ -123,7 +123,7 @@ public class Janela extends JFrame{
                 btn_matriz_rastreabilidade = new BotaoDeNavegacao(Strings.nav_matriz_de_rastreabilidade);
             }
 
-            private void initListeners() {
+            private void iniciarListeners() {
                 btn_usuarios.setOnClick((e) -> {SistemaController.setPainelDeTrabalho(SistemaController.PaineisDeTabalho.USUARIOS);});
                 btn_projetos.setOnClick((e) -> {SistemaController.setPainelDeTrabalho(SistemaController.PaineisDeTabalho.PROJETOS);});
             }
@@ -143,7 +143,7 @@ public class Janela extends JFrame{
             painel_logo = new JPanel();
 
             super.setPreferredSize(new Dimension(Janela.super.getWidth(), 50));
-            painel_logo.setPreferredSize(new Dimension(200, 75));
+            painel_logo.setPreferredSize(new Dimension(200, 50));
 
             super.setBackground(Cores.FUNDO_BARRA_SUPERIOR);
             painel_logo.setBackground(Cores.FUNDO_BARRA_SUPERIOR);
@@ -159,8 +159,8 @@ public class Janela extends JFrame{
 
         void limpar(){
             super.removeAll();
-            super.repaint();
             super.add(painel_logo);
+            super.repaint();
         }
 
     }

@@ -1,6 +1,7 @@
 package controller;
 
 import model.Projeto;
+import model.ProjetoDOA;
 
 import java.util.LinkedList;
 
@@ -25,4 +26,23 @@ public class ProjetoController {
         listaDeprojetos.add(new ProjetoMetaData("223-44", "projeto 14","Projeto de teste 1rewt", "c:/user/pj1/src"));
     }
 
+
+    public static boolean cadastrarProjeto (
+            String nome,
+            String src,
+            String CASO_DE_USO,
+            String ROTEIRO_DE_TESTE,
+            String CASO_DE_TESTE,
+            String descricao
+            ){
+        return ProjetoDOA.persistirProjeto(
+                nome,
+                src,
+                CASO_DE_USO,
+                ROTEIRO_DE_TESTE,
+                CASO_DE_TESTE,
+                descricao,
+                UsuarioController.getEmailUsuarioLogado()
+        );
+    }
 }

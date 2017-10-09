@@ -19,14 +19,13 @@ public class MeuCampoDeTexto extends JTextField implements FocusListener{
     public MeuCampoDeTexto (){
         super.setBorder(new EmptyBorder(5,5,5,5));
         super.setFont(Fontes.CAMPO_DE_TEXTO);
-    }
+        super.addFocusListener(this);
 
-    public String getPlaceHolder() {
-        return placeHolder;
     }
 
     public void setPlaceHolder(String placeHolder) {
         this.placeHolder = placeHolder;
+        focusLost(null);
     }
 
 
@@ -40,7 +39,7 @@ public class MeuCampoDeTexto extends JTextField implements FocusListener{
 
     @Override
     public void focusLost(FocusEvent e) {
-        if (super.getText().isEmpty()) {
+        if (super.getText().isEmpty() || super.getText().equals(null)) {
             super.setForeground(Color.GRAY);
             super.setText(placeHolder);
         }

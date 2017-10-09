@@ -1,22 +1,20 @@
 package view;
 
+import controller.ProjetoController;
+import controller.SistemaController;
 import resources.Cores;
 import resources.Fontes;
 import resources.Strings;
-import view.Componetes.MeuCampoDeTexto;
-import view.Componetes.MeuScrollPainel;
-import view.Componetes.Meu_Botao;
-import view.Componetes.Painel;
+import view.Componetes.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class CriarProjetoPainel {
+public class CriarProjetoPainel extends Painel{
 
-    private Painel painel;
 
-    private Meu_Botao btmEscolherDiretorio;
+    private Botao btmEscolherDiretorio;
     private javax.swing.JTextArea campoDescricao;
     private MeuCampoDeTexto campoNome;
     private MeuCampoDeTexto campoPrefixoCT;
@@ -26,30 +24,108 @@ public class CriarProjetoPainel {
     private javax.swing.JLabel labelDescricao;
     private javax.swing.JLabel labelNome;
     private javax.swing.JLabel labelPrefixo;
-    private javax.swing.JLabel lavelSrc;
+    private javax.swing.JLabel labelSrc;
     private javax.swing.JPanel painelLegenda;
     private javax.swing.JLabel srcDiretorio;
 
+    private Botao salvar;
+    private Botao cancelar;
+    private Botao limpar;
+
     public CriarProjetoPainel (){
-        iniciarPainel();
+        super(Strings.TITULO_PAINEL_PROJETOS);
+        super.setAlturaELarguraDosItensDoConteudo(1, 1);
+        super.addConteudo(new Formulario());
+
+        carregarOpcoes();
     }
 
-    private void iniciarPainel(){
-        painel = new Painel("Cadastrar Projeto");
-        painel.setAlturaELarguraDosItensDoConteudo(1, 1);
-        painel.addConteudo(new Formulario());
+    /**
+     * Carrga as opções do do painel
+     */
+    private void carregarOpcoes() {
+        salvar = new Botao();
+        salvar.setCorDeFundoNormal(Cores.FUNDO_BOTAO);
+        salvar.setCorDoTextoNormal(Cores.TEXTOS);
+        salvar.setCorDeFundoHover(Color.red);
+        salvar.setText(Strings.CRIAR_PROJ_TEXTO_BTN_SALVAR);
+        salvar.setOnMouseClick((e) -> this.cadastarProjeto());
+
+        cancelar = new Botao();
+        cancelar.setCorDeFundoNormal(Cores.FUNDO_MENU_ESQUERDO);
+        cancelar.setCorDoTextoNormal(Cores.TEXTO_MENU_ESQUERDO);
+        cancelar.setCorDeFundoHover(Cores.TEXTO_MENU_ESQUERDO);
+        cancelar.setCorDoTextoHover(Cores.TEXTOS);
+        cancelar.setText(Strings.CRIAR_PROJ_TEXTO_BTN_CANCELAR);
+        cancelar.setOnMouseClick((e) -> this.cancelarCadastro());
+
+        limpar = new Botao();
+        limpar.setCorDeFundoNormal(Cores.FUNDO_MENU_ESQUERDO);
+        limpar.setCorDoTextoNormal(Cores.TEXTO_MENU_ESQUERDO);
+        limpar.setCorDeFundoHover(Cores.TEXTO_MENU_ESQUERDO);
+        limpar.setCorDoTextoHover(Cores.TEXTOS);
+        limpar.setText(Strings.CRIAR_PROJ_TEXTO_BTN_LIMPAR);
+        limpar.setOnMouseClick((e) -> this.limpar());
+
+
+        super.addOpcao(salvar);
+        super.addOpcao(limpar);
+        super.addOpcao(cancelar);
     }
 
-    public JScrollPane getPainel(){
-        return painel.getPainel();
+    private void cancelarCadastro(){
+        limpar();
+        SistemaController.setPainelDeTrabalho(SistemaController.PaineisDeTabalho.PROJETOS);
     }
 
+    private boolean cadastarProjeto(){
+        if (!todosOsCamposEstaoValidos())
+            return false;
+        ProjetoController.cadastrarProjeto(
+                campoNome.getText(),
+                srcDiretorio.getText(),
+                campoPrefixoCU.getText(),
+                campoPrefixoCT.getText(),
+                campoPrefixoRT.getText(),
+                campoDescricao.getText()
+        );
+        limpar();
+        return true;
+    }
+
+    /**
+     * valida as informações dos campos do formilario
+     * @return retorna true apenas quando todos os campos forem validos.
+     */
+    //TODO Implementar a validação dos campos!
+    private boolean todosOsCamposEstaoValidos() {
+        return true;
+    }
+
+    /**
+     * Limpa todas as informações de todos os campos do formulario.
+     */
+    public void limpar (){
+        campoPrefixoCT.setPlaceHolder(Strings.PLACEHOLDER_PREF_CASO_DE_TESTE);
+        campoPrefixoCU.setPlaceHolder(Strings.PLACEHOLDER_PREF_CASO_DE_USO);
+        campoPrefixoRT.setPlaceHolder(Strings.PLACEHOLDER_PREF_ROTEIRO_DE_TESTE);
+        srcDiretorio.setText("");
+        campoNome.setText("");
+        campoDescricao.setText("");
+    }
+
+
+    /**
+     * classe que modela o formulario de cadastro de projeto.
+     */
     private class Formulario extends JPanel{
 
         Formulario (){
             iniciarComponentes();
             iniciarLayout();
+            iniciarTextos();
             iniciarEstilo();
+            iniciarListaners();
         }
 
         private void iniciarComponentes (){
@@ -57,30 +133,33 @@ public class CriarProjetoPainel {
 
             labelNome = new javax.swing.JLabel();
             labelPrefixo = new javax.swing.JLabel();
-            lavelSrc = new javax.swing.JLabel();
+            labelSrc = new javax.swing.JLabel();
             labelDescricao = new javax.swing.JLabel();
             srcDiretorio = new javax.swing.JLabel();
 
             campoNome = new MeuCampoDeTexto();
             campoPrefixoCU = new MeuCampoDeTexto();
             campoPrefixoRT = new MeuCampoDeTexto();
-            btmEscolherDiretorio = new Meu_Botao();
+            btmEscolherDiretorio = new Botao();
             campoDescricao = new javax.swing.JTextArea();
             jScrollPane1 = new MeuScrollPainel(campoDescricao);
             campoPrefixoCT = new MeuCampoDeTexto();
+        }
 
-            setPreferredSize(new java.awt.Dimension(950, 500));
-
+        private void iniciarTextos(){
             labelNome.setText(Strings.LG_CRIAR_PROJ_NOME);
             labelPrefixo.setText(Strings.LG_CRIAR_PROJ_PROFIXOS);
-            lavelSrc.setText(Strings.LG_CRIAR_PROJ_DIRETORIO_RAIZ);
+            labelSrc.setText(Strings.LG_CRIAR_PROJ_DIRETORIO_RAIZ);
             labelDescricao.setText(Strings.LG_CRIAR_PROJ_DESCRICAO);
-            btmEscolherDiretorio.setText("Escolher Diretorio");
-            srcDiretorio.setText("Escolha um diretorio!");
+            btmEscolherDiretorio.setText(Strings.LG_BTN_ESCOLHER_RAIZ);
 
+            campoPrefixoCT.setPlaceHolder(Strings.PLACEHOLDER_PREF_CASO_DE_TESTE);
+            campoPrefixoCU.setPlaceHolder(Strings.PLACEHOLDER_PREF_CASO_DE_USO);
+            campoPrefixoRT.setPlaceHolder(Strings.PLACEHOLDER_PREF_ROTEIRO_DE_TESTE);
         }
 
         private void iniciarLayout(){
+            setPreferredSize(new java.awt.Dimension(950, 500));
             javax.swing.GroupLayout painelLegendaLayout = new javax.swing.GroupLayout(painelLegenda);
             painelLegenda.setLayout(painelLegendaLayout);
             painelLegendaLayout.setHorizontalGroup(
@@ -89,7 +168,7 @@ public class CriarProjetoPainel {
                                     .addContainerGap(37, Short.MAX_VALUE)
                                     .addGroup(painelLegendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(labelDescricao)
-                                            .addComponent(lavelSrc)
+                                            .addComponent(labelSrc)
                                             .addComponent(labelPrefixo)
                                             .addComponent(labelNome))
                                     .addGap(30, 30, 30))
@@ -102,7 +181,7 @@ public class CriarProjetoPainel {
                                     .addGap(28, 28, 28)
                                     .addComponent(labelPrefixo)
                                     .addGap(30, 30, 30)
-                                    .addComponent(lavelSrc)
+                                    .addComponent(labelSrc)
                                     .addGap(41, 41, 41)
                                     .addComponent(labelDescricao)
                                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -157,15 +236,15 @@ public class CriarProjetoPainel {
 
         }
 
-        private void iniciarEstilo (){
+        private void iniciarEstilo(){
             this.setBackground(Cores.TEXTO_MENU_ESQUERDO);
             painelLegenda.setBackground(Cores.FUNDO_MENU_ESQUERDO);
             for (Component c : painelLegenda.getComponents()){
                 c.setFont(Fontes.ITEM_LISTA_PROJETO_LEGENDA);
                 c.setForeground(Cores.TEXTOS);
             }
-            lavelSrc.setFont(Fontes.ITEM_LISTA_PROJETO_LEGENDA);
-            lavelSrc.setForeground(Cores.TEXTOS);
+            labelSrc.setFont(Fontes.ITEM_LISTA_PROJETO_LEGENDA);
+            labelSrc.setForeground(Cores.TEXTOS);
 
             campoDescricao.setBorder(new EmptyBorder(10,10,10,10));
             campoDescricao.setWrapStyleWord(true);
@@ -173,12 +252,23 @@ public class CriarProjetoPainel {
             campoDescricao.setFont(Fontes.CAMPO_DE_TEXTO);
 
 
-            btmEscolherDiretorio.setCorDeFundoNormal(Cores.FUNDO_BOTOAO);
+            btmEscolherDiretorio.setCorDeFundoNormal(Cores.FUNDO_BOTAO);
             btmEscolherDiretorio.setCorDeFundoHover(Color.red);
             btmEscolherDiretorio.setCorDoTextoNormal(Cores.TEXTOS);
             btmEscolherDiretorio.setCorDoTextoHover(Cores.TEXTOS);
 
 
         }
+
+        private void iniciarListaners() {
+            btmEscolherDiretorio.setOnMouseClick((e) ->{
+                JFileChooser chooserDiretorio = new JFileChooser();
+                chooserDiretorio.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                chooserDiretorio.showOpenDialog(getParent());
+                srcDiretorio.setText(chooserDiretorio.getSelectedFile().getAbsolutePath());
+            });
+        }
+
+
     }
 }

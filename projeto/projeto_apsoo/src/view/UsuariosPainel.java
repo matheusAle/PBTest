@@ -15,14 +15,13 @@ import java.awt.event.MouseListener;
 /**
  * Classe responsavel pelo view da aba usuarios.
  */
-public class UsuariosPainel {
+public class UsuariosPainel extends Painel{
 
-    private Painel painel;
     private Dimension tamanhoItens = new Dimension(200, 200);
 
     public UsuariosPainel(){
-        painel = new Painel(Strings.TITULO_PAINEL_USUARIO);
-        painel.setAlturaELarguraDosItensDoConteudo(tamanhoItens.height, tamanhoItens.width);
+        super(Strings.TITULO_PAINEL_USUARIO);
+        super.setAlturaELarguraDosItensDoConteudo(tamanhoItens.height, tamanhoItens.width);
         carregarListaDeUsuario();
     }
 
@@ -30,22 +29,14 @@ public class UsuariosPainel {
      * Carrega/atualiza a lista de usuarios no painel.
      */
     private void carregarListaDeUsuario () {
-        painel.setVisible(false);
-        painel.limparConteudo();
+        super.setVisible(false);
+        super.limparConteudo();
 
         UsuarioController.getListaDeUsuarios().forEach(u -> {
-            painel.addConteudo(new PainelInfos(u.getImgPerfil(), u.getNome(), u.getCargo()));
+            super.addConteudo(new PainelInfos(u.getImgPerfil(), u.getNome(), u.getCargo()));
         });
 
-        painel.setVisible(true);
-    }
-
-    /**
-     * Retorna um objeto swing do tipo <link>JScrollPane</link>.
-     * @return
-     */
-    public JScrollPane getPainel() {
-        return painel.getPainel();
+        super.setVisible(true);
     }
 
     /**

@@ -1,26 +1,27 @@
 CREATE SCHEMA pbtest DEFAULT CHARACTER SET utf8;
-
+USE pbtest;
 
 #tabela de usuarios
 CREATE TABLE usuario (
 	nome VARCHAR(45) NOT NULL,
 	email VARCHAR(45),
-    senha VARCHAr(45),
-    telefone INTEGER(15) NULL,
+    senha VARCHAR(45),
+    telefone INTEGER NULL,
     cargo INT(1) NOT NULL,
+    biografia TEXT,
     PRIMARY KEY (email, senha)
 );
 
 #tabela de projetos
 CREATE TABLE projeto (
     nome VARCHAR(45) NOT NULL,
-    srcRaiz VARCHAR(100) NOT NULL,
+    srcRaiz TEXT NOT NULL,
     prefixoCT VARCHAR(10) NOT NULL,
     prefixoCU VARCHAR(10) NOT NULL,
     prefixoRT VARCHAR(10) NOT NULL,
     descricao TEXT NOT NULL,
     usuario_dono VARCHAR(45) NOT NULL,
-	id INTEGER(5) AUTO_INCREMENT,
+	id INTEGER AUTO_INCREMENT,
     contadorCT INT DEFAULT 0000,
     contadorCU INT DEFAULT 0000,
     contadorRT INT DEFAULT 0000,
@@ -63,13 +64,13 @@ CREATE TABLE roteiros_teste (
     CONSTRAINT FOREIGN KEY (projetoID) REFERENCES projeto(id)  ON DELETE CASCADE ON UPDATE CASCADE
 );
     
-INSERT INTO usuario VALUES ('root', 'root@root', 'root', null, 1);
-INSERT INTO usuario VALUES ('Matheus Ale da Silva', 'm.matheus.ale@gmail.com', 'adm', null, 1);
-INSERT INTO usuario VALUES ('Buno silva', 'bruno@live.com', 'jurubeba', null, 2);
-INSERT INTO usuario VALUES ('Eduardo Gonsaga', 'ginsaghinha@gmail.com', 'gugulegal123', null, 3);
-INSERT INTO usuario VALUES ('Isabella Bitencurt', 'bela.curt@gmail.com', 'belabela', null, 3);
-INSERT INTO usuario VALUES ('Amanda Souza', 'amanda_sozinha@gmail.com', 'WWFFEaw@445UffOOpp', null, 3);
+INSERT INTO usuario VALUES ('root', 'root@root', 'root', null, 1,'usuario root do sistema.');
+INSERT INTO usuario VALUES ('Matheus Ale da Silva', 'm.matheus.ale@gmail.com', 'adm', null, 1, '');
+INSERT INTO usuario VALUES ('Buno silva', 'bruno@live.com', 'jurubeba', null, 2, '');
+INSERT INTO usuario VALUES ('Eduardo Gonsaga', 'ginsaghinha@gmail.com', 'gugulegal123', null, 3, '');
+INSERT INTO usuario VALUES ('Isabella Bitencurt', 'bela.curt@gmail.com', 'belabela', null, 3, '');
+INSERT INTO usuario VALUES ('Amanda Souza', 'amanda_sozinha@gmail.com', 'WWFFEaw@445UffOOpp', null, 3, '');
 
-
-    
+SELECT * FROM usuario;
+SELECT * FROM projeto;
     

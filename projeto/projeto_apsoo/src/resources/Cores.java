@@ -11,5 +11,5 @@ public class Cores {
     public static final Color TEXTO_MENU_ESQUERDO = new Color(84, 95, 97);
     public static final Color FUNDO_ITEM_LISTA = new Color(148, 180,162);
     public static final Color FUNDO_ITEM_LISTA_HOVER = new Color(191, 200,196);
-    public static final Color FUNDO_BOTOAO = new Color(251, 85, 85);
+    public static final Color FUNDO_BOTAO = new Color(251, 85, 85);
 }

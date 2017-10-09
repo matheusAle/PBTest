@@ -23,5 +23,9 @@ public class UsuarioController {
         usuarioAtivo = u;
     }
 
+    public static String getEmailUsuarioLogado(){
+        return usuarioAtivo.getEmail();
+    }
+
 
 }

@@ -25,6 +25,7 @@ public class BotaoDeNavegacao extends JLabel implements MouseListener{
         super.setFont(Fontes.NAV_LABEL);
         super.addMouseListener(this);
         super.setForeground(corDoTextoNormal);
+        super.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
     public void setOnClick(Consumer<Component> onClick) {
@@ -56,4 +57,7 @@ public class BotaoDeNavegacao extends JLabel implements MouseListener{
     public void mouseExited(MouseEvent e) {
         super.setForeground(corDoTextoNormal);
     }
+
+
+
 }

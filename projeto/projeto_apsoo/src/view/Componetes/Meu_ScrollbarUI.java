@@ -12,7 +12,7 @@ public class Meu_ScrollbarUI extends MetalScrollBarUI {
 
 
     private Image imageThumb, imageTrack;
-    private Meu_Botao b = new Meu_Botao() {
+    private Botao b = new Botao() {
 
         @Override
         public Dimension getPreferredSize() {
@@ -23,7 +23,7 @@ public class Meu_ScrollbarUI extends MetalScrollBarUI {
 
     public Meu_ScrollbarUI() {
 
-        imageThumb = FauxImage.create(5, 5, Cores.FUNDO_BOTOAO);
+        imageThumb = FauxImage.create(5, 5, Cores.FUNDO_BOTAO);
         imageTrack = FauxImage.create(10, 10, Color.white);
     }
 

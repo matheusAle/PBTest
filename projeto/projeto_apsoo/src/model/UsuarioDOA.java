@@ -40,7 +40,7 @@ public final class UsuarioDOA {
     public static Collection<UsuarioMetaData> buscarTodosOSUsuarios (){
         String query  = "SELECT email, nome, cargo FROM usuario";
         try {
-            ResultSet resultSet = DOA.execultar(query);
+            ResultSet resultSet = DOA.execultarSELECT(query);
             if (resultSet != null){
                 LinkedList<UsuarioMetaData> lista = new LinkedList<>();
                 while (resultSet.next()){
@@ -67,7 +67,7 @@ public final class UsuarioDOA {
     public static Usuario fazerLogin(String email, String senha) {
         String query  = "SELECT * FROM usuario WHERE email = '" + email + "' AND senha = '" + senha + "'";
         try {
-            ResultSet resultSet = DOA.execultar(query);
+            ResultSet resultSet = DOA.execultarSELECT(query);
             if (resultSet != null){
                 while (resultSet.next()){
                     return new Usuario(

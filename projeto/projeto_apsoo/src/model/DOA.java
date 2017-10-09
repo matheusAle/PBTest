@@ -16,7 +16,7 @@ public class DOA {
      * @param query query de busca no banco de dados
      * @return retorna um ReultSet com o resultado da busca for bem sucedida. Caso java uma falha retorna null
      */
-    protected synchronized static ResultSet execultar (String query){
+    protected synchronized static ResultSet execultarSELECT (String query){
         try {
             Connection conexao = DriverManager.getConnection(url, usuario, senha);
             PreparedStatement pesquisa = conexao.prepareStatement(query);
@@ -26,4 +26,16 @@ public class DOA {
             return null;
         }
     }
+
+    protected synchronized static int execultarINSERT (String query){
+        try {
+            Connection cone = DriverManager.getConnection(url, usuario, senha);
+            PreparedStatement inserir = cone.prepareStatement(query);
+            inserir.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 2;
+    }
+
 }
