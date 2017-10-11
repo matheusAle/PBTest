@@ -1,13 +1,12 @@
 package view;
 
+import view.Componetes.Painel;
+
 import javax.swing.*;
 
 /**
  * Classe responsavel pelo view da aba casos de testes
  */
-public class CasosDeTestePainel extends JScrollPane{
+public class CasosDeTestePainel extends Painel{
 
-    private class Criar_Caso_de_Teste {
-
-    }
 }

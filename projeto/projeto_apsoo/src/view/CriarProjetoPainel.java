@@ -79,7 +79,7 @@ public class CriarProjetoPainel extends Painel{
      */
     private void cancelarCadastro(){
         limpar();
-        SistemaController.setPainelDeTrabalho(SistemaController.PaineisDeTabalho.PROJETOS);
+        SistemaController.setPainelDeTrabalho("PROJETOS");
     }
 
     private boolean cadastarProjeto(){
@@ -107,7 +107,7 @@ public class CriarProjetoPainel extends Painel{
             return false;
         }
         if (!campoPrefixoCT.campoValido() || !campoPrefixoCU.campoValido() || !campoPrefixoRT.campoValido()){
-            JOptionPane.showMessageDialog(SistemaController.JANELA, "Os prefixos devem ter no maximo 5 caractes cada!", "Prefixo invalido", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(SistemaController.JANELA, "Os prefixos devem ter no maximo " +campoPrefixoRT.getQuantidadeMaximaDeCaracteres()+ " caractes cada!", "Prefixo invalido", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
         if (srcDiretorio.getText().equals(" ")){
@@ -161,9 +161,9 @@ public class CriarProjetoPainel extends Painel{
             campoDescricao = new javax.swing.JTextArea();
             jScrollPane1 = new MeuScrollPainel(campoDescricao);
 
-            campoPrefixoCU.setQuantidadeMaximaDeCaracteres(5);
-            campoPrefixoRT.setQuantidadeMaximaDeCaracteres(5);
-            campoPrefixoCT.setQuantidadeMaximaDeCaracteres(5);
+            campoPrefixoCU.setQuantidadeMaximaDeCaracteres(10);
+            campoPrefixoRT.setQuantidadeMaximaDeCaracteres(10);
+            campoPrefixoCT.setQuantidadeMaximaDeCaracteres(10);
         }
 
         private void iniciarTextos(){

@@ -8,7 +8,7 @@ import javax.swing.*;
 import javax.swing.plaf.metal.MetalScrollBarUI;
 
     /** @see //stackoverflow.com/a/12270067/230513 */
-public class Meu_ScrollbarUI extends MetalScrollBarUI {
+public class MeuScrollbarUI extends MetalScrollBarUI {
 
 
     private Image imageThumb, imageTrack;
@@ -21,7 +21,7 @@ public class Meu_ScrollbarUI extends MetalScrollBarUI {
 
     };
 
-    public Meu_ScrollbarUI() {
+    public MeuScrollbarUI() {
 
         imageThumb = FauxImage.create(5, 5, Cores.FUNDO_BOTAO);
         imageTrack = FauxImage.create(10, 10, Color.white);

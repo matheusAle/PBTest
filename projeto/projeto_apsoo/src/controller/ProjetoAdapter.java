@@ -3,7 +3,7 @@ package controller;
 /**
  * Classe de transporte de dados referente aos projetos
  */
-public class ProjetoMetaData {
+public class ProjetoAdapter {
 
     private String codigo;
     private String nome;
@@ -13,7 +13,7 @@ public class ProjetoMetaData {
     //TODO terminar a implementação!
 
 
-    public ProjetoMetaData(String codigo, String nome, String descricao, String src) {
+    public ProjetoAdapter(String codigo, String nome, String descricao, String src) {
         this.codigo = codigo;
         this.nome = nome;
         this.descricao = descricao;

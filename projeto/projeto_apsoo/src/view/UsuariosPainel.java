@@ -1,11 +1,13 @@
 package view;
 
+import controller.UsuarioAdapter;
 import controller.UsuarioController;
 import resources.Cores;
 import resources.Fontes;
 import resources.Icones;
 import resources.Strings;
 import view.Componetes.Painel;
+import view.Componetes.PainelItem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,7 +35,7 @@ public class UsuariosPainel extends Painel{
         super.limparConteudo();
 
         UsuarioController.getListaDeUsuarios().forEach(u -> {
-            super.addConteudo(new PainelInfos(u.getImgPerfil(), u.getNome(), u.getCargo()));
+            super.addConteudo(new PainelInfos(u.getImgPerfil(), u));
         });
 
         super.setVisible(true);
@@ -42,60 +44,43 @@ public class UsuariosPainel extends Painel{
     /**
      * classe que modela o painel que contem as informações de um usuario visivel a todos os usuarios.
      */
-    private class PainelInfos extends JPanel{
+    private class PainelInfos extends PainelItem{
 
         JLabel imgPerfil;
         JLabel nomeUsuario;
         JLabel cargoUsuario;
 
-        public PainelInfos(ImageIcon imgPerfil, String nomeUsuario, String cargoUsuario) {
+        public PainelInfos(ImageIcon imgPerfil, UsuarioAdapter usuario) {
             super.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 10));
             super.setPreferredSize(tamanhoItens);
             super.setMaximumSize(tamanhoItens);
-            super.setBackground(Cores.FUNDO_ITEM_LISTA);
+            super.setCorDeFundoNormal(Cores.TEXTO_MENU_ESQUERDO);
+            super.setCorDeFundoHover(Cores.FUNDO_MENU_ESQUERDO);
+
             if (imgPerfil != null)
                 this.imgPerfil = new JLabel(imgPerfil);
             else
                 this.imgPerfil = new JLabel(Icones.imgPerfil);
 
-            this.nomeUsuario = new JLabel(nomeUsuario);
-            this.nomeUsuario.setFont(Fontes.CARD_NOME_USUARIO);
-            this.nomeUsuario.setForeground(Cores.TEXTOS);
-
-            this.cargoUsuario = new JLabel(cargoUsuario);
-            this.cargoUsuario.setFont(Fontes.CARD_CARGO_USUARIO);
-            this.cargoUsuario.setForeground(Cores.TEXTOS);
+            this.nomeUsuario = new JLabel(usuario.getNome());
+            this.cargoUsuario = new JLabel(usuario.getCargo());
 
             super.add(this.imgPerfil);
             super.add(this.nomeUsuario);
             super.add(this.cargoUsuario);
+            iniciarEstilo();
+            iniciarListaners();
+        }
 
-            super.addMouseListener(new MouseListener() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    //TODO Impmementar a janela de detalhes do usuario
-                }
+        private void iniciarEstilo(){
+            this.nomeUsuario.setFont(Fontes.CARD_NOME_USUARIO);
+            this.nomeUsuario.setForeground(Cores.TEXTOS);
+            this.cargoUsuario.setFont(Fontes.CARD_CARGO_USUARIO);
+            this.cargoUsuario.setForeground(Cores.TEXTOS);
+        }
 
-                @Override
-                public void mousePressed(MouseEvent e) {
+        private void iniciarListaners(){
 
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    PainelInfos.super.setBackground(Cores.FUNDO_ITEM_LISTA_HOVER);
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    PainelInfos.super.setBackground(Cores.FUNDO_ITEM_LISTA);
-                }
-            });
         }
     }
 }

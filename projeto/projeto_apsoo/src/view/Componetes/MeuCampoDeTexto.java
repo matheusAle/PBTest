@@ -72,4 +72,8 @@ public class MeuCampoDeTexto extends JTextField implements FocusListener{
     public void setQuantidadeMaximaDeCaracteres(int quantidadeMaximaDeCaracteres) {
         this.quantidadeMaximaDeCaracteres = quantidadeMaximaDeCaracteres;
     }
+
+    public int getQuantidadeMaximaDeCaracteres() {
+        return quantidadeMaximaDeCaracteres;
+    }
 }

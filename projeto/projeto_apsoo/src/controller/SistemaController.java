@@ -14,15 +14,36 @@ import java.io.IOException;
  */
 public class SistemaController {
 
-    public static Janela JANELA;
     private static Painel estacaoAtiva = new Painel("");
+    public static Janela JANELA;
 
-    public static void abrir(Usuario usuario) throws IOException, FontFormatException {
-        UsuarioController.setUsuario(usuario);
-        JANELA = new Janela().iniciarNavegacao(usuario.getNome(), usuario.getCargo());
+    public static void abrir() throws IOException, FontFormatException {
+        JANELA = new Janela();
+        JANELA.iniciarNavegacao(UsuarioController.getNomeUsuarioLogado(), UsuarioController.getCargoUsuarioLogado());
     }
 
-    public static synchronized void setPainelDeTrabalho (Painel p){
+    public static synchronized void setPainelDeTrabalho (String painel){
+        Painel p = null;
+        switch (painel){
+            case "USUARIOS":
+                p = PaineisDeTabalho.USUARIOS;
+                break;
+            case "PROJETOS":
+                p = PaineisDeTabalho.PROJETOS;
+                break;
+            case "CRIAR_PROJETO":
+                p = PaineisDeTabalho.CRIAR_PROJETO;
+                break;
+            case "CASOS_DE_USO":
+                break;
+            case "CASOS_DE_TESTE":
+                p = PaineisDeTabalho.CASOS_TESTE;
+                break;
+            case "ROTEIROS_DE_TESTE":
+                p = PaineisDeTabalho.MATRIZ_DE_RASTREABIBLIDADE;
+                break;
+        }
+
         JANELA.remove(estacaoAtiva.getPainel());
         estacaoAtiva = p;
         JANELA.add(p.getPainel(), BorderLayout.CENTER);
@@ -35,14 +56,16 @@ public class SistemaController {
      * Mantem referencias para cada uma das "estações" de trabalho do programa.<br/>
      * Todas as referencias são estaticas e finais.
      */
-    public static class PaineisDeTabalho {
+    private static class PaineisDeTabalho {
         public static final Painel USUARIOS = new UsuariosPainel();
         public static final Painel PROJETOS = new ProjetosPainel();
         public static final Painel CRIAR_PROJETO = new CriarProjetoPainel();
-        public static final JScrollPane CASOS_TESTE = new CasosDeTestePainel();
-        public static final JScrollPane ROTEIROS_TESTE = new RoteirosDeTestesPainel();
-        public static final JScrollPane MATRIZ_RASTREABIBLIDADE = new MatrizDeRastreabilidadePainel();
+        public static final Painel CASOS_TESTE = new CasosDeTestePainel();
+        public static final Painel ROTEIROS_TESTE = new RoteirosDeTestesPainel();
+        public static final Painel MATRIZ_DE_RASTREABIBLIDADE = new MatrizDeRastreabilidadePainel();
     }
+
+
 
 
 }

@@ -10,27 +10,18 @@ import java.util.function.Consumer;
 
 public class Botao extends JButton implements MouseListener{
     private Color corDeFundoNormal;
+    private Color corDeFundoHover;
     private Color corDoTextoNormal;
     private Color corDoTextoHover;
-    private Color corDeFundoHover;
 
-    private Consumer<Component> onMouseClick = new Consumer<Component>() {
-        @Override
-        public void accept(Component component) {
+    private Consumer<Component> onMouseClick = component -> {
 
-        }
     };
-    private Consumer<Component> onMouseEnter = new Consumer<Component>() {
-        @Override
-        public void accept(Component component) {
+    private Consumer<Component> onMouseEnter = component -> {
 
-        }
     };
-    private Consumer<Component> onMouseExit = new Consumer<Component>() {
-        @Override
-        public void accept(Component component) {
+    private Consumer<Component> onMouseExit = component -> {
 
-        }
     };
 
     public Botao() {
@@ -39,6 +30,7 @@ public class Botao extends JButton implements MouseListener{
         super.setBorderPainted(false);
         super.addMouseListener(this);
         super.setFont(Fontes.TEXTO_BTN);
+
     }
 
 

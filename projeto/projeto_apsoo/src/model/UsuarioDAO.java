@@ -1,25 +1,23 @@
 package model;
 
 
-import controller.UsuarioMetaData;
+import controller.UsuarioAdapter;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedList;
 
 // TODO implementar o doa do usuario!
-public final class UsuarioDOA {
-    static boolean logar (String email, String senha){
-        return true;
-    }
+public final class UsuarioDAO extends DAO{
 
-
-    public Usuario buscarUsuario (String email){
-        //TODO implementar a recuperação dos dados de um usuario no banco de dados
-        return null;
-    }
-
+    /**
+     * Transforma o codigo do atributo cargo na relação usuario em uma string com o nome do cargo.
+     * @param i codigo do cargo.
+     * @return String com o nome do cargo. se o codigo não existir retorna null.
+     */
     private static Usuario.Cargo getCargo (int i){
         switch (i){
             case 1:
@@ -33,18 +31,15 @@ public final class UsuarioDOA {
         }
     }
 
-    /**
-     * Retorna uma <link>Collection</link> com objetos <link>UsuarioMetaData</link> em seu conteudo.
-     * @return Collection<UsuarioMetaData>. caso haja algum erro retorna null.
-     */
-    public static Collection<UsuarioMetaData> buscarTodosOSUsuarios (){
-        String query  = "SELECT email, nome, cargo FROM usuario";
+    @Override
+    public Collection listar() {
+        String query  = "SELECT * FROM usuario";
         try {
-            ResultSet resultSet = DOA.execultarSELECT(query);
+            ResultSet resultSet = DAO.execultarSELECT(query);
             if (resultSet != null){
-                LinkedList<UsuarioMetaData> lista = new LinkedList<>();
+                LinkedList<UsuarioAdapter> lista = new LinkedList<>();
                 while (resultSet.next()){
-                    lista.add(new UsuarioMetaData(
+                    lista.add(new UsuarioAdapter(
                             resultSet.getString("email"),
                             resultSet.getString("nome"),
                             getCargo(resultSet.getInt("cargo")),
@@ -56,33 +51,38 @@ public final class UsuarioDOA {
         }
         return null;
     }
-
     /**
-     * Retorna um objeto do tipo <link>Usuario</linK> caso a senha e o email passado exista na tabela
-     * de usuarios no banco de dados.
-     * @param email
-     * @param senha
-     * @return objeto Usuario ou null caso o usuario com esse email e senha não exista;
+     * Busca na relação de usuario no banco de dados, usuario que passem pelo crivo passado como parametro
+     * @param restricao restrição de busca. ex: email = "m@gmail.com' AND senha = '123'
+     * @return Retorna uma <link>Collection</link> com objetos <link>Usuario</link> em seu conteudo.
      */
-    public static Usuario fazerLogin(String email, String senha) {
-        String query  = "SELECT * FROM usuario WHERE email = '" + email + "' AND senha = '" + senha + "'";
+    @Override
+    public Collection<Usuario> buscar(String restricao) {
+        String query  = "SELECT * FROM usuario WHERE " + restricao;
         try {
-            ResultSet resultSet = DOA.execultarSELECT(query);
+            ResultSet resultSet = DAO.execultarSELECT(query);
+            HashSet<Usuario> usuariosEncontrados = new HashSet<>();
             if (resultSet != null){
                 while (resultSet.next()){
-                    return new Usuario(
+                    usuariosEncontrados.add(new Usuario(
                             resultSet.getString("nome"),
                             resultSet.getString("email"),
                             getCargo(resultSet.getInt("cargo")),
                             resultSet.getString("telefone"),
                             resultSet.getString("biografia"),
                             null
-                    );
+                    ));
                 }
             }
+            return usuariosEncontrados;
         }catch (SQLException e){
             e.printStackTrace();
         }
+        return null;
+    }
+
+    //TODO impementar a atualização dos dados do usuario.
+    public Collection atualizar() {
         return null;
     }
 }

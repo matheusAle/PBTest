@@ -4,7 +4,7 @@ import model.Usuario;
 
 import javax.swing.*;
 
-public class UsuarioMetaData {
+public class UsuarioAdapter {
 
     private String email;
     private String nome;
@@ -12,7 +12,7 @@ public class UsuarioMetaData {
     private ImageIcon imgPerfil;
 
 
-    public UsuarioMetaData(String email, String nome, Usuario.Cargo cargo, ImageIcon imgPerfil) {
+    public UsuarioAdapter(String email, String nome, Usuario.Cargo cargo, ImageIcon imgPerfil) {
         this.email = email;
         this.nome = nome;
         this.cargo = cargo.toString().replaceAll("_", " ");

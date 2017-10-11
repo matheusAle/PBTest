@@ -1,15 +1,17 @@
 package model;
 
 import java.sql.*;
+import java.util.Collection;
 
 /**
  * classe responsavel pela conexão com o banco de dados da aplicação.
  */
-public class DOA {
+public abstract class DAO {
 
     private static String url = "jdbc:mysql://localhost/pbtest";
     private static String usuario = "root";
     private static String senha = "";
+
 
     /**
      * Execulta a query passada por paramentro
@@ -37,5 +39,19 @@ public class DOA {
         }
         return 2;
     }
+
+
+    /**
+     * Busca no banco e retorna um coleção de items da relação.
+     * @return
+     */
+    public abstract Collection listar();
+
+    /**
+     * Buscar por um elemento ou mais da relação
+     * @return
+     */
+    public abstract Collection buscar(String restricao);
+
 
 }

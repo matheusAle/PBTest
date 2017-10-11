@@ -22,18 +22,6 @@ public class Usuario {
         this.imgPerfil = img;
     }
 
-    /**
-     * Metodo para realizar altenticar as informações do usuario que deseja acessar sua conta
-     * no sistema
-     * @return retorma uma instancia da classe Usuario
-     */
-    public static Usuario fazerLogin(String email, String senha){
-        UsuarioDOA.logar(email, senha);
-        //TODO terminar a implemeentação do metodo de logar!
-        return null;
-    }
-
-
     public String getNome() {
         return nome;
     }

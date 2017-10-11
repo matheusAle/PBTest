@@ -102,7 +102,7 @@ public class Janela extends JFrame{
                 iniciarLayout();
                 iniciarCompomentes();
                 iniciarListeners();
-                super.add(btn_usuarios, 0);
+                super.add(btn_usuarios);
                 super.add(btn_projetos);
                 super.add(btn_casos_teste);
                 super.add(btn_roteiros_testes);
@@ -124,8 +124,8 @@ public class Janela extends JFrame{
             }
 
             private void iniciarListeners() {
-                btn_usuarios.setOnClick((e) -> {SistemaController.setPainelDeTrabalho(SistemaController.PaineisDeTabalho.USUARIOS);});
-                btn_projetos.setOnClick((e) -> {SistemaController.setPainelDeTrabalho(SistemaController.PaineisDeTabalho.PROJETOS);});
+                btn_usuarios.setOnClick((e) -> {SistemaController.setPainelDeTrabalho("USUARIOS");});
+                btn_projetos.setOnClick((e) -> {SistemaController.setPainelDeTrabalho("PROJETOS");});
             }
         }
     }

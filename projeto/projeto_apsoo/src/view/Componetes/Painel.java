@@ -6,31 +6,64 @@ import resources.Fontes;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.util.function.Consumer;
 
 /**
  * classe que abistrai o componente de painel das abas de navegação do software
  */
 public class Painel{
 
+    /**
+     * Texto que de titulo deste painel.
+     */
     private String labelTitulo;
+    /**
+     * painel que contem o titulo e o painel de conteudo.
+     */
     private Meu_PainelPrincipal painel;
+    /**
+     * painel que contem o conteudo do painel.
+     */
     private Meu_painelConteudo painelConteudo;
+    /**
+     * Painel com Scroll que contem apenas o painel principal.
+     */
     private MeuScrollPainel painelScroll;
+    /**
+     * Painel que contem as opçoes do painel.
+     */
     private PainelDeOpcoes opcoes;
+
+    /**
+     * boolean que marca o estado da painel atual.
+     */
+    private boolean painelAtivo = false;
+
+    /**
+     * Execulta um preprocessamento do carregamento do painel
+     */
+    private Consumer<Component> quandoAtivo = component -> {
+
+    };
+    /**
+     * Execunta um preprocessamento para a inativodade do painel.
+     */
+    private Consumer<Component> quandoInativo = component -> {
+
+    };
 
     private int alturaConteudo;
     private int larguraConteudo;
     private int quantidadeDeItens = 1;
 
-    /**
-     * cria um novo painel com um tulo de conteudo.
-     * @param titulo titulo
-     */
-
     protected Painel (){
 
     }
 
+    /**
+     * instancia um novo painel com um titulo.
+     * @param titulo
+     */
     public Painel(String titulo){
         this.labelTitulo = titulo;
         painel = new Meu_PainelPrincipal();
@@ -81,15 +114,32 @@ public class Painel{
         painelConteudo.setVisible(v);
     }
 
+    /**
+     * @return retorna um JScrollPane contendo os elementos do painel;
+     */
     public JScrollPane getPainel (){
+        if (painelAtivo)
+            quandoAtivo.accept(null);
+        else
+            quandoInativo.accept(null);
+
+        painelAtivo = !painelAtivo;
         return painelScroll;
     }
 
+    /**
+     * Adiciona o elementos passado como paramentro no JPanel de opções.
+     * @param c
+     */
     public void addOpcao(Component c) {
         opcoes.addComponente(c);
     }
 
 
+    /**
+     * Painel prique contem um titulo e um painel de conteudo.
+     *
+     */
     private class Meu_PainelPrincipal extends JPanel {
 
         @Override
@@ -99,6 +149,9 @@ public class Painel{
         }
     }
 
+    /**
+     * Modela um JPanel com tamanho que varia de acordo com o conteudo que ele contem.
+     */
     private class Meu_painelConteudo extends JPanel {
         @Override
         public Dimension getPreferredSize() {
@@ -108,9 +161,27 @@ public class Painel{
 
     }
 
+    /**
+     * @return Retorna um JPanel com As opções do painel.
+     */
     public JPanel getOpcoes(){
         return opcoes.getPainel();
     }
 
 
+    /**
+     * Metodo chamado sempre que o painel ficar ativo.
+     * @param quandoAtivo
+     */
+    public void setQuandoAtivo(Consumer<Component> quandoAtivo) {
+        this.quandoAtivo = quandoAtivo;
+    }
+
+    /**
+     * Metodo chamado sempre queo painel for ficar ficar inativo
+     * @param quandoInativo
+     */
+    public void setQuandoInativo(Consumer<Component> quandoInativo) {
+        this.quandoInativo = quandoInativo;
+    }
 }

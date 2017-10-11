@@ -1,17 +1,18 @@
 package view;
 
+import controller.ProjetoAdapter;
 import controller.ProjetoController;
-import controller.ProjetoMetaData;
 import controller.SistemaController;
 import resources.Cores;
 import resources.Fontes;
 import resources.Strings;
 import view.Componetes.Botao;
+import view.Componetes.MeuLabel;
 import view.Componetes.Painel;
+import view.Componetes.PainelItem;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 
 /**
  * Classe responsavel pelo view da aba Projetos
@@ -19,7 +20,6 @@ import java.io.File;
 public class ProjetosPainel extends Painel{
 
     private ItemListaProjeto projetoAtivo;
-    private PainelProjetoAtivo painelProjetoAtivo;
     private Dimension tamanhoItemLista = new Dimension(900, 125);
     private Botao novoProjeto;
 
@@ -28,6 +28,16 @@ public class ProjetosPainel extends Painel{
         super.setAlturaELarguraDosItensDoConteudo(tamanhoItemLista.height, tamanhoItemLista.width);
         carregarProjetos();
         carregarOpcoes();
+
+        iniciarListaners();
+    }
+
+    private void iniciarListaners() {
+        super.setQuandoAtivo((o) ->{
+            super.limparConteudo();
+            ProjetoController.atualizarListaDeProjetos();
+            carregarProjetos();
+        });
     }
 
     private void carregarOpcoes() {
@@ -36,12 +46,15 @@ public class ProjetosPainel extends Painel{
         novoProjeto.setCorDoTextoNormal(Cores.TEXTOS);
         novoProjeto.setCorDeFundoHover(Color.red);
         novoProjeto.setText(Strings.TEXTO_BTN_NOVO_PROJETO);
-        novoProjeto.setOnMouseClick((e) -> SistemaController.setPainelDeTrabalho(SistemaController.PaineisDeTabalho.CRIAR_PROJETO));
+        novoProjeto.setOnMouseClick((e) -> SistemaController.setPainelDeTrabalho("CRIAR_PROJETO"));
 
         super.addOpcao(novoProjeto);
     }
 
-    public void carregarProjetos (){
+    /**
+     * Carrega a lista de projetos no painel.
+     */
+    private void carregarProjetos (){
         ProjetoController.listaDeprojetos.forEach(projetoMetaData -> {
             super.addConteudo(new ItemListaProjeto(projetoMetaData));
         });
@@ -50,19 +63,19 @@ public class ProjetosPainel extends Painel{
     /**
      * classe que modela os itens da lista de projetos cadastrados
      */
-    private class ItemListaProjeto extends JPanel{
+    private class ItemListaProjeto extends PainelItem{
 
-        private javax.swing.JLabel codigo;
-        private javax.swing.JLabel descricao;
-        private javax.swing.JLabel legendaCodigo;
-        private javax.swing.JLabel legendaDescricao;
-        private javax.swing.JLabel legendaNome;
+        private MeuLabel src;
+        private MeuLabel nome;
+        private MeuLabel codigo;
+        private MeuLabel descricao;
+        private MeuLabel legendaSrc;
+        private MeuLabel legendaNome;
+        private MeuLabel legendaCodigo;
         private javax.swing.JPanel legendaPainel;
-        private javax.swing.JLabel legendaSrc;
-        private javax.swing.JLabel nome;
-        private javax.swing.JLabel src;
+        private MeuLabel legendaDescricao;
 
-        ItemListaProjeto(ProjetoMetaData projeto){
+        ItemListaProjeto(ProjetoAdapter projeto){
             iniciarComponetes();
             iniciarLayout();
             iniciarTextos();
@@ -74,17 +87,16 @@ public class ProjetosPainel extends Painel{
             descricao.setText(projeto.getDescricao());
         }
 
-
         private void iniciarComponetes(){
             legendaPainel = new javax.swing.JPanel();
-            legendaNome = new javax.swing.JLabel();
-            legendaCodigo = new javax.swing.JLabel();
-            legendaSrc = new javax.swing.JLabel();
-            legendaDescricao = new javax.swing.JLabel();
-            nome = new javax.swing.JLabel();
-            codigo = new javax.swing.JLabel();
-            src = new javax.swing.JLabel();
-            descricao = new javax.swing.JLabel();
+            legendaNome = new MeuLabel();
+            legendaCodigo = new MeuLabel();
+            legendaSrc = new MeuLabel();
+            legendaDescricao = new MeuLabel();
+            nome = new MeuLabel();
+            codigo = new MeuLabel();
+            src = new MeuLabel();
+            descricao = new MeuLabel();
         }
 
         private void iniciarTextos (){
@@ -157,23 +169,25 @@ public class ProjetosPainel extends Painel{
         }
 
         private void iniciarEstilo() {
+            super.setCorDeFundoNormal(Cores.TEXTO_MENU_ESQUERDO);
+            super.setCorDeFundoHover(Cores.FUNDO_MENU_ESQUERDO);
+
             legendaPainel.setBackground(Cores.FUNDO_MENU_ESQUERDO);
-            this.setBackground(Cores.TEXTO_MENU_ESQUERDO);
+
+            nome.setHorizontalTextPosition(SwingConstants.RIGHT);
+
             for (Component c : this.getComponents()){
                 c.setForeground(Cores.TEXTOS);
                 c.setFont(Fontes.ITEM_LISTA_PROJETO_LEGENDA);
             }
+
             for (Component c : legendaPainel.getComponents()){
                 c.setForeground(Cores.TEXTOS);
                 c.setFont(Fontes.ITEM_LISTA_PROJETO_LEGENDA);
             }
 
-            nome.setHorizontalTextPosition(SwingConstants.RIGHT);
         }
 
     }
 
-    private class PainelProjetoAtivo {
-
-    }
 }
