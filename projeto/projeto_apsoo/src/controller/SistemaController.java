@@ -1,10 +1,10 @@
 package controller;
 
-import model.Usuario;
+import controller.exceptions.ProjetoException;
 import view.*;
+import view.CriarCasoDeUsoPainel;
 import view.Componetes.Painel;
 
-import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
@@ -35,6 +35,11 @@ public class SistemaController {
                 p = PaineisDeTabalho.CRIAR_PROJETO;
                 break;
             case "CASOS_DE_USO":
+                p = PaineisDeTabalho.CASOS_DE_USO;
+                break;
+            case "CRIAR_CASO_DE_USO":
+                p = PaineisDeTabalho.CRIAR_CASOS_DE_USO;
+                ((CriarCasoDeUsoPainel)p).iniciarFormulario();
                 break;
             case "CASOS_DE_TESTE":
                 p = PaineisDeTabalho.CASOS_TESTE;
@@ -42,6 +47,9 @@ public class SistemaController {
             case "ROTEIROS_DE_TESTE":
                 p = PaineisDeTabalho.MATRIZ_DE_RASTREABIBLIDADE;
                 break;
+            case "EDITAR_PROJETO":
+                p = PaineisDeTabalho.EDITAR_PROJETO;
+                ((EditarProjetoPainel) p).setProjeto(ProjetoController.getProjetoParaEditar());
         }
 
         JANELA.remove(estacaoAtiva.getPainel());
@@ -60,6 +68,9 @@ public class SistemaController {
         public static final Painel USUARIOS = new UsuariosPainel();
         public static final Painel PROJETOS = new ProjetosPainel();
         public static final Painel CRIAR_PROJETO = new CriarProjetoPainel();
+        public static final Painel EDITAR_PROJETO = new EditarProjetoPainel();
+        public static final Painel CASOS_DE_USO = new CasosDeUsoPainel();
+        public static final Painel CRIAR_CASOS_DE_USO = new CriarCasoDeUsoPainel();
         public static final Painel CASOS_TESTE = new CasosDeTestePainel();
         public static final Painel ROTEIROS_TESTE = new RoteirosDeTestesPainel();
         public static final Painel MATRIZ_DE_RASTREABIBLIDADE = new MatrizDeRastreabilidadePainel();

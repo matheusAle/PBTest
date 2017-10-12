@@ -1,5 +1,6 @@
 package view.Componetes;
 
+import resources.Cores;
 import resources.Fontes;
 
 import javax.swing.*;
@@ -25,6 +26,7 @@ public class Botao extends JButton implements MouseListener{
     };
 
     public Botao() {
+        super.removeAll();
         super.setMargin(new Insets(5, 10, 5, 10));
         super.setFocusPainted(false);
         super.setBorderPainted(false);
@@ -44,6 +46,8 @@ public class Botao extends JButton implements MouseListener{
         this.corDeFundoHover = corDeFundoNormal;
         super.setBackground(corDeFundoNormal);
         super.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        for (Component c: super.getComponents())
+            c.addMouseListener(this);
     }
 
     /**

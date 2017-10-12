@@ -1,6 +1,7 @@
-package model;
+package model.daos;
 
-import controller.ProjetoAdapter;
+import controller.adapters.ProjetoAdapter;
+import model.Projeto;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -132,4 +133,17 @@ public class ProjetoDAO extends DAO{
         }
         return false;
     }
+
+    public boolean atualizarContador(String nome, int valor, String prjID){
+        String dml = "UPDATE projeto SET " + nome + " = " + valor + " WHERE id = " + prjID;
+        System.out.println("prjDAO = " + dml);
+        try {
+            super.execultarAtualizacao(dml);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

@@ -9,8 +9,6 @@ import view.Componetes.BotaoDeNavegacao;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 /**
  * Essa classe é a responsavel por gerenciar os elementos não mutaveis da janela.
@@ -94,6 +92,7 @@ public class Janela extends JFrame{
         class Navegacao extends JPanel {
             private BotaoDeNavegacao btn_usuarios;
             private BotaoDeNavegacao btn_projetos;
+            private BotaoDeNavegacao btn_casos_de_uso;
             private BotaoDeNavegacao btn_casos_teste;
             private BotaoDeNavegacao btn_roteiros_testes;
             private BotaoDeNavegacao btn_matriz_rastreabilidade;
@@ -104,6 +103,7 @@ public class Janela extends JFrame{
                 iniciarListeners();
                 super.add(btn_usuarios);
                 super.add(btn_projetos);
+                super.add(btn_casos_de_uso);
                 super.add(btn_casos_teste);
                 super.add(btn_roteiros_testes);
                 super.add(btn_matriz_rastreabilidade);
@@ -116,16 +116,18 @@ public class Janela extends JFrame{
             }
 
             private void iniciarCompomentes(){
-                btn_usuarios = new BotaoDeNavegacao(Strings.nav_usuarios);
-                btn_projetos = new BotaoDeNavegacao(Strings.nav_projetos);
-                btn_casos_teste = new BotaoDeNavegacao(Strings.nav_casos_de_teste);
-                btn_roteiros_testes = new BotaoDeNavegacao(Strings.nav_roteiro_de_teste);
-                btn_matriz_rastreabilidade = new BotaoDeNavegacao(Strings.nav_matriz_de_rastreabilidade);
+                btn_usuarios = new BotaoDeNavegacao(Strings.NAV_USUARIOS);
+                btn_projetos = new BotaoDeNavegacao(Strings.NAV_PROJETOS);
+                btn_casos_de_uso = new BotaoDeNavegacao(Strings.NAV_CASOS_DE_USO);
+                btn_casos_teste = new BotaoDeNavegacao(Strings.NAV_CASOS_DE_TESTE);
+                btn_roteiros_testes = new BotaoDeNavegacao(Strings.NAV_ROTEIRO_DE_TESTE);
+                btn_matriz_rastreabilidade = new BotaoDeNavegacao(Strings.NAV_MATRIZ_DE_RASTREABILIDADE);
             }
 
             private void iniciarListeners() {
                 btn_usuarios.setOnClick((e) -> {SistemaController.setPainelDeTrabalho("USUARIOS");});
                 btn_projetos.setOnClick((e) -> {SistemaController.setPainelDeTrabalho("PROJETOS");});
+                btn_casos_de_uso.setOnClick((e) -> {SistemaController.setPainelDeTrabalho("CASOS_DE_USO");});
             }
         }
     }

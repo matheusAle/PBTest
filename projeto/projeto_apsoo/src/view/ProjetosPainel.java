@@ -1,15 +1,11 @@
 package view;
 
-import controller.ProjetoAdapter;
+import controller.adapters.ProjetoAdapter;
 import controller.ProjetoController;
 import controller.SistemaController;
 import resources.Cores;
-import resources.Fontes;
 import resources.Strings;
-import view.Componetes.Botao;
-import view.Componetes.MeuLabel;
-import view.Componetes.Painel;
-import view.Componetes.PainelItem;
+import view.Componetes.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,31 +13,31 @@ import java.awt.*;
 /**
  * Classe responsavel pelo view da aba Projetos
  */
-public class ProjetosPainel extends Painel{
+public final class ProjetosPainel extends PainelDeListagem{
 
-    private ItemListaProjeto projetoAtivo;
-    private Dimension tamanhoItemLista = new Dimension(900, 125);
-    private Botao novoProjeto;
+    private ProjetoAtivo projetoAtivo;
+    private Dimension tamanhoItemLista = new Dimension(900, 140);
 
     public ProjetosPainel(){
         super(Strings.TITULO_PAINEL_PROJETOS);
         super.setAlturaELarguraDosItensDoConteudo(tamanhoItemLista.height, tamanhoItemLista.width);
-        carregarProjetos();
-        carregarOpcoes();
-
-        iniciarListaners();
+        super.setRecarregarLista((o) -> this.carregarProjetos());
+        super.setSincronizarLista((o) -> ProjetoController.atualizarListaDeProjetos());
     }
 
-    private void iniciarListaners() {
-        super.setQuandoAtivo((o) ->{
-            super.limparConteudo();
-            ProjetoController.atualizarListaDeProjetos();
-            carregarProjetos();
-        });
+
+    private void ativarProjeto(String codigo){
+        if(!ProjetoController.ativarProjeto(codigo)){
+            JOptionPane.showConfirmDialog(SistemaController.JANELA,"Ocorreu um erro ao ativar o projeto.", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        projetoAtivo = new ProjetoAtivo(ProjetoController.getInformacoesDoProjetoAtivo());
+        super.atualizarLista(false);
     }
 
-    private void carregarOpcoes() {
-        novoProjeto = new Botao();
+    @Override
+    protected void carregarOpcoes() {
+        Botao novoProjeto = new Botao();
         novoProjeto.setCorDeFundoNormal(Cores.FUNDO_BOTAO);
         novoProjeto.setCorDoTextoNormal(Cores.TEXTOS);
         novoProjeto.setCorDeFundoHover(Color.red);
@@ -52,10 +48,13 @@ public class ProjetosPainel extends Painel{
     }
 
     /**
-     * Carrega a lista de projetos no painel.
+     * Carrega a lista de projetos no painel. Sempre deixando o projeto ativo no topo da lista
      */
     private void carregarProjetos (){
-        ProjetoController.listaDeprojetos.forEach(projetoMetaData -> {
+        if (projetoAtivo != null){
+            super.addConteudo(projetoAtivo);
+        }
+        ProjetoController.getListaDeProjetos().forEach(projetoMetaData -> {
             super.addConteudo(new ItemListaProjeto(projetoMetaData));
         });
     }
@@ -65,6 +64,7 @@ public class ProjetosPainel extends Painel{
      */
     private class ItemListaProjeto extends PainelItem{
 
+        private String codigoDoProjeto;
         private MeuLabel src;
         private MeuLabel nome;
         private MeuLabel codigo;
@@ -72,14 +72,17 @@ public class ProjetosPainel extends Painel{
         private MeuLabel legendaSrc;
         private MeuLabel legendaNome;
         private MeuLabel legendaCodigo;
-        private javax.swing.JPanel legendaPainel;
         private MeuLabel legendaDescricao;
 
         ItemListaProjeto(ProjetoAdapter projeto){
-            iniciarComponetes();
-            iniciarLayout();
-            iniciarTextos();
-            iniciarEstilo();
+            iniciarlistaners();
+
+            codigoDoProjeto = projeto.getCodigo();
+
+            legendaNome.setText(Strings.LG_PROJETO_NOME);
+            legendaCodigo.setText(Strings.LG_PROJETO_CODIGO);
+            legendaSrc.setText(Strings.LG_PROJETO_SRC);
+            legendaDescricao.setText(Strings.LG_PROJETO_DESCRICAO);
 
             nome.setText(projeto.getNome());
             codigo.setText(projeto.getCodigo());
@@ -87,8 +90,32 @@ public class ProjetosPainel extends Painel{
             descricao.setText(projeto.getDescricao());
         }
 
-        private void iniciarComponetes(){
-            legendaPainel = new javax.swing.JPanel();
+        /**
+         * Quando o usuario clicar mais de 2 vez sobre um item da listagem de projeto,
+         * este projeto será ativo.
+         */
+        private void iniciarlistaners() {
+            super.menuPopup = new MeuMenuPopup();
+            MeuItemMenuPopup item1 = new MeuItemMenuPopup("Ativar este projeto");
+            item1.setOnClick((e) -> {
+                ativarProjeto(codigoDoProjeto);
+                menuPopup.setVisible(false);
+            });
+            MeuItemMenuPopup item2 = new MeuItemMenuPopup("Editar este projeto");
+            item2.setOnClick((e) -> {
+                ProjetoController.setProjetoAtualizavel(codigoDoProjeto);
+                SistemaController.setPainelDeTrabalho("EDITAR_PROJETO");
+                menuPopup.setVisible(false);
+            });
+
+
+            super.menuPopup.add(item1);
+            super.menuPopup.add(item2);
+        }
+
+        @Override
+        protected void iniciarComponetes(){
+            super.painelLegenda = new javax.swing.JPanel();
             legendaNome = new MeuLabel();
             legendaCodigo = new MeuLabel();
             legendaSrc = new MeuLabel();
@@ -99,31 +126,24 @@ public class ProjetosPainel extends Painel{
             descricao = new MeuLabel();
         }
 
-        private void iniciarTextos (){
-            legendaNome.setText(Strings.LG_PROJETO_NOME);
-            legendaCodigo.setText(Strings.LG_PROJETO_CODIGO);
-            legendaSrc.setText(Strings.LG_PROJETO_SRC);
-            legendaDescricao.setText(Strings.LG_PROJETO_DESCRICAO);
-        }
-
-
-        private void iniciarLayout(){
-            javax.swing.GroupLayout legendaPainelLayout = new javax.swing.GroupLayout(legendaPainel);
-            legendaPainel.setLayout(legendaPainelLayout);
-            legendaPainelLayout.setHorizontalGroup(
-                    legendaPainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(legendaPainelLayout.createSequentialGroup()
-                                    .addContainerGap(56, Short.MAX_VALUE)
-                                    .addGroup(legendaPainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        @Override
+        protected void iniciarLayout(){
+            javax.swing.GroupLayout painelLegendaLayout = new javax.swing.GroupLayout(painelLegenda);
+            painelLegenda.setLayout(painelLegendaLayout);
+            painelLegendaLayout.setHorizontalGroup(
+                    painelLegendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelLegendaLayout.createSequentialGroup()
+                                    .addContainerGap(42, Short.MAX_VALUE)
+                                    .addGroup(painelLegendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(legendaNome, javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(legendaCodigo, javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(legendaSrc, javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(legendaDescricao, javax.swing.GroupLayout.Alignment.TRAILING))
                                     .addContainerGap())
             );
-            legendaPainelLayout.setVerticalGroup(
-                    legendaPainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(legendaPainelLayout.createSequentialGroup()
+            painelLegendaLayout.setVerticalGroup(
+                    painelLegendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelLegendaLayout.createSequentialGroup()
                                     .addContainerGap()
                                     .addComponent(legendaNome)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -135,26 +155,42 @@ public class ProjetosPainel extends Painel{
                                     .addContainerGap(20, Short.MAX_VALUE))
             );
 
+            nome.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+            nome.setText("NOME:");
+            nome.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+
+            codigo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+            codigo.setText("NOME:");
+            codigo.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+
+            src.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+            src.setText("NOME:");
+            src.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+
+            descricao.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+            descricao.setText("NOME:");
+            descricao.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
             this.setLayout(layout);
             layout.setHorizontalGroup(
                     layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                    .addComponent(legendaPainel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(painelLegenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(descricao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(descricao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(layout.createSequentialGroup()
                                                     .addGap(0, 0, Short.MAX_VALUE)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                            .addComponent(codigo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
-                                                            .addComponent(nome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                            .addComponent(src, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                            .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(src, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(nome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addContainerGap())
             );
             layout.setVerticalGroup(
                     layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(legendaPainel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(painelLegenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                     .addContainerGap()
                                     .addComponent(nome)
@@ -166,28 +202,17 @@ public class ProjetosPainel extends Painel{
                                     .addComponent(descricao)
                                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
-        }
-
-        private void iniciarEstilo() {
-            super.setCorDeFundoNormal(Cores.TEXTO_MENU_ESQUERDO);
-            super.setCorDeFundoHover(Cores.FUNDO_MENU_ESQUERDO);
-
-            legendaPainel.setBackground(Cores.FUNDO_MENU_ESQUERDO);
-
-            nome.setHorizontalTextPosition(SwingConstants.RIGHT);
-
-            for (Component c : this.getComponents()){
-                c.setForeground(Cores.TEXTOS);
-                c.setFont(Fontes.ITEM_LISTA_PROJETO_LEGENDA);
-            }
-
-            for (Component c : legendaPainel.getComponents()){
-                c.setForeground(Cores.TEXTOS);
-                c.setFont(Fontes.ITEM_LISTA_PROJETO_LEGENDA);
-            }
-
+            this.setSize(tamanhoItemLista);
         }
 
     }
 
+    private class ProjetoAtivo extends ItemListaProjeto {
+
+        ProjetoAtivo(ProjetoAdapter projeto) {
+            super(projeto);
+            super.setCorDeFundoNormal(Cores.FUNDO_BOTAO);
+            super.setCorDeFundoHover(Color.red);
+        }
+    }
 }

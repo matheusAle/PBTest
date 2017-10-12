@@ -32,9 +32,11 @@ CREATE TABLE projeto (
 
 # tabela de casos de uso
 CREATE TABLE caso_de_uso (
-	codigo VARCHAR(20) PRIMARY KEY,
+    codigo VARCHAR(20) PRIMARY KEY,
     nome VARCHAR(45) NOT NULL,
-    texto TEXT NOT NULL,
+    atores TEXT NOT NULL,
+    objetivo TEXT NOT NULL,
+    descricao TEXT NOT NULL,
     projetoID INTEGER NOT NULL,
     usuario_dono VARCHAR(45) NOT NULL,
     CONSTRAINT FOREIGN KEY (usuario_dono) REFERENCES usuario(email)  ON DELETE CASCADE ON UPDATE CASCADE,

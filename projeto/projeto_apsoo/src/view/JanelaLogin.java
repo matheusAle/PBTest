@@ -1,9 +1,9 @@
 package view;
 
+import controller.ProjetoController;
 import controller.SistemaController;
 import controller.UsuarioController;
-import controller.UsuarioExeption;
-import model.Usuario;
+import controller.exceptions.UsuarioException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,11 +13,12 @@ public class JanelaLogin {
     public static void main(String[] args) throws IOException, FontFormatException {
         try {
             UsuarioController.fazerLogin("root@root", "root");
-        } catch (UsuarioExeption usuarioExeption) {
-            JOptionPane.showMessageDialog(null, "Falha na autenticação", "senha ou usuario invalido.\n" + usuarioExeption.getMessage(), JOptionPane.INFORMATION_MESSAGE);
+        } catch (UsuarioException usuarioException) {
+            JOptionPane.showMessageDialog(null, "Falha na autenticação", "senha ou usuario invalido.\n" + usuarioException.getMessage(), JOptionPane.INFORMATION_MESSAGE);
         }
         SistemaController.abrir();
-        SistemaController.setPainelDeTrabalho("CRIAR_PROJETO");
+        ProjetoController.setProjetoAtualizavel("1");
+        SistemaController.setPainelDeTrabalho("PROJETOS");
         SistemaController.JANELA.setVisible(true);
     }
 }

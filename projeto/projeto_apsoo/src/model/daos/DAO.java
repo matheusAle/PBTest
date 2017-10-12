@@ -1,4 +1,6 @@
-package model;
+package model.daos;
+
+import controller.exceptions.ProjetoException;
 
 import java.sql.*;
 import java.util.Collection;
@@ -18,7 +20,7 @@ public abstract class DAO {
      * @param query query de busca no banco de dados
      * @return retorna um ReultSet com o resultado da busca for bem sucedida. Caso java uma falha retorna null
      */
-    synchronized static ResultSet execultarBusca(String query){
+    protected synchronized static ResultSet execultarBusca(String query){
         try {
             Connection conexao = DriverManager.getConnection(url, usuario, senha);
             PreparedStatement pesquisa = conexao.prepareStatement(query);
@@ -34,7 +36,7 @@ public abstract class DAO {
      * @param dml query do tipo que DML
      * @throws SQLException lançada caso haja quanquer erro na execulção da dml
      */
-    synchronized static void execultarAtualizacao(String dml) throws SQLException {
+    protected synchronized static void execultarAtualizacao(String dml) throws SQLException {
         Connection conexao = DriverManager.getConnection(url, usuario, senha);
         PreparedStatement p = conexao.prepareStatement(dml);
         p.executeUpdate();
@@ -45,13 +47,12 @@ public abstract class DAO {
      * Busca no banco e retorna um coleção de itens da relação.
      * @return
      */
-    public abstract Collection listar();
+    public abstract Collection listar() throws ProjetoException;
 
     /**
      * Buscar por um elemento ou mais da relação
      * @return
      */
     public abstract Collection buscar(String restricao);
-
 
 }

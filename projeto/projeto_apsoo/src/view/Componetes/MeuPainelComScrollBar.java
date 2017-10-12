@@ -4,10 +4,10 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class MeuScrollPainel extends JScrollPane {
+public class MeuPainelComScrollBar extends JScrollPane {
 
 
-    public MeuScrollPainel(Component view) {
+    public MeuPainelComScrollBar(Component view) {
         super(view);
         super.getVerticalScrollBar().setUI(new MeuScrollbarUI());
         super.getHorizontalScrollBar().setUI(new MeuScrollbarUI());

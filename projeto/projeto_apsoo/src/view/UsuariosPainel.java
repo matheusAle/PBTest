@@ -1,18 +1,17 @@
 package view;
 
-import controller.UsuarioAdapter;
+import controller.adapters.UsuarioAdapter;
 import controller.UsuarioController;
 import resources.Cores;
 import resources.Fontes;
 import resources.Icones;
 import resources.Strings;
+import view.Componetes.Botao;
 import view.Componetes.Painel;
 import view.Componetes.PainelItem;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 /**
  * Classe responsavel pelo view da aba usuarios.
@@ -37,7 +36,7 @@ public class UsuariosPainel extends Painel{
         UsuarioController.getListaDeUsuarios().forEach(u -> {
             super.addConteudo(new PainelInfos(u.getImgPerfil(), u));
         });
-
+        super.addConteudo(new Botao());
         super.setVisible(true);
     }
 

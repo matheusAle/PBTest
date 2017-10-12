@@ -6,13 +6,15 @@ import resources.Fontes;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.StringTokenizer;
 
 /**
  * Classe que modela Label com ToolTip personalizado. E limitação de caractes
  * visiveis.
  */
-public class MeuLabel extends JLabel {
+public class MeuLabel extends JLabel implements MouseListener{
 
     int max = 70;
 
@@ -21,7 +23,8 @@ public class MeuLabel extends JLabel {
     }
 
     public MeuLabel(){
-
+        super.setFocusable(false);
+        super.addMouseListener(this);
     }
 
 
@@ -76,5 +79,40 @@ public class MeuLabel extends JLabel {
      */
     public void setQuantidadeMaximaDeCaracteres(int max) {
         this.max = max;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        try {
+            ((PainelDeListagem.PainelItem)super.getParent()).mouseClicked(e);
+        }catch (ClassCastException x){}
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        try {
+            ((PainelDeListagem.PainelItem)super.getParent()).mousePressed(e);
+        }catch (ClassCastException x){}
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        try {
+            ((PainelDeListagem.PainelItem)super.getParent()).mouseReleased(e);
+        }catch (ClassCastException x){}
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        try {
+            ((PainelDeListagem.PainelItem)super.getParent()).mouseEntered(e);
+        }catch (ClassCastException x){}
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        try {
+            ((PainelDeListagem.PainelItem)super.getParent()).mouseExited(e);
+        }catch (ClassCastException x){}
     }
 }

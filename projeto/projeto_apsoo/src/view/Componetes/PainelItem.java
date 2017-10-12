@@ -15,13 +15,13 @@ public class PainelItem extends JPanel implements MouseListener {
     private Color corDeFundoNormal;
     private Color corDeFundoHover;
 
-    private Consumer<Component> onMouseClick = component -> {
+    private Consumer<MouseEvent> onMouseClick = component -> {
 
     };
-    private Consumer<Component> onMouseEnter = component -> {
+    private Consumer<MouseEvent> onMouseEnter = component -> {
 
     };
-    private Consumer<Component> onMouseExit = component -> {
+    private Consumer<MouseEvent> onMouseExit = component -> {
 
     };
 
@@ -41,7 +41,7 @@ public class PainelItem extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        onMouseClick.accept(this);
+        onMouseClick.accept(e);
     }
 
     @Override
@@ -57,12 +57,24 @@ public class PainelItem extends JPanel implements MouseListener {
     @Override
     public void mouseEntered(MouseEvent e) {
         super.setBackground(corDeFundoHover);
-        this.onMouseEnter.accept(this);
+        this.onMouseEnter.accept(e);
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
         super.setBackground(corDeFundoNormal);
-        this.onMouseExit.accept(this);
+        this.onMouseExit.accept(e);
+    }
+
+    public void setOnMouseClick(Consumer<MouseEvent> onMouseClick) {
+        this.onMouseClick = onMouseClick;
+    }
+
+    public void setOnMouseEnter(Consumer<MouseEvent> onMouseEnter) {
+        this.onMouseEnter = onMouseEnter;
+    }
+
+    public void setOnMouseExit(Consumer<MouseEvent> onMouseExit) {
+        this.onMouseExit = onMouseExit;
     }
 }

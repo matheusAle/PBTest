@@ -1,4 +1,4 @@
-package controller;
+package controller.adapters;
 
 /**
  * Classe de transporte de dados referente aos projetos

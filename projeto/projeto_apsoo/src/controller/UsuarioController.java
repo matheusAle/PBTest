@@ -1,11 +1,12 @@
 package controller;
 
+import controller.adapters.UsuarioAdapter;
+import controller.exceptions.UsuarioException;
 import model.Usuario;
-import model.UsuarioDAO;
+import model.daos.UsuarioDAO;
 
 import javax.swing.*;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 
 public class UsuarioController {
@@ -36,13 +37,13 @@ public class UsuarioController {
      * usa os paramentros para tentar realizar o login do usuario na istancia do sistema.
      * @param email email do usuario
      * @param senha senha do usuario
-     * @throws UsuarioExeption Apenas se o usuario não for encontrado no banco de dados.
+     * @throws UsuarioException Apenas se o usuario não for encontrado no banco de dados.
      */
-    public static void fazerLogin (String email, String senha) throws UsuarioExeption {
+    public static void fazerLogin (String email, String senha) throws UsuarioException {
         String restricao = "email = '" + email + "' AND senha = '" + senha+ "' ";
         HashSet<Usuario> usuario = (HashSet<Usuario>) dao.buscar(restricao);
         if (usuario.isEmpty()){
-            throw new UsuarioExeption();
+            throw new UsuarioException();
         }
         usuarioLogado = usuario.iterator().next();
 

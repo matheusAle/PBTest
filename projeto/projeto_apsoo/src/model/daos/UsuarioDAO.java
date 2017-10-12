@@ -1,7 +1,8 @@
-package model;
+package model.daos;
 
 
-import controller.UsuarioAdapter;
+import controller.adapters.UsuarioAdapter;
+import model.Usuario;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

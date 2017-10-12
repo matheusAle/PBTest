@@ -28,7 +28,7 @@ public class Painel{
     /**
      * Painel com Scroll que contem apenas o painel principal.
      */
-    private MeuScrollPainel painelScroll;
+    private MeuPainelComScrollBar painelScroll;
     /**
      * Painel que contem as opçoes do painel.
      */
@@ -37,7 +37,7 @@ public class Painel{
     /**
      * boolean que marca o estado da painel atual.
      */
-    private boolean painelAtivo = false;
+    private boolean painelAtivo = true;
 
     /**
      * Execulta um preprocessamento do carregamento do painel
@@ -77,7 +77,7 @@ public class Painel{
         painelConteudo = new Meu_painelConteudo();
         painelConteudo.setLayout(new FlowLayout());
         painel.add(painelConteudo, BorderLayout.CENTER);
-        painelScroll = new MeuScrollPainel(painel);
+        painelScroll = new MeuPainelComScrollBar(painel);
 
         opcoes = new PainelDeOpcoes();
     }
@@ -99,6 +99,8 @@ public class Painel{
      */
     public void addConteudo(Component c) {
         painelConteudo.add(c);
+        painelConteudo.revalidate();
+        painelConteudo.repaint();
         quantidadeDeItens++;
     }
 
@@ -118,11 +120,11 @@ public class Painel{
      * @return retorna um JScrollPane contendo os elementos do painel;
      */
     public JScrollPane getPainel (){
-        if (painelAtivo)
+        if (painelAtivo){
             quandoAtivo.accept(null);
-        else
+        } else {
             quandoInativo.accept(null);
-
+        }
         painelAtivo = !painelAtivo;
         return painelScroll;
     }
@@ -145,7 +147,7 @@ public class Painel{
         @Override
         public Dimension getPreferredSize() {
             Dimension d =  Painel.this.painelConteudo.getPreferredSize();
-            return new Dimension(d.width, d.height + 150);
+            return new Dimension(d.width, d.height + 70);
         }
     }
 
@@ -185,3 +187,6 @@ public class Painel{
         this.quandoInativo = quandoInativo;
     }
 }
+
+
+
