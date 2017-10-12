@@ -18,7 +18,7 @@ public abstract class DAO {
      * @param query query de busca no banco de dados
      * @return retorna um ReultSet com o resultado da busca for bem sucedida. Caso java uma falha retorna null
      */
-    protected synchronized static ResultSet execultarSELECT (String query){
+    synchronized static ResultSet execultarBusca(String query){
         try {
             Connection conexao = DriverManager.getConnection(url, usuario, senha);
             PreparedStatement pesquisa = conexao.prepareStatement(query);
@@ -29,20 +29,20 @@ public abstract class DAO {
         }
     }
 
-    protected synchronized static int execultarINSERT (String query){
-        try {
-            Connection cone = DriverManager.getConnection(url, usuario, senha);
-            PreparedStatement inserir = cone.prepareStatement(query);
-            inserir.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return 2;
+    /**
+     * Tenta execultar a query passa por paramentro.
+     * @param dml query do tipo que DML
+     * @throws SQLException lançada caso haja quanquer erro na execulção da dml
+     */
+    synchronized static void execultarAtualizacao(String dml) throws SQLException {
+        Connection conexao = DriverManager.getConnection(url, usuario, senha);
+        PreparedStatement p = conexao.prepareStatement(dml);
+        p.executeUpdate();
     }
 
 
     /**
-     * Busca no banco e retorna um coleção de items da relação.
+     * Busca no banco e retorna um coleção de itens da relação.
      * @return
      */
     public abstract Collection listar();

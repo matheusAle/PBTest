@@ -6,7 +6,6 @@ import controller.UsuarioAdapter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 
@@ -35,7 +34,7 @@ public final class UsuarioDAO extends DAO{
     public Collection listar() {
         String query  = "SELECT * FROM usuario";
         try {
-            ResultSet resultSet = DAO.execultarSELECT(query);
+            ResultSet resultSet = DAO.execultarBusca(query);
             if (resultSet != null){
                 LinkedList<UsuarioAdapter> lista = new LinkedList<>();
                 while (resultSet.next()){
@@ -60,7 +59,7 @@ public final class UsuarioDAO extends DAO{
     public Collection<Usuario> buscar(String restricao) {
         String query  = "SELECT * FROM usuario WHERE " + restricao;
         try {
-            ResultSet resultSet = DAO.execultarSELECT(query);
+            ResultSet resultSet = DAO.execultarBusca(query);
             HashSet<Usuario> usuariosEncontrados = new HashSet<>();
             if (resultSet != null){
                 while (resultSet.next()){

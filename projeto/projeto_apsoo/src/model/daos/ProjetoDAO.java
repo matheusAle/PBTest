@@ -23,7 +23,7 @@ public class ProjetoDAO extends DAO{
      * @param email email do usuario que o esta cadastrando.
      * @return true se bem sicedido
      */
-    public static boolean salvar(
+    public boolean salvar(
             String nome,
             String src,
             String CASO_DE_TESTE,
@@ -36,14 +36,19 @@ public class ProjetoDAO extends DAO{
                         "(nome, srcRaiz, prefixoCT, prefixoCU, prefixoRT, descricao, usuario_dono)" +
                         "VALUES (" +
                         "'" + nome + "', " +
-                        "'" + src.replaceAll("\\\\", "\\\\\\\\") + "', " +
+                        "'" + src + "', " +
                         "'" + CASO_DE_TESTE + "', " +
                         "'" + CASO_DE_USO + "', " +
                         "'" + ROTEIRO_DE_TESTE + "', " +
                         "'" + descricao + "', " +
                         "'" + email + "')";
-        int status = DAO.execultarINSERT(query);
-        return status == 1;
+        try {
+            super.execultarAtualizacao(query);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 
@@ -54,7 +59,7 @@ public class ProjetoDAO extends DAO{
     @Override
     public Collection listar() {
         String query = "SELECT id, nome, srcRaiz, descricao FROM projeto";
-        ResultSet resultSet = DAO.execultarSELECT(query);
+        ResultSet resultSet = super.execultarBusca(query);
         if (resultSet != null){
             try {
                 LinkedList<ProjetoAdapter> lista = new LinkedList<>();
@@ -84,7 +89,7 @@ public class ProjetoDAO extends DAO{
     public Collection buscar(String restricao) {
         try {
             String query = "SELECT * FROM projeto WHERE " + restricao;
-            ResultSet resultSet = DAO.execultarSELECT(query);
+            ResultSet resultSet = super.execultarBusca(query);
             LinkedList<Projeto> lista = new LinkedList<Projeto>();
             while (resultSet.next()){
                 lista.add(new Projeto(
@@ -107,8 +112,24 @@ public class ProjetoDAO extends DAO{
         return null;
     }
 
-    //TODO impementar a atualização de dados do projeto.
-    public Collection atualizar() {
-        return null;
+    /**
+     * Execulta um update que atualiza sem verificação os atributos <code>nome, srcRaiz, descricao</code>
+     * para a tupla que tiver o <code>id</code> igual ao do objeto passado por paramentro
+     * @param prj projeto que tera seus dados atalizados no banco de dados.
+     * @return true se bem sucedido.
+     */
+    public boolean atualizar(ProjetoAdapter prj) {
+        String dml = "UPDATE projeto SET " +
+                "nome = '" + prj.getNome() + "', " +
+                "srcRaiz = '" + prj.getSrc() + "', " +
+                "descricao = '" + prj.getDescricao() +
+                "' WHERE id = " + prj.getCodigo();
+        try {
+            super.execultarAtualizacao(dml);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
