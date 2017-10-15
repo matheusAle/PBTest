@@ -16,7 +16,7 @@ public class Painel{
     /**
      * Texto que de titulo deste painel.
      */
-    private String labelTitulo;
+    private JLabel labelTitulo;
     /**
      * painel que contem o titulo e o painel de conteudo.
      */
@@ -52,8 +52,8 @@ public class Painel{
 
     };
 
-    private int alturaConteudo;
-    private int larguraConteudo;
+    private int alturaConteudo = 1;
+    private int larguraConteudo = 2;
     private int quantidadeDeItens = 1;
 
     protected Painel (){
@@ -65,14 +65,13 @@ public class Painel{
      * @param titulo
      */
     public Painel(String titulo){
-        this.labelTitulo = titulo;
+        labelTitulo = new JLabel(titulo);
         painel = new Meu_PainelPrincipal();
         painel.setLayout(new BorderLayout(5, 5));
 
-        JLabel tituloL = new JLabel(labelTitulo);
-        tituloL.setBorder(new EmptyBorder(20, 20, 10, 10));
-        tituloL.setFont(Fontes.PAINEL_TITULO);
-        painel.add(tituloL, BorderLayout.NORTH);
+        labelTitulo.setBorder(new EmptyBorder(20, 20, 10, 10));
+        labelTitulo.setFont(Fontes.PAINEL_TITULO);
+        painel.add(labelTitulo, BorderLayout.NORTH);
 
         painelConteudo = new Meu_painelConteudo();
         painelConteudo.setLayout(new FlowLayout());
@@ -186,6 +185,13 @@ public class Painel{
     public void setQuandoInativo(Consumer<Component> quandoInativo) {
         this.quandoInativo = quandoInativo;
     }
+
+
+    public void setTitulo(String titulo){
+        this.labelTitulo.setText(titulo);
+    }
+
+
 }
 
 

@@ -14,11 +14,12 @@ public class JanelaLogin {
         try {
             UsuarioController.fazerLogin("root@root", "root");
         } catch (UsuarioException usuarioException) {
-            JOptionPane.showMessageDialog(null, "Falha na autenticação", "senha ou usuario invalido.\n" + usuarioException.getMessage(), JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "senha ou usuario invalido.\n" + usuarioException.getMessage(),"Falha na autenticação", JOptionPane.INFORMATION_MESSAGE);
+        }catch (Exception e ){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "falha ao iniciar o programa", JOptionPane.INFORMATION_MESSAGE);
         }
         SistemaController.abrir();
-        ProjetoController.setProjetoAtualizavel("1");
-        SistemaController.setPainelDeTrabalho("PROJETOS");
+        SistemaController.setPainelDeTrabalho("CASOS_DE_TESTE");
         SistemaController.JANELA.setVisible(true);
     }
 }

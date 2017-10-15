@@ -31,7 +31,7 @@ public class MeuScrollbarUI extends MetalScrollBarUI {
     protected void paintThumb(Graphics g, JComponent c, Rectangle r) {
         g.setColor(Color.white);
         ((Graphics2D) g).drawImage(imageThumb,
-                r.x, r.y, r.width, r.height, null);
+                r.x+4, r.y, r.width-8, r.height, null);
     }
 
     @Override

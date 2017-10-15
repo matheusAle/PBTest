@@ -41,7 +41,7 @@ public class CriarCasoDeUsoPainel extends Painel {
         salvar.setCorDeFundoNormal(Cores.FUNDO_BOTAO);
         salvar.setCorDoTextoNormal(Cores.TEXTOS);
         salvar.setCorDeFundoHover(Color.red);
-        salvar.setText(Strings.CRIAR_PROJ_TEXTO_BTN_SALVAR);
+        salvar.setText(Strings.CRIAR_CU_TEXTO_BTN_SALVAR);
         salvar.setOnMouseClick((e) -> this.cadastarProjeto());
 
         Botao cancelar = new Botao();
@@ -49,7 +49,7 @@ public class CriarCasoDeUsoPainel extends Painel {
         cancelar.setCorDoTextoNormal(Cores.TEXTO_MENU_ESQUERDO);
         cancelar.setCorDeFundoHover(Cores.TEXTO_MENU_ESQUERDO);
         cancelar.setCorDoTextoHover(Cores.TEXTOS);
-        cancelar.setText(Strings.CRIAR_PROJ_TEXTO_BTN_CANCELAR);
+        cancelar.setText(Strings.CRIAR_CU_TEXTO_BTN_CANCELAR);
         cancelar.setOnMouseClick((e) -> this.cancelarCadastro());
 
         Botao limpar = new Botao();
@@ -57,7 +57,7 @@ public class CriarCasoDeUsoPainel extends Painel {
         limpar.setCorDoTextoNormal(Cores.TEXTO_MENU_ESQUERDO);
         limpar.setCorDeFundoHover(Cores.TEXTO_MENU_ESQUERDO);
         limpar.setCorDoTextoHover(Cores.TEXTOS);
-        limpar.setText(Strings.CRIAR_PROJ_TEXTO_BTN_LIMPAR);
+        limpar.setText(Strings.CRIAR_CU_TEXTO_BTN_LIMPAR);
         limpar.setOnMouseClick((e) -> this.limpar());
 
 

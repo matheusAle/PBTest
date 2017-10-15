@@ -50,13 +50,19 @@ public final class Strings {
     public static final  String LG_CASOS_DE_USO_OBJETIVO = "OBJETIVO:";
     public static final  String LG_CASOS_DE_USO_CODIGO = "CODIGO:";
 
+   /*textos painel de cadastro de caso de uso*/
+    public static final String CRIAR_CU_TEXTO_BTN_SALVAR = "Salvar Novo Caso de Uso";
+    public static final String CRIAR_CU_TEXTO_BTN_LIMPAR = "Limpar Todos os Campos";
+    public static final String CRIAR_CU_TEXTO_BTN_CANCELAR = "Cancelar Cadastro";
+
 
     /*Titulos de paineis*/
     public static final String TITULO_PAINEL_USUARIO = "Usuários Cadastrados";
     public static final String TITULO_PAINEL_PROJETOS = "Projetos Criados";
     public static final String TITULO_PAINEL_CRIAR_PROJETO = "Cadastrar Projeto";
     public static final String TITULO_PAINEL_EDITAR_PROJETO = "Editar Projeto";
-    public static final String TITULO_PAINEL_CASOS_DE_USO = "Casos De Uso do Projeto Ativo";
-    public static final String TITULO_PAINEL_CRIAR_CASOS_DE_USO = "Novo Caso De Uso Para o Projeto Ativo";
+    public static final String TITULO_PAINEL_CASOS_DE_USO = "Casos De Uso do Projeto: ";
+    public static final String TITULO_PAINEL_CRIAR_CASOS_DE_USO = "Novo Caso De Uso";
+    public static final String TITULO_PAINEL_CASOS_DE_TESTE = "Casos de Teste do Projeto: ";
 
 }

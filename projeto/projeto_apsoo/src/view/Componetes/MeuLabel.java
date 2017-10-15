@@ -5,6 +5,7 @@ import resources.Fontes;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.TabExpander;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -48,14 +49,8 @@ public class MeuLabel extends JLabel implements MouseListener{
      */
     @Override
     public void setToolTipText(String text) {
-        StringTokenizer st = new StringTokenizer(text, " ");
-        String tip = "<html>";
-        for (int i = 0; st.hasMoreElements(); i++){
-            if (i%15 == 14)
-                tip = tip.concat(" <br> ");
-            tip = tip.concat(" ").concat(st.nextToken());
-        }
-        super.setToolTipText(tip + "</html>");
+        String tip = "<html><p width=\"400px\">";
+        super.setToolTipText(tip + text + "</p></html>");
     }
 
     /**

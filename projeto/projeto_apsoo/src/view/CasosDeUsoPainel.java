@@ -1,6 +1,7 @@
 package view;
 
 import controller.CasoDeUsoController;
+import controller.ProjetoController;
 import controller.SistemaController;
 import controller.adapters.CasoDeUsoAdapter;
 import controller.exceptions.ProjetoException;
@@ -35,6 +36,7 @@ public class CasosDeUsoPainel extends PainelDeListagem {
      * Carriga a lista de casos de uso cadastrados no sistema
      */
     private void carregarListaDeCasosDeUso(){
+        super.setTitulo(Strings.TITULO_PAINEL_CASOS_DE_USO + ProjetoController.getInformacoesDoProjetoAtivo().getNome());
         try {
             CasoDeUsoController.getListaDeCasosDeUso().forEach( (c) -> {
             super.addConteudo(new ItemDaLista(c));
@@ -142,11 +144,11 @@ public class CasosDeUsoPainel extends PainelDeListagem {
                                     .addComponent(painelLegenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(objetivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(nome, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
+                                            .addComponent(objetivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(atores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(codigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGap(24, 24, 24))
+                                            .addGap(24, 24, 24))
             );
             layout.setVerticalGroup(
                     layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,9 +156,9 @@ public class CasosDeUsoPainel extends PainelDeListagem {
                                     .addContainerGap()
                                     .addComponent(nome)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(codigo)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(objetivo)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(codigo)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(atores)
                                     .addContainerGap())

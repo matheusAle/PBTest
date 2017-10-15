@@ -128,6 +128,7 @@ public class Janela extends JFrame{
                 btn_usuarios.setOnClick((e) -> {SistemaController.setPainelDeTrabalho("USUARIOS");});
                 btn_projetos.setOnClick((e) -> {SistemaController.setPainelDeTrabalho("PROJETOS");});
                 btn_casos_de_uso.setOnClick((e) -> {SistemaController.setPainelDeTrabalho("CASOS_DE_USO");});
+                btn_casos_teste.setOnClick((e) -> {SistemaController.setPainelDeTrabalho("CASOS_DE_TESTE");});
             }
         }
     }

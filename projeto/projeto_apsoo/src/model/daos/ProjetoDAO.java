@@ -136,7 +136,6 @@ public class ProjetoDAO extends DAO{
 
     public boolean atualizarContador(String nome, int valor, String prjID){
         String dml = "UPDATE projeto SET " + nome + " = " + valor + " WHERE id = " + prjID;
-        System.out.println("prjDAO = " + dml);
         try {
             super.execultarAtualizacao(dml);
             return true;

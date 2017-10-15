@@ -4,6 +4,7 @@ import resources.Cores;
 import resources.Fontes;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -26,7 +27,7 @@ public class Botao extends JButton implements MouseListener{
     };
 
     public Botao() {
-        super.removeAll();
+        super.setBorder(new EmptyBorder(10, 10, 10, 10));
         super.setMargin(new Insets(5, 10, 5, 10));
         super.setFocusPainted(false);
         super.setBorderPainted(false);
