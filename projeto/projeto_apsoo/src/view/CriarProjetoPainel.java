@@ -173,6 +173,7 @@ public class CriarProjetoPainel extends Painel{
             campoPrefixoCU.setQuantidadeMaximaDeCaracteres(10);
             campoPrefixoRT.setQuantidadeMaximaDeCaracteres(10);
             campoPrefixoCT.setQuantidadeMaximaDeCaracteres(10);
+            campoSrc.setQuantidadeMaximaDeCaracteres(-1);
         }
 
         private void iniciarTextos(){

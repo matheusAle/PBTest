@@ -1,15 +1,11 @@
 package view;
 
 import controller.CasoDeTesteController;
+import controller.SistemaController;
 import controller.adapters.ArtefatoDeTesteAdapter;
 import controller.exceptions.CasoDeTesteException;
-import resources.Cores;
-import resources.Fontes;
 import resources.Strings;
-import view.Componetes.ArvoreDeArtefatos;
-import view.Componetes.MeuLabel;
-import view.Componetes.MeuPainelComScrollBar;
-import view.Componetes.Painel;
+import view.Componetes.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -25,50 +21,26 @@ import java.util.Set;
  */
 public class CasosDeTestePainel extends Painel{
 
-    JSplitPane painelDividido;
-    JPanel painelArtefatos;
-    JPanel painelCasosDeTeste;
-    ArvoreDeArtefatos arvoreDeArtefatos;
+    private JSplitPane painelDividido;
+    private JPanel painelArtefatos;
+    private JPanel painelCasosDeTeste;
+    private ArvoreDeArtefatos arvoreDeArtefatos;
 
     public CasosDeTestePainel(){
         super(Strings.TITULO_PAINEL_CASOS_DE_TESTE);
-        iniciarArvore();
-        carregarPaineis();
-
-        super.addConteudo(painelDividido);
-        carregarArtefatosDeTeste();
-
-    }
-
-    private void iniciarArvore() {
-        HashMap<Strings, DefaultMutableTreeNode> mapa = new HashMap<>();
-        try {
-            CasoDeTesteController.carregarArtefatos();
-        } catch (CasoDeTesteException e) {
-            e.printStackTrace();
-        }
-        HashMap<String, LinkedList<ArtefatoDeTesteAdapter>> mapaDeArtefatos = CasoDeTesteController.getMapaDeArtefatos();
-        Set<String> chaves = mapaDeArtefatos.keySet();
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode("src");
-        for (String chave : chaves){
-            DefaultMutableTreeNode galho = new DefaultMutableTreeNode(chave);
-            for (ArtefatoDeTesteAdapter e : mapaDeArtefatos.get(chave)){
-                galho.add(new DefaultMutableTreeNode(e.getNomeArquivo()));
-            }
-            root.add(galho);
-        }
-
-        arvoreDeArtefatos = new ArvoreDeArtefatos(root);
     }
 
     /**
-     * Configura os paineis desta area de trabalho
+     * Carrega os artefatos de teste do projeto ativo na JTree
      */
-    private void carregarPaineis() {
-        painelArtefatos = new JPanel(new BorderLayout(5, 5));
-        painelCasosDeTeste = new JPanel(new BorderLayout(5, 5));
-        painelCasosDeTeste.setBorder(new EmptyBorder(1, 1,1 ,1));
-        painelArtefatos.setBorder(new EmptyBorder(1, 1,1 ,1));
+    public void iniciarArvore() {
+        super.limparConteudo();
+        carregarPaineis();
+        carregarArtefatosDeTeste();
+        arvoreDeArtefatos.setOnSelectedEvent((e) -> {
+            if (e.getArtefato() != null)
+                this.carregarCasosDeTesteDoArtefato(e.getArtefato());
+        });
 
         painelDividido = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
                 new MeuPainelComScrollBar(arvoreDeArtefatos),
@@ -83,11 +55,61 @@ public class CasosDeTestePainel extends Painel{
         painelDividido.setBorder(new EmptyBorder(1,1,1,1));
         BasicSplitPaneDivider dividerContainer = (BasicSplitPaneDivider) painelDividido.getComponent(2);
         dividerContainer.setBorder(new EmptyBorder(1,1,1,1));
+
+        super.addConteudo(painelDividido);
     }
 
+    /**
+     * Configura os paineis desta area de trabalho
+     */
+    private void carregarPaineis() {
+        painelArtefatos = new JPanel(new BorderLayout(5, 5));
+        painelCasosDeTeste = new JPanel(new BorderLayout(5, 5));
+        painelCasosDeTeste.setBorder(new EmptyBorder(1, 1,1 ,1));
+        painelArtefatos.setBorder(new EmptyBorder(1, 1,1 ,1));
+
+    }
+
+    /**
+     * Carrega os artefatos mapeados em <link>CasoDeTesteController</link> na Jtree.
+     */
     private void carregarArtefatosDeTeste() {
 
+        HashMap<String, LinkedList<ArtefatoDeTesteAdapter>> mapaDeArtefatos = CasoDeTesteController.getMapaDeArtefatos();
+        Set<String> chaves = mapaDeArtefatos.keySet();
+        ArvoreNode root = new ArvoreNode("src", null);
+
+        for (String chave : chaves){
+            if (chave.equals("")){
+                for (ArtefatoDeTesteAdapter e : mapaDeArtefatos.get(chave)){
+                    root.add(new ArvoreNode(e.getNomeArquivo(), e));
+                }
+            }else {
+                DefaultMutableTreeNode galho = new ArvoreNode(chave, null);
+                for (ArtefatoDeTesteAdapter e : mapaDeArtefatos.get(chave)){
+                    galho.add(new ArvoreNode(e.getNomeArquivo(), e));
+                }
+                root.add(galho);
+            }
+        }
+        arvoreDeArtefatos = new ArvoreDeArtefatos(root);
     }
 
+
+    /**
+     * Carrega os casos de teste asociados a o arefato no painel direito.
+     * @param artefato artefato que reta os casos de teste carregados.
+     */
+    private void carregarCasosDeTesteDoArtefato(ArtefatoDeTesteAdapter artefato){
+
+    }
+
+
+    private class CasoDeTestePainelItem extends PainelItem {
+
+        CasoDeTestePainelItem(){
+
+        }
+    }
 
 }

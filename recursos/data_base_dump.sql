@@ -48,11 +48,13 @@ CREATE TABLE caso_de_teste (
 	codigo VARCHAR(20) PRIMARY KEY,
     resultado TEXT,
     nomeClasse TEXT NOT NULL,
-    classeTeste TEXT NOT NULL,
+    absPathClass TEXT NOT NULL,
     descricao TEXT NOT NULL,
     projetoID INTEGER NOT NULL,
+    casoDeUsoCodigo VARCHAR(20) NOT NULL,
     emailUsuario VARCHAR(45) NOT NULL,
     CONSTRAINT FOREIGN KEY (emailUsuario) REFERENCES usuario (email)  ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FOREIGN KEY (casoDeUsoCodigo) REFERENCES caso_de_uso (codigo)  ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT FOREIGN KEY (projetoID) REFERENCES projeto(id)  ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -73,6 +75,9 @@ INSERT INTO usuario VALUES ('Eduardo Gonsaga', 'ginsaghinha@gmail.com', 'guguleg
 INSERT INTO usuario VALUES ('Isabella Bitencurt', 'bela.curt@gmail.com', 'belabela', null, 3, '');
 INSERT INTO usuario VALUES ('Amanda Souza', 'amanda_sozinha@gmail.com', 'WWFFEaw@445UffOOpp', null, 3, '');
 
-SELECT * FROM usuario;
-SELECT * FROM projeto;
-    
+INSERT INTO 'projeto' ('nome', 'srcRaiz', 'prefixoCT', 'prefixoCU', 'prefixoRT', 'descricao', 'usuario_dono', 'id', 'contadorCT', 'contadorCU', 'contadorRT') VALUES
+('Exercicios do URI', 'C:/Users/matheus/Google Drive/java/exercicio do URI/src', 'entEx-', 'entrada-', 'lista-', 'Projeto para testar as minhas soluções para aulgus dos exercicios do URI.', 'root@root', 1, 0, 2, 0),
+('Padora Box Test', 'C:/Users/matheus/Dropbox/projetos/APSOO/trabalho_apsoo/projeto/projeto [...]', 'CU-pb-', 'CT-pb-', 'RT-pb-', 'Testar a implementação trabalho pratico de APSOO. ', 'root@root', 2, 0, 3, 0);
+
+INSERT INTO 'caso_de_uso' ('codigo', 'nome', 'atores', 'objetivo', 'descricao', 'projetoID', 'usuario_dono') VALUES
+('CT-pb-0', 'Criar um caso de teste', 'gerente de projeto; gerente de teste; testador;', 'Este caso de Uso descreve o processo de criação de um caso de teste dentro do software. ', 'Fluxo pricipal: \n1 – Informar o nome do caso de teste\n2 –Informar vincula o caso de teste a um caso de uso existente.\n3 – Informar o diretório raiz do projeto;\n4 – Informa a descrição do projeto.\n5 – Finaliza a criação do projeto;\n\nCenários Alternativos:\n2.1 - Se o software verificar que já existem prefixos iguais no banco de dados o software pede para que novos prefixos sejam informados.', 2, 'root@root');

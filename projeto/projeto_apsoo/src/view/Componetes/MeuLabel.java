@@ -60,7 +60,7 @@ public class MeuLabel extends JLabel implements MouseListener{
      */
     @Override
     public void setText(String text) {
-        if (text.length() > max){
+        if (text.length() > max && max != -1){
             this.setToolTipText(text);
             super.setText(text.substring(0, max).concat(" [...]"));
         }else{
@@ -70,6 +70,7 @@ public class MeuLabel extends JLabel implements MouseListener{
 
     /**
      * Configura a quantidade maxima de caracteres que o labal pode ter.
+     * se o valor -1 foir passado não existira mais restrição de tamanho.
      * @param max
      */
     public void setQuantidadeMaximaDeCaracteres(int max) {

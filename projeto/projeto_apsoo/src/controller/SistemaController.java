@@ -43,6 +43,7 @@ public class SistemaController {
                 break;
             case "CASOS_DE_TESTE":
                 p = PaineisDeTabalho.CASOS_TESTE;
+                ((CasosDeTestePainel)p).iniciarArvore();
                 break;
             case "ROTEIROS_DE_TESTE":
                 p = PaineisDeTabalho.MATRIZ_DE_RASTREABIBLIDADE;

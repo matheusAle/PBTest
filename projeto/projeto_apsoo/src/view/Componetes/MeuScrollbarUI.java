@@ -50,7 +50,7 @@ public class MeuScrollbarUI extends MetalScrollBarUI {
         return b;
     }
 
-        private static class FauxImage {
+    private static class FauxImage {
 
         static public Image create(int w, int h, Color c) {
             BufferedImage bi = new BufferedImage(

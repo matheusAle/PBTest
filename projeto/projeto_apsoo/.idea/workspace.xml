@@ -2,30 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4352faa-4002-4621-8cf5-9ac64de6ba64" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_44_bin1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/controller/CasoDeTesteController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/controller/adapters/ArtefatoDeTesteAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/controller/exceptions/CasoDeTesteException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/view/Componetes/ArvoreDeArtefatos.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/projeto_aspoo.iml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.idea/misc.xml" afterPath="$PROJECT_DIR$/../.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.idea/modules.xml" afterPath="$PROJECT_DIR$/../.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.idea/uiDesigner.xml" afterPath="$PROJECT_DIR$/../.idea/uiDesigner.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.idea/vcs.xml" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/daos/ProjetoDAO.java" afterPath="$PROJECT_DIR$/src/model/daos/ProjetoDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/Icones.java" afterPath="$PROJECT_DIR$/src/resources/Icones.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/Strings.java" afterPath="$PROJECT_DIR$/src/resources/Strings.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/controller/adapters/CasoDeTesteAdapter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/controller/adapters/CasosDeTesteAdapter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/model/ArtefatoDeTeste.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/model/CasoDeTeste.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/model/TestesPool.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/model/daos/CasoDeTesteDAO.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/view/Componetes/ArvoreNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/CasoDeTesteController.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/CasoDeTesteController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/ProjetoController.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/ProjetoController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/SistemaController$PaineisDeTabalho.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/SistemaController$PaineisDeTabalho.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/SistemaController.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/SistemaController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/adapters/ArtefatoDeTesteAdapter.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/adapters/ArtefatoDeTesteAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/model/daos/CasosDeUsoDAO.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/model/daos/CasosDeUsoDAO.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/model/daos/DAO.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/model/daos/DAO.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CasosDeTestePainel$1.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CasosDeTestePainel$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CasosDeTestePainel.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CasosDeTestePainel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CasosDeUsoPainel.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CasosDeUsoPainel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Componetes/ArvoreDeArtefatos.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Componetes/ArvoreDeArtefatos.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/EditarProjetoPainel$FormularioEditar.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/EditarProjetoPainel$FormularioEditar.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/EditarProjetoPainel.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/EditarProjetoPainel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/ProjetosPainel$ItemListaProjeto.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/ProjetosPainel$ItemListaProjeto.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/ProjetosPainel$ProjetoAtivo.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/ProjetosPainel$ProjetoAtivo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/ProjetosPainel.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/ProjetosPainel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/CasoDeTesteController.java" afterPath="$PROJECT_DIR$/src/controller/CasoDeTesteController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/ProjetoController.java" afterPath="$PROJECT_DIR$/src/controller/ProjetoController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/SistemaController.java" afterPath="$PROJECT_DIR$/src/controller/SistemaController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/adapters/ArtefatoDeTesteAdapter.java" afterPath="$PROJECT_DIR$/src/controller/adapters/ArtefatoDeTesteAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/daos/CasosDeUsoDAO.java" afterPath="$PROJECT_DIR$/src/model/daos/CasosDeUsoDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/daos/DAO.java" afterPath="$PROJECT_DIR$/src/model/daos/DAO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/CasosDeTestePainel.java" afterPath="$PROJECT_DIR$/src/view/CasosDeTestePainel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/CasosDeUsoPainel.java" afterPath="$PROJECT_DIR$/src/view/CasosDeUsoPainel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/Componetes/Botao.java" afterPath="$PROJECT_DIR$/src/view/Componetes/Botao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/Componetes/ArvoreDeArtefatos.java" afterPath="$PROJECT_DIR$/src/view/Componetes/ArvoreDeArtefatos.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/Componetes/MeuLabel.java" afterPath="$PROJECT_DIR$/src/view/Componetes/MeuLabel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/Componetes/MeuPainelComScrollBar.java" afterPath="$PROJECT_DIR$/src/view/Componetes/MeuPainelComScrollBar.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/Componetes/MeuScrollbarUI.java" afterPath="$PROJECT_DIR$/src/view/Componetes/MeuScrollbarUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/Componetes/Painel.java" afterPath="$PROJECT_DIR$/src/view/Componetes/Painel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/CriarCasoDeUsoPainel.java" afterPath="$PROJECT_DIR$/src/view/CriarCasoDeUsoPainel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/Janela.java" afterPath="$PROJECT_DIR$/src/view/Janela.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/CriarProjetoPainel.java" afterPath="$PROJECT_DIR$/src/view/CriarProjetoPainel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/EditarProjetoPainel.java" afterPath="$PROJECT_DIR$/src/view/EditarProjetoPainel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/JanelaLogin.java" afterPath="$PROJECT_DIR$/src/view/JanelaLogin.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/ProjetosPainel.java" afterPath="$PROJECT_DIR$/src/view/ProjetosPainel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../recursos/data_base_dump.sql" afterPath="$PROJECT_DIR$/../../recursos/data_base_dump.sql" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,75 +52,33 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="CasosDeTestePainel.java" pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="CasosDeTestePainel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/CasosDeTestePainel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="70" column="62" lean-forward="false" selection-start-line="70" selection-start-column="62" selection-end-line="70" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArtefatoDeTesteAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/adapters/ArtefatoDeTesteAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="26" column="18" lean-forward="false" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Icones.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/resources/Icones.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="111" lean-forward="false" selection-start-line="8" selection-start-column="111" selection-end-line="8" selection-end-column="111" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArvoreDeArtefatos.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/Componetes/ArvoreDeArtefatos.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="33" column="38" lean-forward="false" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
+            <state relative-caret-position="142">
+              <caret line="86" column="19" lean-forward="false" selection-start-line="86" selection-start-column="19" selection-end-line="86" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#814#815#0" expanded="true" />
+                <element signature="e#873#874#0" expanded="true" />
+                <element signature="e#1537#1538#0" expanded="true" />
+                <element signature="e#1634#1635#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Cores.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/resources/Cores.java">
+      <file leaf-file-name="CasosDeUsoPainel.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/view/CasosDeUsoPainel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Janela.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/Janela.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SistemaController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/SistemaController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="111">
+              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+              <folding>
+                <element signature="method#iniciarTextos#0;class#ItemDaLista#0;class#CasosDeUsoPainel#0" expanded="false" />
+                <element signature="method#iniciarComponetes#0;class#ItemDaLista#0;class#CasosDeUsoPainel#0" expanded="false" />
+                <element signature="method#iniciarLayout#0;class#ItemDaLista#0;class#CasosDeUsoPainel#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -126,25 +100,46 @@
       <projects_view />
     </option>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/controller/CasoDeTesteController.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/model/TestesPool.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/model/daos/CasoDeTesteDAO.java" root0="SKIP_INSPECTION" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/model/daos/ProjetoDAO.java" />
-        <option value="$PROJECT_DIR$/src/view/CasosDeUsoPainel.java" />
-        <option value="$PROJECT_DIR$/src/view/Componetes/MeuLabel.java" />
         <option value="$PROJECT_DIR$/src/view/Componetes/Botao.java" />
         <option value="$PROJECT_DIR$/src/view/CriarCasoDeUsoPainel.java" />
-        <option value="$PROJECT_DIR$/src/view/JanelaLogin.java" />
         <option value="$PROJECT_DIR$/src/resources/Strings.java" />
         <option value="$PROJECT_DIR$/src/view/Componetes/MeuPainelComScrollBar.java" />
         <option value="$PROJECT_DIR$/src/view/Janela.java" />
-        <option value="$PROJECT_DIR$/src/view/Componetes/MeuScrollbarUI.java" />
         <option value="$PROJECT_DIR$/src/view/Componetes/Painel.java" />
         <option value="$PROJECT_DIR$/src/controller/exceptions/CasoDeTesteException.java" />
-        <option value="$PROJECT_DIR$/src/controller/adapters/ArtefatoDeTesteAdapter.java" />
-        <option value="$PROJECT_DIR$/src/controller/CasoDeTesteController.java" />
         <option value="$PROJECT_DIR$/src/resources/Icones.java" />
+        <option value="$PROJECT_DIR$/src/view/Componetes/ArvoreNode.java" />
+        <option value="$PROJECT_DIR$/src/view/Componetes/MeuScrollbarUI.java" />
         <option value="$PROJECT_DIR$/src/view/Componetes/ArvoreDeArtefatos.java" />
+        <option value="$PROJECT_DIR$/src/model/CasoDeTestePool.java" />
+        <option value="$PROJECT_DIR$/src/controller/adapters/ArtefatoDeTesteAdapter.java" />
+        <option value="$PROJECT_DIR$/src/model/daos/DAO.java" />
+        <option value="$PROJECT_DIR$/src/model/daos/CasoDeTesteDAO.java" />
+        <option value="$PROJECT_DIR$/src/model/ArtefatoDeTeste.java" />
+        <option value="$PROJECT_DIR$/src/controller/CasosDeTesteAdapter.java" />
+        <option value="$PROJECT_DIR$/src/model/CasoDeTeste.java" />
+        <option value="$PROJECT_DIR$/src/controller/adapters/CasosDeTesteAdapter.java" />
+        <option value="$PROJECT_DIR$/src/model/daos/CasosDeUsoDAO.java" />
+        <option value="$PROJECT_DIR$/src/view/CasosDeUsoPainel.java" />
+        <option value="$PROJECT_DIR$/src/view/EditarProjetoPainel.java" />
+        <option value="$PROJECT_DIR$/src/controller/ProjetoController.java" />
+        <option value="$PROJECT_DIR$/src/view/ProjetosPainel.java" />
+        <option value="$PROJECT_DIR$/src/controller/SistemaController.java" />
+        <option value="$PROJECT_DIR$/src/model/TestesPool.java" />
+        <option value="$PROJECT_DIR$/src/controller/CasoDeTesteController.java" />
+        <option value="$PROJECT_DIR$/src/view/JanelaLogin.java" />
+        <option value="$PROJECT_DIR$/libs/mysql-connector-java-5.1.44-bin.jar!/com/mysql/jdbc/NonRegisteringDriver.class" />
+        <option value="$PROJECT_DIR$/src/view/Componetes/MeuLabel.java" />
+        <option value="$PROJECT_DIR$/src/view/CriarProjetoPainel.java" />
         <option value="$PROJECT_DIR$/src/view/CasosDeTestePainel.java" />
       </list>
     </option>
@@ -177,6 +172,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
@@ -201,20 +197,6 @@
               <item name="projeto_apsoo" type="b2602c69:ProjectViewProjectNode" />
               <item name="projeto_apsoo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="adapters" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projeto_apsoo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projeto_apsoo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="exceptions" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projeto_apsoo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projeto_apsoo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -228,33 +210,12 @@
               <item name="projeto_apsoo" type="b2602c69:ProjectViewProjectNode" />
               <item name="projeto_apsoo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projeto_apsoo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projeto_apsoo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="icones" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projeto_apsoo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projeto_apsoo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projeto_apsoo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projeto_apsoo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="Componetes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -264,6 +225,11 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="controller" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -281,7 +247,7 @@
     <configuration name="CasoDeTesteController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="controller.*" />
+          <option name="PATTERN" value="controller.adapters.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -421,12 +387,13 @@
       <workItem from="1508039063656" duration="197000" />
       <workItem from="1508070939861" duration="90000" />
       <workItem from="1508071046336" duration="63000" />
-      <workItem from="1508078131414" duration="18307000" />
+      <workItem from="1508078131414" duration="24399000" />
+      <workItem from="1508208263285" duration="11534000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18657000" />
+    <option name="totallyTimeSpent" value="36283000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -434,27 +401,27 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41118422" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41118422" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2579425" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2375189" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39967105" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -465,42 +432,57 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="11" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/model/daos/ProjetoDAO.java">
+    <entry file="file://$PROJECT_DIR$/src/model/CasoDeTestePool.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="137" column="91" lean-forward="false" selection-start-line="137" selection-start-column="91" selection-end-line="137" selection-end-column="91" />
+        <state relative-caret-position="34">
+          <caret line="2" column="30" lean-forward="false" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/ProjetoController.java">
+    <entry file="file://$PROJECT_DIR$/src/view/CasosDeTestePainel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1675">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/CasosDeUsoPainel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="160" column="56" lean-forward="false" selection-start-line="160" selection-start-column="56" selection-end-line="160" selection-end-column="56" />
+        <state relative-caret-position="612">
+          <caret line="36" column="30" lean-forward="true" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
           <folding>
-            <element signature="method#iniciarComponetes#0;class#ItemDaLista#0;class#CasosDeUsoPainel#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#carregarPaineis#0;class#CasosDeTestePainel#0" expanded="false" />
+            <element signature="method#carregarArtefatosDeTeste#0;class#CasosDeTestePainel#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/CriarProjetoPainel.java">
+    <entry file="file://$PROJECT_DIR$/src/model/ArtefatoDeTeste.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="296" column="0" lean-forward="false" selection-start-line="296" selection-start-column="0" selection-end-line="296" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="340">
+          <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="e#1137#1138#0" expanded="true" />
+            <element signature="e#1267#1268#0" expanded="true" />
+            <element signature="e#1302#1303#0" expanded="true" />
+            <element signature="e#1647#1648#0" expanded="true" />
+            <element signature="e#1695#1696#0" expanded="true" />
+            <element signature="e#1756#1757#0" expanded="true" />
+            <element signature="e#1815#1816#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/CasoDeTesteController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="56" column="19" lean-forward="true" selection-start-line="56" selection-start-column="19" selection-end-line="56" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2654#2675#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -509,7 +491,7 @@
         <state relative-caret-position="30">
           <caret line="80" column="67" lean-forward="false" selection-start-line="80" selection-start-column="67" selection-end-line="80" selection-end-column="67" />
           <folding>
-            <element signature="e#2522#2523#0" expanded="true" />
+            <element signature="e#2522#2523#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -519,23 +501,6 @@
         <state relative-caret-position="85">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/Componetes/MeuLabel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="515">
-          <caret line="50" column="44" lean-forward="false" selection-start-line="50" selection-start-column="44" selection-end-line="50" selection-end-column="44" />
-          <folding>
-            <element signature="method#createToolTip#0;class#MeuLabel#0" expanded="false" />
-            <element signature="method#setToolTipText#0;class#MeuLabel#0" expanded="false" />
-            <element signature="method#setText#0;class#MeuLabel#0" expanded="false" />
-            <element signature="method#mouseClicked#0;class#MeuLabel#0" expanded="false" />
-            <element signature="method#mousePressed#0;class#MeuLabel#0" expanded="false" />
-            <element signature="method#mouseReleased#0;class#MeuLabel#0" expanded="false" />
-            <element signature="method#mouseEntered#0;class#MeuLabel#0" expanded="false" />
-            <element signature="method#mouseExited#0;class#MeuLabel#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -563,35 +528,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/Componetes/BotaoDeNavegacao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding>
-            <element signature="e#1058#1059#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/Componetes/MeuScrollbarUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-34">
-          <caret line="9" column="13" lean-forward="true" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="50" />
-          <folding>
-            <element signature="e#353#488#0" expanded="true" />
-            <element signature="e#487#488#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/Componetes/Painel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="159" column="97" lean-forward="true" selection-start-line="159" selection-start-column="97" selection-end-line="159" selection-end-column="97" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/Componetes/MeuPainelComScrollBar.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -605,53 +541,9 @@
         <state relative-caret-position="136">
           <caret line="8" column="23" lean-forward="false" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
           <folding>
-            <element signature="e#177#178#0" expanded="true" />
-            <element signature="e#207#208#0" expanded="true" />
+            <element signature="e#177#178#0" expanded="false" />
+            <element signature="e#207#208#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/CasoDeTesteController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="20" column="114" lean-forward="false" selection-start-line="20" selection-start-column="114" selection-end-line="20" selection-end-column="114" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2574#2575#0" expanded="true" />
-            <element signature="e#2612#2613#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/SistemaController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/JanelaLogin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/Janela.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/adapters/ArtefatoDeTesteAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="26" column="18" lean-forward="false" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -663,6 +555,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Componetes/ArvoreNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="65" lean-forward="false" selection-start-line="20" selection-start-column="65" selection-end-line="20" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#644#645#0" expanded="false" />
+            <element signature="e#675#676#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/resources/Icones.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -671,21 +575,339 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/Componetes/ArvoreDeArtefatos.java">
+    <entry file="file://$PROJECT_DIR$/src/view/Componetes/MeuScrollbarUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="33" column="38" lean-forward="false" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
+        <state relative-caret-position="187">
+          <caret line="29" column="4" lean-forward="false" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Componetes/PainelItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-476">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/CasoDeTestePool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="30" lean-forward="false" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/CasoDeTesteEArtefatoDeTestePool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="44" lean-forward="false" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/exceptions/ProjetoException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/adapters/CasoDeTesteAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="31" lean-forward="false" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/ArtefatoDeTeste.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="63" column="16" lean-forward="false" selection-start-line="63" selection-start-column="16" selection-end-line="63" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="e#1137#1138#0" expanded="true" />
+            <element signature="e#1267#1268#0" expanded="true" />
+            <element signature="e#1302#1303#0" expanded="true" />
+            <element signature="e#1647#1648#0" expanded="true" />
+            <element signature="e#1695#1696#0" expanded="true" />
+            <element signature="e#1756#1757#0" expanded="true" />
+            <element signature="e#1815#1816#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/daos/CasoDeTesteDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="50" column="22" lean-forward="false" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1925#1926#0" expanded="true" />
+            <element signature="e#1952#1953#0" expanded="true" />
+            <element signature="e#2016#2017#0" expanded="true" />
+            <element signature="e#2043#2044#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/adapters/CasosDeTesteAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+          <folding>
+            <element signature="e#357#358#0" expanded="true" />
+            <element signature="e#386#387#0" expanded="true" />
+            <element signature="e#417#418#0" expanded="true" />
+            <element signature="e#444#445#0" expanded="true" />
+            <element signature="e#480#481#0" expanded="true" />
+            <element signature="e#512#513#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/daos/CasosDeUsoDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="20" column="30" lean-forward="false" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/CasoDeUsoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1">
+          <caret line="10" column="19" lean-forward="false" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/CasoDeTeste.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="28" column="35" lean-forward="true" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1160#1161#0" expanded="true" />
+            <element signature="e#1231#1232#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/JanelaLogin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="21" column="55" lean-forward="false" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/mysql-connector-java-5.1.44-bin.jar!/com/mysql/jdbc/NonRegisteringDriver.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="120" column="0" lean-forward="false" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/daos/DAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/TestesPool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#592#593#0" expanded="true" />
+            <element signature="e#645#646#0" expanded="true" />
+            <element signature="e#2448#2449#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Componetes/MeuItemMenuPopup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding>
+            <element signature="e#924#925#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/daos/ProjetoDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="108" column="0" lean-forward="false" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+          <folding>
+            <element signature="e#3316#3325#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/ProjetosPainel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+          <folding>
+            <element signature="method#carregarOpcoes#0;class#ProjetosPainel#0" expanded="false" />
+            <element signature="method#ItemListaProjeto#0;class#ItemListaProjeto#0;class#ProjetosPainel#0" expanded="false" />
+            <element signature="method#iniciarComponetes#0;class#ItemListaProjeto#0;class#ProjetosPainel#0" expanded="false" />
+            <element signature="method#iniciarLayout#0;class#ItemListaProjeto#0;class#ProjetosPainel#0" expanded="false" />
+            <element signature="class#ProjetoAtivo#0;class#ProjetosPainel#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/ProjetoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <folding>
+            <element signature="method#setProjetoAtualizavel#0;class#ProjetoController#0" expanded="false" />
+            <element signature="method#getInformacoesDoProjetoAtivo#0;class#ProjetoController#0" expanded="false" />
+            <element signature="method#atualizarProjeto#0;class#ProjetoController#0" expanded="false" />
+            <element signature="method#getPrefixoDoProjetoAtual#0;class#ProjetoController#0" expanded="false" />
+            <element signature="e#5358#5359#0" expanded="true" />
+            <element signature="e#5393#5394#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/CasoDeTesteController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-252">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2654#2675#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Janela.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="130" column="51" lean-forward="false" selection-start-line="130" selection-start-column="51" selection-end-line="130" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Componetes/ArvoreDeArtefatos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+          <folding>
+            <element signature="e#2209#2210#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Componetes/Painel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/SistemaController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Componetes/MeuLabel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="72" column="73" lean-forward="false" selection-start-line="72" selection-start-column="73" selection-end-line="72" selection-end-column="73" />
+          <folding>
+            <element signature="method#createToolTip#0;class#MeuLabel#0" expanded="false" />
+            <element signature="method#setToolTipText#0;class#MeuLabel#0" expanded="false" />
+            <element signature="e#1965#1966#0" expanded="true" />
+            <element signature="e#1995#1996#0" expanded="true" />
+            <element signature="method#mouseClicked#0;class#MeuLabel#0" expanded="false" />
+            <element signature="method#mousePressed#0;class#MeuLabel#0" expanded="false" />
+            <element signature="method#mouseReleased#0;class#MeuLabel#0" expanded="false" />
+            <element signature="method#mouseEntered#0;class#MeuLabel#0" expanded="false" />
+            <element signature="method#mouseExited#0;class#MeuLabel#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/adapters/ArtefatoDeTesteAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <element signature="e#516#517#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Componetes/BotaoDeNavegacao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding>
+            <element signature="e#1058#1059#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/CriarProjetoPainel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1300">
+          <caret line="175" column="55" lean-forward="false" selection-start-line="175" selection-start-column="55" selection-end-line="175" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/EditarProjetoPainel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="12" column="55" lean-forward="true" selection-start-line="12" selection-start-column="55" selection-end-line="12" selection-end-column="55" />
+          <folding>
+            <element signature="method#FormularioEditar#0;class#FormularioEditar#0;class#EditarProjetoPainel#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/CasosDeTestePainel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="70" column="62" lean-forward="false" selection-start-line="70" selection-start-column="62" selection-end-line="70" selection-end-column="62" />
-          <folding />
+        <state relative-caret-position="142">
+          <caret line="86" column="19" lean-forward="false" selection-start-line="86" selection-start-column="19" selection-end-line="86" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#814#815#0" expanded="true" />
+            <element signature="e#873#874#0" expanded="true" />
+            <element signature="e#1537#1538#0" expanded="true" />
+            <element signature="e#1634#1635#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/CasosDeUsoPainel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding>
+            <element signature="method#iniciarTextos#0;class#ItemDaLista#0;class#CasosDeUsoPainel#0" expanded="false" />
+            <element signature="method#iniciarComponetes#0;class#ItemDaLista#0;class#CasosDeUsoPainel#0" expanded="false" />
+            <element signature="method#iniciarLayout#0;class#ItemDaLista#0;class#CasosDeUsoPainel#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

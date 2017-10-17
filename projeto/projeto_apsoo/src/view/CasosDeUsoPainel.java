@@ -41,7 +41,7 @@ public class CasosDeUsoPainel extends PainelDeListagem {
             CasoDeUsoController.getListaDeCasosDeUso().forEach( (c) -> {
             super.addConteudo(new ItemDaLista(c));
         });
-        }catch (ProjetoException e){
+        }catch (Exception e){
             JOptionPane.showConfirmDialog(SistemaController.JANELA, "ERRO!\nVocê deve selecionar um projeto antes!", "ERRO", JOptionPane.ERROR_MESSAGE);
         }
     }

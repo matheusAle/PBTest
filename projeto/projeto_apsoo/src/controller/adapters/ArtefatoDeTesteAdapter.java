@@ -5,6 +5,7 @@ public class ArtefatoDeTesteAdapter {
     private String nomeArquivo;
     private String caminhoAbsoluto;
 
+
     public ArtefatoDeTesteAdapter(String pakage, String nomeArquivo, String caminhoabsoluto) {
         this.pakage = pakage;
         this.nomeArquivo = nomeArquivo;

@@ -26,6 +26,10 @@ public final class ProjetosPainel extends PainelDeListagem{
     }
 
 
+    /**
+     * Ativa o projeto com o codigo passado como paremetro
+     * @param codigo
+     */
     private void ativarProjeto(String codigo){
         if(!ProjetoController.ativarProjeto(codigo)){
             JOptionPane.showConfirmDialog(SistemaController.JANELA,"Ocorreu um erro ao ativar o projeto.", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -35,6 +39,9 @@ public final class ProjetosPainel extends PainelDeListagem{
         super.atualizarLista(false);
     }
 
+    /**
+     * carrega as poções deste painel
+     */
     @Override
     protected void carregarOpcoes() {
         Botao novoProjeto = new Botao();

@@ -19,6 +19,9 @@ public final class EditarProjetoPainel extends CriarProjetoPainel {
         this.carregarOpcoes();
     }
 
+    /**
+     * Carrega as opçoes deste painel
+     */
     private void carregarOpcoes(){
         super.salvar = new Botao();
         super.salvar.setCorDeFundoNormal(Cores.FUNDO_BOTAO);
@@ -40,7 +43,7 @@ public final class EditarProjetoPainel extends CriarProjetoPainel {
     }
 
     /**
-     * persiste as auteações no banco de dados
+     * persiste as auterações no banco de dados
      */
     private void salvarProjeto() {
         if(!super.todosOsCamposEstaoValidos())

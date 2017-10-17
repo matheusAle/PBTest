@@ -18,12 +18,12 @@ public class CasosDeUsoDAO extends DAO {
      * @throws ProjetoException lançada apenas quando não existir um projeto ativo.
      */
     @Override
-    public Collection listar() throws ProjetoException {
+    public Collection listar(){
         String query;
         try {
             query = "SELECT * FROM caso_de_uso WHERE projetoID = " + ProjetoController.getInformacoesDoProjetoAtivo().getCodigo();
         }catch (NullPointerException e){
-            throw new ProjetoException();
+            return null;
         }
         ResultSet result = DAO.execultarBusca(query);
         LinkedList<CasoDeUsoAdapter> lista = new LinkedList<>();

@@ -6,11 +6,21 @@ import resources.Icones;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreeSelectionModel;
+import java.util.function.Consumer;
 
-public class ArvoreDeArtefatos extends JTree {
+/**
+ * Modela um Jtree personalizada
+ */
+public class ArvoreDeArtefatos extends JTree implements TreeSelectionListener{
+
+    private Consumer<ArvoreNode> onSelectedEvent = (e) -> {};
+
+
 
     public ArvoreDeArtefatos(TreeNode root) {
         super(root);
@@ -32,6 +42,30 @@ public class ArvoreDeArtefatos extends JTree {
         render.setTextSelectionColor(Cores.TEXTOS);
         super.putClientProperty ("JTree.lineStyle", "None");
         super.setCellRenderer(render);
+
+        super.addTreeSelectionListener(this);
+    }
+
+    /**
+     * Chama o metodo definido para tratar a seleção de um node da arvore,
+     * passando como parametro o objeto ArvoreNode selecionado.
+     * @param e
+     */
+    @Override
+    public void valueChanged(TreeSelectionEvent e) {
+        try {
+            onSelectedEvent.accept(((ArvoreNode)super.getLastSelectedPathComponent()));
+        }catch (NullPointerException x){}
+
+    }
+
+
+    /**
+     * Seta o metodo chamado quando um node da arvore for selecionado.
+     * @param onSelectedEvent
+     */
+    public void setOnSelectedEvent(Consumer<ArvoreNode> onSelectedEvent) {
+        this.onSelectedEvent = onSelectedEvent;
     }
 }
 

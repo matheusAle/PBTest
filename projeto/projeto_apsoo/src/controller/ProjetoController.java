@@ -1,6 +1,7 @@
 package controller;
 
 import controller.adapters.ProjetoAdapter;
+import model.ArtefatoDeTeste;
 import model.Projeto;
 import model.daos.ProjetoDAO;
 
@@ -61,6 +62,7 @@ public class ProjetoController {
     public static boolean ativarProjeto(String codigo) {
         try {
             projetoAtivo = (Projeto) dao.buscar("id = " + codigo).iterator().next();
+            CasoDeTesteController.carregarArtefatos(); //TODO este invocação deve ser por thread futuramente!
             return true;
         }catch (Exception e){e.printStackTrace();}
         return false;
@@ -98,7 +100,6 @@ public class ProjetoController {
     public static boolean atualizarProjeto(ProjetoAdapter projetoSendoEditado) {
         projetoSendoEditado.setSrc(projetoSendoEditado.getSrc().replaceAll("\\\\", "/"));
         boolean b =  dao.atualizar(projetoSendoEditado);
-        projetoSendoEditado = null;
         return b;
     }
 
@@ -138,5 +139,9 @@ public class ProjetoController {
                 break;
         }
         return s;
+    }
+
+    static Projeto getProjetoAtivo() {
+        return projetoAtivo;
     }
 }

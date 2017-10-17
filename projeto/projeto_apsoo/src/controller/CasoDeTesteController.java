@@ -1,75 +1,75 @@
 package controller;
 
 import controller.adapters.ArtefatoDeTesteAdapter;
+import controller.adapters.CasosDeTesteAdapter;
 import controller.exceptions.CasoDeTesteException;
+import model.CasoDeTeste;
+import model.TestesPool;
+import model.daos.CasoDeTesteDAO;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 
-public class CasoDeTesteController {
+public final class CasoDeTesteController {
 
-    private static LinkedList<ArtefatoDeTesteAdapter> listaDeArtefatos = new LinkedList<>();
+    private static CasoDeTesteDAO dao = new CasoDeTesteDAO();
     private static HashMap<String, LinkedList<ArtefatoDeTesteAdapter>> mapaDeArtefatos = new HashMap<>();
 
     /**
-     * Carrega os qrtefatos de teste do projeto ativo
+     * Carrega os artefatos de teste do projeto ativo em uma TestesPool
      * @throws CasoDeTesteException lançada quando o diretorio raiz não existir.
      */
-    public static void carregarArtefatos() throws CasoDeTesteException {
-        String path = "C:\\Users\\matheus\\Dropbox\\projetos\\APSOO\\trabalho_apsoo\\projeto\\projeto_apsoo\\src";//ProjetoController.getInformacoesDoProjetoAtivo().getSrc();
-        if (Files.exists(Paths.get(path))){
-            LinkedList<File> lista = new LinkedList<>();
-            File[] files = (new File(path)).listFiles();
-            gerarListaDeArtefatos(files, "");
-            gerarMapaDeArtefatos();
-        }else {
-            throw new CasoDeTesteException("O diretorio do projeto não foi encontrado");
-        }
+    public synchronized static void carregarArtefatos() throws CasoDeTesteException {
+        TestesPool.limparPool();
+        TestesPool.carregarPool(ProjetoController.getProjetoAtivo());
+        gerarMapaDeArtefatos();
     }
 
     /**
      * mapeia os artefatos do projeto de acordo com o pacote o qual pertence.
      */
-    private static void gerarMapaDeArtefatos() {
-        listaDeArtefatos.forEach((e) -> {
+    private synchronized static void gerarMapaDeArtefatos() {
+        TestesPool.getListaDeArtefatos().forEach((e) -> {
             if (mapaDeArtefatos.containsKey(e.getPakage())){
-                mapaDeArtefatos.get(e.getPakage()).add(e);
+                mapaDeArtefatos.get(e.getPakage()).add(e.getAdapter());
             }else {
                 LinkedList<ArtefatoDeTesteAdapter> l = new LinkedList<>();
-                l.add(e);
+                l.add(e.getAdapter());
                 mapaDeArtefatos.put(e.getPakage(), l);
             }
         });
     }
 
     /**
-     * Gera uma lista com informações dos artefatos do projeto ativo.
-     * Esta lista é gerada recursivamente.
-     * @param files arquivos do diretorio raiz.
-     * @param pakageNome nome do pacote.
+     * Retorna os artefatos de teste mapeados em seus pacotes.
+     * @return
      */
-    private static void gerarListaDeArtefatos(File[] files, String pakageNome){
-        for (File f: files){
-            if(f.isDirectory()){
-                gerarListaDeArtefatos(f.listFiles(), (pakageNome == "" ? "" : pakageNome+".").concat(f.getName()));
-            }else {
-                if (f.getName().endsWith(".class") || f.getName().endsWith(".java")) {
-                    listaDeArtefatos.add(new ArtefatoDeTesteAdapter(pakageNome, f.getName(), f.getAbsolutePath()));
-                }
-            }
-        }
-    }
-
-    public static HashMap<String, LinkedList<ArtefatoDeTesteAdapter>> getMapaDeArtefatos() {
+    public synchronized static HashMap<String, LinkedList<ArtefatoDeTesteAdapter>> getMapaDeArtefatos() {
         return mapaDeArtefatos;
     }
 
-    //    public static void main(String[] args) {
-//        File[] f = new File("C:\\Users\\matheus\\Dropbox\\projetos\\APSOO\\trabalho_apsoo\\projeto\\projeto_apsoo\\src").listFiles();
-//        gerarMapaDeArtefatos(f, "");
-//        System.out.println(Arrays.toString(listaDeArtefatos.toArray()));
-//    }
+
+    /**
+     * Carreega os artefatos de teste do banco de dados para a pool de testes.
+     * @param pacote pacote do artefato de teste
+     * @param prjID ID do projeto atual
+     * @param nomeArquivo Nome do arquivo do artefato de teste.
+     * @return lista encadeada de Casos De Teste
+     */
+    public synchronized static LinkedList<CasosDeTesteAdapter> carregarCasosDeTesteDoArtefato(String pacote, String prjID, String nomeArquivo){
+        LinkedList<ArtefatoDeTesteAdapter> lista = mapaDeArtefatos.get(pacote);
+        LinkedList<CasoDeTeste> casosDeTeste = null;
+        for(ArtefatoDeTesteAdapter artefato : lista){
+            if (artefato.getNomeArquivo().equals(nomeArquivo)){
+                casosDeTeste =  (LinkedList<CasoDeTeste>) dao.listar(prjID, nomeArquivo);
+                TestesPool.setCasosDeTesteDoArtefato(casosDeTeste, nomeArquivo);
+            }
+        }
+        LinkedList<CasosDeTesteAdapter> listaAdapters = new LinkedList<CasosDeTesteAdapter>();
+        for (CasoDeTeste casoDeTeste : casosDeTeste){
+            listaAdapters.add(casoDeTeste.getAdapter());
+        }
+        return listaAdapters;
+    }
+
 
 }

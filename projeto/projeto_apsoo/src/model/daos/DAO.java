@@ -47,7 +47,7 @@ public abstract class DAO {
      * Busca no banco e retorna um coleção de itens da relação.
      * @return
      */
-    public abstract Collection listar() throws ProjetoException;
+    public abstract Collection listar();
 
     /**
      * Buscar por um elemento ou mais da relação
