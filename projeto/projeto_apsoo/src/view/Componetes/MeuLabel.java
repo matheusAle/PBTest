@@ -5,11 +5,9 @@ import resources.Fontes;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.text.TabExpander;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.StringTokenizer;
 
 /**
  * Classe que modela Label com ToolTip personalizado. E limitação de caractes

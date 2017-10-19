@@ -1,8 +1,5 @@
-package model.daos;
+package model.Factorys;
 
-import controller.adapters.ProjetoAdapter;
-import controller.exceptions.ProjetoException;
-import model.ArtefatoDeTeste;
 import model.CasoDeTeste;
 
 import java.sql.ResultSet;
@@ -13,7 +10,7 @@ import java.util.LinkedList;
 /**
  * Classe resposavel pela manipulação dados persistentes dos casos de teste
  */
-public class CasoDeTesteDAO extends DAO{
+public class CasoDeTesteFactory extends AbstractFactory {
 
     /**
      * busca no banco de dados todos os casos de teste vinculados ao nome do artefato e ao projeto.
@@ -40,7 +37,7 @@ public class CasoDeTesteDAO extends DAO{
                 }
                 return lista;
             } catch (SQLException e) {
-                System.err.println("ERRO em CasoDeTesteDAO::listar -> ");
+                System.err.println("ERRO em CasoDeTesteFactory::listar -> ");
                 e.printStackTrace();
             }
         }

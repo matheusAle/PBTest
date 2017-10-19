@@ -1,7 +1,6 @@
 package model;
 
 
-import controller.adapters.ArtefatoDeTesteAdapter;
 import controller.adapters.CasosDeTesteAdapter;
 
 import java.io.File;

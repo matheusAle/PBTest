@@ -1,12 +1,10 @@
 package model;
 
-import controller.adapters.ArtefatoDeTesteAdapter;
 import controller.exceptions.CasoDeTesteException;
 
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
 
 /**

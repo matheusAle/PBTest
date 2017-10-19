@@ -1,4 +1,4 @@
-package model.daos;
+package model.Factorys;
 
 import controller.ProjetoController;
 import controller.adapters.CasoDeUsoAdapter;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
 
-public class CasosDeUsoDAO extends DAO {
+public class CasosDeUsoFactory extends AbstractFactory {
 
     /**
      * Busca no banco de dados todos os casos de uso catrastrados vinculados ao projeto ativo.
@@ -25,7 +25,7 @@ public class CasosDeUsoDAO extends DAO {
         }catch (NullPointerException e){
             return null;
         }
-        ResultSet result = DAO.execultarBusca(query);
+        ResultSet result = AbstractFactory.execultarBusca(query);
         LinkedList<CasoDeUsoAdapter> lista = new LinkedList<>();
         try {
             while (result.next()){
@@ -60,7 +60,7 @@ public class CasosDeUsoDAO extends DAO {
                 c.getProjetoID()+ ", '" +
                 c.getEmailUsuario()+ "')";
         try {
-            DAO.execultarAtualizacao(dml);
+            AbstractFactory.execultarAtualizacao(dml);
             return true;
         } catch (SQLException e) {
             e.printStackTrace();

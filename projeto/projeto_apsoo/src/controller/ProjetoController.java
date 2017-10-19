@@ -1,14 +1,13 @@
 package controller;
 
 import controller.adapters.ProjetoAdapter;
-import model.ArtefatoDeTeste;
+import model.Factorys.ProjetoFactory;
 import model.Projeto;
-import model.daos.ProjetoDAO;
 
 import java.util.LinkedList;
 
 public class ProjetoController {
-    private static ProjetoDAO dao = new ProjetoDAO();
+    private static ProjetoFactory dao = new ProjetoFactory();
     private static Projeto projetoAtivo;
     private static LinkedList<ProjetoAdapter> listaDeProjetos  = listarProjetos();
     private static ProjetoAdapter projetoParaEditar;
@@ -143,5 +142,9 @@ public class ProjetoController {
 
     static Projeto getProjetoAtivo() {
         return projetoAtivo;
+    }
+
+    public static boolean temProjetoAtivo() {
+        return projetoAtivo == null;
     }
 }

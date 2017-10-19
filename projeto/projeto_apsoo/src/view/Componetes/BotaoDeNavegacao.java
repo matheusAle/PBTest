@@ -4,7 +4,6 @@ import resources.Cores;
 import resources.Fontes;
 
 import javax.swing.*;
-import javax.swing.plaf.metal.MetalButtonUI;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

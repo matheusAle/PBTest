@@ -1,6 +1,8 @@
 package controller;
 
-import controller.exceptions.ProjetoException;
+import controller.exceptions.CasoDeTesteExeption;
+import controller.exceptions.CasoDeUsoExeption;
+import controller.exceptions.RoteiroDeTesteExeption;
 import view.*;
 import view.CriarCasoDeUsoPainel;
 import view.Componetes.Painel;
@@ -20,9 +22,11 @@ public class SistemaController {
     public static void abrir() throws IOException, FontFormatException {
         JANELA = new Janela();
         JANELA.iniciarNavegacao(UsuarioController.getNomeUsuarioLogado(), UsuarioController.getCargoUsuarioLogado());
+        JANELA.setVisible(true);
+        JANELA.pack();
     }
 
-    public static synchronized void setPainelDeTrabalho (String painel){
+    public static synchronized void setPainelDeTrabalho (String painel) throws CasoDeUsoExeption, CasoDeTesteExeption, RoteiroDeTesteExeption {
         Painel p = null;
         switch (painel){
             case "USUARIOS":
@@ -35,17 +39,25 @@ public class SistemaController {
                 p = PaineisDeTabalho.CRIAR_PROJETO;
                 break;
             case "CASOS_DE_USO":
+                if (ProjetoController.temProjetoAtivo()) throw new CasoDeUsoExeption("Não existe nem um projeto ativo!");
                 p = PaineisDeTabalho.CASOS_DE_USO;
                 break;
             case "CRIAR_CASO_DE_USO":
+                if (ProjetoController.temProjetoAtivo()) throw new CasoDeUsoExeption("Não existe nem um projeto ativo!");
                 p = PaineisDeTabalho.CRIAR_CASOS_DE_USO;
                 ((CriarCasoDeUsoPainel)p).iniciarFormulario();
                 break;
             case "CASOS_DE_TESTE":
+                if (ProjetoController.temProjetoAtivo()) throw new CasoDeTesteExeption("Não existe nem um projeto ativo!");
                 p = PaineisDeTabalho.CASOS_TESTE;
                 ((CasosDeTestePainel)p).iniciarArvore();
                 break;
+            case "CRIAR_CASO_DE_TESTE":
+                if (ProjetoController.temProjetoAtivo()) throw new CasoDeTesteExeption("Não existe nem um projeto ativo!");
+                p = PaineisDeTabalho.CRIAR_CASO_DE_TESTE;
+                break;
             case "ROTEIROS_DE_TESTE":
+                if (ProjetoController.temProjetoAtivo()) throw new RoteiroDeTesteExeption("Não existe nem um projeto ativo!");
                 p = PaineisDeTabalho.MATRIZ_DE_RASTREABIBLIDADE;
                 break;
             case "EDITAR_PROJETO":
@@ -57,6 +69,12 @@ public class SistemaController {
         estacaoAtiva = p;
         JANELA.add(p.getPainel(), BorderLayout.CENTER);
         JANELA.setOpcoes(p.getOpcoes());
+        JANELA.revalidate();
+        JANELA.repaint();
+    }
+
+    public static void update() {
+        JANELA.pack();
         JANELA.revalidate();
         JANELA.repaint();
     }
@@ -75,6 +93,7 @@ public class SistemaController {
         public static final Painel CASOS_TESTE = new CasosDeTestePainel();
         public static final Painel ROTEIROS_TESTE = new RoteirosDeTestesPainel();
         public static final Painel MATRIZ_DE_RASTREABIBLIDADE = new MatrizDeRastreabilidadePainel();
+        public static final Painel CRIAR_CASO_DE_TESTE = new CriarCasoDeTestePainel();
     }
 
 

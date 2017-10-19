@@ -1,6 +1,4 @@
-package model.daos;
-
-import controller.exceptions.ProjetoException;
+package model.Factorys;
 
 import java.sql.*;
 import java.util.Collection;
@@ -8,7 +6,7 @@ import java.util.Collection;
 /**
  * classe responsavel pela conexão com o banco de dados da aplicação.
  */
-public abstract class DAO {
+public abstract class AbstractFactory {
 
     private static String url = "jdbc:mysql://localhost/pbtest";
     private static String usuario = "root";

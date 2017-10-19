@@ -1,9 +1,7 @@
 package view;
 
 import controller.CasoDeTesteController;
-import controller.SistemaController;
 import controller.adapters.ArtefatoDeTesteAdapter;
-import controller.exceptions.CasoDeTesteException;
 import resources.Strings;
 import view.Componetes.*;
 

@@ -1,6 +1,5 @@
 package view.Componetes;
 
-import resources.Cores;
 import resources.Fontes;
 
 import javax.swing.*;

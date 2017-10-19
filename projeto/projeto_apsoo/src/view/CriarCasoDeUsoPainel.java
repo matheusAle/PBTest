@@ -4,6 +4,9 @@ import controller.CasoDeUsoController;
 import controller.ProjetoController;
 import controller.SistemaController;
 import controller.adapters.CasoDeUsoAdapter;
+import controller.exceptions.CasoDeTesteExeption;
+import controller.exceptions.CasoDeUsoExeption;
+import controller.exceptions.RoteiroDeTesteExeption;
 import resources.Cores;
 import resources.Fontes;
 import resources.Strings;
@@ -100,7 +103,15 @@ public class CriarCasoDeUsoPainel extends Painel {
      */
     private void cancelarCadastro() {
         limpar();
-        SistemaController.setPainelDeTrabalho("CASOS_DE_USO");
+        try {
+            SistemaController.setPainelDeTrabalho("CASOS_DE_USO");
+        } catch (CasoDeUsoExeption casoDeUsoExeption) {
+            casoDeUsoExeption.printStackTrace();
+        } catch (CasoDeTesteExeption casoDeTesteExeption) {
+            casoDeTesteExeption.printStackTrace();
+        } catch (RoteiroDeTesteExeption roteiroDeTesteExeption) {
+            roteiroDeTesteExeption.printStackTrace();
+        }
     }
 
     /**

@@ -1,4 +1,4 @@
-package model.daos;
+package model.Factorys;
 
 import controller.adapters.ProjetoAdapter;
 import model.Projeto;
@@ -11,7 +11,7 @@ import java.util.LinkedList;
 /**
  * Classe para reealizar operaçoes realacionada a projetos no banco de dados
  */
-public class ProjetoDAO extends DAO{
+public class ProjetoFactory extends AbstractFactory {
 
     /**
      * Persiste as informações do projeto passadas como paramentro.

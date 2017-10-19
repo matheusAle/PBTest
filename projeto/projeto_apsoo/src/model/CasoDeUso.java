@@ -1,7 +1,5 @@
 package model;
 
-import resources.Strings;
-
 public class CasoDeUso {
 
     private String codigo;

@@ -3,6 +3,9 @@ package view;
 import controller.adapters.ProjetoAdapter;
 import controller.ProjetoController;
 import controller.SistemaController;
+import controller.exceptions.CasoDeTesteExeption;
+import controller.exceptions.CasoDeUsoExeption;
+import controller.exceptions.RoteiroDeTesteExeption;
 import resources.Cores;
 import resources.Strings;
 import view.Componetes.Botao;
@@ -64,7 +67,15 @@ public final class EditarProjetoPainel extends CriarProjetoPainel {
      */
     private void cancelarEdicao() {
         super.limpar();
-        SistemaController.setPainelDeTrabalho("PROJETOS");
+        try {
+            SistemaController.setPainelDeTrabalho("PROJETOS");
+        } catch (CasoDeUsoExeption casoDeUsoExeption) {
+            casoDeUsoExeption.printStackTrace();
+        } catch (CasoDeTesteExeption casoDeTesteExeption) {
+            casoDeTesteExeption.printStackTrace();
+        } catch (RoteiroDeTesteExeption roteiroDeTesteExeption) {
+            roteiroDeTesteExeption.printStackTrace();
+        }
         projetoSendoEditado = null;
     }
 

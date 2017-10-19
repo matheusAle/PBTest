@@ -1,7 +1,5 @@
 package resources;
 
-import sun.font.CreatedFontTracker;
-
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;

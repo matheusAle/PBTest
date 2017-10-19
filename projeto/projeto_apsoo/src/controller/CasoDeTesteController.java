@@ -5,13 +5,13 @@ import controller.adapters.CasosDeTesteAdapter;
 import controller.exceptions.CasoDeTesteException;
 import model.CasoDeTeste;
 import model.TestesPool;
-import model.daos.CasoDeTesteDAO;
+import model.Factorys.CasoDeTesteFactory;
 
 import java.util.*;
 
 public final class CasoDeTesteController {
 
-    private static CasoDeTesteDAO dao = new CasoDeTesteDAO();
+    private static CasoDeTesteFactory dao = new CasoDeTesteFactory();
     private static HashMap<String, LinkedList<ArtefatoDeTesteAdapter>> mapaDeArtefatos = new HashMap<>();
 
     /**
@@ -21,6 +21,7 @@ public final class CasoDeTesteController {
     public synchronized static void carregarArtefatos() throws CasoDeTesteException {
         TestesPool.limparPool();
         TestesPool.carregarPool(ProjetoController.getProjetoAtivo());
+        mapaDeArtefatos = new HashMap<>();
         gerarMapaDeArtefatos();
     }
 

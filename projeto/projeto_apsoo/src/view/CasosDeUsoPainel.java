@@ -4,7 +4,6 @@ import controller.CasoDeUsoController;
 import controller.ProjetoController;
 import controller.SistemaController;
 import controller.adapters.CasoDeUsoAdapter;
-import controller.exceptions.ProjetoException;
 import resources.Cores;
 import resources.Strings;
 import view.Componetes.*;
@@ -35,12 +34,12 @@ public class CasosDeUsoPainel extends PainelDeListagem {
     /**
      * Carriga a lista de casos de uso cadastrados no sistema
      */
-    private void carregarListaDeCasosDeUso(){
-        super.setTitulo(Strings.TITULO_PAINEL_CASOS_DE_USO + ProjetoController.getInformacoesDoProjetoAtivo().getNome());
+    private synchronized void carregarListaDeCasosDeUso(){
         try {
+            super.setTitulo(Strings.TITULO_PAINEL_CASOS_DE_USO + ProjetoController.getInformacoesDoProjetoAtivo().getNome());
             CasoDeUsoController.getListaDeCasosDeUso().forEach( (c) -> {
-            super.addConteudo(new ItemDaLista(c));
-        });
+                super.addConteudo(new ItemDaLista(c));
+            });
         }catch (Exception e){
             JOptionPane.showConfirmDialog(SistemaController.JANELA, "ERRO!\nVocê deve selecionar um projeto antes!", "ERRO", JOptionPane.ERROR_MESSAGE);
         }
@@ -50,7 +49,7 @@ public class CasosDeUsoPainel extends PainelDeListagem {
      * Carrega as opçoes do painel
      */
     @Override
-    protected void carregarOpcoes() {
+    protected synchronized void carregarOpcoes() {
         Botao novoProjeto = new Botao();
         novoProjeto.setCorDeFundoNormal(Cores.FUNDO_BOTAO);
         novoProjeto.setCorDoTextoNormal(Cores.TEXTOS);

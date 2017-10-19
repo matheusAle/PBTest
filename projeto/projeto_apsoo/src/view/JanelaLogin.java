@@ -4,7 +4,6 @@ import controller.ProjetoController;
 import controller.SistemaController;
 import controller.UsuarioController;
 import controller.exceptions.UsuarioException;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -19,7 +18,7 @@ public class JanelaLogin {
             JOptionPane.showMessageDialog(null, e.getMessage(), "falha ao iniciar o programa", JOptionPane.INFORMATION_MESSAGE);
         }
         SistemaController.abrir();
-        SistemaController.setPainelDeTrabalho("USUARIOS");
-        SistemaController.JANELA.setVisible(true);
+        ProjetoController.ativarProjeto("2");
+        SistemaController.setPainelDeTrabalho("CRIAR_CASO_DE_TESTE");
     }
 }

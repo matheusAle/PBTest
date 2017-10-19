@@ -6,7 +6,6 @@ import resources.Cores;
 import resources.Fontes;
 import resources.Icones;
 import resources.Strings;
-import view.Componetes.Botao;
 import view.Componetes.Painel;
 import view.Componetes.PainelItem;
 
@@ -36,7 +35,6 @@ public class UsuariosPainel extends Painel{
         UsuarioController.getListaDeUsuarios().forEach(u -> {
             super.addConteudo(new PainelInfos(u.getImgPerfil(), u));
         });
-        super.addConteudo(new Botao());
         super.setVisible(true);
     }
 

@@ -1,6 +1,9 @@
 package view;
 
 import controller.SistemaController;
+import controller.exceptions.CasoDeTesteExeption;
+import controller.exceptions.CasoDeUsoExeption;
+import controller.exceptions.RoteiroDeTesteExeption;
 import resources.Cores;
 import resources.Fontes;
 import resources.Icones;
@@ -19,13 +22,11 @@ public class Janela extends JFrame{
 
     public Janela(){
         super.setLayout(new BorderLayout());
-        super.setSize(1200, 720);
+        super.setSize(1200, 700);
         super.setLocationRelativeTo(null);
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         opcoes = new OpcoesDeEstacao();
         super.add(opcoes, BorderLayout.NORTH);
-
     }
 
     /**
@@ -124,11 +125,31 @@ public class Janela extends JFrame{
                 btn_matriz_rastreabilidade = new BotaoDeNavegacao(Strings.NAV_MATRIZ_DE_RASTREABILIDADE);
             }
 
-            private void iniciarListeners() {
+            private void iniciarListeners(){
                 btn_usuarios.setOnClick((e) -> {SistemaController.setPainelDeTrabalho("USUARIOS");});
                 btn_projetos.setOnClick((e) -> {SistemaController.setPainelDeTrabalho("PROJETOS");});
-                btn_casos_de_uso.setOnClick((e) -> {SistemaController.setPainelDeTrabalho("CASOS_DE_USO");});
-                btn_casos_teste.setOnClick((e) -> {SistemaController.setPainelDeTrabalho("CASOS_DE_TESTE");});
+                btn_casos_de_uso.setOnClick((e) -> {
+                    try {
+                        SistemaController.setPainelDeTrabalho("CASOS_DE_USO");
+                    } catch (CasoDeUsoExeption casoDeUsoExeption) {
+                        casoDeUsoExeption.printStackTrace();
+                    } catch (CasoDeTesteExeption casoDeTesteExeption) {
+                        casoDeTesteExeption.printStackTrace();
+                    } catch (RoteiroDeTesteExeption roteiroDeTesteExeption) {
+                        roteiroDeTesteExeption.printStackTrace();
+                    }
+                });
+                btn_casos_teste.setOnClick((e) -> {
+                    try {
+                        SistemaController.setPainelDeTrabalho("CASOS_DE_TESTE");
+                    } catch (CasoDeUsoExeption casoDeUsoExeption) {
+                        casoDeUsoExeption.printStackTrace();
+                    } catch (CasoDeTesteExeption casoDeTesteExeption) {
+                        casoDeTesteExeption.printStackTrace();
+                    } catch (RoteiroDeTesteExeption roteiroDeTesteExeption) {
+                        roteiroDeTesteExeption.printStackTrace();
+                    }
+                });
             }
         }
     }

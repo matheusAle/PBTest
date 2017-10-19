@@ -6,6 +6,8 @@ import resources.Fontes;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.util.function.Consumer;
 
 /**
@@ -52,6 +54,7 @@ public class Painel{
 
     };
 
+
     private int alturaConteudo = 1;
     private int larguraConteudo = 2;
     private int quantidadeDeItens = 1;
@@ -77,7 +80,6 @@ public class Painel{
         painelConteudo.setLayout(new FlowLayout());
         painel.add(painelConteudo, BorderLayout.CENTER);
         painelScroll = new MeuPainelComScrollBar(painel);
-
         opcoes = new PainelDeOpcoes();
     }
 
@@ -98,8 +100,9 @@ public class Painel{
      */
     public void addConteudo(Component c) {
         painelConteudo.add(c);
-        painelConteudo.revalidate();
         painelConteudo.repaint();
+        painelConteudo.revalidate();
+        SistemaController.update();
         quantidadeDeItens++;
     }
 
@@ -158,6 +161,7 @@ public class Painel{
         public Dimension getPreferredSize() {
             int ht = SistemaController.JANELA.getWidth();
             return new Dimension(950, alturaConteudo/((ht-200)/larguraConteudo)*quantidadeDeItens);
+
         }
 
     }

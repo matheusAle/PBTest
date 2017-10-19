@@ -1,4 +1,4 @@
-package model.daos;
+package model.Factorys;
 
 
 import controller.adapters.UsuarioAdapter;
@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 
 // TODO implementar o doa do usuario!
-public final class UsuarioDAO extends DAO{
+public final class UsuarioFactory extends AbstractFactory {
 
     /**
      * Transforma o codigo do atributo cargo na relação usuario em uma string com o nome do cargo.
@@ -35,7 +35,7 @@ public final class UsuarioDAO extends DAO{
     public Collection listar() {
         String query  = "SELECT * FROM usuario";
         try {
-            ResultSet resultSet = DAO.execultarBusca(query);
+            ResultSet resultSet = AbstractFactory.execultarBusca(query);
             if (resultSet != null){
                 LinkedList<UsuarioAdapter> lista = new LinkedList<>();
                 while (resultSet.next()){
@@ -60,7 +60,7 @@ public final class UsuarioDAO extends DAO{
     public Collection<Usuario> buscar(String restricao) {
         String query  = "SELECT * FROM usuario WHERE " + restricao;
         try {
-            ResultSet resultSet = DAO.execultarBusca(query);
+            ResultSet resultSet = AbstractFactory.execultarBusca(query);
             HashSet<Usuario> usuariosEncontrados = new HashSet<>();
             if (resultSet != null){
                 while (resultSet.next()){

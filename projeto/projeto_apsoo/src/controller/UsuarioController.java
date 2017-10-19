@@ -2,8 +2,8 @@ package controller;
 
 import controller.adapters.UsuarioAdapter;
 import controller.exceptions.UsuarioException;
+import model.Factorys.UsuarioFactory;
 import model.Usuario;
-import model.daos.UsuarioDAO;
 
 import javax.swing.*;
 import java.util.Collection;
@@ -11,7 +11,7 @@ import java.util.HashSet;
 
 public class UsuarioController {
 
-    private static UsuarioDAO dao = new UsuarioDAO();
+    private static UsuarioFactory dao = new UsuarioFactory();
     private static Collection<UsuarioAdapter> listaDeUsuario = buscarTodosOSUsuarios();
     private static Usuario usuarioLogado;
 

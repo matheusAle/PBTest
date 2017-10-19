@@ -1,6 +1,5 @@
 package view.Componetes;
 
-import controller.SistemaController;
 import resources.Cores;
 
 import javax.swing.*;

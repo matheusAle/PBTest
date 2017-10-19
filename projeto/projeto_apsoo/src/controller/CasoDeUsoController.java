@@ -3,13 +3,13 @@ package controller;
 import controller.adapters.CasoDeUsoAdapter;
 import controller.exceptions.ProjetoException;
 import model.CasoDeUso;
-import model.daos.CasosDeUsoDAO;
+import model.Factorys.CasosDeUsoFactory;
 
 import java.util.Collection;
 import java.util.LinkedList;
 
 public final class CasoDeUsoController {
-    private static CasosDeUsoDAO dao = new CasosDeUsoDAO();
+    private static CasosDeUsoFactory dao = new CasosDeUsoFactory();
 
     private static LinkedList<CasoDeUsoAdapter> listaDeCasosDeUso;
 
