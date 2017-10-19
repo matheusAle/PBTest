@@ -1,6 +1,5 @@
 package controller;
 
-import controller.adapters.ProjetoAdapter;
 import model.Factorys.ProjetoFactory;
 import model.Projeto;
 
@@ -8,9 +7,9 @@ import java.util.LinkedList;
 
 public class ProjetoController {
     private static ProjetoFactory dao = new ProjetoFactory();
-    private static Projeto projetoAtivo;
-    private static LinkedList<ProjetoAdapter> listaDeProjetos  = listarProjetos();
-    private static ProjetoAdapter projetoParaEditar;
+    private static model.Projeto projetoAtivo;
+    private static LinkedList<Projeto> listaDeProjetos  = listarProjetos();
+    private static Projeto projetoParaEditar;
 
     /**
      * Persiste as informações do projeto passadas como paramentro.
@@ -42,8 +41,8 @@ public class ProjetoController {
         );
     }
 
-    private static LinkedList<ProjetoAdapter> listarProjetos(){
-        return (LinkedList<ProjetoAdapter>) dao.listar();
+    private static LinkedList<Projeto> listarProjetos(){
+        return (LinkedList<Projeto>) dao.listar();
     }
 
     /**
@@ -60,7 +59,7 @@ public class ProjetoController {
      */
     public static boolean ativarProjeto(String codigo) {
         try {
-            projetoAtivo = (Projeto) dao.buscar("id = " + codigo).iterator().next();
+            projetoAtivo = (model.Projeto) dao.buscar("id = " + codigo).iterator().next();
             CasoDeTesteController.carregarArtefatos(); //TODO este invocação deve ser por thread futuramente!
             return true;
         }catch (Exception e){e.printStackTrace();}
@@ -68,51 +67,47 @@ public class ProjetoController {
     }
 
     /**
-     * Constroi um <link>ProjetoAdapter</link> com todas as imformações de um projeto.
+     * Constroi um <link>Projeto</link> com todas as imformações de um projeto.
      * @param codigo codigo do projeto que sera atualizado.
      */
     public static void setProjetoAtualizavel(String codigo){
-        Projeto projeto = (Projeto) dao.buscar("id = " + codigo).iterator().next();
-        ProjetoAdapter adapter= new ProjetoAdapter(projeto.getCodigo(), projeto.getNome(), projeto.getDescricao(), projeto.getSrc());
-        adapter.setPrefixoCT(projeto.getPrefixoCT());
-        adapter.setPrefixoRT(projeto.getPrefixoRT());
-        adapter.setPrefixoCU(projeto.getPrefixoCU());
-        projetoParaEditar = adapter;
+        Projeto projeto = dao.buscar("id = " + codigo).iterator().next();
+        projetoParaEditar = projeto;
     }
 
 
     /**
-     * @return Retorna um objeto do tipo <link>ProjetoAdapter</link> com, codigo, nome, src e descrição do projeto ativo.
+     * @return Retorna um objeto do tipo <link>Projeto</link> com, codigo, nome, src e descrição do projeto ativo.
      */
-    public static ProjetoAdapter getInformacoesDoProjetoAtivo(){
+    public static Projeto getInformacoesDoProjetoAtivo(){
         try {
-            return new ProjetoAdapter(projetoAtivo.getCodigo(), projetoAtivo.getNome(), projetoAtivo.getDescricao(), projetoAtivo.getSrc());
+            return new Projeto(projetoAtivo.getCodigo(), projetoAtivo.getNome(), projetoAtivo.getDescricao(), projetoAtivo.getSrc());
         }catch (Exception e ){}
         return null;
     }
 
     /**
-     * Persiste as mudanças no projeto passado por paramentro.
-     * @param projetoSendoEditado
+     * Persiste as mudanças no dos valores passados como parametro no projeto semdo editado.
      * @return true caso seja bem sucedido.
      */
-    public static boolean atualizarProjeto(ProjetoAdapter projetoSendoEditado) {
-        projetoSendoEditado.setSrc(projetoSendoEditado.getSrc().replaceAll("\\\\", "/"));
-        boolean b =  dao.atualizar(projetoSendoEditado);
+    public static boolean atualizarProjeto(String nome, String descicao, String src) {
+        src = src.replaceAll("\\\\", "/");
+        boolean b =  dao.atualizar(nome, descicao, src, projetoParaEditar.getCodigo());
+        projetoParaEditar = null;
         return b;
     }
 
     /**
-     * @return retorna objeto <link>ProjetoAdapter</link> contento o projeto semdo editado atualmente.
+     * @return retorna objeto <link>Projeto</link> contento o projeto semdo editado atualmente.
      */
-    static ProjetoAdapter getProjetoParaEditar(){
+    static Projeto getProjetoParaEditar(){
         return projetoParaEditar;
     }
 
     /**
-     * @return Retorna a uma <link>LinkedList</link> de <link>ProjetoAdapter</link> com as informações persistidas no banco de dados.
+     * @return Retorna a uma <link>LinkedList</link> de <link>Projeto</link> com as informações persistidas no banco de dados.
      */
-    public static LinkedList<ProjetoAdapter> getListaDeProjetos() {
+    public static LinkedList<Projeto> getListaDeProjetos() {
         return listaDeProjetos;
     }
 
@@ -140,7 +135,7 @@ public class ProjetoController {
         return s;
     }
 
-    static Projeto getProjetoAtivo() {
+    static model.Projeto getProjetoAtivo() {
         return projetoAtivo;
     }
 

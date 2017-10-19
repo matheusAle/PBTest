@@ -1,8 +1,7 @@
 package controller;
 
-import controller.adapters.ArtefatoDeTesteAdapter;
-import controller.adapters.CasosDeTesteAdapter;
 import controller.exceptions.CasoDeTesteException;
+import model.ArtefatoDeTeste;
 import model.CasoDeTeste;
 import model.TestesPool;
 import model.Factorys.CasoDeTesteFactory;
@@ -12,7 +11,7 @@ import java.util.*;
 public final class CasoDeTesteController {
 
     private static CasoDeTesteFactory dao = new CasoDeTesteFactory();
-    private static HashMap<String, LinkedList<ArtefatoDeTesteAdapter>> mapaDeArtefatos = new HashMap<>();
+    private static HashMap<String, LinkedList<ArtefatoDeTeste>> mapaDeArtefatos = new HashMap<>();
 
     /**
      * Carrega os artefatos de teste do projeto ativo em uma TestesPool
@@ -31,10 +30,10 @@ public final class CasoDeTesteController {
     private synchronized static void gerarMapaDeArtefatos() {
         TestesPool.getListaDeArtefatos().forEach((e) -> {
             if (mapaDeArtefatos.containsKey(e.getPakage())){
-                mapaDeArtefatos.get(e.getPakage()).add(e.getAdapter());
+                mapaDeArtefatos.get(e.getPakage()).add(e);
             }else {
-                LinkedList<ArtefatoDeTesteAdapter> l = new LinkedList<>();
-                l.add(e.getAdapter());
+                LinkedList<ArtefatoDeTeste> l = new LinkedList<>();
+                l.add(e);
                 mapaDeArtefatos.put(e.getPakage(), l);
             }
         });
@@ -44,7 +43,7 @@ public final class CasoDeTesteController {
      * Retorna os artefatos de teste mapeados em seus pacotes.
      * @return
      */
-    public synchronized static HashMap<String, LinkedList<ArtefatoDeTesteAdapter>> getMapaDeArtefatos() {
+    public synchronized static HashMap<String, LinkedList<ArtefatoDeTeste>> getMapaDeArtefatos() {
         return mapaDeArtefatos;
     }
 
@@ -56,18 +55,18 @@ public final class CasoDeTesteController {
      * @param nomeArquivo Nome do arquivo do artefato de teste.
      * @return lista encadeada de Casos De Teste
      */
-    public synchronized static LinkedList<CasosDeTesteAdapter> carregarCasosDeTesteDoArtefato(String pacote, String prjID, String nomeArquivo){
-        LinkedList<ArtefatoDeTesteAdapter> lista = mapaDeArtefatos.get(pacote);
-        LinkedList<CasoDeTeste> casosDeTeste = null;
-        for(ArtefatoDeTesteAdapter artefato : lista){
+    public synchronized static LinkedList<CasoDeTeste> carregarCasosDeTesteDoArtefato(String pacote, String prjID, String nomeArquivo){
+        LinkedList<ArtefatoDeTeste> lista = mapaDeArtefatos.get(pacote);
+        LinkedList<model.CasoDeTeste> casosDeTeste = null;
+        for(ArtefatoDeTeste artefato : lista){
             if (artefato.getNomeArquivo().equals(nomeArquivo)){
-                casosDeTeste =  (LinkedList<CasoDeTeste>) dao.listar(prjID, nomeArquivo);
+                casosDeTeste =  (LinkedList<model.CasoDeTeste>) dao.listar(prjID, nomeArquivo);
                 TestesPool.setCasosDeTesteDoArtefato(casosDeTeste, nomeArquivo);
             }
         }
-        LinkedList<CasosDeTesteAdapter> listaAdapters = new LinkedList<CasosDeTesteAdapter>();
-        for (CasoDeTeste casoDeTeste : casosDeTeste){
-            listaAdapters.add(casoDeTeste.getAdapter());
+        LinkedList<CasoDeTeste> listaAdapters = new LinkedList<CasoDeTeste>();
+        for (model.CasoDeTeste casoDeTeste : casosDeTeste){
+            listaAdapters.add(casoDeTeste);
         }
         return listaAdapters;
     }

@@ -9,23 +9,27 @@ import resources.Fontes;
 import resources.Icones;
 import resources.Strings;
 import view.Componetes.BotaoDeNavegacao;
+import view.Componetes.Painel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 /**
  * Essa classe é a responsavel por gerenciar os elementos não mutaveis da janela.
  */
 public class Janela extends JFrame{
-    private Nav painel_nav;
-    private OpcoesDeEstacao opcoes;
+    private PainelDeNavegacaoLateral painel_nav;
+    private OpcoesDoPainelAtivo opcoes;
+    private Painel painelAtivo;
 
     public Janela(){
         super.setLayout(new BorderLayout());
         super.setSize(1200, 700);
         super.setLocationRelativeTo(null);
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        opcoes = new OpcoesDeEstacao();
+        opcoes = new OpcoesDoPainelAtivo();
         super.add(opcoes, BorderLayout.NORTH);
     }
 
@@ -38,7 +42,7 @@ public class Janela extends JFrame{
     }
 
     public Janela iniciarNavegacao(String nomeUser, String cargoUser){
-        painel_nav = new Nav(nomeUser, cargoUser);
+        painel_nav = new PainelDeNavegacaoLateral(nomeUser, cargoUser);
         super.add(painel_nav, BorderLayout.WEST);
         return this;
     }
@@ -46,19 +50,19 @@ public class Janela extends JFrame{
     /**
      * classe que gerencia os elementos da lateral esqueda da janela.
      */
-    public class Nav extends JPanel{
+    public class PainelDeNavegacaoLateral extends JPanel{
 
         private String nome_usuario;
         private String cargo_usuario;
         private Icon imgPerfil = Icones.imgPerfil;
 
-        Nav(String nome_usuario, String cargo_usuario){
+        PainelDeNavegacaoLateral(String nome_usuario, String cargo_usuario){
             this.cargo_usuario = cargo_usuario;
             this.nome_usuario = nome_usuario;
             super.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
             super.setPreferredSize(new Dimension(200, Janela.super.getHeight()));
             super.add(new Usuario_logado());
-            super.add(new Navegacao());
+            super.add(new OpcoesDeNavagacao());
         }
 
         /**
@@ -90,7 +94,7 @@ public class Janela extends JFrame{
         /**
          * classe que cuida das opções de navegação do sistema.
          */
-        class Navegacao extends JPanel {
+        class OpcoesDeNavagacao extends JPanel {
             private BotaoDeNavegacao btn_usuarios;
             private BotaoDeNavegacao btn_projetos;
             private BotaoDeNavegacao btn_casos_de_uso;
@@ -109,8 +113,8 @@ public class Janela extends JFrame{
                 super.add(btn_roteiros_testes);
                 super.add(btn_matriz_rastreabilidade);
             }
-
             private void iniciarLayout() {
+
                 super.setBackground(Cores.FUNDO_MENU_ESQUERDO);
                 super.setPreferredSize(new Dimension(200, Janela.super.getHeight()));
                 super.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
@@ -158,7 +162,7 @@ public class Janela extends JFrame{
     /**
      * Classe que modela a barra superior do sistema que contem as opçoes da estação de trabalho ativa
      */
-    class OpcoesDeEstacao extends JPanel{
+    class OpcoesDoPainelAtivo extends JPanel{
 
         JPanel painel_logo;
 
@@ -187,5 +191,16 @@ public class Janela extends JFrame{
             super.repaint();
         }
 
+    }
+
+    public void setPainelAtivo(Painel painel) {
+        try {
+            super.remove(painelAtivo.getPainel());
+        }catch (NullPointerException e) {}
+        painelAtivo = painel;
+        super.add(painel.getPainel(), BorderLayout.CENTER);
+        this.setOpcoes(painel.getOpcoes());
+        super.revalidate();
+        super.repaint();
     }
 }

@@ -19,11 +19,15 @@ public class SistemaController {
     private static Painel estacaoAtiva = new Painel("");
     public static Janela JANELA;
 
+    /**
+     * Carrega todas as funções do sistema ma memoria.
+     * @throws IOException
+     * @throws FontFormatException
+     */
     public static void abrir() throws IOException, FontFormatException {
         JANELA = new Janela();
         JANELA.iniciarNavegacao(UsuarioController.getNomeUsuarioLogado(), UsuarioController.getCargoUsuarioLogado());
         JANELA.setVisible(true);
-        JANELA.pack();
     }
 
     public static synchronized void setPainelDeTrabalho (String painel) throws CasoDeUsoExeption, CasoDeTesteExeption, RoteiroDeTesteExeption {
@@ -64,19 +68,8 @@ public class SistemaController {
                 p = PaineisDeTabalho.EDITAR_PROJETO;
                 ((EditarProjetoPainel) p).setProjeto(ProjetoController.getProjetoParaEditar());
         }
+        JANELA.setPainelAtivo(p);
 
-        JANELA.remove(estacaoAtiva.getPainel());
-        estacaoAtiva = p;
-        JANELA.add(p.getPainel(), BorderLayout.CENTER);
-        JANELA.setOpcoes(p.getOpcoes());
-        JANELA.revalidate();
-        JANELA.repaint();
-    }
-
-    public static void update() {
-        JANELA.pack();
-        JANELA.revalidate();
-        JANELA.repaint();
     }
 
     /**
@@ -95,6 +88,8 @@ public class SistemaController {
         public static final Painel MATRIZ_DE_RASTREABIBLIDADE = new MatrizDeRastreabilidadePainel();
         public static final Painel CRIAR_CASO_DE_TESTE = new CriarCasoDeTestePainel();
     }
+
+
 
 
 

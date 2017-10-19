@@ -1,8 +1,6 @@
 package model;
 
 
-import controller.adapters.CasosDeTesteAdapter;
-
 import java.io.File;
 
 /**
@@ -36,8 +34,5 @@ public class CasoDeTeste {
         this.artefatoDeTeste = artefatoDeTeste;
     }
 
-    public CasosDeTesteAdapter getAdapter(){
-        return new CasosDeTesteAdapter(codigo, nome, descricao);
-    }
 
 }

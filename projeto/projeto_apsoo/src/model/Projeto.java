@@ -10,6 +10,9 @@ public class Projeto {
     private String descricao;
     private String src;
     private Prefixos PREFIXOS;
+    private String prefixoCT;
+    private String prefixoRT;
+    private String prefixoCU;
 
     public Projeto(
             String codigo,
@@ -31,6 +34,13 @@ public class Projeto {
         this.PREFIXOS.CASO_DE_USO = new Prefixo(CASO_DE_USO, contadorCU);
         this.PREFIXOS.CASO_DE_TESTE = new Prefixo(CASO_DE_TESTE, contadorCT);
         this.PREFIXOS.ROTEIRO_DE_TESTE = new Prefixo(ROTEIRO_DE_TESTE, contadorRT);
+    }
+
+    public Projeto(String id, String nome, String descricao, String srcRaiz) {
+        this.codigo = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.src = srcRaiz.replaceAll("/", "\\\\");
     }
 
     public String getNome() {
@@ -94,7 +104,23 @@ public class Projeto {
         return -1;
     }
 
-   /**
+    public void setSrc(String src) {
+        this.src = src;
+    }
+
+    public void setPrefixoCT(String prefixoCT) {
+        this.prefixoCT = prefixoCT;
+    }
+
+    public void setPrefixoRT(String prefixoRT) {
+        this.prefixoRT = prefixoRT;
+    }
+
+    public void setPrefixoCU(String prefixoCU) {
+        this.prefixoCU = prefixoCU;
+    }
+
+    /**
      * Classe que mantem referencias para os profixos do projeto.
      */
     private class Prefixos {

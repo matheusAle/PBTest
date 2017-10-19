@@ -1,7 +1,6 @@
 package model.Factorys;
 
 
-import controller.adapters.UsuarioAdapter;
 import model.Usuario;
 
 import java.sql.ResultSet;
@@ -18,14 +17,14 @@ public final class UsuarioFactory extends AbstractFactory {
      * @param i codigo do cargo.
      * @return String com o nome do cargo. se o codigo não existir retorna null.
      */
-    private static Usuario.Cargo getCargo (int i){
+    private static model.Usuario.Cargo getCargo (int i){
         switch (i){
             case 1:
-                return Usuario.Cargo.GERENTE_DE_PROJETO;
+                return model.Usuario.Cargo.GERENTE_DE_PROJETO;
             case 2:
-                return Usuario.Cargo.GERENTE_DE_TESTES;
+                return model.Usuario.Cargo.GERENTE_DE_TESTES;
             case 3:
-                return Usuario.Cargo.TESTADOR;
+                return model.Usuario.Cargo.TESTADOR;
             default:
                 return null;
         }
@@ -37,9 +36,9 @@ public final class UsuarioFactory extends AbstractFactory {
         try {
             ResultSet resultSet = AbstractFactory.execultarBusca(query);
             if (resultSet != null){
-                LinkedList<UsuarioAdapter> lista = new LinkedList<>();
+                LinkedList<Usuario> lista = new LinkedList<>();
                 while (resultSet.next()){
-                    lista.add(new UsuarioAdapter(
+                    lista.add(new Usuario(
                             resultSet.getString("email"),
                             resultSet.getString("nome"),
                             getCargo(resultSet.getInt("cargo")),
@@ -57,14 +56,14 @@ public final class UsuarioFactory extends AbstractFactory {
      * @return Retorna uma <link>Collection</link> com objetos <link>Usuario</link> em seu conteudo.
      */
     @Override
-    public Collection<Usuario> buscar(String restricao) {
+    public Collection<model.Usuario> buscar(String restricao) {
         String query  = "SELECT * FROM usuario WHERE " + restricao;
         try {
             ResultSet resultSet = AbstractFactory.execultarBusca(query);
-            HashSet<Usuario> usuariosEncontrados = new HashSet<>();
+            HashSet<model.Usuario> usuariosEncontrados = new HashSet<>();
             if (resultSet != null){
                 while (resultSet.next()){
-                    usuariosEncontrados.add(new Usuario(
+                    usuariosEncontrados.add(new model.Usuario(
                             resultSet.getString("nome"),
                             resultSet.getString("email"),
                             getCargo(resultSet.getInt("cargo")),

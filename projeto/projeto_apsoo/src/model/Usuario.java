@@ -22,6 +22,13 @@ public class Usuario {
         this.imgPerfil = img;
     }
 
+    public Usuario(String email, String nome, Cargo cargo, Object o) {
+        this.nome = nome;
+        this.email = email;
+        this.cargo = cargo;
+        this.telefone = telefone;
+    }
+
     public String getNome() {
         return nome;
     }

@@ -102,7 +102,6 @@ public class Painel{
         painelConteudo.add(c);
         painelConteudo.repaint();
         painelConteudo.revalidate();
-        SistemaController.update();
         quantidadeDeItens++;
     }
 

@@ -1,18 +1,18 @@
 package view.Componetes;
 
-import controller.adapters.ArtefatoDeTesteAdapter;
+import model.ArtefatoDeTeste;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
- * Modela um Node da Jtree que permide anexar um objeto <link>ArtefatoDeTesteAdapter</link> a ele
+ * Modela um Node da Jtree que permide anexar um objeto <link>ArtefatoDeTeste</link> a ele
  * para ser faciumente recuperado.
  */
 public class ArvoreNode extends DefaultMutableTreeNode{
 
-    private ArtefatoDeTesteAdapter artefato;
+    private ArtefatoDeTeste artefato;
 
-    public ArvoreNode(Object userObject, ArtefatoDeTesteAdapter artefato) {
+    public ArvoreNode(Object userObject, ArtefatoDeTeste artefato) {
         super(userObject);
         this.artefato = artefato;
     }
@@ -20,7 +20,7 @@ public class ArvoreNode extends DefaultMutableTreeNode{
     /**
      * @return Retorna o artefato asociado a o objeto deste node.
      */
-    public ArtefatoDeTesteAdapter getArtefato(){
+    public ArtefatoDeTeste getArtefato(){
         return artefato;
     }
 }

@@ -1,6 +1,5 @@
 package model.Factorys;
 
-import controller.adapters.ProjetoAdapter;
 import model.Projeto;
 
 import java.sql.ResultSet;
@@ -55,7 +54,7 @@ public class ProjetoFactory extends AbstractFactory {
 
     /**
      * busca no banco de dados o id, nome, srcRaiz e a descrição de todos os projetos.
-     * @return retorna uma <link>Collection</link> de <Link>ProjetoAdapter</Link>
+     * @return retorna uma <link>Collection</link> de <Link>Projeto</Link>
      */
     @Override
     public Collection listar() {
@@ -63,9 +62,9 @@ public class ProjetoFactory extends AbstractFactory {
         ResultSet resultSet = super.execultarBusca(query);
         if (resultSet != null){
             try {
-                LinkedList<ProjetoAdapter> lista = new LinkedList<>();
+                LinkedList<Projeto> lista = new LinkedList<>();
                 while (resultSet.next()){
-                    lista.add(new ProjetoAdapter(
+                    lista.add(new Projeto(
                             resultSet.getString("id"),
                             resultSet.getString("nome"),
                             resultSet.getString("descricao"),
@@ -87,13 +86,13 @@ public class ProjetoFactory extends AbstractFactory {
      * @return Retorna uma <link>Collection</link> com objetos <link>Projeto</link> em seu conteudo.
      */
     @Override
-    public Collection buscar(String restricao) {
+    public Collection<Projeto> buscar(String restricao) {
         try {
             String query = "SELECT * FROM projeto WHERE " + restricao;
             ResultSet resultSet = super.execultarBusca(query);
             LinkedList<Projeto> lista = new LinkedList<Projeto>();
             while (resultSet.next()){
-                lista.add(new Projeto(
+                lista.add(new model.Projeto(
                         resultSet.getString("id"),
                         resultSet.getString("nome"),
                         resultSet.getString("descricao"),
@@ -116,15 +115,14 @@ public class ProjetoFactory extends AbstractFactory {
     /**
      * Execulta um update que atualiza sem verificação os atributos <code>nome, srcRaiz, descricao</code>
      * para a tupla que tiver o <code>id</code> igual ao do objeto passado por paramentro
-     * @param prj projeto que tera seus dados atalizados no banco de dados.
      * @return true se bem sucedido.
      */
-    public boolean atualizar(ProjetoAdapter prj) {
+    public boolean atualizar(String nome, String descicao, String src, String codigo) {
         String dml = "UPDATE projeto SET " +
-                "nome = '" + prj.getNome() + "', " +
-                "srcRaiz = '" + prj.getSrc() + "', " +
-                "descricao = '" + prj.getDescricao() +
-                "' WHERE id = " + prj.getCodigo();
+                "nome = '" + nome+ "', " +
+                "srcRaiz = '" + src + "', " +
+                "descricao = '" + descicao +
+                "' WHERE id = " + codigo;
         try {
             super.execultarAtualizacao(dml);
             return true;

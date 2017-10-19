@@ -1,7 +1,7 @@
 package view;
 
 import controller.CasoDeTesteController;
-import controller.adapters.ArtefatoDeTesteAdapter;
+import model.ArtefatoDeTeste;
 import resources.Strings;
 import view.Componetes.*;
 
@@ -73,18 +73,18 @@ public class CasosDeTestePainel extends Painel{
      */
     private void carregarArtefatosDeTeste() {
 
-        HashMap<String, LinkedList<ArtefatoDeTesteAdapter>> mapaDeArtefatos = CasoDeTesteController.getMapaDeArtefatos();
+        HashMap<String, LinkedList<ArtefatoDeTeste>> mapaDeArtefatos = CasoDeTesteController.getMapaDeArtefatos();
         Set<String> chaves = mapaDeArtefatos.keySet();
         ArvoreNode root = new ArvoreNode("src", null);
 
         for (String chave : chaves){
             if (chave.equals("")){
-                for (ArtefatoDeTesteAdapter e : mapaDeArtefatos.get(chave)){
+                for (ArtefatoDeTeste e : mapaDeArtefatos.get(chave)){
                     root.add(new ArvoreNode(e.getNomeArquivo(), e));
                 }
             }else {
                 DefaultMutableTreeNode galho = new ArvoreNode(chave, null);
-                for (ArtefatoDeTesteAdapter e : mapaDeArtefatos.get(chave)){
+                for (ArtefatoDeTeste e : mapaDeArtefatos.get(chave)){
                     galho.add(new ArvoreNode(e.getNomeArquivo(), e));
                 }
                 root.add(galho);
@@ -98,7 +98,7 @@ public class CasosDeTestePainel extends Painel{
      * Carrega os casos de teste asociados a o arefato no painel direito.
      * @param artefato artefato que reta os casos de teste carregados.
      */
-    private void carregarCasosDeTesteDoArtefato(ArtefatoDeTesteAdapter artefato){
+    private void carregarCasosDeTesteDoArtefato(ArtefatoDeTeste artefato){
 
     }
 

@@ -1,7 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b1eb9c1f-427f-4e6e-a0cd-500c9064f0ac" name="Default" comment="" />
+    <list default="true" id="b1eb9c1f-427f-4e6e-a0cd-500c9064f0ac" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/adapters/ArtefatoDeTesteAdapter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/adapters/CasoDeTesteAdapter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/adapters/CasoDeUsoAdapter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/adapters/CasosDeTesteAdapter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/adapters/ProjetoAdapter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/adapters/UsuarioAdapter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Janela$Nav$Navegacao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Janela$Nav$Usuario_logado.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Janela$Nav.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Janela$OpcoesDeEstacao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/controller/adapters/ArtefatoDeTesteAdapter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/controller/adapters/CasoDeTesteAdapter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/controller/adapters/CasoDeUsoAdapter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/controller/adapters/CasosDeTesteAdapter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/controller/adapters/ProjetoAdapter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/controller/adapters/UsuarioAdapter.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/CasoDeTesteController.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/CasoDeTesteController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/CasoDeUsoController.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/CasoDeUsoController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/ProjetoController.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/ProjetoController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/SistemaController$PaineisDeTabalho.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/SistemaController$PaineisDeTabalho.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/SistemaController.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/SistemaController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/UsuarioController.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/UsuarioController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/model/ArtefatoDeTeste.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/model/ArtefatoDeTeste.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/model/CasoDeTeste.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/model/CasoDeTeste.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/model/CasoDeUso.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/model/CasoDeUso.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Factorys/CasosDeUsoFactory.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Factorys/CasosDeUsoFactory.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Factorys/ProjetoFactory.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Factorys/ProjetoFactory.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Factorys/UsuarioFactory.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Factorys/UsuarioFactory.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Projeto$Prefixo.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Projeto$Prefixo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Projeto$Prefixos.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Projeto$Prefixos.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Projeto.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Projeto.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Usuario$Cargo.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Usuario$Cargo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Usuario.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Usuario.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CasosDeTestePainel.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CasosDeTestePainel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CasosDeUsoPainel$ItemDaLista.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CasosDeUsoPainel$ItemDaLista.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CasosDeUsoPainel.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CasosDeUsoPainel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Componetes/ArvoreNode.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Componetes/ArvoreNode.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Componetes/Painel$Meu_PainelPrincipal.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Componetes/Painel$Meu_PainelPrincipal.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Componetes/Painel$Meu_painelConteudo.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Componetes/Painel$Meu_painelConteudo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Componetes/Painel.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Componetes/Painel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CriarCasoDeUsoPainel$Formulario.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CriarCasoDeUsoPainel$Formulario.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CriarCasoDeUsoPainel.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CriarCasoDeUsoPainel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/EditarProjetoPainel$FormularioEditar.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/EditarProjetoPainel$FormularioEditar.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/EditarProjetoPainel.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/EditarProjetoPainel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Janela.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Janela.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/ProjetosPainel$ItemListaProjeto.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/ProjetosPainel$ItemListaProjeto.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/ProjetosPainel$ProjetoAtivo.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/ProjetosPainel$ProjetoAtivo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/ProjetosPainel.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/ProjetosPainel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/UsuariosPainel$PainelInfos.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/UsuariosPainel$PainelInfos.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/UsuariosPainel.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/UsuariosPainel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/CasoDeTesteController.java" afterPath="$PROJECT_DIR$/src/controller/CasoDeTesteController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/CasoDeUsoController.java" afterPath="$PROJECT_DIR$/src/controller/CasoDeUsoController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/ProjetoController.java" afterPath="$PROJECT_DIR$/src/controller/ProjetoController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/SistemaController.java" afterPath="$PROJECT_DIR$/src/controller/SistemaController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/UsuarioController.java" afterPath="$PROJECT_DIR$/src/controller/UsuarioController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/ArtefatoDeTeste.java" afterPath="$PROJECT_DIR$/src/model/ArtefatoDeTeste.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/CasoDeTeste.java" afterPath="$PROJECT_DIR$/src/model/CasoDeTeste.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/CasoDeUso.java" afterPath="$PROJECT_DIR$/src/model/CasoDeUso.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Factorys/CasosDeUsoFactory.java" afterPath="$PROJECT_DIR$/src/model/Factorys/CasosDeUsoFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Factorys/ProjetoFactory.java" afterPath="$PROJECT_DIR$/src/model/Factorys/ProjetoFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Factorys/UsuarioFactory.java" afterPath="$PROJECT_DIR$/src/model/Factorys/UsuarioFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Projeto.java" afterPath="$PROJECT_DIR$/src/model/Projeto.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Usuario.java" afterPath="$PROJECT_DIR$/src/model/Usuario.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/CasosDeTestePainel.java" afterPath="$PROJECT_DIR$/src/view/CasosDeTestePainel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/CasosDeUsoPainel.java" afterPath="$PROJECT_DIR$/src/view/CasosDeUsoPainel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/Componetes/ArvoreNode.java" afterPath="$PROJECT_DIR$/src/view/Componetes/ArvoreNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/Componetes/Painel.java" afterPath="$PROJECT_DIR$/src/view/Componetes/Painel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/CriarCasoDeUsoPainel.java" afterPath="$PROJECT_DIR$/src/view/CriarCasoDeUsoPainel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/EditarProjetoPainel.java" afterPath="$PROJECT_DIR$/src/view/EditarProjetoPainel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/Janela.java" afterPath="$PROJECT_DIR$/src/view/Janela.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/ProjetosPainel.java" afterPath="$PROJECT_DIR$/src/view/ProjetosPainel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/UsuariosPainel.java" afterPath="$PROJECT_DIR$/src/view/UsuariosPainel.java" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -11,7 +86,118 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="PainelDeListagem.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/Componetes/PainelDeListagem.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CasoDeTesteController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/controller/CasoDeTesteController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="104">
+              <caret line="29" column="60" lean-forward="false" selection-start-line="29" selection-start-column="60" selection-end-line="29" selection-end-column="60" />
+              <folding>
+                <element signature="method#gerarMapaDeArtefatos#0;class#CasoDeTesteController#0" expanded="false" />
+                <element signature="method#getMapaDeArtefatos#0;class#CasoDeTesteController#0" expanded="false" />
+                <element signature="method#carregarCasosDeTesteDoArtefato#0;class#CasoDeTesteController#0" expanded="false" />
+                <element signature="e#2579#2592#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ArtefatoDeTeste.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/ArtefatoDeTeste.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="224">
+              <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CasosDeTestePainel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/CasosDeTestePainel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1139">
+              <caret line="86" column="28" lean-forward="false" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CasosDeUsoPainel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/CasosDeUsoPainel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-490">
+              <caret line="39" column="40" lean-forward="true" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
+              <folding>
+                <element signature="e#2511#2512#0" expanded="true" />
+                <element signature="e#2559#2560#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ArvoreNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/Componetes/ArvoreNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="127">
+              <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CriarCasoDeUsoPainel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/CriarCasoDeUsoPainel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="127">
+              <caret line="87" column="46" lean-forward="false" selection-start-line="87" selection-start-column="46" selection-end-line="87" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CasoDeUsoController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controller/CasoDeUsoController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="139">
+              <caret line="49" column="72" lean-forward="true" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="72" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CasosDeUsoFactory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/Factorys/CasosDeUsoFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="37" column="62" lean-forward="false" selection-start-line="37" selection-start-column="62" selection-end-line="37" selection-end-column="62" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CasoDeUso.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/CasoDeUso.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -32,6 +218,9 @@
       <replace>MeuCampoDeTexto</replace>
     </replaceStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
       <projects_view />
@@ -42,8 +231,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/resources/Fontes.java" />
         <option value="$PROJECT_DIR$/src/controller/CasoDeTesteExeption.java" />
-        <option value="$PROJECT_DIR$/src/view/CriarCasoDeUsoPainel.java" />
-        <option value="$PROJECT_DIR$/src/view/EditarProjetoPainel.java" />
         <option value="$PROJECT_DIR$/src/controller/exceptions/CasoDeTesteException.java" />
         <option value="$PROJECT_DIR$/src/controller/exceptions/CasoDeTesteExeption.java" />
         <option value="$PROJECT_DIR$/src/controller/exceptions/CasoDeUsoExeption.java" />
@@ -51,11 +238,31 @@
         <option value="$PROJECT_DIR$/src/controller/exceptions/RoteiroDeTesteExeption.java" />
         <option value="$PROJECT_DIR$/src/controller/exceptions/UsuarioException.java" />
         <option value="$PROJECT_DIR$/src/view/JanelaLogin.java" />
-        <option value="$PROJECT_DIR$/src/controller/ProjetoController.java" />
-        <option value="$PROJECT_DIR$/src/view/Componetes/Painel.java" />
-        <option value="$PROJECT_DIR$/src/controller/SistemaController.java" />
         <option value="$PROJECT_DIR$/src/view/CriarCasoDeTestePainel.java" />
+        <option value="$PROJECT_DIR$/src/controller/SistemaController.java" />
+        <option value="$PROJECT_DIR$/src/view/Componetes/Painel.java" />
         <option value="$PROJECT_DIR$/src/view/Janela.java" />
+        <option value="$PROJECT_DIR$/src/controller/adapters/Usuario.java" />
+        <option value="$PROJECT_DIR$/src/view/UsuariosPainel.java" />
+        <option value="$PROJECT_DIR$/src/controller/UsuarioController.java" />
+        <option value="$PROJECT_DIR$/src/model/Factorys/UsuarioFactory.java" />
+        <option value="$PROJECT_DIR$/src/model/Usuario.java" />
+        <option value="$PROJECT_DIR$/src/view/ProjetosPainel.java" />
+        <option value="$PROJECT_DIR$/src/model/Projeto.java" />
+        <option value="$PROJECT_DIR$/src/view/EditarProjetoPainel.java" />
+        <option value="$PROJECT_DIR$/src/model/Factorys/ProjetoFactory.java" />
+        <option value="$PROJECT_DIR$/src/controller/ProjetoController.java" />
+        <option value="$PROJECT_DIR$/src/controller/adapters/CasoDeTeste.java" />
+        <option value="$PROJECT_DIR$/src/model/CasoDeTeste.java" />
+        <option value="$PROJECT_DIR$/src/view/CasosDeUsoPainel.java" />
+        <option value="$PROJECT_DIR$/src/view/CriarCasoDeUsoPainel.java" />
+        <option value="$PROJECT_DIR$/src/controller/CasoDeUsoController.java" />
+        <option value="$PROJECT_DIR$/src/model/CasoDeUso.java" />
+        <option value="$PROJECT_DIR$/src/model/Factorys/CasosDeUsoFactory.java" />
+        <option value="$PROJECT_DIR$/src/view/Componetes/ArvoreNode.java" />
+        <option value="$PROJECT_DIR$/src/model/ArtefatoDeTeste.java" />
+        <option value="$PROJECT_DIR$/src/view/CasosDeTestePainel.java" />
+        <option value="$PROJECT_DIR$/src/controller/CasoDeTesteController.java" />
       </list>
     </option>
   </component>
@@ -71,6 +278,7 @@
     <option name="width" value="1346" />
     <option name="height" value="688" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -104,14 +312,26 @@
               <item name="projeto_apsoo" type="b2602c69:ProjectViewProjectNode" />
               <item name="projeto_apsoo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projeto_apsoo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projeto_apsoo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projeto_apsoo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projeto_apsoo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="Factorys" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="projeto_apsoo" type="b2602c69:ProjectViewProjectNode" />
               <item name="projeto_apsoo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="Componetes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -123,6 +343,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -284,12 +505,12 @@
       <option name="presentableId" value="Default" />
       <updated>1508439910562</updated>
       <workItem from="1508439911929" duration="274000" />
-      <workItem from="1508440230683" duration="7148000" />
+      <workItem from="1508440230683" duration="11336000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7422000" />
+    <option name="totallyTimeSpent" value="11610000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -301,12 +522,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25340393" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -316,8 +538,32 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25340393" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39967105" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -327,7 +573,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -390,30 +636,6 @@
         <state relative-caret-position="127">
           <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Usuario.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding>
-            <element signature="e#595#596#0" expanded="false" />
-            <element signature="e#622#623#0" expanded="false" />
-            <element signature="e#774#775#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/UsuarioController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding>
-            <element signature="e#1803#1804#0" expanded="false" />
-            <element signature="e#1853#1854#0" expanded="false" />
-            <element signature="e#1899#1900#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -502,14 +724,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/CriarCasoDeUsoPainel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="102" column="7" lean-forward="false" selection-start-line="102" selection-start-column="7" selection-end-line="102" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/CriarProjetoPainel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="155">
@@ -526,22 +740,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/Janela.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1266">
-          <caret line="24" column="30" lean-forward="false" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/EditarProjetoPainel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="67" column="35" lean-forward="true" selection-start-line="67" selection-start-column="35" selection-end-line="67" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/CriarCasoDeTestePainel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -553,44 +751,251 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/ProjetoController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2103">
-          <caret line="147" column="29" lean-forward="false" selection-start-line="147" selection-start-column="29" selection-end-line="147" selection-end-column="29" />
-          <folding>
-            <element signature="e#5426#5427#0" expanded="true" />
-            <element signature="e#5469#5470#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/SistemaController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="78" column="25" lean-forward="false" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/Componetes/Painel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="150" column="0" lean-forward="false" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
-          <folding>
-            <element signature="e#4447#4448#0" expanded="true" />
-            <element signature="e#4488#4489#0" expanded="true" />
-            <element signature="e#4973#4974#0" expanded="true" />
-            <element signature="e#5021#5022#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/JanelaLogin.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="34" lean-forward="true" selection-start-line="19" selection-start-column="34" selection-end-line="20" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/SistemaController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="29" column="32" lean-forward="false" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
+          <folding>
+            <element signature="method#setPainelDeTrabalho#0;class#SistemaController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Componetes/Painel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="140" column="0" lean-forward="false" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/adapters/Usuario.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Janela.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="182" column="39" lean-forward="false" selection-start-line="182" selection-start-column="39" selection-end-line="184" selection-end-column="30" />
+          <folding>
+            <element signature="method#iniciarCompomentes#0;class#OpcoesDeNavagacao#0;class#PainelDeNavegacaoLateral#0;class#Janela#0" expanded="false" />
+            <element signature="method#setPainelAtivo#0;class#Janela#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/UsuariosPainel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="49" column="54" lean-forward="false" selection-start-line="49" selection-start-column="54" selection-end-line="49" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/UsuarioController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="13" column="34" lean-forward="false" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Factorys/UsuarioFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="40" column="38" lean-forward="false" selection-start-line="40" selection-start-column="38" selection-end-line="40" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Projeto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="125" column="0" lean-forward="false" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
+          <folding>
+            <element signature="e#3114#3115#0" expanded="true" />
+            <element signature="e#3144#3145#0" expanded="true" />
+            <element signature="e#3194#3195#0" expanded="true" />
+            <element signature="e#3236#3237#0" expanded="true" />
+            <element signature="e#3286#3287#0" expanded="true" />
+            <element signature="e#3328#3329#0" expanded="true" />
+            <element signature="e#3378#3379#0" expanded="true" />
+            <element signature="e#3420#3421#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Usuario.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="28" column="33" lean-forward="false" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/EditarProjetoPainel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="94" column="0" lean-forward="false" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+          <folding>
+            <element signature="method#carregarOpcoes#0;class#EditarProjetoPainel#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/ProjetosPainel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="112" column="43" lean-forward="true" selection-start-line="112" selection-start-column="43" selection-end-line="112" selection-end-column="43" />
+          <folding>
+            <element signature="method#carregarOpcoes#0;class#ProjetosPainel#0" expanded="false" />
+            <element signature="method#iniciarComponetes#0;class#ItemListaProjeto#0;class#ProjetosPainel#0" expanded="false" />
+            <element signature="method#iniciarLayout#0;class#ItemListaProjeto#0;class#ProjetosPainel#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Factorys/ProjetoFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="88" column="29" lean-forward="false" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="29" />
+          <folding>
+            <element signature="e#3282#3291#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/ProjetoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="74" column="35" lean-forward="false" selection-start-line="74" selection-start-column="35" selection-end-line="74" selection-end-column="35" />
+          <folding>
+            <element signature="e#3537#3538#0" expanded="true" />
+            <element signature="e#3577#3578#0" expanded="true" />
+            <element signature="e#3782#3783#0" expanded="true" />
+            <element signature="e#3820#3821#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/adapters/CasoDeTeste.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/CasoDeTeste.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/CriarCasoDeUsoPainel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="87" column="46" lean-forward="false" selection-start-line="87" selection-start-column="46" selection-end-line="87" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/CasoDeUsoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="49" column="72" lean-forward="true" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/CasoDeUso.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Factorys/CasosDeUsoFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="37" column="62" lean-forward="false" selection-start-line="37" selection-start-column="62" selection-end-line="37" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Componetes/PainelDeListagem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/CasosDeUsoPainel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-490">
+          <caret line="39" column="40" lean-forward="true" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
+          <folding>
+            <element signature="e#2511#2512#0" expanded="true" />
+            <element signature="e#2559#2560#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Componetes/ArvoreNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/ArtefatoDeTeste.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/CasosDeTestePainel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1139">
+          <caret line="86" column="28" lean-forward="false" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/CasoDeTesteController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="29" column="60" lean-forward="false" selection-start-line="29" selection-start-column="60" selection-end-line="29" selection-end-column="60" />
+          <folding>
+            <element signature="method#gerarMapaDeArtefatos#0;class#CasoDeTesteController#0" expanded="false" />
+            <element signature="method#getMapaDeArtefatos#0;class#CasoDeTesteController#0" expanded="false" />
+            <element signature="method#carregarCasosDeTesteDoArtefato#0;class#CasoDeTesteController#0" expanded="false" />
+            <element signature="e#2579#2592#0" expanded="true" />
           </folding>
         </state>
       </provider>

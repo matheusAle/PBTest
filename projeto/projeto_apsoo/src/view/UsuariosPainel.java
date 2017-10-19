@@ -1,7 +1,7 @@
 package view;
 
-import controller.adapters.UsuarioAdapter;
 import controller.UsuarioController;
+import model.Usuario;
 import resources.Cores;
 import resources.Fontes;
 import resources.Icones;
@@ -47,7 +47,7 @@ public class UsuariosPainel extends Painel{
         JLabel nomeUsuario;
         JLabel cargoUsuario;
 
-        public PainelInfos(ImageIcon imgPerfil, UsuarioAdapter usuario) {
+        public PainelInfos(ImageIcon imgPerfil, Usuario usuario) {
             super.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 10));
             super.setPreferredSize(tamanhoItens);
             super.setMaximumSize(tamanhoItens);

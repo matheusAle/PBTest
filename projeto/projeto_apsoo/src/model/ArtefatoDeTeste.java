@@ -1,7 +1,5 @@
 package model;
 
-import controller.adapters.ArtefatoDeTesteAdapter;
-
 import java.util.LinkedList;
 
 /**
@@ -70,10 +68,4 @@ public class ArtefatoDeTeste implements Comparable<ArtefatoDeTeste>{
         return getPakage().compareTo(o.getPakage());
     }
 
-    /**
-     * @return Tetorna uma instancia de ArtefatoDeTesteAdapter com os calores deste ArtefatoDe teste.
-     */
-    public ArtefatoDeTesteAdapter getAdapter(){
-        return new ArtefatoDeTesteAdapter(this.pakage, this.nomeArquivo, this.getCaminhoAbsoluto());
-    }
 }

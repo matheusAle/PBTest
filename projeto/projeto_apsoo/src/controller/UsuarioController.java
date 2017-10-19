@@ -1,6 +1,5 @@
 package controller;
 
-import controller.adapters.UsuarioAdapter;
 import controller.exceptions.UsuarioException;
 import model.Factorys.UsuarioFactory;
 import model.Usuario;
@@ -12,20 +11,20 @@ import java.util.HashSet;
 public class UsuarioController {
 
     private static UsuarioFactory dao = new UsuarioFactory();
-    private static Collection<UsuarioAdapter> listaDeUsuario = buscarTodosOSUsuarios();
-    private static Usuario usuarioLogado;
+    private static Collection<Usuario> listaDeUsuario = buscarTodosOSUsuarios();
+    private static model.Usuario usuarioLogado;
 
 
-    private static Collection<UsuarioAdapter> buscarTodosOSUsuarios() {
+    private static Collection<Usuario> buscarTodosOSUsuarios() {
         return dao.listar();
     }
 
     /**
      *
-     * @return Retorna uma <link>Collection</link> de <link>UsuarioAdapter</link> dos usuarios cadastrados
+     * @return Retorna uma <link>Collection</link> de <link>Usuario</link> dos usuarios cadastrados
      * no banco de dados.
      */
-    public static Collection<UsuarioAdapter> getListaDeUsuarios(){
+    public static Collection<Usuario> getListaDeUsuarios(){
         return listaDeUsuario;
     }
 
@@ -41,7 +40,7 @@ public class UsuarioController {
      */
     public static void fazerLogin (String email, String senha) throws UsuarioException {
         String restricao = "email = '" + email + "' AND senha = '" + senha+ "' ";
-        HashSet<Usuario> usuario = (HashSet<Usuario>) dao.buscar(restricao);
+        HashSet<model.Usuario> usuario = (HashSet<model.Usuario>) dao.buscar(restricao);
         if (usuario.isEmpty()){
             throw new UsuarioException();
         }

@@ -3,10 +3,10 @@ package view;
 import controller.CasoDeUsoController;
 import controller.ProjetoController;
 import controller.SistemaController;
-import controller.adapters.CasoDeUsoAdapter;
 import controller.exceptions.CasoDeTesteExeption;
 import controller.exceptions.CasoDeUsoExeption;
 import controller.exceptions.RoteiroDeTesteExeption;
+import model.CasoDeUso;
 import resources.Cores;
 import resources.Fontes;
 import resources.Strings;
@@ -85,14 +85,7 @@ public class CriarCasoDeUsoPainel extends Painel {
     private void cadastarProjeto() {
         if(!todosOsCamposValidos())
             return;
-        CasoDeUsoAdapter c = new CasoDeUsoAdapter(
-                codigo.getText(),
-                campoNome.getText(),
-                campoObjetivo.getText(),
-                campoAtores.getText()
-        );
-        c.setDescricao(campoDescricao.getText());
-        while (!CasoDeUsoController.salvarCasoDeUso(c)){
+        while (!CasoDeUsoController.salvarCasoDeUso(codigo.getText(), campoNome.getText(), campoObjetivo.getText(), campoAtores.getText(), campoDescricao.getText())){
             JOptionPane.showMessageDialog(SistemaController.JANELA, "Erro ao salvar o caso de uso!", "o caso de uso não foi salvo", JOptionPane.ERROR_MESSAGE);
         }
         cancelarCadastro();

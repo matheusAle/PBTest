@@ -3,7 +3,7 @@ package view;
 import controller.CasoDeUsoController;
 import controller.ProjetoController;
 import controller.SistemaController;
-import controller.adapters.CasoDeUsoAdapter;
+import model.CasoDeUso;
 import resources.Cores;
 import resources.Strings;
 import view.Componetes.*;
@@ -71,7 +71,7 @@ public class CasosDeUsoPainel extends PainelDeListagem {
          * Instacia um novo item da lista com os valores do caso de uso pasdo por paramentro.
          * @param casoDeUso
          */
-        ItemDaLista (CasoDeUsoAdapter casoDeUso){
+        ItemDaLista (CasoDeUso casoDeUso){
             iniciarTextos(casoDeUso);
         }
 
@@ -80,7 +80,7 @@ public class CasosDeUsoPainel extends PainelDeListagem {
          * Carrega o texto da legenda do item e os valores do caso de uso.
          * @param casoDeUso
          */
-        private void iniciarTextos(CasoDeUsoAdapter casoDeUso){
+        private void iniciarTextos(CasoDeUso casoDeUso){
 
             legendaNome.setText(Strings.LG_CASOS_DE_USO_NOME);
             legendaCodigo.setText(Strings.LG_CASOS_DE_USO_CODIGO);

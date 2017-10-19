@@ -27,7 +27,7 @@ public class CasoDeUso {
         return nome;
     }
 
-    public String getObjetovo() {
+    public String getObjetivo() {
         return objetovo;
     }
 

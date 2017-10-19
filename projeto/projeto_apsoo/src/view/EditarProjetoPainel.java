@@ -1,11 +1,11 @@
 package view;
 
-import controller.adapters.ProjetoAdapter;
 import controller.ProjetoController;
 import controller.SistemaController;
 import controller.exceptions.CasoDeTesteExeption;
 import controller.exceptions.CasoDeUsoExeption;
 import controller.exceptions.RoteiroDeTesteExeption;
+import model.Projeto;
 import resources.Cores;
 import resources.Strings;
 import view.Componetes.Botao;
@@ -15,7 +15,7 @@ import java.awt.*;
 
 public final class EditarProjetoPainel extends CriarProjetoPainel {
 
-    ProjetoAdapter projetoSendoEditado;
+    Projeto projetoSendoEditado;
 
     public EditarProjetoPainel(){
         super(Strings.TITULO_PAINEL_EDITAR_PROJETO);
@@ -51,11 +51,7 @@ public final class EditarProjetoPainel extends CriarProjetoPainel {
     private void salvarProjeto() {
         if(!super.todosOsCamposEstaoValidos())
             return;
-        projetoSendoEditado.setNome(campoNome.getText());
-        projetoSendoEditado.setDescricao(campoDescricao.getText());
-        projetoSendoEditado.setSrc(campoSrc.getText());
-
-        if(!ProjetoController.atualizarProjeto(projetoSendoEditado)){
+        if(!ProjetoController.atualizarProjeto(campoNome.getText(), campoDescricao.getText(), campoSrc.getText())){
             JOptionPane.showMessageDialog(SistemaController.JANELA, "Erro ao atualizar os dados", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -81,17 +77,17 @@ public final class EditarProjetoPainel extends CriarProjetoPainel {
 
     /**
      * Carrega o formulario com as informações do projeto passado por paramentro.
-     * @param projetoAdapter
+     * @param projeto
      */
-    public void setProjeto(ProjetoAdapter projetoAdapter){
-        projetoSendoEditado = projetoAdapter;
+    public void setProjeto(Projeto projeto){
+        projetoSendoEditado = projeto;
         super.limparConteudo();
-        super.addConteudo(new FormularioEditar(projetoAdapter));
+        super.addConteudo(new FormularioEditar(projeto));
     }
 
     class FormularioEditar extends Formulario {
 
-        FormularioEditar(ProjetoAdapter projeto){
+        FormularioEditar(Projeto projeto){
             super();
             campoNome.setText(projeto.getNome());
             campoDescricao.setText(projeto.getDescricao());

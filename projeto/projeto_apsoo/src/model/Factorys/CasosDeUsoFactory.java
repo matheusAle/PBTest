@@ -1,7 +1,6 @@
 package model.Factorys;
 
 import controller.ProjetoController;
-import controller.adapters.CasoDeUsoAdapter;
 import controller.exceptions.ProjetoException;
 import model.CasoDeUso;
 
@@ -14,7 +13,7 @@ public class CasosDeUsoFactory extends AbstractFactory {
 
     /**
      * Busca no banco de dados todos os casos de uso catrastrados vinculados ao projeto ativo.
-     * @return Retorna uma <link>Collection</link> contendo objetos <link>CasoDeUsoAdapter</link>
+     * @return Retorna uma <link>Collection</link> contendo objetos <link>CasoDeUso</link>
      * @throws ProjetoException lançada apenas quando não existir um projeto ativo.
      */
     @Override
@@ -26,15 +25,19 @@ public class CasosDeUsoFactory extends AbstractFactory {
             return null;
         }
         ResultSet result = AbstractFactory.execultarBusca(query);
-        LinkedList<CasoDeUsoAdapter> lista = new LinkedList<>();
+        LinkedList<CasoDeUso> lista = new LinkedList<>();
         try {
             while (result.next()){
                 lista.add(
-                        new CasoDeUsoAdapter(
+                        new CasoDeUso(
                                 result.getString("codigo"),
                                 result.getString("nome"),
                                 result.getString("objetivo"),
-                                result.getString("atores")
+                                result.getString("atores"),
+                                result.getString("descricao"),
+                                result.getString("usuario_dono"),
+                                result.getString("projetoID")
+
                                 )
                 );
             }
@@ -50,15 +53,8 @@ public class CasosDeUsoFactory extends AbstractFactory {
         return null;
     }
 
-    public boolean salvar(CasoDeUso c){
-        String dml = "INSERT INTO caso_de_uso VALUES ('" +
-                c.getCodigo() + "', '" +
-                c.getNome() + "', '" +
-                c.getAtores()+ "', '" +
-                c.getObjetovo()+ "', '" +
-                c.getDescricao()+ "', " +
-                c.getProjetoID()+ ", '" +
-                c.getEmailUsuario()+ "')";
+    public boolean salvar(String codigo, String nome, String objetivo, String atores, String descricao){
+        String dml = String.format("INSERT INTO caso_de_uso VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')", codigo, nome, objetivo, atores, descricao);
         try {
             AbstractFactory.execultarAtualizacao(dml);
             return true;

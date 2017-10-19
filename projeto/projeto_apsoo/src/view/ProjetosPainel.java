@@ -1,8 +1,8 @@
 package view;
 
-import controller.adapters.ProjetoAdapter;
 import controller.ProjetoController;
 import controller.SistemaController;
+import model.Projeto;
 import resources.Cores;
 import resources.Strings;
 import view.Componetes.*;
@@ -61,8 +61,8 @@ public final class ProjetosPainel extends PainelDeListagem{
         if (projetoAtivo != null){
             super.addConteudo(projetoAtivo);
         }
-        ProjetoController.getListaDeProjetos().forEach(projetoMetaData -> {
-            super.addConteudo(new ItemListaProjeto(projetoMetaData));
+        ProjetoController.getListaDeProjetos().forEach(projeto -> {
+            super.addConteudo(new ItemListaProjeto(projeto));
         });
     }
 
@@ -81,7 +81,7 @@ public final class ProjetosPainel extends PainelDeListagem{
         private MeuLabel legendaCodigo;
         private MeuLabel legendaDescricao;
 
-        ItemListaProjeto(ProjetoAdapter projeto){
+        ItemListaProjeto(Projeto projeto){
             iniciarlistaners();
 
             codigoDoProjeto = projeto.getCodigo();
@@ -216,7 +216,7 @@ public final class ProjetosPainel extends PainelDeListagem{
 
     private class ProjetoAtivo extends ItemListaProjeto {
 
-        ProjetoAtivo(ProjetoAdapter projeto) {
+        ProjetoAtivo(Projeto projeto) {
             super(projeto);
             super.setCorDeFundoNormal(Cores.FUNDO_BOTAO);
             super.setCorDeFundoHover(Color.red);
