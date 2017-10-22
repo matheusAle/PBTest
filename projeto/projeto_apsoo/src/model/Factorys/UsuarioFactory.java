@@ -30,7 +30,6 @@ public final class UsuarioFactory extends AbstractFactory {
         }
     }
 
-    @Override
     public Collection listar() {
         String query  = "SELECT * FROM usuario";
         try {
@@ -55,25 +54,22 @@ public final class UsuarioFactory extends AbstractFactory {
      * @param restricao restrição de busca. ex: email = "m@gmail.com' AND senha = '123'
      * @return Retorna uma <link>Collection</link> com objetos <link>Usuario</link> em seu conteudo.
      */
-    @Override
-    public Collection<model.Usuario> buscar(String restricao) {
+    public Usuario buscar(String restricao) {
         String query  = "SELECT * FROM usuario WHERE " + restricao;
         try {
             ResultSet resultSet = AbstractFactory.execultarBusca(query);
-            HashSet<model.Usuario> usuariosEncontrados = new HashSet<>();
             if (resultSet != null){
                 while (resultSet.next()){
-                    usuariosEncontrados.add(new model.Usuario(
+                    return new model.Usuario(
                             resultSet.getString("nome"),
                             resultSet.getString("email"),
                             getCargo(resultSet.getInt("cargo")),
                             resultSet.getString("telefone"),
                             resultSet.getString("biografia"),
                             null
-                    ));
+                    );
                 }
             }
-            return usuariosEncontrados;
         }catch (SQLException e){
             e.printStackTrace();
         }

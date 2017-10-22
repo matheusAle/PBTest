@@ -7,9 +7,11 @@ import model.Factorys.CasosDeUsoFactory;
 import java.util.Collection;
 import java.util.LinkedList;
 
+import static controller.ProjetoController.getInformacoesDoProjetoAtivo;
+
 public final class CasoDeUsoController {
     private static CasosDeUsoFactory dao = new CasosDeUsoFactory();
-
+    private static CasoDeUso casoDeUsoEditavel;
     private static LinkedList<CasoDeUso> listaDeCasosDeUso;
 
     /**
@@ -18,7 +20,7 @@ public final class CasoDeUsoController {
      * @throws ProjetoException Lançada quando não existir um projeto ativo
      */
     public static LinkedList<CasoDeUso> carregarLista() throws ProjetoException {
-        LinkedList<CasoDeUso> l = (LinkedList<CasoDeUso>) dao.listar();
+        LinkedList<CasoDeUso> l = (LinkedList<CasoDeUso>) dao.listar(getInformacoesDoProjetoAtivo().getCodigo());
         return l != null ? l : new LinkedList<CasoDeUso>();
     }
 
@@ -45,12 +47,40 @@ public final class CasoDeUsoController {
         }
     }
 
-    public static boolean salvarCasoDeUso(String codigo, String nome, String objetivo, String atores, String descricao) {
-
-        boolean r = dao.salvar(codigo, nome, objetivo, atores, descricao);
-        //TODO impementar a atualização dos contadores do banco na tabela projetos
-        return r;
-
+    /**
+     * Salva o novo caso de uso no banco de dados.
+     * @param nome nome do caso de uso
+     * @param objetivo breve descrição do caso de uso
+     * @param atores atores deste caso de uso
+     * @param descricao descrição do caso de uso
+     * @return Retorna uma string com o codigo do novo caso de uso
+     */
+    public static String salvarCasoDeUso(String nome, String objetivo, String atores, String descricao) {
+        String codigo = ProjetoController.gerarPrefixo("caso de uso");
+        dao.salvar(codigo, nome, objetivo, atores, descricao, ProjetoController.getProjetoAtivo().getCodigo(), UsuarioController.getEmailUsuarioLogado());
+        return codigo;
     }
 
+    public synchronized static void deletarCasoDeUsoDeCodigo(String text) {
+        dao.deletar("codigo = '" + text + "'");
+        listaDeCasosDeUso.removeIf((p) -> p.getCodigo() == text);
+    }
+
+    /**
+     * Seta o caso de uso que será editado.
+     * @param codigo codigo do caso de uso
+     *
+     */
+    public static void editarCasoDeUsoDeCodigo(String codigo){
+        casoDeUsoEditavel = dao.buscar(codigo, getInformacoesDoProjetoAtivo().getCodigo());
+    }
+
+    public static CasoDeUso getCasoDeUsoEditavel() {
+        return casoDeUsoEditavel;
+    }
+
+    public static void salvarMudancas(String nome, String objetivo, String atore, String descicao) {
+        dao.atualizar(casoDeUsoEditavel.getCodigo(), nome, objetivo, atore, descicao, casoDeUsoEditavel.getProjetoID());
+        casoDeUsoEditavel = null;
+    }
 }

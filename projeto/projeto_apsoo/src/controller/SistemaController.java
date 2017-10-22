@@ -67,6 +67,10 @@ public class SistemaController {
             case "EDITAR_PROJETO":
                 p = PaineisDeTabalho.EDITAR_PROJETO;
                 ((EditarProjetoPainel) p).setProjeto(ProjetoController.getProjetoParaEditar());
+                break;
+            case "EDITAR_CASO_DE_USO":
+                p = PaineisDeTabalho.EDITAR_CASO_DE_USO;
+                ((EditarCasoDeUsoPainel)p).setCasoDeUso(CasoDeUsoController.getCasoDeUsoEditavel());
         }
         JANELA.setPainelAtivo(p);
 
@@ -77,16 +81,17 @@ public class SistemaController {
      * Todas as referencias são estaticas e finais.
      */
     private static class PaineisDeTabalho {
-        public static final Painel USUARIOS = new UsuariosPainel();
-        public static final Painel PROJETOS = new ProjetosPainel();
-        public static final Painel CRIAR_PROJETO = new CriarProjetoPainel();
-        public static final Painel EDITAR_PROJETO = new EditarProjetoPainel();
-        public static final Painel CASOS_DE_USO = new CasosDeUsoPainel();
-        public static final Painel CRIAR_CASOS_DE_USO = new CriarCasoDeUsoPainel();
-        public static final Painel CASOS_TESTE = new CasosDeTestePainel();
-        public static final Painel ROTEIROS_TESTE = new RoteirosDeTestesPainel();
-        public static final Painel MATRIZ_DE_RASTREABIBLIDADE = new MatrizDeRastreabilidadePainel();
-        public static final Painel CRIAR_CASO_DE_TESTE = new CriarCasoDeTestePainel();
+        static final Painel USUARIOS = new UsuariosPainel();
+        static final Painel PROJETOS = new ProjetosPainel();
+        static final Painel CRIAR_PROJETO = new CriarProjetoPainel();
+        static final Painel EDITAR_PROJETO = new EditarProjetoPainel();
+        static final Painel CASOS_DE_USO = new CasosDeUsoPainel();
+        static final Painel CRIAR_CASOS_DE_USO = new CriarCasoDeUsoPainel();
+        static final Painel CASOS_TESTE = new CasosDeTestePainel();
+        public final Painel ROTEIROS_TESTE = new RoteirosDeTestesPainel();
+        static final Painel MATRIZ_DE_RASTREABIBLIDADE = new MatrizDeRastreabilidadePainel();
+        static final Painel CRIAR_CASO_DE_TESTE = new CriarCasoDeTestePainel();
+        static final Painel EDITAR_CASO_DE_USO = new EditarCasoDeUsoPainel();
     }
 
 

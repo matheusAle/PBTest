@@ -18,8 +18,8 @@ public class CasoDeTesteFactory extends AbstractFactory {
      * @param classTeste nome da classe do artefato de teste.
      * @return Collerctio\<CasoDeTeste\> com os casos de teste do artefato.
      */
-    public Collection<CasoDeTeste> listar(String pjID, String classTeste) {
-        String query = "SELECT * FROM caso_de_teste WHERE projetoID = '"+pjID+"' AND classeTeste = '"+classTeste+"' ";
+    public synchronized Collection<CasoDeTeste> listar(String pjID, String classTeste) {
+        String query = String.format("SELECT * FROM caso_de_teste WHERE projetoID = '%s' AND nomeClasseTeste = '%s' ", pjID, classTeste );
         ResultSet resultSet = super.execultarBusca(query);
         if (resultSet != null){
             try {
@@ -44,14 +44,23 @@ public class CasoDeTesteFactory extends AbstractFactory {
         return null;
     }
 
-    @Override
     public Collection listar() {
         return null;
     }
 
-    @Override
     public Collection buscar(String restricao) {
         return null;
+    }
+
+    public synchronized boolean salvar(String codigo, String nome, String nomeCaso, String nomeDoArtefato, String descricao, String pjID, String cuCOD, String email){
+        String dml = String.format("INSERT INTO caso_de_teste VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')", codigo, nome, nomeCaso, nomeDoArtefato, descricao, pjID, cuCOD, email);
+        try {
+            AbstractFactory.execultarAtualizacao(dml);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }

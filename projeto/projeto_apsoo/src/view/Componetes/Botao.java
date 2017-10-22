@@ -1,5 +1,6 @@
 package view.Componetes;
 
+import resources.Cores;
 import resources.Fontes;
 
 import javax.swing.*;
@@ -91,6 +92,15 @@ public class Botao extends JButton implements MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        new Thread(() -> {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
+            super.setBackground(corDeFundoNormal);
+            super.setForeground(corDoTextoNormal);
+        }).start();
         onMouseClick.accept(this);
     }
 

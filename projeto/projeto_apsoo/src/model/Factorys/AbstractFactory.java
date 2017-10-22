@@ -41,16 +41,4 @@ public abstract class AbstractFactory {
     }
 
 
-    /**
-     * Busca no banco e retorna um coleção de itens da relação.
-     * @return
-     */
-    public abstract Collection listar();
-
-    /**
-     * Buscar por um elemento ou mais da relação
-     * @return
-     */
-    public abstract Collection buscar(String restricao);
-
 }

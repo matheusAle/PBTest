@@ -40,11 +40,8 @@ public class UsuarioController {
      */
     public static void fazerLogin (String email, String senha) throws UsuarioException {
         String restricao = "email = '" + email + "' AND senha = '" + senha+ "' ";
-        HashSet<model.Usuario> usuario = (HashSet<model.Usuario>) dao.buscar(restricao);
-        if (usuario.isEmpty()){
-            throw new UsuarioException();
-        }
-        usuarioLogado = usuario.iterator().next();
+        Usuario usuario = dao.buscar(restricao);
+        usuarioLogado = usuario;
 
     }
 

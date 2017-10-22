@@ -64,5 +64,6 @@ public final class Strings {
     public static final String TITULO_PAINEL_CASOS_DE_USO = "Casos De Uso do Projeto: ";
     public static final String TITULO_PAINEL_CRIAR_CASOS_DE_USO = "Novo Caso De Uso";
     public static final String TITULO_PAINEL_CASOS_DE_TESTE = "Casos de Teste do Projeto: ";
+    public static final String TITULO_PAINEL_CRIAR_CASOS_DE_TESTE = "Novo Caso De Teste";
 
 }

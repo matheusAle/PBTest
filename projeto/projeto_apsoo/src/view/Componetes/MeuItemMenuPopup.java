@@ -47,6 +47,14 @@ public class MeuItemMenuPopup extends JMenuItem implements MouseListener{
     @Override
     public void mouseEntered(MouseEvent e) {
         super.setBackground(Cores.FUNDO_BOTAO);
+        new Thread(() -> {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
+            super.setBackground(Cores.FUNDO_USUARIO_LOGADO);
+        }).start();
         super.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 

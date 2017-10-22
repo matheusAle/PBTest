@@ -1,11 +1,16 @@
 package controller;
 
+import com.sun.xml.internal.messaging.saaj.packaging.mime.util.OutputUtil;
 import controller.exceptions.CasoDeTesteException;
 import model.ArtefatoDeTeste;
 import model.CasoDeTeste;
 import model.TestesPool;
 import model.Factorys.CasoDeTesteFactory;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.attribute.FileAttribute;
 import java.util.*;
 
 public final class CasoDeTesteController {
@@ -72,4 +77,56 @@ public final class CasoDeTesteController {
     }
 
 
+    /**
+     * Gera o nome do arquivo apartir dos paremetros informados.
+     * @param codigo
+     * @param nomeDoArtefato
+     * @return retorna ila string com o nome do arquivo. (já com o .java)
+     */
+    private synchronized static String gerarNomeDaClasseJava(String codigo, String nomeDoArtefato){
+        return nomeDoArtefato.concat("_").concat(codigo.replaceAll("\\W", "")).concat("_Test.java");
+    }
+
+
+    public synchronized static boolean salvarCasoDeTeste(String codigo, String nome, String descricao, String codigoFonteJunit, String nomeDoArtefato, String codCU){
+        String nomeArquivo = gerarNomeDaClasseJava(codigo, nomeDoArtefato);
+        FileWriter fileWriter = null;
+        try {
+            //Salva o arquivo!
+            File file = new File(ProjetoController.getSrcCasosDeTeste() + nomeArquivo);
+            file.setWritable(true);
+            file.setReadable(true);
+            file.createNewFile();
+            fileWriter = new FileWriter(file);
+            fileWriter.write(codigoFonteJunit);
+
+            //Persiste as informações
+            boolean retorno = dao.salvar(
+                    codigo,
+                    nome,
+                    nomeArquivo,
+                    nomeDoArtefato,
+                    descricao,
+                    ProjetoController.getInformacoesDoProjetoAtivo().getCodigo(),
+                    codCU,
+                    UsuarioController.getEmailUsuarioLogado()
+            );
+
+            return retorno;
+        } catch (IOException e){
+            e.printStackTrace();
+        }finally {
+            try {
+                fileWriter.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                fileWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
 }

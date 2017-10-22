@@ -20,5 +20,6 @@ public class JanelaLogin {
         SistemaController.abrir();
         ProjetoController.ativarProjeto("2");
         SistemaController.setPainelDeTrabalho("CRIAR_CASO_DE_TESTE");
+
     }
 }

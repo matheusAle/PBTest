@@ -1,5 +1,6 @@
 package model.Factorys;
 
+import controller.exceptions.ProjetoException;
 import model.Projeto;
 
 import java.sql.ResultSet;
@@ -56,8 +57,7 @@ public class ProjetoFactory extends AbstractFactory {
      * busca no banco de dados o id, nome, srcRaiz e a descrição de todos os projetos.
      * @return retorna uma <link>Collection</link> de <Link>Projeto</Link>
      */
-    @Override
-    public Collection listar() {
+    public synchronized Collection listar() {
         String query = "SELECT id, nome, srcRaiz, descricao FROM projeto";
         ResultSet resultSet = super.execultarBusca(query);
         if (resultSet != null){
@@ -85,27 +85,21 @@ public class ProjetoFactory extends AbstractFactory {
      * @param restricao restrição da busca. Ex: id = '123'
      * @return Retorna uma <link>Collection</link> com objetos <link>Projeto</link> em seu conteudo.
      */
-    @Override
-    public Collection<Projeto> buscar(String restricao) {
+    public synchronized Projeto buscar(String restricao) {
         try {
             String query = "SELECT * FROM projeto WHERE " + restricao;
             ResultSet resultSet = super.execultarBusca(query);
-            LinkedList<Projeto> lista = new LinkedList<Projeto>();
             while (resultSet.next()){
-                lista.add(new model.Projeto(
+                return new Projeto(
                         resultSet.getString("id"),
                         resultSet.getString("nome"),
                         resultSet.getString("descricao"),
                         resultSet.getString("srcRaiz"),
-                        resultSet.getString("prefixoCU"),
                         resultSet.getString("prefixoCT"),
                         resultSet.getString("prefixoRT"),
-                        resultSet.getInt("contadorCU"),
-                        resultSet.getInt("contadorCT"),
-                        resultSet.getInt("contadorRT")
-                ));
+                        resultSet.getString("prefixoCU")
+                );
             }
-            return lista;
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -117,12 +111,8 @@ public class ProjetoFactory extends AbstractFactory {
      * para a tupla que tiver o <code>id</code> igual ao do objeto passado por paramentro
      * @return true se bem sucedido.
      */
-    public boolean atualizar(String nome, String descicao, String src, String codigo) {
-        String dml = "UPDATE projeto SET " +
-                "nome = '" + nome+ "', " +
-                "srcRaiz = '" + src + "', " +
-                "descricao = '" + descicao +
-                "' WHERE id = " + codigo;
+    public synchronized boolean atualizar(String nome, String descicao, String src, String codigo) {
+        String dml = String.format("UPDATE projeto SET nome = '%s', srcRaiz = '%s', descricao = '%s' WHERE id = %s ", nome, src, descicao, codigo);
         try {
             super.execultarAtualizacao(dml);
             return true;
@@ -131,16 +121,43 @@ public class ProjetoFactory extends AbstractFactory {
         }
         return false;
     }
-
-    public boolean atualizarContador(String nome, int valor, String prjID){
-        String dml = "UPDATE projeto SET " + nome + " = " + valor + " WHERE id = " + prjID;
+    /**
+     * Busca o valor atau do contador no banco de dados. E atualiza a contagem
+     * @param nomeContador Nome do contador: valores possiveis: contadorCT, contadorCU, contadorRT
+     * @param codigoProjeto Codigo do projeto.
+     * @return Uma string com o valor do contador solicitado.
+     * @throws ProjetoException pode ser disparado caso algo de errado.
+     */
+    public String buscarContador(String nomeContador, String codigoProjeto){
+        String query = String.format("SELECT %s FROM projeto WHERE id = %s ", nomeContador, codigoProjeto);
+        long contador = 0;
         try {
-            super.execultarAtualizacao(dml);
-            return true;
+            ResultSet resultSet = execultarBusca(query);
+            while (resultSet.next()){
+                contador = resultSet.getLong(nomeContador);
+            }
+            String dml = String.format("UPDATE projeto SET %s = %d WHERE id = %s ", nomeContador, contador+1, codigoProjeto);
+            execultarAtualizacao(dml);
+            return String.valueOf(contador);
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new ProjetoException("Erro ao ler o contador " + nomeContador + "No banco de dados");
+        }
+    }
+
+    /**
+     * Deleta a(s) tupla databela projeto com a restrição informada.
+     * @param restricao
+     * @throws ProjetoException pode ser disparado caso algo de errado.
+     */
+    public void deletar(String restricao){
+        String dml = "DELETE FROM projeto WHERE " + restricao;
+        try {
+            execultarAtualizacao(dml);
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new ProjetoException("Não foi posivel deletar o projeto!");
         }
-        return false;
     }
 
 }

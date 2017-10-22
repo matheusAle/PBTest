@@ -46,13 +46,14 @@ CREATE TABLE caso_de_uso (
 # tabela de casos de teste
 CREATE TABLE caso_de_teste (
 	codigo VARCHAR(20) PRIMARY KEY,
-    resultado TEXT,
-    nomeClasse TEXT NOT NULL,
-    absPathClass TEXT NOT NULL,
+    nome TEXT NOT NULL,
+    nomeClasseTeste TEXT NOT NULL,
+    nomeClasseArtefato TEXT NOT NULL,
     descricao TEXT NOT NULL,
     projetoID INTEGER NOT NULL,
     casoDeUsoCodigo VARCHAR(20) NOT NULL,
     emailUsuario VARCHAR(45) NOT NULL,
+    resultado TEXT,
     CONSTRAINT FOREIGN KEY (emailUsuario) REFERENCES usuario (email)  ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT FOREIGN KEY (casoDeUsoCodigo) REFERENCES caso_de_uso (codigo)  ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT FOREIGN KEY (projetoID) REFERENCES projeto(id)  ON DELETE CASCADE ON UPDATE CASCADE

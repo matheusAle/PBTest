@@ -58,6 +58,7 @@ public final class ProjetosPainel extends PainelDeListagem{
      * Carrega a lista de projetos no painel. Sempre deixando o projeto ativo no topo da lista
      */
     private void carregarProjetos (){
+        super.limparConteudo();
         if (projetoAtivo != null){
             super.addConteudo(projetoAtivo);
         }
@@ -115,9 +116,20 @@ public final class ProjetosPainel extends PainelDeListagem{
                 menuPopup.setVisible(false);
             });
 
+            MeuItemMenuPopup item3 = new MeuItemMenuPopup("Deletar este projeto");
+            item3.setOnClick( (e) -> {
+                int i = JOptionPane.showConfirmDialog(SistemaController.JANELA, "Você está certo disso?", "tem certeza?", JOptionPane.YES_NO_OPTION);
+                if (i == 0){
+                    ProjetoController.deletarProjetoDeCodigo(codigoDoProjeto);
+                    ProjetosPainel.this.carregarProjetos();
+                }
+                menuPopup.setVisible(false);
+            });
+
 
             super.menuPopup.add(item1);
             super.menuPopup.add(item2);
+            super.menuPopup.add(item3);
         }
 
         @Override

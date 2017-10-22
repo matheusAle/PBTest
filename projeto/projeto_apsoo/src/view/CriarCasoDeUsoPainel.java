@@ -3,10 +3,7 @@ package view;
 import controller.CasoDeUsoController;
 import controller.ProjetoController;
 import controller.SistemaController;
-import controller.exceptions.CasoDeTesteExeption;
-import controller.exceptions.CasoDeUsoExeption;
-import controller.exceptions.RoteiroDeTesteExeption;
-import model.CasoDeUso;
+import controller.exceptions.ProjetoException;
 import resources.Cores;
 import resources.Fontes;
 import resources.Strings;
@@ -18,22 +15,23 @@ import java.awt.*;
 
 public class CriarCasoDeUsoPainel extends Painel {
 
-    private MeuLabel codigo;
     private MeuLabel legendaNome;
     private MeuLabel legendaAtores;
-    private MeuLabel legendaCodigo;
-    private MeuLabel legendaObjetivo;
-    private MeuCampoDeTexto campoNome;
-    private MeuCampoDeTexto campoAtores;
-    private MeuCampoDeTexto campoObjetivo;
     private javax.swing.JPanel painelLegenda;
-    private javax.swing.JTextArea campoDescricao;
+    private MeuLabel legendaObjetivo;
+    protected MeuCampoDeTexto campoNome;
+    protected MeuCampoDeTexto campoAtores;
+    protected MeuCampoDeTexto campoObjetivo;
+    protected javax.swing.JTextArea campoDescricao;
     private MeuPainelComScrollBar painelDescricao;
 
     public CriarCasoDeUsoPainel(){
         super(Strings.TITULO_PAINEL_CRIAR_CASOS_DE_USO);
-        super.setAlturaELarguraDosItensDoConteudo(1,1);
         carregarOpscoes();
+    }
+
+    protected CriarCasoDeUsoPainel(String s){
+        super(s);
     }
 
     /**
@@ -45,7 +43,7 @@ public class CriarCasoDeUsoPainel extends Painel {
         salvar.setCorDoTextoNormal(Cores.TEXTOS);
         salvar.setCorDeFundoHover(Color.red);
         salvar.setText(Strings.CRIAR_CU_TEXTO_BTN_SALVAR);
-        salvar.setOnMouseClick((e) -> this.cadastarProjeto());
+        salvar.setOnMouseClick((e) -> this.cadastarCasoDeUso());
 
         Botao cancelar = new Botao();
         cancelar.setCorDeFundoNormal(Cores.FUNDO_MENU_ESQUERDO);
@@ -75,19 +73,23 @@ public class CriarCasoDeUsoPainel extends Painel {
      */
     public void iniciarFormulario(){
         super.limparConteudo();
-        super.addConteudo(new Formulario(ProjetoController.getPrefixoDoProjetoAtual("caso de uso")));
+        super.addConteudo(new Formulario());
     }
 
 
     /**
      * Salva o novo caso de uso no banco de dados
      */
-    private void cadastarProjeto() {
+    private void cadastarCasoDeUso() {
         if(!todosOsCamposValidos())
             return;
-        while (!CasoDeUsoController.salvarCasoDeUso(codigo.getText(), campoNome.getText(), campoObjetivo.getText(), campoAtores.getText(), campoDescricao.getText())){
+        try {
+            String codigoDoCasoDeUso = CasoDeUsoController.salvarCasoDeUso(campoNome.getText(), campoObjetivo.getText(), campoAtores.getText(), campoDescricao.getText());
+            JOptionPane.showMessageDialog(SistemaController.JANELA, "Caso de uso Salvo!\n O caso de uso tem o seguinte codigo: "+codigoDoCasoDeUso, "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+        }catch (ProjetoException p){
             JOptionPane.showMessageDialog(SistemaController.JANELA, "Erro ao salvar o caso de uso!", "o caso de uso não foi salvo", JOptionPane.ERROR_MESSAGE);
         }
+
         cancelarCadastro();
     }
 
@@ -96,15 +98,7 @@ public class CriarCasoDeUsoPainel extends Painel {
      */
     private void cancelarCadastro() {
         limpar();
-        try {
-            SistemaController.setPainelDeTrabalho("CASOS_DE_USO");
-        } catch (CasoDeUsoExeption casoDeUsoExeption) {
-            casoDeUsoExeption.printStackTrace();
-        } catch (CasoDeTesteExeption casoDeTesteExeption) {
-            casoDeTesteExeption.printStackTrace();
-        } catch (RoteiroDeTesteExeption roteiroDeTesteExeption) {
-            roteiroDeTesteExeption.printStackTrace();
-        }
+        SistemaController.setPainelDeTrabalho("CASOS_DE_USO");
     }
 
     /**
@@ -142,29 +136,19 @@ public class CriarCasoDeUsoPainel extends Painel {
         }
         return true;
     }
-    protected class Formulario extends JPanel {
-        Formulario(String codigo){
-            iniciarComponentes();
-            iniciarLayout();
-            iniciarTextos();
-            iniciarEstilo();
-            iniciarValores(codigo);
-        }
-
+    protected class Formulario extends JPanel{
         Formulario(){
-
+            iniciarComponetes();
+            iniciarTextos();
+            iniciarLayout();
+            iniciarEstilo();
         }
-        public void iniciarValores(String codigo){
-            CriarCasoDeUsoPainel.this.codigo.setText(codigo);
-        }
 
-        private void iniciarComponentes(){
+        protected void iniciarComponetes() {
             painelLegenda = new javax.swing.JPanel();
-            legendaCodigo = new MeuLabel();
             legendaObjetivo = new MeuLabel();
             legendaNome = new MeuLabel();
             legendaAtores = new MeuLabel();
-            codigo = new MeuLabel();
             campoNome = new MeuCampoDeTexto();
             campoObjetivo = new MeuCampoDeTexto();
             campoAtores = new MeuCampoDeTexto();
@@ -172,7 +156,7 @@ public class CriarCasoDeUsoPainel extends Painel {
             painelDescricao = new MeuPainelComScrollBar(campoDescricao);
         }
 
-        private void iniciarLayout(){
+        protected void iniciarLayout(){
             javax.swing.GroupLayout painelLegendaLayout = new javax.swing.GroupLayout(painelLegenda);
             painelLegenda.setLayout(painelLegendaLayout);
             painelLegendaLayout.setHorizontalGroup(
@@ -180,7 +164,6 @@ public class CriarCasoDeUsoPainel extends Painel {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelLegendaLayout.createSequentialGroup()
                                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(painelLegendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(legendaCodigo, javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(legendaObjetivo, javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(legendaNome, javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(legendaAtores, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -190,8 +173,6 @@ public class CriarCasoDeUsoPainel extends Painel {
                     painelLegendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(painelLegendaLayout.createSequentialGroup()
                                     .addContainerGap()
-                                    .addComponent(legendaCodigo)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(legendaNome)
                                     .addGap(18, 18, 18)
                                     .addComponent(legendaObjetivo)
@@ -212,8 +193,7 @@ public class CriarCasoDeUsoPainel extends Painel {
                                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                             .addComponent(campoNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
                                                             .addComponent(campoObjetivo, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                            .addComponent(campoAtores, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                            .addComponent(codigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                            .addComponent(campoAtores, javax.swing.GroupLayout.Alignment.TRAILING)))
                                             .addGroup(layout.createSequentialGroup()
                                                     .addContainerGap()
                                                     .addComponent(painelDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 880, Short.MAX_VALUE)))
@@ -225,8 +205,6 @@ public class CriarCasoDeUsoPainel extends Painel {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(layout.createSequentialGroup()
                                                     .addContainerGap()
-                                                    .addComponent(codigo)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                     .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                     .addComponent(campoObjetivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -242,7 +220,6 @@ public class CriarCasoDeUsoPainel extends Painel {
         private void iniciarTextos(){
             legendaNome.setText(Strings.LG_CASOS_DE_USO_NOME);
             legendaAtores.setText(Strings.LG_CASOS_DE_USO_ATORES);
-            legendaCodigo.setText(Strings.LG_CASOS_DE_USO_CODIGO);
             legendaObjetivo.setText(Strings.LG_CASOS_DE_USO_OBJETIVO);
 
 
@@ -258,8 +235,6 @@ public class CriarCasoDeUsoPainel extends Painel {
                 ((JLabel)c).setHorizontalAlignment(SwingConstants.RIGHT);
                 ((JLabel)c).setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
             }
-            codigo.setFont(Fontes.LEGENDA_ITEM_LISTA);
-            codigo.setForeground(Cores.TEXTOS);
             painelDescricao.setViewportView(campoDescricao);
             
             campoDescricao.setBorder(new EmptyBorder(10,10,10,10));
@@ -267,7 +242,6 @@ public class CriarCasoDeUsoPainel extends Painel {
             campoDescricao.setLineWrap(true);
             campoDescricao.setFont(Fontes.CAMPO_DE_TEXTO.deriveFont(16f));
         }
+
     }
-
-
 }

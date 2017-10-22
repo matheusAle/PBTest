@@ -11,6 +11,9 @@ import view.Componetes.*;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Classe que modela a listagem de casos de uso do projeto ativo.
+ */
 public class CasosDeUsoPainel extends PainelDeListagem {
 
     private MeuLabel atores;
@@ -35,6 +38,7 @@ public class CasosDeUsoPainel extends PainelDeListagem {
      * Carriga a lista de casos de uso cadastrados no sistema
      */
     private synchronized void carregarListaDeCasosDeUso(){
+        super.limparConteudo();
         try {
             super.setTitulo(Strings.TITULO_PAINEL_CASOS_DE_USO + ProjetoController.getInformacoesDoProjetoAtivo().getNome());
             CasoDeUsoController.getListaDeCasosDeUso().forEach( (c) -> {
@@ -57,7 +61,6 @@ public class CasosDeUsoPainel extends PainelDeListagem {
         novoProjeto.setText(Strings.TEXTO_BTN_NOVO_CASO_DE_USO);
         novoProjeto.setOnMouseClick((e) -> {
             SistemaController.setPainelDeTrabalho("CRIAR_CASO_DE_USO");
-
         });
         super.addOpcao(novoProjeto);
     }
@@ -67,12 +70,16 @@ public class CasosDeUsoPainel extends PainelDeListagem {
      */
     private final class ItemDaLista extends PainelItem {
 
+        private String codigoCasoDeUso;
+
         /**
          * Instacia um novo item da lista com os valores do caso de uso pasdo por paramentro.
          * @param casoDeUso
          */
         ItemDaLista (CasoDeUso casoDeUso){
             iniciarTextos(casoDeUso);
+            iniciarlistaners();
+            codigoCasoDeUso = casoDeUso.getCodigo();
         }
 
 
@@ -165,5 +172,33 @@ public class CasosDeUsoPainel extends PainelDeListagem {
             );
             super.setSize(tamanhoItemDaLista);
         }
+
+        /**
+         * Quando o usuario clicar mais de 2 vez sobre um item da listagem de projeto,
+         * este projeto será ativo.
+         */
+        private void iniciarlistaners() {
+            super.menuPopup = new MeuMenuPopup();
+            MeuItemMenuPopup item2 = new MeuItemMenuPopup("Editar este caso de uso");
+            item2.setOnClick((e) -> {
+                CasoDeUsoController.editarCasoDeUsoDeCodigo(codigoCasoDeUso);
+                SistemaController.setPainelDeTrabalho("EDITAR_CASO_DE_USO");
+                menuPopup.setVisible(false);
+            });
+
+            MeuItemMenuPopup item3 = new MeuItemMenuPopup("Deletar este caso de uso");
+            item3.setOnClick( (e) -> {
+                int i = JOptionPane.showConfirmDialog(SistemaController.JANELA, "Você está certo disso?", "tem certeza?", JOptionPane.YES_NO_OPTION);
+                if (i == 0){
+                    CasoDeUsoController.deletarCasoDeUsoDeCodigo(codigoCasoDeUso);
+                    CasosDeUsoPainel.this.carregarListaDeCasosDeUso();
+                }
+                menuPopup.setVisible(false);
+            });
+
+            super.menuPopup.add(item2);
+            super.menuPopup.add(item3);
+        }
+
     }
 }

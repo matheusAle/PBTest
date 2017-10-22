@@ -5,27 +5,27 @@ import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rtextarea.RTextScrollPane;
 import resources.Cores;
 import resources.Fontes;
+import resources.Strings;
 import view.Componetes.*;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class CriarCasoDeTestePainel extends Painel {
 
     private MeuCampoDeTexto CampoNome;
-    private MeuLabel campoCodigo;
-    private javax.swing.JTextArea campoDescicao;
+    private javax.swing.JTextArea campoDescricao;
     private MeuPainelComScrollBar jScrollPane1;
     private RTextScrollPane editorDeCodigo;
-    private MeuLabel labelCodigo;
     private MeuLabel labelNome;
     private MeuLabel labeldescricao;
     private javax.swing.JPanel painelLegenda;
 
 
     public CriarCasoDeTestePainel() {
-        super("aaa");
-        super.setAlturaELarguraDosItensDoConteudo(425, 600);
+        super(Strings.TITULO_PAINEL_CRIAR_CASOS_DE_TESTE);
+        super.setAlturaELarguraDosItensDoConteudo(380, 600);
         super.addConteudo(new Formulario());
     }
 
@@ -44,12 +44,11 @@ public class CriarCasoDeTestePainel extends Painel {
             painelLegenda.setLayout(painelLegendaLayout);
             painelLegendaLayout.setHorizontalGroup(
                     painelLegendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelLegendaLayout.createSequentialGroup()
+                            .addGroup(painelLegendaLayout.createSequentialGroup()
                                     .addContainerGap(34, Short.MAX_VALUE)
-                                    .addGroup(painelLegendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(labelNome)
-                                            .addComponent(labeldescricao)
-                                            .addComponent(labelCodigo))
+                                    .addGroup(painelLegendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(labelNome, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(labeldescricao, javax.swing.GroupLayout.Alignment.TRAILING))
                                     .addContainerGap())
             );
             painelLegendaLayout.setVerticalGroup(
@@ -57,11 +56,9 @@ public class CriarCasoDeTestePainel extends Painel {
                             .addGroup(painelLegendaLayout.createSequentialGroup()
                                     .addContainerGap()
                                     .addComponent(labelNome)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(labelCodigo)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGap(18, 18, 18)
                                     .addComponent(labeldescricao)
-                                    .addContainerGap(89, Short.MAX_VALUE))
+                                    .addContainerGap(113, Short.MAX_VALUE))
             );
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -73,7 +70,6 @@ public class CriarCasoDeTestePainel extends Painel {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(CampoNome)
-                                            .addComponent(campoCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE))
                                     .addGap(0, 18, Short.MAX_VALUE))
                             .addComponent(editorDeCodigo)
@@ -81,40 +77,33 @@ public class CriarCasoDeTestePainel extends Painel {
             layout.setVerticalGroup(
                     layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addComponent(painelLegenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(campoCodigo)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addContainerGap()
                                                     .addComponent(CampoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                    .addComponent(jScrollPane1)))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(editorDeCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(editorDeCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE))
             );
         }
 
         private void iniciarComponetes() {
             painelLegenda = new javax.swing.JPanel();
-            labelCodigo = new MeuLabel();
             labelNome = new MeuLabel();
             labeldescricao = new MeuLabel();
             CampoNome = new MeuCampoDeTexto();
-            campoCodigo = new MeuLabel();
-            campoDescicao = new javax.swing.JTextArea();
-            jScrollPane1 = new MeuPainelComScrollBar(campoDescicao);
+            campoDescricao = new javax.swing.JTextArea();
+            jScrollPane1 = new MeuPainelComScrollBar(campoDescricao);
 
             RSyntaxTextArea textArea = new RSyntaxTextArea(20, 60);
             textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
             textArea.setCodeFoldingEnabled(true);
             editorDeCodigo = new RTextScrollPane(textArea);
 
-            labelCodigo.setText("NOME:");
-
-            labelNome.setText("CODIGO:");
-
+            labelNome.setText("NOME:");
             labeldescricao.setText("DESCRIÇÂO:");
-
         }
 
         private void carregarEstilo() {
@@ -128,6 +117,11 @@ public class CriarCasoDeTestePainel extends Painel {
                 c.setForeground(Cores.TEXTOS);
             }
             editorDeCodigo.setEnabled(true);
+
+            campoDescricao.setBorder(new EmptyBorder(10,10,10,10));
+            campoDescricao.setWrapStyleWord(true);
+            campoDescricao.setLineWrap(true);
+            campoDescricao.setFont(Fontes.CAMPO_DE_TEXTO.deriveFont(16f));
         }
     }
 
