@@ -166,9 +166,12 @@ public class ProjetoController {
     }
 
 
+    /**
+     * @return retorna uma string contendo o caminho para o diretorio de casos do proheto ativo para este projeto
+     */
     static synchronized String getSrcCasosDeTeste(){
         String src = projetoAtivo.getSrc();
-        return src.concat((src.endsWith("/") ? "" : "/")).concat("testes/pbtest/");
+        return src.concat((src.endsWith("\\") ? "" : "\\")).concat("testes\\pbtest\\");
     }
 
     /**

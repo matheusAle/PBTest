@@ -10,15 +10,17 @@ public class ArtefatoDeTeste implements Comparable<ArtefatoDeTeste>{
     private String nomeArquivo;
     private String caminhoAbsoluto;
     private LinkedList<CasoDeTeste> casosDeTeste;
+    private String projetoId;
 
-    public ArtefatoDeTeste(String pakage, String nomeArquivo, String caminhoAbsoluto) {
+    public ArtefatoDeTeste(String pakage, String nomeArquivo, String caminhoAbsoluto, String prjId) {
         this.pakage = pakage;
         this.nomeArquivo = nomeArquivo;
         this.caminhoAbsoluto = caminhoAbsoluto;
+        this.projetoId = prjId;
     }
 
     /**
-     * Retorna o caminh do pacote no qual o artefato de teste encotra-se no diretorio do projeto
+     * Retorna o caminho do pacote no qual o artefato de teste encotra-se no diretorio do projeto
      * @return
      */
     public String getPakage() {
@@ -68,4 +70,19 @@ public class ArtefatoDeTeste implements Comparable<ArtefatoDeTeste>{
         return getPakage().compareTo(o.getPakage());
     }
 
+    public String getProjetoId() {
+        return projetoId;
+    }
+
+
+    @Override
+    public String toString() {
+        return "ArtefatoDeTeste{" +
+                "pakage='" + pakage + '\'' +
+                ", nomeArquivo='" + nomeArquivo + '\'' +
+                ", caminhoAbsoluto='" + caminhoAbsoluto + '\'' +
+                ", casosDeTeste=" + casosDeTeste +
+                ", projetoId='" + projetoId + '\'' +
+                '}';
+    }
 }

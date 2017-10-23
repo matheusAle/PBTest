@@ -4,6 +4,7 @@ import com.sun.xml.internal.messaging.saaj.packaging.mime.util.OutputUtil;
 import controller.exceptions.CasoDeTesteException;
 import model.ArtefatoDeTeste;
 import model.CasoDeTeste;
+import model.CasoDeUso;
 import model.TestesPool;
 import model.Factorys.CasoDeTesteFactory;
 
@@ -17,7 +18,7 @@ public final class CasoDeTesteController {
 
     private static CasoDeTesteFactory dao = new CasoDeTesteFactory();
     private static HashMap<String, LinkedList<ArtefatoDeTeste>> mapaDeArtefatos = new HashMap<>();
-
+    private static ArtefatoDeTeste artefatoDeTesteDendoEditado;
     /**
      * Carrega os artefatos de teste do projeto ativo em uma TestesPool
      * @throws CasoDeTesteException lançada quando o diretorio raiz não existir.
@@ -84,49 +85,101 @@ public final class CasoDeTesteController {
      * @return retorna ila string com o nome do arquivo. (já com o .java)
      */
     private synchronized static String gerarNomeDaClasseJava(String codigo, String nomeDoArtefato){
-        return nomeDoArtefato.concat("_").concat(codigo.replaceAll("\\W", "")).concat("_Test.java");
+        codigo = codigo.replaceAll("\\W", "");
+
+        return nomeDoArtefato.concat("_").concat(codigo).concat("_Test");
     }
 
 
-    public synchronized static boolean salvarCasoDeTeste(String codigo, String nome, String descricao, String codigoFonteJunit, String nomeDoArtefato, String codCU){
-        String nomeArquivo = gerarNomeDaClasseJava(codigo, nomeDoArtefato);
+    public synchronized static boolean salvarCasoDeTeste(String nome, String descricao, String codigoFonteJunit, String codCU){
+        //Pega o nome da classe do artefato sendo testado
+        String nomeDoArtefatoSendoTestado = artefatoDeTesteDendoEditado.getNomeArquivo();
+        nomeDoArtefatoSendoTestado = nomeDoArtefatoSendoTestado.replaceAll("\\.java","");
+
+        System.out.println(ProjetoController.getProjetoAtivo());
+        System.out.println(artefatoDeTesteDendoEditado);
+
+        //gera um codigo para este classe de teste
+        String codigo = ProjetoController.gerarPrefixo("caso de teste");
+
+        String nomeDaClasseDeTeste = gerarNomeDaClasseJava(codigo, nomeDoArtefatoSendoTestado);
+
+        // da nome a classe de teste
+        codigoFonteJunit= codigoFonteJunit.replaceAll("\\{\\$className}", nomeDaClasseDeTeste);
+
+
         FileWriter fileWriter = null;
         try {
-            //Salva o arquivo!
-            File file = new File(ProjetoController.getSrcCasosDeTeste() + nomeArquivo);
-            file.setWritable(true);
-            file.setReadable(true);
-            file.createNewFile();
-            fileWriter = new FileWriter(file);
-            fileWriter.write(codigoFonteJunit);
-
-            //Persiste as informações
-            boolean retorno = dao.salvar(
-                    codigo,
-                    nome,
-                    nomeArquivo,
-                    nomeDoArtefato,
-                    descricao,
-                    ProjetoController.getInformacoesDoProjetoAtivo().getCodigo(),
-                    codCU,
-                    UsuarioController.getEmailUsuarioLogado()
-            );
-
-            return retorno;
-        } catch (IOException e){
+            // cria um arquivo .java para a classe de teste, dentro do diretorio do projeto.
+            fileWriter = new FileWriter(criarArquivo(ProjetoController.getSrcCasosDeTeste().concat(nomeDaClasseDeTeste).concat(".java")));
+        }catch (IOException e){
             e.printStackTrace();
-        }finally {
+        }
+
+        try {
+            CasoDeTeste casoDeTeste = new CasoDeTeste(
+                    codigo
+                    , nome
+                    , nomeDaClasseDeTeste
+                    , nomeDoArtefatoSendoTestado
+                    , descricao
+                    , artefatoDeTesteDendoEditado.getProjetoId()
+                    , artefatoDeTesteDendoEditado.getProjetoId()
+                    , codCU
+                    , UsuarioController.getEmailUsuarioLogado()
+            );
             try {
-                fileWriter.flush();
-            } catch (IOException e) {
+                fileWriter.write(codigoFonteJunit);
+                //Persiste as informações
+                boolean retorno = dao.salvar(
+                        codigo
+                        , nome
+                        , nomeDaClasseDeTeste
+                        , nomeDoArtefatoSendoTestado
+                        , descricao
+                        , artefatoDeTesteDendoEditado.getProjetoId()
+                        , codCU
+                        , UsuarioController.getEmailUsuarioLogado()
+                );
+
+                return retorno;
+            } catch (IOException e){
                 e.printStackTrace();
+            }finally {
+                try {
+                    fileWriter.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    fileWriter.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-            try {
-                fileWriter.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        }  catch (Exception e){
+            e.printStackTrace();
         }
         return false;
+    }
+
+    private synchronized static File criarArquivo(String novoDoArquivo) throws IOException {
+        File file = new File(novoDoArquivo);
+        file.setWritable(true);
+        file.setReadable(true);
+        file.createNewFile();
+        return file;
+    }
+
+    public static ArtefatoDeTeste getArtefatoDeTesteSendoEditado() {
+        return artefatoDeTesteDendoEditado;
+    }
+
+    /**
+     * Seta o artefato de teste que está sendo editado.
+     * @param artefato
+     */
+    public static void novoCasoDeTestePara(ArtefatoDeTeste artefato) {
+        artefatoDeTesteDendoEditado = artefato;
     }
 }

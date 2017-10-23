@@ -28,11 +28,13 @@ public class CasoDeTesteFactory extends AbstractFactory {
                     lista.add(new CasoDeTeste(
                             resultSet.getString("codigo"),
                             resultSet.getString("nome"),
+                            resultSet.getString("nomeClasseTeste"),
+                            resultSet.getString("nomeClasseArtefato"),
                             resultSet.getString("descricao"),
+                            resultSet.getString("projetiID"),
                             resultSet.getString("casoDeUsoCodigo"),
                             resultSet.getString("resultado"),
-                            resultSet.getString("emailUsuario"),
-                            resultSet.getString("absPathClass")
+                            resultSet.getString("emailUsuario")
                     ));
                 }
                 return lista;
@@ -52,8 +54,9 @@ public class CasoDeTesteFactory extends AbstractFactory {
         return null;
     }
 
-    public synchronized boolean salvar(String codigo, String nome, String nomeCaso, String nomeDoArtefato, String descricao, String pjID, String cuCOD, String email){
-        String dml = String.format("INSERT INTO caso_de_teste VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')", codigo, nome, nomeCaso, nomeDoArtefato, descricao, pjID, cuCOD, email);
+    public synchronized boolean salvar(String codigo, String nome, String nomeDaClasseDeTeste, String nomeDoArtefato, String descricao, String pjID, String cuCOD, String email){
+        String dml = String.format("INSERT INTO caso_de_teste VALUES ('%s', '%s', '%s', '%s', '%s', %s, '%s', '%s', null)", codigo, nome, nomeDaClasseDeTeste, nomeDoArtefato, descricao, pjID, cuCOD, email);
+        System.out.println(dml);
         try {
             AbstractFactory.execultarAtualizacao(dml);
             return true;

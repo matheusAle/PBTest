@@ -1,7 +1,12 @@
 package view;
 
 import controller.CasoDeTesteController;
+import controller.CasoDeUsoController;
+import controller.SistemaController;
 import model.ArtefatoDeTeste;
+import model.CasoDeTeste;
+import resources.Cores;
+import resources.Fontes;
 import resources.Strings;
 import view.Componetes.*;
 
@@ -21,7 +26,7 @@ public class CasosDeTestePainel extends Painel{
 
     private JSplitPane painelDividido;
     private JPanel painelArtefatos;
-    private JPanel painelCasosDeTeste;
+    private PainelDeCasoDeTeste painelCasosDeTeste;
     private ArvoreDeArtefatos arvoreDeArtefatos;
 
     public CasosDeTestePainel(){
@@ -62,10 +67,7 @@ public class CasosDeTestePainel extends Painel{
      */
     private void carregarPaineis() {
         painelArtefatos = new JPanel(new BorderLayout(5, 5));
-        painelCasosDeTeste = new JPanel(new BorderLayout(5, 5));
-        painelCasosDeTeste.setBorder(new EmptyBorder(1, 1,1 ,1));
-        painelArtefatos.setBorder(new EmptyBorder(1, 1,1 ,1));
-
+        painelCasosDeTeste = new PainelDeCasoDeTeste("Selecione um artefato");
     }
 
     /**
@@ -93,21 +95,148 @@ public class CasosDeTestePainel extends Painel{
         arvoreDeArtefatos = new ArvoreDeArtefatos(root);
     }
 
-
     /**
      * Carrega os casos de teste asociados a o arefato no painel direito.
+     *
      * @param artefato artefato que reta os casos de teste carregados.
      */
-    private void carregarCasosDeTesteDoArtefato(ArtefatoDeTeste artefato){
+    private void carregarCasosDeTesteDoArtefato(ArtefatoDeTeste artefato) {
+        painelCasosDeTeste.setTitulo("Casos de teste Para: " + artefato.getNomeArquivo());
+        painelCasosDeTeste.limparConteudo();
+        CasoDeTesteController.carregarCasosDeTesteDoArtefato(artefato.getPakage(), artefato.getProjetoId(), artefato.getNomeArquivo());
+        artefato.getCasosDeTeste().forEach((e) -> {
+            painelCasosDeTeste.addConteudo(new CasoDeTesteItem(e));
+        });
+        Botao novo = new Botao();
+        novo.setText("NOVO");
+        novo.setCorDeFundoNormal(Cores.FUNDO_BOTAO);
+        novo.setCorDeFundoHover(Color.red);
+        novo.setOnMouseClick((e) -> {
+            CasoDeTesteController.novoCasoDeTestePara(artefato);
+           SistemaController.setPainelDeTrabalho("CRIAR_CASO_DE_TESTE");
+        });
+        painelCasosDeTeste.addConteudo(novo);
+        painelCasosDeTeste.repaint();
+    }
+
+    /**
+     * Modela um item da listagem de artefatos
+     */
+    private class CasoDeTesteItem extends PainelItem {
+        private MeuLabel codigo;
+        private javax.swing.JPanel jPanel1;
+        private MeuLabel legendaCodigo;
+        private MeuLabel legendaNome;
+        private MeuLabel nome;
+
+
+        CasoDeTesteItem(CasoDeTeste casoDeTeste){
+            carregarComponetes();
+            carregarLayout();
+            codigo.setText(casoDeTeste.getCodigo());
+            nome.setText(casoDeTeste.getNome());
+        }
+
+        /**
+         * inicia is componentes.
+         */
+        private void carregarComponetes(){
+            jPanel1 = new javax.swing.JPanel();
+            legendaCodigo = new MeuLabel();
+            legendaNome = new MeuLabel();
+
+            codigo = new MeuLabel();
+            nome = new MeuLabel();
+            nome.setQuantidadeMaximaDeCaracteres(20);
+
+            legendaCodigo.setText("CODIGO:");
+            legendaNome.setText("NOME:");
+        }
+
+        private void carregarLayout(){
+            javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+            jPanel1.setLayout(jPanel1Layout);
+            jPanel1Layout.setHorizontalGroup(
+                    jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(legendaCodigo, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(legendaNome, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            );
+            jPanel1Layout.setVerticalGroup(
+                    jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(legendaCodigo)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(legendaNome)
+                                    .addContainerGap(19, Short.MAX_VALUE))
+            );
+            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+            this.setLayout(layout);
+            layout.setHorizontalGroup(
+                    layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(nome)
+                                            .addComponent(codigo)))
+            );
+            layout.setVerticalGroup(
+                    layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(codigo)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(nome))
+            );
+        }
 
     }
 
+    /**
+     * Nodela o painel que contem a listagem dos casos de teste vinculado ao artefato selecionado
+     * na arvore deartefatas.
+     */
+    class PainelDeCasoDeTeste extends JPanel {
+        JLabel titulo;
+        JPanel conteudo;
 
-    private class CasoDeTestePainelItem extends PainelItem {
+        PainelDeCasoDeTeste (String titulo){
+            super(new BorderLayout(5, 5));
+            super.setBorder(new EmptyBorder(0, 0,0 ,0));
+            this.titulo = new JLabel(titulo);
+            this.titulo.setFont(Fontes.PAINEL_TITULO.deriveFont(14f));
+            super.add(this.titulo, BorderLayout.NORTH);
+            super.setPreferredSize(new Dimension(200, 500));
 
-        CasoDeTestePainelItem(){
+            conteudo = new JPanel(new FlowLayout(FlowLayout.LEADING, 5,5));
+            conteudo.setBorder(new EmptyBorder(0, 0,0 ,0));
+            super.add(conteudo);
+        }
 
+
+        /**
+         * @param c item que sera colocado no painel
+         */
+        public void addConteudo(Component c){
+            conteudo.add(c);
+        }
+
+        /**
+         * inpa todos os item
+         */
+        public void limparConteudo(){
+            conteudo.removeAll();
+            conteudo.repaint();
+        }
+
+        public void setTitulo(String titulo) {
+            this.titulo.setText(titulo);
         }
     }
-
 }

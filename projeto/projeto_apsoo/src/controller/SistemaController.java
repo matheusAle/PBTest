@@ -59,6 +59,7 @@ public class SistemaController {
             case "CRIAR_CASO_DE_TESTE":
                 if (ProjetoController.temProjetoAtivo()) throw new CasoDeTesteExeption("Não existe nem um projeto ativo!");
                 p = PaineisDeTabalho.CRIAR_CASO_DE_TESTE;
+                ((CriarCasoDeTestePainel)p).iniciar();
                 break;
             case "ROTEIROS_DE_TESTE":
                 if (ProjetoController.temProjetoAtivo()) throw new RoteiroDeTesteExeption("Não existe nem um projeto ativo!");

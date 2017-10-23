@@ -1,5 +1,6 @@
 package model;
 
+import controller.ProjetoController;
 import controller.exceptions.CasoDeTesteException;
 
 import java.io.File;
@@ -33,7 +34,7 @@ public final class TestesPool {
             if (Files.exists(Paths.get(path))){
                 LinkedList<File> lista = new LinkedList<>();
                 File[] files = (new File(path)).listFiles();
-                gerarListaDeArtefatos(files, "");
+                gerarListaDeArtefatos(files, "", ProjetoController.getInformacoesDoProjetoAtivo().getCodigo());
             }else {
                 throw new CasoDeTesteException("O diretorio do projeto não foi encontrado: src: " + path);
             }
@@ -50,13 +51,13 @@ public final class TestesPool {
      * @param files arquivos do diretorio raiz.
      * @param pakageNome nome do pacote.
      */
-    private static void gerarListaDeArtefatos(File[] files, String pakageNome){
+    private static void gerarListaDeArtefatos(File[] files, String pakageNome, String prjID){
         for (File f: files){
             if(f.isDirectory()){
-                gerarListaDeArtefatos(f.listFiles(), (pakageNome == "" ? "" : pakageNome+".").concat(f.getName()));
+                gerarListaDeArtefatos(f.listFiles(), (pakageNome == "" ? "" : pakageNome+".").concat(f.getName()), prjID);
             }else {
                 if (f.getName().endsWith(".class") || f.getName().endsWith(".java")) {
-                    listaDeArtefatos.add(new ArtefatoDeTeste(pakageNome, f.getName(), f.getAbsolutePath()));
+                    listaDeArtefatos.add(new ArtefatoDeTeste(pakageNome, f.getName(), f.getAbsolutePath(), prjID));
                 }
             }
         }

@@ -1,6 +1,7 @@
 package controller;
 
 import controller.exceptions.ProjetoException;
+import model.ArtefatoDeTeste;
 import model.CasoDeUso;
 import model.Factorys.CasosDeUsoFactory;
 

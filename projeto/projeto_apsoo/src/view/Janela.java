@@ -136,22 +136,14 @@ public class Janela extends JFrame{
                     try {
                         SistemaController.setPainelDeTrabalho("CASOS_DE_USO");
                     } catch (CasoDeUsoExeption casoDeUsoExeption) {
-                        casoDeUsoExeption.printStackTrace();
-                    } catch (CasoDeTesteExeption casoDeTesteExeption) {
-                        casoDeTesteExeption.printStackTrace();
-                    } catch (RoteiroDeTesteExeption roteiroDeTesteExeption) {
-                        roteiroDeTesteExeption.printStackTrace();
+                        JOptionPane.showMessageDialog(Janela.this, "Ative um Projeto!");
                     }
                 });
                 btn_casos_teste.setOnClick((e) -> {
                     try {
                         SistemaController.setPainelDeTrabalho("CASOS_DE_TESTE");
-                    } catch (CasoDeUsoExeption casoDeUsoExeption) {
-                        casoDeUsoExeption.printStackTrace();
                     } catch (CasoDeTesteExeption casoDeTesteExeption) {
-                        casoDeTesteExeption.printStackTrace();
-                    } catch (RoteiroDeTesteExeption roteiroDeTesteExeption) {
-                        roteiroDeTesteExeption.printStackTrace();
+                        JOptionPane.showMessageDialog(Janela.this, "Ative um Projeto!");
                     }
                 });
             }
