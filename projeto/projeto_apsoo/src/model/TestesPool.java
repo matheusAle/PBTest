@@ -57,7 +57,7 @@ public final class TestesPool {
                 gerarListaDeArtefatos(f.listFiles(), (pakageNome == "" ? "" : pakageNome+".").concat(f.getName()), prjID);
             }else {
                 if (f.getName().endsWith(".class") || f.getName().endsWith(".java")) {
-                    listaDeArtefatos.add(new ArtefatoDeTeste(pakageNome, f.getName(), f.getAbsolutePath(), prjID));
+                    listaDeArtefatos.add(new ArtefatoDeTeste(pakageNome, f.getName(), prjID));
                 }
             }
         }

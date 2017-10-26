@@ -8,14 +8,12 @@ import java.util.LinkedList;
 public class ArtefatoDeTeste implements Comparable<ArtefatoDeTeste>{
     private String pakage;
     private String nomeArquivo;
-    private String caminhoAbsoluto;
     private LinkedList<CasoDeTeste> casosDeTeste;
     private String projetoId;
 
-    public ArtefatoDeTeste(String pakage, String nomeArquivo, String caminhoAbsoluto, String prjId) {
+    public ArtefatoDeTeste(String pakage, String nomeArquivo, String prjId) {
         this.pakage = pakage;
         this.nomeArquivo = nomeArquivo;
-        this.caminhoAbsoluto = caminhoAbsoluto;
         this.projetoId = prjId;
     }
 
@@ -36,11 +34,11 @@ public class ArtefatoDeTeste implements Comparable<ArtefatoDeTeste>{
     }
 
     /**
-     * Retorna o caminho absoluto do diretorio do artefato de teste, de acrdo com o sistema operacional.
+     * Retorna o caminho do arquivo dentro do diretorio do projeto.
      * @return
      */
-    public String getCaminhoAbsoluto() {
-        return caminhoAbsoluto;
+    public String getCaminhoRelativoAoProjeto() {
+        return pakage.concat("\\").concat(nomeArquivo);
     }
 
     /**
@@ -56,8 +54,8 @@ public class ArtefatoDeTeste implements Comparable<ArtefatoDeTeste>{
      * @param casoDeTeste
      */
     public void addCasoDeTeste(CasoDeTeste casoDeTeste){
-        casoDeTeste.setArtefatoDeTeste(this);
         casosDeTeste.add(casoDeTeste);
+        casoDeTeste.setArtefatoDeTeste(this);
 
     }
 
@@ -80,7 +78,6 @@ public class ArtefatoDeTeste implements Comparable<ArtefatoDeTeste>{
         return "ArtefatoDeTeste{" +
                 "pakage='" + pakage + '\'' +
                 ", nomeArquivo='" + nomeArquivo + '\'' +
-                ", caminhoAbsoluto='" + caminhoAbsoluto + '\'' +
                 ", casosDeTeste=" + casosDeTeste +
                 ", projetoId='" + projetoId + '\'' +
                 '}';

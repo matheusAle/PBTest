@@ -1,16 +1,14 @@
 package model;
 
 
-import java.io.File;
-
 /**
  * Classe que modela um caso de teste do sitema
  */
 public class CasoDeTeste {
     private String codigo;
     private String nome;
-    private String nomeClasseDeTeste;
-    private String nomeClasseSendoTestada;
+    private String srcCasoDeTeste;
+    private String srcCasoArtefatoDeTeste;
     private String descricao;
     private String projetoId;
     private String codigoCasoDeUso;
@@ -18,11 +16,11 @@ public class CasoDeTeste {
     private ArtefatoDeTeste artefatoDeTeste;
     private String emailUsuario;
 
-    public CasoDeTeste(String codigo, String nome, String nomeClasseDeTeste, String nomeClasseSendoTestada, String descricao, String projetoId, String codigoCasoDeUso, String resultado, String emailUsuario) {
+    public CasoDeTeste(String codigo, String nome, String srcCasoDeTeste, String srcCasoArtefatoDeTeste, String descricao, String projetoId, String codigoCasoDeUso, String resultado, String emailUsuario) {
         this.codigo = codigo;
         this.nome = nome;
-        this.nomeClasseDeTeste = nomeClasseDeTeste;
-        this.nomeClasseSendoTestada = nomeClasseSendoTestada;
+        this.srcCasoDeTeste = srcCasoDeTeste.replaceAll("/", "\\\\");
+        this.srcCasoArtefatoDeTeste = srcCasoArtefatoDeTeste.replaceAll("/", "\\\\");;
         this.descricao = descricao;
         this.projetoId = projetoId;
         this.codigoCasoDeUso = codigoCasoDeUso;
@@ -47,12 +45,12 @@ public class CasoDeTeste {
         return nome;
     }
 
-    public String getNomeClasseDeTeste() {
-        return nomeClasseDeTeste;
+    public String getSrcCasoDeTeste() {
+        return srcCasoDeTeste;
     }
 
-    public String getNomeClasseSendoTestada() {
-        return nomeClasseSendoTestada;
+    public String getSrcCasoArtefatoDeTeste() {
+        return srcCasoArtefatoDeTeste;
     }
 
     public String getDescricao() {

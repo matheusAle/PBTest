@@ -46,7 +46,7 @@ CREATE TABLE caso_de_uso (
 # tabela de casos de teste
 CREATE TABLE caso_de_teste (
 	codigo VARCHAR(20) PRIMARY KEY,
-    nome TEXT NOT NULL,
+    nomeDocaso TEXT NOT NULL,
     nomeClasseTeste TEXT NOT NULL,
     nomeClasseArtefato TEXT NOT NULL,
     descricao TEXT NOT NULL,

@@ -96,14 +96,13 @@ public class CasosDeTestePainel extends Painel{
     }
 
     /**
-     * Carrega os casos de teste asociados a o arefato no painel direito.
-     *
-     * @param artefato artefato que reta os casos de teste carregados.
+     * Carrega os casos de teste associados a o arefato no painel direito.
+     * @param artefato artefato que tera os casos de teste carregados.
      */
     private void carregarCasosDeTesteDoArtefato(ArtefatoDeTeste artefato) {
         painelCasosDeTeste.setTitulo("Casos de teste Para: " + artefato.getNomeArquivo());
         painelCasosDeTeste.limparConteudo();
-        CasoDeTesteController.carregarCasosDeTesteDoArtefato(artefato.getPakage(), artefato.getProjetoId(), artefato.getNomeArquivo());
+        CasoDeTesteController.carregarCasosDeTesteDoArtefato(artefato);
         artefato.getCasosDeTeste().forEach((e) -> {
             painelCasosDeTeste.addConteudo(new CasoDeTesteItem(e));
         });
@@ -111,13 +110,25 @@ public class CasosDeTestePainel extends Painel{
         novo.setText("NOVO");
         novo.setCorDeFundoNormal(Cores.FUNDO_BOTAO);
         novo.setCorDeFundoHover(Color.red);
-        novo.setOnMouseClick((e) -> {
-            CasoDeTesteController.novoCasoDeTestePara(artefato);
-           SistemaController.setPainelDeTrabalho("CRIAR_CASO_DE_TESTE");
-        });
+        novo.setPreferredSize(new Dimension(90, 50));
         painelCasosDeTeste.addConteudo(novo);
         painelCasosDeTeste.repaint();
+        novo.setOnMouseClick((e) -> {
+            this.novoCasoDeTeste(artefato);
+        });
     }
+
+
+    /**
+     * Abre uam jenela popup com um formulario para o cadastro de casos de testes
+     * para o artefato selecionado.
+     * @param artefato artefato selecionado
+     */
+    private void novoCasoDeTeste(ArtefatoDeTeste artefato){
+        new CriarCasoDeTestePainelPopup().iniciarPopup(artefato);
+    }
+
+
 
     /**
      * Modela um item da listagem de artefatos
@@ -131,14 +142,35 @@ public class CasosDeTestePainel extends Painel{
 
 
         CasoDeTesteItem(CasoDeTeste casoDeTeste){
+            super.setBorder(new EmptyBorder(0,0,0,10));
             carregarComponetes();
             carregarLayout();
             codigo.setText(casoDeTeste.getCodigo());
             nome.setText(casoDeTeste.getNome());
+
+            jPanel1.setBackground(Cores.FUNDO_MENU_ESQUERDO);
+            legendaCodigo.setFont(Fontes.LEGENDA_ITEM_LISTA);
+            legendaNome.setFont(Fontes.LEGENDA_ITEM_LISTA);
+            legendaCodigo.setForeground(Cores.TEXTOS);
+            legendaNome.setForeground(Cores.TEXTOS);
+
+            codigo.setFont(Fontes.LEGENDA_ITEM_LISTA);
+            nome.setFont(Fontes.LEGENDA_ITEM_LISTA);
+            codigo.setForeground(Cores.TEXTOS);
+            nome.setForeground(Cores.TEXTOS);
+            super.setCorDeFundoNormal(Cores.TEXTO_MENU_ESQUERDO);
+            super.setCorDeFundoHover(Cores.FUNDO_MENU_ESQUERDO);
+
+            codigo.addMouseListener(this);
+            nome.addMouseListener(this);
+            jPanel1.addMouseListener(this);
+            legendaCodigo.addMouseListener(this);
+            legendaNome.addMouseListener(this);
+
         }
 
         /**
-         * inicia is componentes.
+         * inicia os componentes.
          */
         private void carregarComponetes(){
             jPanel1 = new javax.swing.JPanel();
@@ -199,7 +231,7 @@ public class CasosDeTestePainel extends Painel{
     }
 
     /**
-     * Nodela o painel que contem a listagem dos casos de teste vinculado ao artefato selecionado
+     * modela o painel que contem a listagem dos casos de teste vinculado ao artefato selecionado
      * na arvore deartefatas.
      */
     class PainelDeCasoDeTeste extends JPanel {

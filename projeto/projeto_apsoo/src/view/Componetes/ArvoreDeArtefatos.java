@@ -41,6 +41,7 @@ public class ArvoreDeArtefatos extends JTree implements TreeSelectionListener{
         render.setTextNonSelectionColor(Cores.TEXTOS);
         render.setTextSelectionColor(Cores.TEXTOS);
         super.putClientProperty ("JTree.lineStyle", "None");
+        render.setIcon(null);
         super.setCellRenderer(render);
 
         super.addTreeSelectionListener(this);

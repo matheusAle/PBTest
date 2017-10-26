@@ -56,11 +56,6 @@ public class SistemaController {
                 p = PaineisDeTabalho.CASOS_TESTE;
                 ((CasosDeTestePainel)p).iniciarArvore();
                 break;
-            case "CRIAR_CASO_DE_TESTE":
-                if (ProjetoController.temProjetoAtivo()) throw new CasoDeTesteExeption("Não existe nem um projeto ativo!");
-                p = PaineisDeTabalho.CRIAR_CASO_DE_TESTE;
-                ((CriarCasoDeTestePainel)p).iniciar();
-                break;
             case "ROTEIROS_DE_TESTE":
                 if (ProjetoController.temProjetoAtivo()) throw new RoteiroDeTesteExeption("Não existe nem um projeto ativo!");
                 p = PaineisDeTabalho.MATRIZ_DE_RASTREABIBLIDADE;
@@ -91,7 +86,6 @@ public class SistemaController {
         static final Painel CASOS_TESTE = new CasosDeTestePainel();
         public final Painel ROTEIROS_TESTE = new RoteirosDeTestesPainel();
         static final Painel MATRIZ_DE_RASTREABIBLIDADE = new MatrizDeRastreabilidadePainel();
-        static final Painel CRIAR_CASO_DE_TESTE = new CriarCasoDeTestePainel();
         static final Painel EDITAR_CASO_DE_USO = new EditarCasoDeUsoPainel();
     }
 

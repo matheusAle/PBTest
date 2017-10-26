@@ -55,19 +55,19 @@ public final class CasoDeTesteController {
 
 
     /**
-     * Carreega os artefatos de teste do banco de dados para a pool de testes.
+     * Carrega os artefatos de teste do banco de dados para a pool de testes.
      * @param pacote pacote do artefato de teste
      * @param prjID ID do projeto atual
      * @param nomeArquivo Nome do arquivo do artefato de teste.
      * @return lista encadeada de Casos De Teste
      */
-    public synchronized static LinkedList<CasoDeTeste> carregarCasosDeTesteDoArtefato(String pacote, String prjID, String nomeArquivo){
-        LinkedList<ArtefatoDeTeste> lista = mapaDeArtefatos.get(pacote);
+    public synchronized static LinkedList<CasoDeTeste> carregarCasosDeTesteDoArtefato(ArtefatoDeTeste artefato){
+        LinkedList<ArtefatoDeTeste> lista = mapaDeArtefatos.get(artefato.getPakage());
         LinkedList<model.CasoDeTeste> casosDeTeste = null;
-        for(ArtefatoDeTeste artefato : lista){
-            if (artefato.getNomeArquivo().equals(nomeArquivo)){
-                casosDeTeste =  (LinkedList<model.CasoDeTeste>) dao.listar(prjID, nomeArquivo);
-                TestesPool.setCasosDeTesteDoArtefato(casosDeTeste, nomeArquivo);
+        for(ArtefatoDeTeste artefato1 : lista){
+            if (artefato1.getNomeArquivo().equals(artefato.getNomeArquivo())){
+                casosDeTeste =  (LinkedList<model.CasoDeTeste>) dao.listar(artefato.getProjetoId(), artefato.getCaminhoRelativoAoProjeto());
+                TestesPool.setCasosDeTesteDoArtefato(casosDeTeste, artefato1.getNomeArquivo());
             }
         }
         LinkedList<CasoDeTeste> listaAdapters = new LinkedList<CasoDeTeste>();
@@ -90,89 +90,31 @@ public final class CasoDeTesteController {
         return nomeDoArtefato.concat("_").concat(codigo).concat("_Test");
     }
 
-
-    public synchronized static boolean salvarCasoDeTeste(String nome, String descricao, String codigoFonteJunit, String codCU){
-        //Pega o nome da classe do artefato sendo testado
-        String nomeDoArtefatoSendoTestado = artefatoDeTesteDendoEditado.getNomeArquivo();
-        nomeDoArtefatoSendoTestado = nomeDoArtefatoSendoTestado.replaceAll("\\.java","");
-
-        System.out.println(ProjetoController.getProjetoAtivo());
-        System.out.println(artefatoDeTesteDendoEditado);
-
-        //gera um codigo para este classe de teste
+    public synchronized static String salvarCasoDeTeste(ArtefatoDeTeste artefato, String nome, String descricao, String srcCasoDeTeste, String codCU){
         String codigo = ProjetoController.gerarPrefixo("caso de teste");
-
-        String nomeDaClasseDeTeste = gerarNomeDaClasseJava(codigo, nomeDoArtefatoSendoTestado);
-
-        // da nome a classe de teste
-        codigoFonteJunit= codigoFonteJunit.replaceAll("\\{\\$className}", nomeDaClasseDeTeste);
-
-
-        FileWriter fileWriter = null;
-        try {
-            // cria um arquivo .java para a classe de teste, dentro do diretorio do projeto.
-            fileWriter = new FileWriter(criarArquivo(ProjetoController.getSrcCasosDeTeste().concat(nomeDaClasseDeTeste).concat(".java")));
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-
-        try {
-            CasoDeTeste casoDeTeste = new CasoDeTeste(
-                    codigo
-                    , nome
-                    , nomeDaClasseDeTeste
-                    , nomeDoArtefatoSendoTestado
-                    , descricao
-                    , artefatoDeTesteDendoEditado.getProjetoId()
-                    , artefatoDeTesteDendoEditado.getProjetoId()
-                    , codCU
-                    , UsuarioController.getEmailUsuarioLogado()
-            );
-            try {
-                fileWriter.write(codigoFonteJunit);
-                //Persiste as informações
-                boolean retorno = dao.salvar(
-                        codigo
-                        , nome
-                        , nomeDaClasseDeTeste
-                        , nomeDoArtefatoSendoTestado
-                        , descricao
-                        , artefatoDeTesteDendoEditado.getProjetoId()
-                        , codCU
-                        , UsuarioController.getEmailUsuarioLogado()
-                );
-
-                return retorno;
-            } catch (IOException e){
-                e.printStackTrace();
-            }finally {
-                try {
-                    fileWriter.flush();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    fileWriter.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }  catch (Exception e){
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    private synchronized static File criarArquivo(String novoDoArquivo) throws IOException {
-        File file = new File(novoDoArquivo);
-        file.setWritable(true);
-        file.setReadable(true);
-        file.createNewFile();
-        return file;
-    }
-
-    public static ArtefatoDeTeste getArtefatoDeTesteSendoEditado() {
-        return artefatoDeTesteDendoEditado;
+        CasoDeTeste casoDeTeste = new CasoDeTeste(
+                codigo
+                , nome
+                , srcCasoDeTeste.replace(ProjetoController.getInformacoesDoProjetoAtivo().getSrc().concat("\\"), "")
+                , artefato.getCaminhoRelativoAoProjeto()
+                , descricao
+                , artefato.getProjetoId()
+                , codCU
+                , null
+                , UsuarioController.getEmailUsuarioLogado()
+        );
+        boolean retorno = dao.salvar(
+                codigo
+                , nome
+                , srcCasoDeTeste.replace(ProjetoController.getInformacoesDoProjetoAtivo().getSrc().concat("\\"), "")
+                , artefato.getCaminhoRelativoAoProjeto()
+                , descricao
+                , artefato.getProjetoId()
+                , codCU
+                , UsuarioController.getEmailUsuarioLogado()
+        );
+        artefato.addCasoDeTeste(casoDeTeste);
+        return codigo;
     }
 
     /**

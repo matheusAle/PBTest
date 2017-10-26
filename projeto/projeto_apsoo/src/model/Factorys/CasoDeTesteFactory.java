@@ -1,5 +1,6 @@
 package model.Factorys;
 
+import controller.exceptions.CasoDeTesteException;
 import model.CasoDeTeste;
 
 import java.sql.ResultSet;
@@ -19,7 +20,7 @@ public class CasoDeTesteFactory extends AbstractFactory {
      * @return Collerctio\<CasoDeTeste\> com os casos de teste do artefato.
      */
     public synchronized Collection<CasoDeTeste> listar(String pjID, String classTeste) {
-        String query = String.format("SELECT * FROM caso_de_teste WHERE projetoID = '%s' AND nomeClasseTeste = '%s' ", pjID, classTeste );
+        String query = String.format("SELECT * FROM caso_de_teste WHERE projetoID = %s AND nomeClasseArtefato = '%s' ", pjID, classTeste.replaceAll("\\\\","/"));
         ResultSet resultSet = super.execultarBusca(query);
         if (resultSet != null){
             try {
@@ -31,7 +32,7 @@ public class CasoDeTesteFactory extends AbstractFactory {
                             resultSet.getString("nomeClasseTeste"),
                             resultSet.getString("nomeClasseArtefato"),
                             resultSet.getString("descricao"),
-                            resultSet.getString("projetiID"),
+                            resultSet.getString("projetoID"),
                             resultSet.getString("casoDeUsoCodigo"),
                             resultSet.getString("resultado"),
                             resultSet.getString("emailUsuario")
@@ -39,7 +40,6 @@ public class CasoDeTesteFactory extends AbstractFactory {
                 }
                 return lista;
             } catch (SQLException e) {
-                System.err.println("ERRO em CasoDeTesteFactory::listar -> ");
                 e.printStackTrace();
             }
         }
@@ -54,16 +54,28 @@ public class CasoDeTesteFactory extends AbstractFactory {
         return null;
     }
 
-    public synchronized boolean salvar(String codigo, String nome, String nomeDaClasseDeTeste, String nomeDoArtefato, String descricao, String pjID, String cuCOD, String email){
-        String dml = String.format("INSERT INTO caso_de_teste VALUES ('%s', '%s', '%s', '%s', '%s', %s, '%s', '%s', null)", codigo, nome, nomeDaClasseDeTeste, nomeDoArtefato, descricao, pjID, cuCOD, email);
+    /**
+     * perssite um caso de teste no banco e dados.
+     * @param codigo codigo do caso de teste
+     * @param nome nome do caso de teste
+     * @param srcClasseDeTeste src da calsse que realiza os teste que esta sendo testado
+     * @param srcDoArtefato src do artefato que esta semdo testado.
+     * @param descricao descrição deste caso de teste
+     * @param pjID projeto do caso dde teste e do artefato
+     * @param cuCOD codigo do caso de uso
+     * @param email email do usuario que conculou
+     * @return true se a operação dor vem sucediida.
+     */
+    public synchronized boolean salvar(String codigo, String nome, String srcClasseDeTeste, String srcDoArtefato, String descricao, String pjID, String cuCOD, String email){
+        String dml = String.format("INSERT INTO caso_de_teste VALUES ('%s', '%s', '%s', '%s', '%s', %s, '%s', '%s', null)", codigo, nome, srcClasseDeTeste.replaceAll("\\\\", "/"), srcDoArtefato.replaceAll("\\\\", "/"), descricao, pjID, cuCOD, email);
         System.out.println(dml);
         try {
             AbstractFactory.execultarAtualizacao(dml);
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new CasoDeTesteException("Não foi possivel salvar o caso de teste!");
         }
-        return false;
     }
 
 }
