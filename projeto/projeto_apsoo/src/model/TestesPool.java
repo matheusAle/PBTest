@@ -22,7 +22,6 @@ public final class TestesPool {
         listaDeArtefatos = new LinkedList<>();
     }
 
-
     /**
      * Carrega os artefatos de teste e casos de teste dos artefatos na memoria.
      * @param projeto
@@ -77,5 +76,20 @@ public final class TestesPool {
             }
         });
 
+    }
+
+    /**
+     * Altera do caso de uso para os passados por paramentro
+     * @param casoDeTeste Caso de teste que recebera os novos valores
+     * @param nome novo nome
+     * @param descricao nova descrição
+     * @param srcCasoDeTeste nodo src
+     * @param codigoCasoDeUsoSelecionado  novo codigo de caso de uso.
+     */
+    public static void alterarCasoDeTeste(CasoDeTeste casoDeTeste, String nome, String descricao, String srcCasoDeTeste, String codigoCasoDeUsoSelecionado) {
+        casoDeTeste.setNome(nome);
+        casoDeTeste.setSrcCasoDeTeste(srcCasoDeTeste.replace(ProjetoController.getInformacoesDoProjetoAtivo().getSrc().concat("\\"), ""));
+        casoDeTeste.setDescricao(descricao);
+        casoDeTeste.setCodigoCasoDeUso(codigoCasoDeUsoSelecionado);
     }
 }

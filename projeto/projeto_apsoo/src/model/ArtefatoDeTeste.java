@@ -56,11 +56,11 @@ public class ArtefatoDeTeste implements Comparable<ArtefatoDeTeste>{
     public void addCasoDeTeste(CasoDeTeste casoDeTeste){
         casosDeTeste.add(casoDeTeste);
         casoDeTeste.setArtefatoDeTeste(this);
-
     }
 
     public void setCasosDeTeste(LinkedList<CasoDeTeste> casosDeTeste) {
         this.casosDeTeste = casosDeTeste;
+        casosDeTeste.forEach((e)-> e.setArtefatoDeTeste(this));
     }
 
     @Override

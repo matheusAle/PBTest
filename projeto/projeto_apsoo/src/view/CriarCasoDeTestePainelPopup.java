@@ -5,6 +5,7 @@ import controller.CasoDeUsoController;
 import controller.ProjetoController;
 import controller.SistemaController;
 import model.ArtefatoDeTeste;
+import model.CasoDeTeste;
 import resources.Cores;
 import resources.Fontes;
 import view.Componetes.Botao;
@@ -39,6 +40,7 @@ public class CriarCasoDeTestePainelPopup extends JFrame{
     private javax.swing.JPanel painelLegenda;
     private javax.swing.JPanel painelOpcoes;
     private ArtefatoDeTeste artefato;
+    private CasoDeTeste casoDeTeste;
     private String srcCasoDeTeste;
 
     public CriarCasoDeTestePainelPopup(){
@@ -57,10 +59,34 @@ public class CriarCasoDeTestePainelPopup extends JFrame{
 
     }
 
-    public void iniciarPopup(ArtefatoDeTeste artefatoDeTeste){
+    /**
+     * inicia o foirmulario de catrastro de caso de teste.
+     * @param artefatoDeTeste
+     * @return
+     */
+    public CriarCasoDeTestePainelPopup iniciarPopup(ArtefatoDeTeste artefatoDeTeste){
         labelTituloPainel.setText(labelTituloPainel.getText().concat(" ").concat(artefatoDeTeste.getNomeArquivo()));
         this.artefato = artefatoDeTeste;
         carregarCasosDeUso();
+        return this;
+    }
+
+    public void carregarCasoDeTeste(CasoDeTeste casoDeTeste){
+        campoNome.setText(casoDeTeste.getNome());
+        campoDescricao.setText(casoDeTeste.getDescricao());
+        labelArquivoDeTeste.setText(casoDeTeste.getSrcCasoDeTeste());
+        srcCasoDeTeste = casoDeTeste.getSrcCasoDeTeste();
+        int index;
+        System.out.println(casosDeUso.getItemCount());
+        for (index = 0; index < casosDeUso.getItemCount(); index++){
+            String codDropbox = casosDeUso.getItemAt(index);
+            String codCt = casoDeTeste.getCodigoCasoDeUso();
+            if(codDropbox.startsWith(codCt)) break;
+        }
+
+
+        casosDeUso.setSelectedIndex(index);
+        this.casoDeTeste = casoDeTeste;
     }
 
     /**
@@ -104,7 +130,6 @@ public class CriarCasoDeTestePainelPopup extends JFrame{
         return ((String)casosDeUso.getSelectedItem()).substring(0, 11).trim();
     }
 
-
     /**
      * instancia os componentes
      */
@@ -118,7 +143,7 @@ public class CriarCasoDeTestePainelPopup extends JFrame{
         campoNome = new MeuCampoDeTexto();
         campoDescricao = new javax.swing.JTextArea();
         btnSelecionarArquivo = new Botao();
-        casosDeUso = new javax.swing.JComboBox<>();
+        casosDeUso = new javax.swing.JComboBox<String>();
         labelArquivoDeTeste = new MeuLabel();
         painelOpcoes = new javax.swing.JPanel();
         btnSalvar = new Botao();
@@ -128,7 +153,6 @@ public class CriarCasoDeTestePainelPopup extends JFrame{
         labelTituloPainel = new MeuLabel();
         campoDescricaoContainer = new MeuPainelComScrollBar(campoDescricao);
     }
-
 
     /**
      * Carrega os textos do painel
@@ -188,7 +212,6 @@ public class CriarCasoDeTestePainelPopup extends JFrame{
 
     }
 
-
     /**
      * inicia os ouvites dos componetes
      */
@@ -198,7 +221,6 @@ public class CriarCasoDeTestePainelPopup extends JFrame{
         btnCancelar.setOnMouseClick((e)-> this.cancelar());
         btnSelecionarArquivo.setOnMouseClick((e) -> selecionarArquivo());
     }
-
 
     /**
      * Abre uma janela de seleção de arquivo que permite apenas que arquivos .java ou .class sejan selecionados
@@ -225,28 +247,51 @@ public class CriarCasoDeTestePainelPopup extends JFrame{
 
     }
 
+    /**
+     * Fecha janela popup
+     */
     private void cancelar() {
         super.dispose();
     }
 
+    /**
+     * Se o não existir nem um caso de teste setado, um novo caso de teste criado com os valores atuais dos campos.
+     * Se existir um caso de uso setado. ele reta seus dados alterados co os valores atuais dos campos.
+     */
     private void salvarCasoDeTeste() {
         if (todosOsCamposValidos()) {
-            CasoDeTesteController.salvarCasoDeTeste(
-                    artefato,
-                    campoNome.getText(),
-                    campoDescricao.getText(),
-                    srcCasoDeTeste,
-                    getCodigoCasoDeUsoSelecionado()
-            );
-            limparCampos();
+            if (casoDeTeste == null) {
+                String cod = CasoDeTesteController.salvarCasoDeTeste(
+                        artefato,
+                        campoNome.getText(),
+                        campoDescricao.getText(),
+                        srcCasoDeTeste,
+                        getCodigoCasoDeUsoSelecionado()
+                );
+                limparCampos();
+                JOptionPane.showMessageDialog(this, "Caso de teste criado com sucesso!\nO novo caso de teste tem o codigo: "+cod, "Sucesso!",  JOptionPane.PLAIN_MESSAGE);
+            } else {
+                CasoDeTesteController.salvarMudancasNoCasoDeTeste(casoDeTeste,
+                        campoNome.getText(),
+                        campoDescricao.getText(),
+                        srcCasoDeTeste,
+                        getCodigoCasoDeUsoSelecionado()
+                );
+                JOptionPane.showMessageDialog(this, "As alterações foram slavas!", "Sucesso!",  JOptionPane.PLAIN_MESSAGE);
+                cancelar();
+            }
         }
     }
 
+    /**
+     * Limpa todos os textos dos campos do formulario
+     */
     private void limparCampos() {
         campoNome.setText("");
         campoDescricao.setText("");
         casosDeUso.setSelectedIndex(0);
         labelArquivoDeTeste.setText("Selecione um arquivo");
+        srcCasoDeTeste = null;
     }
 
     /**

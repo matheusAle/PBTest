@@ -77,19 +77,15 @@ public final class CasoDeTesteController {
         return listaAdapters;
     }
 
-
     /**
-     * Gera o nome do arquivo apartir dos paremetros informados.
-     * @param codigo
-     * @param nomeDoArtefato
-     * @return retorna ila string com o nome do arquivo. (já com o .java)
+     * Persiste um novo caso de teste para o artefato passado como parametro.
+     * @param artefato objeto do artefato.
+     * @param nome nome do novo caso de teste
+     * @param descricao descrição do caso de teste
+     * @param srcCasoDeTeste src do arquivo que contem o codigo junit para reaizar os testes
+     * @param codCU codigo do caso de uso vinculado ao caso de teste.
+     * @return retorna o codigo do caso de uso.
      */
-    private synchronized static String gerarNomeDaClasseJava(String codigo, String nomeDoArtefato){
-        codigo = codigo.replaceAll("\\W", "");
-
-        return nomeDoArtefato.concat("_").concat(codigo).concat("_Test");
-    }
-
     public synchronized static String salvarCasoDeTeste(ArtefatoDeTeste artefato, String nome, String descricao, String srcCasoDeTeste, String codCU){
         String codigo = ProjetoController.gerarPrefixo("caso de teste");
         CasoDeTeste casoDeTeste = new CasoDeTeste(
@@ -123,5 +119,10 @@ public final class CasoDeTesteController {
      */
     public static void novoCasoDeTestePara(ArtefatoDeTeste artefato) {
         artefatoDeTesteDendoEditado = artefato;
+    }
+
+    public static void salvarMudancasNoCasoDeTeste(CasoDeTeste casoDeTeste, String nome, String descricao, String srcCasoDeTeste, String codigoCasoDeUsoSelecionado) {
+        TestesPool.alterarCasoDeTeste(casoDeTeste, nome, descricao, srcCasoDeTeste, codigoCasoDeUsoSelecionado);
+        dao.atualizar(casoDeTeste.getCodigo(), casoDeTeste.getArtefatoDeTeste(), casoDeTeste.getProjetoId(), nome, srcCasoDeTeste, descricao, codigoCasoDeUsoSelecionado);
     }
 }

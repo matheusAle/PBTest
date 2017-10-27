@@ -1,5 +1,7 @@
 package model.Factorys;
 
+import model.ArtefatoDeTeste;
+
 import java.sql.*;
 import java.util.Collection;
 

@@ -8,7 +8,7 @@ public class CasoDeTeste {
     private String codigo;
     private String nome;
     private String srcCasoDeTeste;
-    private String srcCasoArtefatoDeTeste;
+    private String srcArtefatoDeTeste;
     private String descricao;
     private String projetoId;
     private String codigoCasoDeUso;
@@ -16,11 +16,11 @@ public class CasoDeTeste {
     private ArtefatoDeTeste artefatoDeTeste;
     private String emailUsuario;
 
-    public CasoDeTeste(String codigo, String nome, String srcCasoDeTeste, String srcCasoArtefatoDeTeste, String descricao, String projetoId, String codigoCasoDeUso, String resultado, String emailUsuario) {
+    public CasoDeTeste(String codigo, String nome, String srcCasoDeTeste, String srcArtefatoDeTeste, String descricao, String projetoId, String codigoCasoDeUso, String resultado, String emailUsuario) {
         this.codigo = codigo;
         this.nome = nome;
         this.srcCasoDeTeste = srcCasoDeTeste.replaceAll("/", "\\\\");
-        this.srcCasoArtefatoDeTeste = srcCasoArtefatoDeTeste.replaceAll("/", "\\\\");;
+        this.srcArtefatoDeTeste = srcArtefatoDeTeste.replaceAll("/", "\\\\");;
         this.descricao = descricao;
         this.projetoId = projetoId;
         this.codigoCasoDeUso = codigoCasoDeUso;
@@ -49,10 +49,6 @@ public class CasoDeTeste {
         return srcCasoDeTeste;
     }
 
-    public String getSrcCasoArtefatoDeTeste() {
-        return srcCasoArtefatoDeTeste;
-    }
-
     public String getDescricao() {
         return descricao;
     }
@@ -69,7 +65,28 @@ public class CasoDeTeste {
         return resultado;
     }
 
-    public String getEmailUsuario() {
-        return emailUsuario;
+
+    public ArtefatoDeTeste getArtefatoDeTeste() {
+        return artefatoDeTeste;
+    }
+
+    void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    void setSrcCasoDeTeste(String srcCasoDeTeste) {
+        this.srcCasoDeTeste = srcCasoDeTeste;
+    }
+
+    void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    void setCodigoCasoDeUso(String codigoCasoDeUso) {
+        this.codigoCasoDeUso = codigoCasoDeUso;
+    }
+
+    void setResultado(String resultado) {
+        this.resultado = resultado;
     }
 }

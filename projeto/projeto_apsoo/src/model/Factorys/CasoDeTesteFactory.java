@@ -1,6 +1,7 @@
 package model.Factorys;
 
 import controller.exceptions.CasoDeTesteException;
+import model.ArtefatoDeTeste;
 import model.CasoDeTeste;
 
 import java.sql.ResultSet;
@@ -78,4 +79,15 @@ public class CasoDeTesteFactory extends AbstractFactory {
         }
     }
 
+    public boolean atualizar(String codigo, ArtefatoDeTeste artefatoDeTeste, String projetoId, String nome, String srcCasoDeTeste, String descricao, String codigoCasoDeUsoSelecionado) {
+        String dml = String.format("UPDATE caso_de_teste SET nome = '%s', nomeClasseTeste= '%s', descricao = '%s', casoDeUsoCodigo = '%s' WHERE codigo = '%s' AND nomeClasseArtefato = '%s' AND projetoID = %s", nome, srcCasoDeTeste.replaceAll("\\\\", "/"), descricao, codigoCasoDeUsoSelecionado,  codigo, artefatoDeTeste.getCaminhoRelativoAoProjeto().replaceAll("\\\\", "/"), projetoId);
+        System.out.println(dml);
+        try {
+            super.execultarAtualizacao(dml);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

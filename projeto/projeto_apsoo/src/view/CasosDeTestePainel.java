@@ -1,8 +1,6 @@
 package view;
 
 import controller.CasoDeTesteController;
-import controller.CasoDeUsoController;
-import controller.SistemaController;
 import model.ArtefatoDeTeste;
 import model.CasoDeTeste;
 import resources.Cores;
@@ -15,6 +13,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicSplitPaneDivider;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Set;
@@ -44,7 +44,6 @@ public class CasosDeTestePainel extends Painel{
             if (e.getArtefato() != null)
                 this.carregarCasosDeTesteDoArtefato(e.getArtefato());
         });
-
         painelDividido = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
                 new MeuPainelComScrollBar(arvoreDeArtefatos),
                 new MeuPainelComScrollBar(painelCasosDeTeste)
@@ -54,11 +53,9 @@ public class CasosDeTestePainel extends Painel{
                 return new Dimension((getParent().getPreferredSize().width), 550);
             }
         };
-
         painelDividido.setBorder(new EmptyBorder(1,1,1,1));
         BasicSplitPaneDivider dividerContainer = (BasicSplitPaneDivider) painelDividido.getComponent(2);
         dividerContainer.setBorder(new EmptyBorder(1,1,1,1));
-
         super.addConteudo(painelDividido);
     }
 
@@ -74,7 +71,6 @@ public class CasosDeTestePainel extends Painel{
      * Carrega os artefatos mapeados em <link>CasoDeTesteController</link> na Jtree.
      */
     private void carregarArtefatosDeTeste() {
-
         HashMap<String, LinkedList<ArtefatoDeTeste>> mapaDeArtefatos = CasoDeTesteController.getMapaDeArtefatos();
         Set<String> chaves = mapaDeArtefatos.keySet();
         ArvoreNode root = new ArvoreNode("src", null);
@@ -118,7 +114,6 @@ public class CasosDeTestePainel extends Painel{
         });
     }
 
-
     /**
      * Abre uam jenela popup com um formulario para o cadastro de casos de testes
      * para o artefato selecionado.
@@ -128,7 +123,13 @@ public class CasosDeTestePainel extends Painel{
         new CriarCasoDeTestePainelPopup().iniciarPopup(artefato);
     }
 
+    private void deletarCasoDeTeste(CasoDeTeste casoDeTeste){
 
+    }
+
+    private void editarCasoDeTeste(CasoDeTeste casoDeTeste){
+        new CriarCasoDeTestePainelPopup().iniciarPopup(casoDeTeste.getArtefatoDeTeste()).carregarCasoDeTeste(casoDeTeste);
+    }
 
     /**
      * Modela um item da listagem de artefatos
@@ -139,9 +140,10 @@ public class CasosDeTestePainel extends Painel{
         private MeuLabel legendaCodigo;
         private MeuLabel legendaNome;
         private MeuLabel nome;
-
+        private CasoDeTeste casoDeTeste;
 
         CasoDeTesteItem(CasoDeTeste casoDeTeste){
+            this.casoDeTeste = casoDeTeste;
             super.setBorder(new EmptyBorder(0,0,0,10));
             carregarComponetes();
             carregarLayout();
@@ -166,7 +168,29 @@ public class CasosDeTestePainel extends Painel{
             jPanel1.addMouseListener(this);
             legendaCodigo.addMouseListener(this);
             legendaNome.addMouseListener(this);
+            carregarListaners();
 
+        }
+
+        private void carregarListaners(){
+            MeuMenuPopup meuMenuPopup = new MeuMenuPopup();
+            MeuItemMenuPopup editar = new MeuItemMenuPopup("Editar");
+            editar.setOnClick((e) -> {
+                editarCasoDeTeste(casoDeTeste);
+                meuMenuPopup.setVisible(false);
+            });
+            MeuItemMenuPopup deletar = new MeuItemMenuPopup("Deletar");
+            deletar.setOnClick((e) -> {
+                deletarCasoDeTeste(casoDeTeste);
+                meuMenuPopup.setVisible(false);
+            });
+            meuMenuPopup.add(editar);
+            meuMenuPopup.add(deletar);
+            super.setOnMouseClick((e)-> {
+                if (SwingUtilities.isRightMouseButton(e)){
+                    meuMenuPopup.show(e.getComponent(), e.getX(), e.getY());
+                }
+            });
         }
 
         /**
@@ -237,19 +261,20 @@ public class CasosDeTestePainel extends Painel{
     class PainelDeCasoDeTeste extends JPanel {
         JLabel titulo;
         JPanel conteudo;
-
         PainelDeCasoDeTeste (String titulo){
             super(new BorderLayout(5, 5));
             super.setBorder(new EmptyBorder(0, 0,0 ,0));
             this.titulo = new JLabel(titulo);
             this.titulo.setFont(Fontes.PAINEL_TITULO.deriveFont(14f));
             super.add(this.titulo, BorderLayout.NORTH);
-            super.setPreferredSize(new Dimension(200, 500));
-
+            super.setPreferredSize(new Dimension(10000, 10000));
+            super.setBackground(Color.cyan);
             conteudo = new JPanel(new FlowLayout(FlowLayout.LEADING, 5,5));
             conteudo.setBorder(new EmptyBorder(0, 0,0 ,0));
             super.add(conteudo);
+
         }
+
 
 
         /**
@@ -266,7 +291,6 @@ public class CasosDeTestePainel extends Painel{
             conteudo.removeAll();
             conteudo.repaint();
         }
-
         public void setTitulo(String titulo) {
             this.titulo.setText(titulo);
         }
