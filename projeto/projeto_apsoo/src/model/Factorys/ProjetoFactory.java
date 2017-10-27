@@ -52,7 +52,6 @@ public class ProjetoFactory extends AbstractFactory {
         return false;
     }
 
-
     /**
      * busca no banco de dados o id, nome, srcRaiz e a descrição de todos os projetos.
      * @return retorna uma <link>Collection</link> de <Link>Projeto</Link>
@@ -121,6 +120,7 @@ public class ProjetoFactory extends AbstractFactory {
         }
         return false;
     }
+
     /**
      * Busca o valor atau do contador no banco de dados. E atualiza a contagem
      * @param nomeContador Nome do contador: valores possiveis: contadorCT, contadorCU, contadorRT

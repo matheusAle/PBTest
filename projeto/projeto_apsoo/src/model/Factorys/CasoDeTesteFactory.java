@@ -1,6 +1,7 @@
 package model.Factorys;
 
 import controller.exceptions.CasoDeTesteException;
+import controller.exceptions.ProjetoException;
 import model.ArtefatoDeTeste;
 import model.CasoDeTeste;
 
@@ -47,14 +48,6 @@ public class CasoDeTesteFactory extends AbstractFactory {
         return null;
     }
 
-    public Collection listar() {
-        return null;
-    }
-
-    public Collection buscar(String restricao) {
-        return null;
-    }
-
     /**
      * perssite um caso de teste no banco e dados.
      * @param codigo codigo do caso de teste
@@ -79,15 +72,42 @@ public class CasoDeTesteFactory extends AbstractFactory {
         }
     }
 
+    /**
+     * Atualiza os valores do caso de teste com os novos passados por paramentro
+     * @param codigo codogo de caso de teste
+     * @param artefatoDeTeste artefato testado
+     * @param projetoId id do projeto
+     * @param nome novo nome para o caso de teste
+     * @param srcCasoDeTeste novo src para o caso de teste
+     * @param descricao nova descição do caso de teste
+     * @param codigoCasoDeUsoSelecionado novo codigo de caso de uso
+     * @return true se a operação dor vem sucediida.
+     */
     public boolean atualizar(String codigo, ArtefatoDeTeste artefatoDeTeste, String projetoId, String nome, String srcCasoDeTeste, String descricao, String codigoCasoDeUsoSelecionado) {
         String dml = String.format("UPDATE caso_de_teste SET nome = '%s', nomeClasseTeste= '%s', descricao = '%s', casoDeUsoCodigo = '%s' WHERE codigo = '%s' AND nomeClasseArtefato = '%s' AND projetoID = %s", nome, srcCasoDeTeste.replaceAll("\\\\", "/"), descricao, codigoCasoDeUsoSelecionado,  codigo, artefatoDeTeste.getCaminhoRelativoAoProjeto().replaceAll("\\\\", "/"), projetoId);
-        System.out.println(dml);
         try {
-            super.execultarAtualizacao(dml);
+            execultarAtualizacao(dml);
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
+    }
+
+    /**
+     * Deleta a tupla que tem as colunas com os valores correspondentes
+     * @param codigo codigo do caso de teste
+     * @param nomeArquivo nome do arquivo sendo testado
+     * @param projetoId id do projeto
+     */
+    public void deletar(String codigo, String nomeArquivo, String projetoId) {
+        String dml = String.format("DELETE FROM caso_de_teste WHERE codigo = '%s' AND nomeClasseArtefato = '%s' AND projetoID = %s", codigo, nomeArquivo.replaceAll("\\\\", "/"), projetoId);
+        try {
+            execultarAtualizacao(dml);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new CasoDeTesteException("Não foi posivel deletar caso de teste");
+        }
+
     }
 }

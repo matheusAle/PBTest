@@ -1,6 +1,8 @@
 package view;
 
 import controller.CasoDeTesteController;
+import controller.ProjetoController;
+import controller.SistemaController;
 import model.ArtefatoDeTeste;
 import model.CasoDeTeste;
 import resources.Cores;
@@ -121,12 +123,21 @@ public class CasosDeTestePainel extends Painel{
      */
     private void novoCasoDeTeste(ArtefatoDeTeste artefato){
         new CriarCasoDeTestePainelPopup().iniciarPopup(artefato);
+        carregarCasosDeTesteDoArtefato(artefato);
     }
 
     private void deletarCasoDeTeste(CasoDeTeste casoDeTeste){
-
+        int i = JOptionPane.showConfirmDialog(SistemaController.JANELA, "Você está certo disso?", "tem certeza?", JOptionPane.YES_NO_OPTION);
+        if (i == 0){
+            CasoDeTesteController.deletarCasoDeTeste(casoDeTeste);
+            carregarCasosDeTesteDoArtefato(casoDeTeste.getArtefatoDeTeste());
+        }
     }
 
+    /**
+     * Abre uma janela popup com o formulario de edição de casso de teste
+     * @param casoDeTeste
+     */
     private void editarCasoDeTeste(CasoDeTeste casoDeTeste){
         new CriarCasoDeTestePainelPopup().iniciarPopup(casoDeTeste.getArtefatoDeTeste()).carregarCasoDeTeste(casoDeTeste);
     }
@@ -178,14 +189,17 @@ public class CasosDeTestePainel extends Painel{
             editar.setOnClick((e) -> {
                 editarCasoDeTeste(casoDeTeste);
                 meuMenuPopup.setVisible(false);
+                carregarCasosDeTesteDoArtefato(casoDeTeste.getArtefatoDeTeste());
             });
             MeuItemMenuPopup deletar = new MeuItemMenuPopup("Deletar");
             deletar.setOnClick((e) -> {
                 deletarCasoDeTeste(casoDeTeste);
                 meuMenuPopup.setVisible(false);
+                carregarCasosDeTesteDoArtefato(casoDeTeste.getArtefatoDeTeste());
             });
             meuMenuPopup.add(editar);
             meuMenuPopup.add(deletar);
+
             super.setOnMouseClick((e)-> {
                 if (SwingUtilities.isRightMouseButton(e)){
                     meuMenuPopup.show(e.getComponent(), e.getX(), e.getY());
@@ -267,15 +281,11 @@ public class CasosDeTestePainel extends Painel{
             this.titulo = new JLabel(titulo);
             this.titulo.setFont(Fontes.PAINEL_TITULO.deriveFont(14f));
             super.add(this.titulo, BorderLayout.NORTH);
-            super.setPreferredSize(new Dimension(10000, 10000));
-            super.setBackground(Color.cyan);
-            conteudo = new JPanel(new FlowLayout(FlowLayout.LEADING, 5,5));
+            super.setPreferredSize(new Dimension(400, Integer.MAX_VALUE/2));
+            conteudo = new JPanel(new FlowLayout(FlowLayout.LEFT, 5,5));
             conteudo.setBorder(new EmptyBorder(0, 0,0 ,0));
             super.add(conteudo);
-
         }
-
-
 
         /**
          * @param c item que sera colocado no painel

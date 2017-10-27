@@ -125,4 +125,9 @@ public final class CasoDeTesteController {
         TestesPool.alterarCasoDeTeste(casoDeTeste, nome, descricao, srcCasoDeTeste, codigoCasoDeUsoSelecionado);
         dao.atualizar(casoDeTeste.getCodigo(), casoDeTeste.getArtefatoDeTeste(), casoDeTeste.getProjetoId(), nome, srcCasoDeTeste, descricao, codigoCasoDeUsoSelecionado);
     }
+
+    public static void deletarCasoDeTeste(CasoDeTeste casoDeTeste) {
+        TestesPool.deletarCasoDeTesteDoArtefato(casoDeTeste, casoDeTeste.getArtefatoDeTeste());
+        dao.deletar(casoDeTeste.getCodigo(), casoDeTeste.getArtefatoDeTeste().getCaminhoRelativoAoProjeto(), casoDeTeste.getProjetoId());
+    }
 }

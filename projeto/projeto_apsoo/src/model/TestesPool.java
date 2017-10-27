@@ -92,4 +92,8 @@ public final class TestesPool {
         casoDeTeste.setDescricao(descricao);
         casoDeTeste.setCodigoCasoDeUso(codigoCasoDeUsoSelecionado);
     }
+
+    public static void deletarCasoDeTesteDoArtefato(CasoDeTeste casoDeTeste, ArtefatoDeTeste artefatoDeTeste) {
+        artefatoDeTeste.getCasosDeTeste().removeIf((e) -> e.getCodigo().equals(casoDeTeste.getCodigo()));
+    }
 }
