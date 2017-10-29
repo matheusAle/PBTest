@@ -100,7 +100,6 @@ public class CasosDeTestePainel extends Painel{
     private void carregarCasosDeTesteDoArtefato(ArtefatoDeTeste artefato) {
         painelCasosDeTeste.setTitulo("Casos de teste Para: " + artefato.getNomeArquivo());
         painelCasosDeTeste.limparConteudo();
-        CasoDeTesteController.carregarCasosDeTesteDoArtefato(artefato);
         artefato.getCasosDeTeste().forEach((e) -> {
             painelCasosDeTeste.addConteudo(new CasoDeTesteItem(e));
         });

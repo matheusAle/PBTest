@@ -1,10 +1,13 @@
 package view;
 
+import controller.ProjetoController;
 import controller.RoteiroDeTesteController;
-import model.Factorys.RoteiroDeTestes;
+import controller.SistemaController;
+import model.RoteiroDeTestes;
 import resources.Cores;
 import view.Componetes.*;
 
+import javax.swing.*;
 import java.awt.*;
 
 
@@ -17,10 +20,16 @@ public class RoteirosDeTestePainel extends PainelDeListagem{
         super.setSincronizarLista((e) -> sincronizarItems());
     }
 
+    /**
+     * Resincroniza os roteiros de testes com a base de dados
+     */
     private void sincronizarItems() {
         RoteiroDeTesteController.carregarRoteirosDoProjetoAtivo();
     }
 
+    /**
+     * Carrega os itens na listagem de roteiros de testes
+     */
     private void carregarItems() {
         super.limparConteudo();
         RoteiroDeTesteController.getListaDeRoteiros().forEach(
@@ -40,21 +49,40 @@ public class RoteirosDeTestePainel extends PainelDeListagem{
         super.addOpcao(novo);
     }
 
+    /**
+     * Abre um formulario para a edição de roteiro de teste
+     */
     private void novoRoteiro(){
         new CriarRoteiroDeTestePainelPopup().setVisible(true);
     }
 
 
-    private void execultarRoteiro() {
+    /**
+     * Ececuta o roteiro de testes
+     * @param roteiroDeTestes
+     */
+    private void execultarRoteiro(RoteiroDeTestes roteiroDeTestes) {
 
     }
 
-    private void deletarRoteiro() {
-
+    /**
+     * Deleta o roteiro de teste
+     * @param roteiroDeTestes roteiro a ser deletado.
+     */
+    private void deletarRoteiro(RoteiroDeTestes roteiroDeTestes) {
+        int i = JOptionPane.showConfirmDialog(SistemaController.JANELA, "Você está certo disso?", "tem certeza?", JOptionPane.YES_NO_OPTION);
+        if (i == 0){
+            RoteiroDeTesteController.deletarRoteiriDeTestes(roteiroDeTestes);
+            carregarItems();
+        }
     }
 
-    private void editarRoteiro() {
-
+    /**
+     * Abre o formulario de edição de roteiros de teste
+     * @param roteiro
+     */
+    private void editarRoteiro(RoteiroDeTestes roteiro) {
+        new CriarRoteiroDeTestePainelPopup().setRoteiro(roteiro).setVisible(true);
     }
 
 
@@ -70,18 +98,20 @@ public class RoteirosDeTestePainel extends PainelDeListagem{
         private MeuLabel legendaNome;
         private MeuLabel nome;
         private javax.swing.JPanel painelStatus;
+        private RoteiroDeTestes roteiroDeTestes;
 
         public ItemDaLista(RoteiroDeTestes roteiroDeTeste) {
+            this.roteiroDeTestes = roteiroDeTeste;
             nome.setText(roteiroDeTeste.getNome());
             codigo.setText(roteiroDeTeste.getCodigo());
             descricao.setText(roteiroDeTeste.getDescricao());
             menuPopup = new MeuMenuPopup();
             MeuItemMenuPopup item1 = new MeuItemMenuPopup("Editar")
-                    .setOnClick((e) -> {editarRoteiro(); menuPopup.setVisible(false);});
+                    .setOnClick((e) -> {editarRoteiro(this.roteiroDeTestes); menuPopup.setVisible(false);});
             MeuItemMenuPopup item2 = new MeuItemMenuPopup("Deletar")
-                    .setOnClick((e) -> {deletarRoteiro(); menuPopup.setVisible(false);});
+                    .setOnClick((e) -> {deletarRoteiro(roteiroDeTestes); menuPopup.setVisible(false);});
             MeuItemMenuPopup item3 = new MeuItemMenuPopup("Execultar")
-                    .setOnClick((e) -> {execultarRoteiro(); menuPopup.setVisible(false);});
+                    .setOnClick((e) -> {execultarRoteiro(roteiroDeTeste); menuPopup.setVisible(false);});
             menuPopup.add(item1);
             menuPopup.add(item2);
             menuPopup.add(item3);

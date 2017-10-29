@@ -22,7 +22,7 @@ public class CasoDeTesteFactory extends AbstractFactory {
      * @param classTeste nome da classe do artefato de teste.
      * @return Collerctio\<CasoDeTeste\> com os casos de teste do artefato.
      */
-    public synchronized Collection<CasoDeTeste> listar(String pjID, String classTeste) {
+    public synchronized LinkedList<CasoDeTeste> listar(String pjID, String classTeste) {
         String query = String.format("SELECT * FROM caso_de_teste WHERE projetoID = %s AND nomeClasseArtefato = '%s' ", pjID, classTeste.replaceAll("\\\\","/"));
         ResultSet resultSet = super.execultarBusca(query);
         if (resultSet != null){

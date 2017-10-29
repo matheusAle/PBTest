@@ -72,7 +72,7 @@ public final class ProjetosPainel extends PainelDeListagem{
      */
     private class ItemListaProjeto extends PainelItem{
 
-        private String codigoDoProjeto;
+        private Projeto projeto;
         private MeuLabel src;
         private MeuLabel nome;
         private MeuLabel codigo;
@@ -85,7 +85,7 @@ public final class ProjetosPainel extends PainelDeListagem{
         ItemListaProjeto(Projeto projeto){
             iniciarlistaners();
 
-            codigoDoProjeto = projeto.getCodigo();
+            this.projeto = projeto;
 
             legendaNome.setText(Strings.LG_PROJETO_NOME);
             legendaCodigo.setText(Strings.LG_PROJETO_CODIGO);
@@ -106,12 +106,12 @@ public final class ProjetosPainel extends PainelDeListagem{
             super.menuPopup = new MeuMenuPopup();
             MeuItemMenuPopup item1 = new MeuItemMenuPopup("Ativar este projeto");
             item1.setOnClick((e) -> {
-                ativarProjeto(codigoDoProjeto);
+                ativarProjeto(projeto.getCodigo());
                 menuPopup.setVisible(false);
             });
             MeuItemMenuPopup item2 = new MeuItemMenuPopup("Editar este projeto");
             item2.setOnClick((e) -> {
-                ProjetoController.setProjetoAtualizavel(codigoDoProjeto);
+                ProjetoController.setProjetoAtualizavel(projeto.getCodigo());
                 SistemaController.setPainelDeTrabalho("EDITAR_PROJETO");
                 menuPopup.setVisible(false);
             });
@@ -120,7 +120,7 @@ public final class ProjetosPainel extends PainelDeListagem{
             item3.setOnClick( (e) -> {
                 int i = JOptionPane.showConfirmDialog(SistemaController.JANELA, "Você está certo disso?", "tem certeza?", JOptionPane.YES_NO_OPTION);
                 if (i == 0){
-                    ProjetoController.deletarProjetoDeCodigo(codigoDoProjeto);
+                    ProjetoController.deletarProjetoDeCodigo(projeto);
                     ProjetosPainel.this.carregarProjetos();
                 }
                 menuPopup.setVisible(false);

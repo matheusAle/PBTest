@@ -2,7 +2,7 @@ package view.Componetes;
 
 import resources.Cores;
 import resources.Fontes;
-import resources.Icones;
+import resources.Arquivos;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -30,9 +30,9 @@ public class ArvoreDeArtefatos extends JTree implements TreeSelectionListener{
         super.setShowsRootHandles(true);
         DefaultTreeCellRenderer render = new DefaultTreeCellRenderer();
 
-        render.setLeafIcon(Icones.ICONE_PONTO_JAVA);
-        render.setClosedIcon(Icones.ICONE_PASTA);
-        render.setOpenIcon(Icones.ICONE_PASTA_OPEN);
+        render.setLeafIcon(Arquivos.ICONE_PONTO_JAVA);
+        render.setClosedIcon(Arquivos.ICONE_PASTA);
+        render.setOpenIcon(Arquivos.ICONE_PASTA_OPEN);
         render.setFont(Fontes.NAV_LABEL);
 
         render.setBorder(new EmptyBorder(2,2,2,2));
@@ -55,9 +55,9 @@ public class ArvoreDeArtefatos extends JTree implements TreeSelectionListener{
         super.setShowsRootHandles(true);
         DefaultTreeCellRenderer render = new DefaultTreeCellRenderer();
 
-        render.setLeafIcon(Icones.ICONE_PONTO_JAVA);
-        render.setClosedIcon(Icones.ICONE_PASTA);
-        render.setOpenIcon(Icones.ICONE_PASTA_OPEN);
+        render.setLeafIcon(Arquivos.ICONE_PONTO_JAVA);
+        render.setClosedIcon(Arquivos.ICONE_PASTA);
+        render.setOpenIcon(Arquivos.ICONE_PASTA_OPEN);
         render.setFont(Fontes.NAV_LABEL.deriveFont(12f));
 
         render.setBorder(new EmptyBorder(0,0,0,0));

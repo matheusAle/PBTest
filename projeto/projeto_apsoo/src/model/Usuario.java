@@ -59,7 +59,7 @@ public class Usuario {
                 ", cargo=" + cargo +
                 ", telefone='" + telefone + '\'' +
                 ", biografia='" + biografia + '\'' +
-                ", imgPerfil=" + imgPerfil +
+                ", IMG_PERFIL_PADRAO=" + imgPerfil +
                 '}';
     }
 }

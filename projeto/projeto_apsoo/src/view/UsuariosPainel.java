@@ -4,7 +4,7 @@ import controller.UsuarioController;
 import model.Usuario;
 import resources.Cores;
 import resources.Fontes;
-import resources.Icones;
+import resources.Arquivos;
 import resources.Strings;
 import view.Componetes.Painel;
 import view.Componetes.PainelItem;
@@ -57,7 +57,7 @@ public class UsuariosPainel extends Painel{
             if (imgPerfil != null)
                 this.imgPerfil = new JLabel(imgPerfil);
             else
-                this.imgPerfil = new JLabel(Icones.imgPerfil);
+                this.imgPerfil = new JLabel(Arquivos.IMG_PERFIL_PADRAO);
 
             this.nomeUsuario = new JLabel(usuario.getNome());
             this.cargoUsuario = new JLabel(usuario.getCargo());

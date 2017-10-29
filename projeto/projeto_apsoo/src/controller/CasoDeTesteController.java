@@ -13,6 +13,7 @@ public final class CasoDeTesteController {
     private static CasoDeTesteFactory dao = new CasoDeTesteFactory();
     private static HashMap<String, LinkedList<ArtefatoDeTeste>> mapaDeArtefatos = new HashMap<>();
     private static ArtefatoDeTeste artefatoDeTesteDendoEditado;
+
     /**
      * Carrega os artefatos de teste do projeto ativo em uma TestesPool
      * @throws CasoDeTesteException lançada quando o diretorio raiz não existir.
@@ -45,31 +46,6 @@ public final class CasoDeTesteController {
      */
     public synchronized static HashMap<String, LinkedList<ArtefatoDeTeste>> getMapaDeArtefatos() {
         return mapaDeArtefatos;
-    }
-
-
-    /**
-     * Carrega os artefatos de teste do banco de dados para a pool de testes.
-     * @param pacote pacote do artefato de teste
-     * @param prjID ID do projeto atual
-     * @param nomeArquivo Nome do arquivo do artefato de teste.
-     * @return lista encadeada de Casos De Teste
-     */
-    public synchronized static LinkedList<CasoDeTeste> carregarCasosDeTesteDoArtefato(ArtefatoDeTeste artefato){
-        LinkedList<ArtefatoDeTeste> lista = mapaDeArtefatos.get(artefato.getPakage());
-        LinkedList<model.CasoDeTeste> casosDeTeste = null;
-        for(ArtefatoDeTeste artefato1 : lista){
-            if (artefato1.getNomeArquivo().equals(artefato.getNomeArquivo())){
-                casosDeTeste =  (LinkedList<model.CasoDeTeste>) dao.listar(artefato.getProjetoId(), artefato.getCaminhoRelativoAoProjeto());
-                TestesPool.setCasosDeTesteDoArtefato(casosDeTeste, artefato1.getNomeArquivo());
-                break;
-            }
-        }
-        LinkedList<CasoDeTeste> listaAdapters = new LinkedList<CasoDeTeste>();
-        for (model.CasoDeTeste casoDeTeste : casosDeTeste){
-            listaAdapters.add(casoDeTeste);
-        }
-        return listaAdapters;
     }
 
     /**
@@ -116,13 +92,25 @@ public final class CasoDeTesteController {
         artefatoDeTesteDendoEditado = artefato;
     }
 
+    /**
+     * Salva as auteraçoes tanto na pool de testes quanto no banco de daso
+     * @param casoDeTeste caso de teste
+     * @param nome novo nome
+     * @param descricao nova descrição
+     * @param srcCasoDeTeste novo src
+     * @param codigoCasoDeUsoSelecionado novo codigo de caso de uso vinculado
+     */
     public static void salvarMudancasNoCasoDeTeste(CasoDeTeste casoDeTeste, String nome, String descricao, String srcCasoDeTeste, String codigoCasoDeUsoSelecionado) {
-        TestesPool.alterarCasoDeTeste(casoDeTeste, nome, descricao, srcCasoDeTeste, codigoCasoDeUsoSelecionado);
         dao.atualizar(casoDeTeste.getCodigo(), casoDeTeste.getArtefatoDeTeste(), casoDeTeste.getProjetoId(), nome, srcCasoDeTeste, descricao, codigoCasoDeUsoSelecionado);
+        TestesPool.alterarCasoDeTeste(casoDeTeste, nome, descricao, srcCasoDeTeste, codigoCasoDeUsoSelecionado);
     }
 
+    /**
+     * Deleta o casos de teste tando da pool de testes quando do banco de dados
+     * @param casoDeTeste
+     */
     public static void deletarCasoDeTeste(CasoDeTeste casoDeTeste) {
-        TestesPool.deletarCasoDeTesteDoArtefato(casoDeTeste, casoDeTeste.getArtefatoDeTeste());
         dao.deletar(casoDeTeste.getCodigo(), casoDeTeste.getArtefatoDeTeste().getCaminhoRelativoAoProjeto(), casoDeTeste.getProjetoId());
+        TestesPool.deletarCasoDeTesteDoArtefato(casoDeTeste, casoDeTeste.getArtefatoDeTeste());
     }
 }

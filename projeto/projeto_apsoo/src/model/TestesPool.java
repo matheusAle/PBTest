@@ -3,6 +3,7 @@ package model;
 import controller.ProjetoController;
 import controller.Utils;
 import controller.exceptions.CasoDeTesteException;
+import model.Factorys.CasoDeTesteFactory;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -35,6 +36,7 @@ public final class TestesPool {
                 LinkedList<File> lista = new LinkedList<>();
                 File[] files = (new File(path)).listFiles();
                 gerarListaDeArtefatos(files, "", ProjetoController.getCodigoProjetoAtivo());
+                carregarCasosDeTesteDosArtefatos();
             }else {
                 throw new CasoDeTesteException("O diretorio do projeto não foi encontrado: src: " + path);
             }
@@ -107,5 +109,34 @@ public final class TestesPool {
      */
     public static void deletarCasoDeTesteDoArtefato(CasoDeTeste casoDeTeste, ArtefatoDeTeste artefatoDeTeste) {
         artefatoDeTeste.getCasosDeTeste().removeIf((e) -> e.getCodigo().equals(casoDeTeste.getCodigo()));
+    }
+
+
+    /**
+     * Dada a lista de codigos, retorna uma lista com casos de teste
+     * @param listaDeCodigos codigos dos casos de teste requeridos
+     * @return lista com os casos de teste de cogigo requerido.
+     */
+    public static LinkedList<CasoDeTeste> buscarCasosDeTeste(LinkedList<String> listaDeCodigos){
+        LinkedList<CasoDeTeste> resultado = new LinkedList<>();
+        for (ArtefatoDeTeste artefato : listaDeArtefatos){ //percorre os artefatos
+            for (CasoDeTeste casoDeTeste : artefato.getCasosDeTeste()) { //percorre os casos de teste de cada artefato
+                if (listaDeCodigos.contains(casoDeTeste.getCodigo())) // verifica se o caso de teste é um dos requeridos
+                    resultado.add(casoDeTeste); // adiciona o casos de teste ao resultado da busca
+            }
+        }
+        return resultado;
+    }
+
+    /**
+     * Carrega os casos de teste de todos os artefatos.
+     */
+    public static void carregarCasosDeTesteDosArtefatos(){
+        CasoDeTesteFactory dao = new CasoDeTesteFactory();
+        listaDeArtefatos.forEach(
+                (artefato) -> {
+                    artefato.setCasosDeTeste(dao.listar(ProjetoController.getCodigoProjetoAtivo(), artefato.getCaminhoRelativoAoProjeto()));
+                }
+        );
     }
 }

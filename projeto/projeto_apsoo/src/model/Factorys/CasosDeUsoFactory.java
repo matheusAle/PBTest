@@ -55,7 +55,7 @@ public class CasosDeUsoFactory extends AbstractFactory {
      * @throws CasoDeUsoExeption Caso algo de errado.
      */
     public synchronized void salvar(String codigo, String nome, String objetivo, String atores, String descricao, String idPRJ, String email){
-        String dml = String.format("INSERT INTO caso_de_uso VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')", codigo, nome, objetivo, atores, descricao, idPRJ, email);
+        String dml = String.format("INSERT INTO caso_de_uso VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')", codigo, nome, atores, objetivo, descricao, idPRJ, email);
         try {
             AbstractFactory.execultarAtualizacao(dml);
         } catch (SQLException e) {

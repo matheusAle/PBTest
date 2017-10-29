@@ -1,14 +1,21 @@
 package controller;
 
+import controller.exceptions.ExecusaoExeption;
 import controller.exceptions.ProjetoException;
 import model.Factorys.ProjetoFactory;
 import model.Projeto;
+import resources.Arquivos;
 import view.Componetes.MeuLabel;
 
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.LinkedList;
+import java.util.Properties;
 
 public class ProjetoController {
     private static ProjetoFactory dao = new ProjetoFactory();
@@ -34,7 +41,7 @@ public class ProjetoController {
             String CASO_DE_TESTE,
             String descricao
             ){
-        String srcP = src.replaceAll("\\\\", "/");
+        String srcP = Utils.srcToStorage(src);
         Boolean retorno = dao.salvar(
                 nome,
                 srcP,
@@ -44,16 +51,25 @@ public class ProjetoController {
                 descricao,
                 UsuarioController.getEmailUsuarioLogado()
         );
+        try {
+            Properties properties = Arquivos.PROPERTIES_PADRAO;
 
-        File file = new File (src + "/testes");
-        file.setWritable(true);
-        file.setReadable(true);
-        file.mkdir();
+            FileWriter fileWriter = new FileWriter(new File(src+"/props_pbtest.properties"));
+            properties.store(fileWriter, " Arquivo de propropriedades do projeto\n" +
+                    " Estes valores são usados pelo software de testes pbtest\n\n" +
+                    " production.class.path: caminho de sistema para o diretorio raiz dos artefatos testávis do sistema\n" +
+                    " test.class.path: caminho de sistema para o diretorio raiz dos casos de testes junit\n" +
+                    " variant.junit.path: caminho para um .jar junit diferente do usado pelo software\n" +
+                    " variant.extra.path: caminho para bibliotecas extras usadas pelo sistema\n" +
+                    " extra.args.java: argumentos extras para a execução do comando java.\n" +
+                    " extra.args.junit: argumentos extras para a execução dos testes.\n");
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new ExecusaoExeption("Erro ao ler o arquivo de propriedade do projeto");
+        }
 
-        file = new File (src + "/testes/pbtest");
-        file.setWritable(true);
-        file.setReadable(true);
-        file.mkdir();
         return retorno;
 
     }
@@ -160,10 +176,16 @@ public class ProjetoController {
      * Deleta o projeto com o codigo informado do banco de dados. E o remove da lista de projetos.
      * @param codigo
      */
-    public synchronized static void deletarProjetoDeCodigo(String codigo) {
-        dao.deletar("id = " + codigo);
-        listaDeProjetos.removeIf((p) -> {
-            return p.getCodigo() == codigo;
+    public synchronized static void deletarProjetoDeCodigo(Projeto p) {
+        try {
+            Files.deleteIfExists(Paths.get(p.getSrc().concat("/").concat("props_pbtest.properties")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        dao.deletar("id = " + p.getCodigo());
+        listaDeProjetos.removeIf((x) -> {
+            return x.getCodigo() == p.getCodigo();
         });
     }
 

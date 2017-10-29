@@ -5,6 +5,8 @@ import controller.RoteiroDeTesteController;
 import controller.SistemaController;
 import model.ArtefatoDeTeste;
 import model.CasoDeTeste;
+import model.RoteiroDeTestes;
+import model.TestesPool;
 import resources.Cores;
 import resources.Fontes;
 import view.Componetes.*;
@@ -13,12 +15,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListDataListener;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeCellRenderer;
 import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Set;
@@ -50,7 +47,7 @@ public class CriarRoteiroDeTestePainelPopup extends JFrame{
     private MeuPainelComScrollBar listaDeCasosDeTesteDoRoteiroContainer;
     private javax.swing.JPanel painelLegenda;
     private LinkedList<CasoDeTeste> casosDeTesteDoRoteiro = new LinkedList<>();
-
+    private RoteiroDeTestes roteiroDeTestes;
     /**
      * Creates new form RoteirosDeTeste
      */
@@ -337,6 +334,11 @@ public class CriarRoteiroDeTestePainelPopup extends JFrame{
         listaDeCasosDeTesteDoRoteiro.setSelectionBackground(Cores.FUNDO_BOTAO);
 
         arvoreDeArtefatos.setBackground(Cores.FUNDO_MENU_ESQUERDO);
+
+        campoDescricao.setBorder(new EmptyBorder(5, 5,5,5));
+        campoDescricao.setLineWrap(true);
+        campoDescricao.setWrapStyleWord(true);
+        campoDescricao.setFont(Fontes.CAMPO_DE_TEXTO);
     }
 
     /**
@@ -345,7 +347,6 @@ public class CriarRoteiroDeTestePainelPopup extends JFrame{
      */
     private void quandoNodeDaArvoreSelecionado(ArtefatoDeTeste artefatoDeTeste){
         listaCasosDeTeste.removeAll();
-        CasoDeTesteController.carregarCasosDeTesteDoArtefato(artefatoDeTeste);
 
         listaCasosDeTeste.setModel(new ListModel<CasoDeTeste>() {
             LinkedList<CasoDeTeste> casosDeTeste = artefatoDeTeste.getCasosDeTeste();
@@ -453,8 +454,14 @@ public class CriarRoteiroDeTestePainelPopup extends JFrame{
      */
     private void quandoBtnSalvarClicado(){
         if (todosOsCamposValidos()) {
-            String codigo = RoteiroDeTesteController.salvarNovoRoteiro(campoNome.getText(), campoDescricao.getText(), casosDeTesteDoRoteiro);
-            JOptionPane.showMessageDialog(SistemaController.JANELA, "Roteiro salvo!\n\tO Codigo é: "+codigo, "", JOptionPane.INFORMATION_MESSAGE);
+            if (roteiroDeTestes == null){
+                String codigo = RoteiroDeTesteController.salvarNovoRoteiro(campoNome.getText(), campoDescricao.getText(), casosDeTesteDoRoteiro);
+                JOptionPane.showMessageDialog(SistemaController.JANELA, "Roteiro salvo!\n\tO Codigo é: "+codigo, "", JOptionPane.INFORMATION_MESSAGE);
+            }else {
+                RoteiroDeTesteController.salvarAlteracao(roteiroDeTestes, campoNome.getText(), campoDescricao.getText(), casosDeTesteDoRoteiro);
+                JOptionPane.showMessageDialog(SistemaController.JANELA, "Roteiro salvo!","", JOptionPane.INFORMATION_MESSAGE);
+
+            }
             quandoBtnCancelarClicado();
         }
     }
@@ -488,6 +495,42 @@ public class CriarRoteiroDeTestePainelPopup extends JFrame{
         btnSalvar.setOnMouseClick((e) -> quandoBtnSalvarClicado());
         btnCancelar.setOnMouseClick((e) -> quandoBtnCancelarClicado());
         arvoreDeArtefatos.setOnSelectedEvent((e) -> quandoNodeDaArvoreSelecionado(e.getArtefato()));
+    }
+
+    /**
+     * Inicio o formulario com um roteiro de teste para ser editado.
+     * @param roteiro roteiro
+     * @return this
+     */
+    public JFrame setRoteiro(RoteiroDeTestes roteiro) {
+        roteiroDeTestes = roteiro;
+        RoteiroDeTesteController.carregarCasosDeTesteDoRoteiro(roteiro);
+        casosDeTesteDoRoteiro = roteiro.getCasosDeTeste();
+        campoNome.setText(roteiro.getNome());
+        campoDescricao.setText(roteiro.getDescricao());
+
+        listaDeCasosDeTesteDoRoteiro.setModel(new ListModel<CasoDeTeste>() {
+            @Override
+            public int getSize() {
+                return casosDeTesteDoRoteiro.size();
+            }
+
+            @Override
+            public CasoDeTeste getElementAt(int index) {
+                return casosDeTesteDoRoteiro.get(index);
+            }
+
+            @Override
+            public void addListDataListener(ListDataListener l) {
+
+            }
+
+            @Override
+            public void removeListDataListener(ListDataListener l) {
+
+            }
+        });
+        return this;
     }
 
     private class myCellListRender extends DefaultListCellRenderer {

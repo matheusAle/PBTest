@@ -1,14 +1,14 @@
 package model.Factorys;
 
-import com.sun.javafx.binding.StringFormatter;
 import controller.exceptions.RoteiroDeTesteExeption;
 import model.CasoDeTeste;
+import model.RoteiroDeTestes;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
-public class RoteiroDeTesteFactory extends AbstractFactory {
+public class RoteiroDeTesteFactory extends AbstractFactory{
 
 
     /**
@@ -69,4 +69,77 @@ public class RoteiroDeTesteFactory extends AbstractFactory {
         return null;
     }
 
+
+    /**
+     * Busca no banco de dados os codigos de casos de teste vinculados com o roteiro de teste.
+     * @param codRoteiro codigo do roteiro de testes
+     * @param codProj codigo do projeto do roteiro de testes
+     * @return retorna uma lista com os codigos de casos de testes.
+     */
+    public LinkedList<String> listarCasosDeTesteDoRoteiro(String codRoteiro, String codProj){
+        String query = String.format("SELECT * FROM casos_de_teste_do_roteiro r, caso_de_teste c WHERE r.cod_caso_de_teste = c.codigo AND r.projetoID = %s AND r.codigo = '%s' ", codProj, codRoteiro);
+        ResultSet resultSet = super.execultarBusca(query);
+        if (resultSet != null){
+            try {
+                LinkedList<String> lista = new LinkedList<>();
+                while (resultSet.next()){
+                    lista.add(resultSet.getString("cod_caso_de_teste"));
+                }
+                return lista;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RoteiroDeTesteExeption("Não foi possivel buscar os casos de teste do roteiro " + codRoteiro);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Atualiza os dados do roteiro de testes.
+     * Os casos de teste antigos são deletados do banco de dados
+     * e os novos são inseridos.
+     * @param codigo codigo do roteiro de teste
+     * @param projetoID id do projeto do roteiro de teste
+     * @param nome novo nome do roteiro
+     * @param descricaoText nova descrição do roteiro
+     * @param casosDeTesteDoRoteiro novos codigos de caso de teste do roteiro
+     */
+    public void atualizar(String codigo, String projetoID, String nome, String descricaoText, LinkedList<String> casosDeTesteDoRoteiro) {
+        String dmlUP = String.format("UPDATE roteiros_teste SET nome = '%s', descricao = '%s' WHERE projetoID = %s AND codigo = '%s'", nome, descricaoText, projetoID, codigo);
+        try {
+            super.execultarAtualizacao(dmlUP);
+            try {
+                String dmlDEL = String.format("DELETE FROM casos_de_teste_do_roteiro WHERE projetoID = %s AND codigo = '%s' ", projetoID, codigo);
+                super.execultarAtualizacao(dmlDEL);
+                try {
+                    for (String codC : casosDeTesteDoRoteiro)
+                        execultarAtualizacao(String.format("INSERT INTO casos_de_teste_do_Roteiro VALUES ('%s', %s, '%s')", codigo, projetoID, codC));
+                } catch (SQLException d) {
+                    d.printStackTrace();
+                    throw new RoteiroDeTesteExeption("Erro ao salvar o os novos casos de teste do roteiro");
+                }
+            }catch (SQLException s){
+                s.printStackTrace();
+                throw new RoteiroDeTesteExeption("Erro ao remover os casos de teste atigo do roteiro!");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RoteiroDeTesteExeption("Erro ao atualizar os dados do roteiro de testes");
+        }
+    }
+
+    /**
+     * Deleta o roteiro de testes que tem o codigo e o id do projeto especificados
+     * @param codigo codigo do roteiro de testes
+     * @param projetoID id do projeto do roteiro de testes
+     */
+    public void deletar(String codigo, String projetoID) {
+        String dmlDEL = String.format("DELETE FROM roteiros_teste WHERE projetoID = %s AND codigo = '%s' ", projetoID, codigo);
+        try {
+            super.execultarAtualizacao(dmlDEL);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RoteiroDeTesteExeption("Erro ao deletar o roteiro de testes");
+        }
+    }
 }

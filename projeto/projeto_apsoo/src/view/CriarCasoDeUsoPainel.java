@@ -221,8 +221,6 @@ public class CriarCasoDeUsoPainel extends Painel {
             legendaNome.setText(Strings.LG_CASOS_DE_USO_NOME);
             legendaAtores.setText(Strings.LG_CASOS_DE_USO_ATORES);
             legendaObjetivo.setText(Strings.LG_CASOS_DE_USO_OBJETIVO);
-
-
         }
 
         private void iniciarEstilo (){

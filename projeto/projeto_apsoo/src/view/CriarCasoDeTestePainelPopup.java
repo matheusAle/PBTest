@@ -56,7 +56,6 @@ public class CriarCasoDeTestePainelPopup extends JFrame{
         super.setResizable(false);
         super.setVisible(true);
         super.setLocationRelativeTo(null);
-
     }
 
     /**
@@ -71,6 +70,10 @@ public class CriarCasoDeTestePainelPopup extends JFrame{
         return this;
     }
 
+    /**
+     * Carrega as informações do aso de teste no formulario.
+     * @param casoDeTeste
+     */
     public void carregarCasoDeTeste(CasoDeTeste casoDeTeste){
         campoNome.setText(casoDeTeste.getNome());
         campoDescricao.setText(casoDeTeste.getDescricao());
@@ -83,8 +86,6 @@ public class CriarCasoDeTestePainelPopup extends JFrame{
             String codCt = casoDeTeste.getCodigoCasoDeUso();
             if(codDropbox.startsWith(codCt)) break;
         }
-
-
         casosDeUso.setSelectedIndex(index);
         this.casoDeTeste = casoDeTeste;
     }
@@ -128,98 +129,6 @@ public class CriarCasoDeTestePainelPopup extends JFrame{
      */
     private String getCodigoCasoDeUsoSelecionado(){
         return ((String)casosDeUso.getSelectedItem()).substring(0, 11).trim();
-    }
-
-    /**
-     * instancia os componentes
-     */
-    private void iniciarComponentes(){
-        painelFormulario = new javax.swing.JPanel();
-        painelLegenda = new javax.swing.JPanel();
-        labelCodigo = new MeuLabel();
-        labeldescricao = new MeuLabel();
-        labeldescricao1 = new MeuLabel();
-        labeldescricao2 = new MeuLabel();
-        campoNome = new MeuCampoDeTexto();
-        campoDescricao = new javax.swing.JTextArea();
-        btnSelecionarArquivo = new Botao();
-        casosDeUso = new javax.swing.JComboBox<String>();
-        labelArquivoDeTeste = new MeuLabel();
-        painelOpcoes = new javax.swing.JPanel();
-        btnSalvar = new Botao();
-        btnNovo = new Botao();
-        btnLimpar = new Botao();
-        btnCancelar = new Botao();
-        labelTituloPainel = new MeuLabel();
-        campoDescricaoContainer = new MeuPainelComScrollBar(campoDescricao);
-    }
-
-    /**
-     * Carrega os textos do painel
-     */
-    private void carregarTextos(){
-        labelCodigo.setText("NOME:");
-        labeldescricao.setText("CASO DE USO:");
-        labeldescricao2.setText("CASO DE TESTE:");
-        labeldescricao1.setText("DESCRIÇÃO:");
-        btnSalvar.setText("Salvar");
-        btnNovo.setText("Novo");
-        btnLimpar.setText("Limpar");
-        labelTituloPainel.setText("Caso de teste para o artefato: ");
-        labelArquivoDeTeste.setText("Selecione um arquivo");
-        btnSelecionarArquivo.setText("Selecionar Arquivo");
-        btnCancelar.setText("Cancelar");
-    }
-
-    /**
-     * Carrega a aparencia dos componentes
-     */
-    private void carregarEstilo(){
-        campoDescricao.setColumns(20);
-        campoDescricao.setFont(Fontes.CAMPO_DE_TEXTO);
-        campoDescricao.setWrapStyleWord(true);
-        campoDescricao.setLineWrap(true);
-
-
-        labelTituloPainel.setBorder(new EmptyBorder(20, 20, 10, 10));
-        labelTituloPainel.setFont(Fontes.PAINEL_TITULO);
-
-        btnNovo.setCorDeFundoNormal(Cores.FUNDO_BOTAO);
-        btnNovo.setCorDeFundoHover(Color.red);
-        btnSalvar.setCorDeFundoNormal(Cores.FUNDO_BOTAO);
-        btnSalvar.setCorDeFundoHover(Color.red);
-        btnLimpar.setCorDeFundoNormal(Cores.FUNDO_MENU_ESQUERDO);
-        btnLimpar.setCorDeFundoHover(Cores.TEXTO_MENU_ESQUERDO);
-        btnCancelar.setCorDeFundoNormal(Cores.FUNDO_MENU_ESQUERDO);
-        btnCancelar.setCorDeFundoHover(Cores.TEXTO_MENU_ESQUERDO);
-
-        painelOpcoes.setBackground(Cores.FUNDO_BARRA_SUPERIOR);
-        for (Component c : painelOpcoes.getComponents()){
-            c.setFont(Fontes.TEXTO_BTN);
-            ((Botao)c).setCorDoTextoNormal(Cores.TEXTOS);
-        }
-
-        painelLegenda.setBackground(Cores.FUNDO_BARRA_SUPERIOR);
-        for (Component c : painelLegenda.getComponents()){
-            c.setFont(Fontes.LEGENDA_ITEM_LISTA);
-            c.setForeground(Cores.TEXTOS);
-        }
-
-        painelFormulario.setBackground(Cores.TEXTO_MENU_ESQUERDO);
-
-        btnSelecionarArquivo.setCorDeFundoNormal(Cores.FUNDO_BOTAO);
-        btnSelecionarArquivo.setCorDeFundoHover(Color.red);
-
-    }
-
-    /**
-     * inicia os ouvites dos componetes
-     */
-    private void carregarlistaners(){
-        btnLimpar.setOnMouseClick((e) -> this.limparCampos());
-        btnSalvar.setOnMouseClick((e) -> this.salvarCasoDeTeste());
-        btnCancelar.setOnMouseClick((e)-> this.cancelar());
-        btnSelecionarArquivo.setOnMouseClick((e) -> selecionarArquivo());
     }
 
     /**
@@ -418,6 +327,98 @@ public class CriarCasoDeTestePainelPopup extends JFrame{
         );
 
         pack();
+    }
+
+    /**
+     * instancia os componentes
+     */
+    private void iniciarComponentes(){
+        painelFormulario = new javax.swing.JPanel();
+        painelLegenda = new javax.swing.JPanel();
+        labelCodigo = new MeuLabel();
+        labeldescricao = new MeuLabel();
+        labeldescricao1 = new MeuLabel();
+        labeldescricao2 = new MeuLabel();
+        campoNome = new MeuCampoDeTexto();
+        campoDescricao = new javax.swing.JTextArea();
+        btnSelecionarArquivo = new Botao();
+        casosDeUso = new javax.swing.JComboBox<String>();
+        labelArquivoDeTeste = new MeuLabel();
+        painelOpcoes = new javax.swing.JPanel();
+        btnSalvar = new Botao();
+        btnNovo = new Botao();
+        btnLimpar = new Botao();
+        btnCancelar = new Botao();
+        labelTituloPainel = new MeuLabel();
+        campoDescricaoContainer = new MeuPainelComScrollBar(campoDescricao);
+    }
+
+    /**
+     * Carrega os textos do painel
+     */
+    private void carregarTextos(){
+        labelCodigo.setText("NOME:");
+        labeldescricao.setText("CASO DE USO:");
+        labeldescricao2.setText("CASO DE TESTE:");
+        labeldescricao1.setText("DESCRIÇÃO:");
+        btnSalvar.setText("Salvar");
+        btnNovo.setText("Novo");
+        btnLimpar.setText("Limpar");
+        labelTituloPainel.setText("Caso de teste para o artefato: ");
+        labelArquivoDeTeste.setText("Selecione um arquivo");
+        btnSelecionarArquivo.setText("Selecionar Arquivo");
+        btnCancelar.setText("Cancelar");
+    }
+
+    /**
+     * Carrega a aparencia dos componentes
+     */
+    private void carregarEstilo(){
+        campoDescricao.setBorder(new EmptyBorder(5, 5,5,5));
+        campoDescricao.setLineWrap(true);
+        campoDescricao.setWrapStyleWord(true);
+        campoDescricao.setFont(Fontes.CAMPO_DE_TEXTO);
+
+
+        labelTituloPainel.setBorder(new EmptyBorder(20, 20, 10, 10));
+        labelTituloPainel.setFont(Fontes.PAINEL_TITULO);
+
+        btnNovo.setCorDeFundoNormal(Cores.FUNDO_BOTAO);
+        btnNovo.setCorDeFundoHover(Color.red);
+        btnSalvar.setCorDeFundoNormal(Cores.FUNDO_BOTAO);
+        btnSalvar.setCorDeFundoHover(Color.red);
+        btnLimpar.setCorDeFundoNormal(Cores.FUNDO_MENU_ESQUERDO);
+        btnLimpar.setCorDeFundoHover(Cores.TEXTO_MENU_ESQUERDO);
+        btnCancelar.setCorDeFundoNormal(Cores.FUNDO_MENU_ESQUERDO);
+        btnCancelar.setCorDeFundoHover(Cores.TEXTO_MENU_ESQUERDO);
+
+        painelOpcoes.setBackground(Cores.FUNDO_BARRA_SUPERIOR);
+        for (Component c : painelOpcoes.getComponents()){
+            c.setFont(Fontes.TEXTO_BTN);
+            ((Botao)c).setCorDoTextoNormal(Cores.TEXTOS);
+        }
+
+        painelLegenda.setBackground(Cores.FUNDO_BARRA_SUPERIOR);
+        for (Component c : painelLegenda.getComponents()){
+            c.setFont(Fontes.LEGENDA_ITEM_LISTA);
+            c.setForeground(Cores.TEXTOS);
+        }
+
+        painelFormulario.setBackground(Cores.TEXTO_MENU_ESQUERDO);
+
+        btnSelecionarArquivo.setCorDeFundoNormal(Cores.FUNDO_BOTAO);
+        btnSelecionarArquivo.setCorDeFundoHover(Color.red);
+
+    }
+
+    /**
+     * inicia os ouvites dos componetes
+     */
+    private void carregarlistaners(){
+        btnLimpar.setOnMouseClick((e) -> this.limparCampos());
+        btnSalvar.setOnMouseClick((e) -> this.salvarCasoDeTeste());
+        btnCancelar.setOnMouseClick((e)-> this.cancelar());
+        btnSelecionarArquivo.setOnMouseClick((e) -> selecionarArquivo());
     }
 
 }

@@ -3,18 +3,15 @@ package view;
 import controller.SistemaController;
 import controller.exceptions.CasoDeTesteExeption;
 import controller.exceptions.CasoDeUsoExeption;
-import controller.exceptions.RoteiroDeTesteExeption;
 import resources.Cores;
 import resources.Fontes;
-import resources.Icones;
+import resources.Arquivos;
 import resources.Strings;
 import view.Componetes.BotaoDeNavegacao;
 import view.Componetes.Painel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 
 /**
  * Essa classe é a responsavel por gerenciar os elementos não mutaveis da janela.
@@ -54,7 +51,7 @@ public class Janela extends JFrame{
 
         private String nome_usuario;
         private String cargo_usuario;
-        private Icon imgPerfil = Icones.imgPerfil;
+        private Icon imgPerfil = Arquivos.IMG_PERFIL_PADRAO;
 
         PainelDeNavegacaoLateral(String nome_usuario, String cargo_usuario){
             this.cargo_usuario = cargo_usuario;
