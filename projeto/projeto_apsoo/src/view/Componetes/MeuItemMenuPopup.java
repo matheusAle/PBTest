@@ -25,12 +25,21 @@ public class MeuItemMenuPopup extends JMenuItem implements MouseListener{
             c.addMouseListener(this);
     }
 
-    public void setOnClick(Consumer<MouseEvent> onClick) {
+    public MeuItemMenuPopup setOnClick(Consumer<MouseEvent> onClick) {
         this.onClick = onClick;
+        return this;
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        new Thread(() -> {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
+            super.setBackground(Cores.FUNDO_USUARIO_LOGADO);
+        }).start();
         onClick.accept(e);
     }
 
@@ -47,14 +56,7 @@ public class MeuItemMenuPopup extends JMenuItem implements MouseListener{
     @Override
     public void mouseEntered(MouseEvent e) {
         super.setBackground(Cores.FUNDO_BOTAO);
-        new Thread(() -> {
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e1) {
-                e1.printStackTrace();
-            }
-            super.setBackground(Cores.FUNDO_USUARIO_LOGADO);
-        }).start();
+
         super.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 

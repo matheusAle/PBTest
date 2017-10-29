@@ -78,6 +78,8 @@ public abstract class PainelDeListagem extends Painel {
             iniciarEstilo();
         }
 
+
+
         /**
          * Define cor de fundo do painel que contem o item.
          * @param cor
@@ -185,6 +187,5 @@ public abstract class PainelDeListagem extends Painel {
                 }catch (Exception e){}
             }
         }
-
     }
 }

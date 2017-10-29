@@ -1,6 +1,8 @@
 package model;
 
 
+import javax.swing.*;
+
 /**
  * Classe que modela um caso de teste do sitema
  */
@@ -19,8 +21,8 @@ public class CasoDeTeste {
     public CasoDeTeste(String codigo, String nome, String srcCasoDeTeste, String srcArtefatoDeTeste, String descricao, String projetoId, String codigoCasoDeUso, String resultado, String emailUsuario) {
         this.codigo = codigo;
         this.nome = nome;
-        this.srcCasoDeTeste = srcCasoDeTeste.replaceAll("/", "\\\\");
-        this.srcArtefatoDeTeste = srcArtefatoDeTeste.replaceAll("/", "\\\\");;
+        this.srcCasoDeTeste = srcCasoDeTeste;
+        this.srcArtefatoDeTeste = srcArtefatoDeTeste;
         this.descricao = descricao;
         this.projetoId = projetoId;
         this.codigoCasoDeUso = codigoCasoDeUso;
@@ -88,5 +90,16 @@ public class CasoDeTeste {
 
     void setResultado(String resultado) {
         this.resultado = resultado;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("<html>" +
+                "<em>Codigo:</em> %s" +
+                "<br>" +
+                "<em>Nome:</em> %s" +
+                "<br>" +
+                "<em>Arquivo:</em> %s" +
+                "</html>", getCodigo(), getNome(), getSrcCasoDeTeste());
     }
 }

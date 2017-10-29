@@ -18,7 +18,8 @@ public class JanelaLogin {
             JOptionPane.showMessageDialog(null, e.getMessage(), "falha ao iniciar o programa", JOptionPane.INFORMATION_MESSAGE);
         }
         SistemaController.abrir();
-        SistemaController.setPainelDeTrabalho("USUARIOS");
+        ProjetoController.ativarProjeto("2");
+        SistemaController.setPainelDeTrabalho("ROTEIROS_DE_TESTE");
 
     }
 }

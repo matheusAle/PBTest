@@ -40,7 +40,7 @@ public class CasosDeUsoPainel extends PainelDeListagem {
     private synchronized void carregarListaDeCasosDeUso(){
         super.limparConteudo();
         try {
-            super.setTitulo(Strings.TITULO_PAINEL_CASOS_DE_USO + ProjetoController.getInformacoesDoProjetoAtivo().getNome());
+            super.setTitulo(Strings.TITULO_PAINEL_CASOS_DE_USO + ProjetoController.getNomeProjetoAtivo());
             CasoDeUsoController.getListaDeCasosDeUso().forEach( (c) -> {
                 super.addConteudo(new ItemDaLista(c));
             });

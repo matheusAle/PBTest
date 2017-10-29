@@ -1,17 +1,11 @@
 package controller;
 
-import com.sun.xml.internal.messaging.saaj.packaging.mime.util.OutputUtil;
 import controller.exceptions.CasoDeTesteException;
 import model.ArtefatoDeTeste;
 import model.CasoDeTeste;
-import model.CasoDeUso;
 import model.TestesPool;
 import model.Factorys.CasoDeTesteFactory;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.attribute.FileAttribute;
 import java.util.*;
 
 public final class CasoDeTesteController {
@@ -68,6 +62,7 @@ public final class CasoDeTesteController {
             if (artefato1.getNomeArquivo().equals(artefato.getNomeArquivo())){
                 casosDeTeste =  (LinkedList<model.CasoDeTeste>) dao.listar(artefato.getProjetoId(), artefato.getCaminhoRelativoAoProjeto());
                 TestesPool.setCasosDeTesteDoArtefato(casosDeTeste, artefato1.getNomeArquivo());
+                break;
             }
         }
         LinkedList<CasoDeTeste> listaAdapters = new LinkedList<CasoDeTeste>();
@@ -87,11 +82,11 @@ public final class CasoDeTesteController {
      * @return retorna o codigo do caso de uso.
      */
     public synchronized static String salvarCasoDeTeste(ArtefatoDeTeste artefato, String nome, String descricao, String srcCasoDeTeste, String codCU){
-        String codigo = ProjetoController.gerarPrefixo("caso de teste");
+        String codigo = ProjetoController.gerarCodigo("caso de teste");
         CasoDeTeste casoDeTeste = new CasoDeTeste(
                 codigo
                 , nome
-                , srcCasoDeTeste.replace(ProjetoController.getInformacoesDoProjetoAtivo().getSrc().concat("\\"), "")
+                , Utils.srcToStorage(Utils.resumeSrcCasoDeTeste(srcCasoDeTeste))
                 , artefato.getCaminhoRelativoAoProjeto()
                 , descricao
                 , artefato.getProjetoId()
@@ -102,7 +97,7 @@ public final class CasoDeTesteController {
         boolean retorno = dao.salvar(
                 codigo
                 , nome
-                , srcCasoDeTeste.replace(ProjetoController.getInformacoesDoProjetoAtivo().getSrc().concat("\\"), "")
+                , Utils.srcToStorage(Utils.resumeSrcCasoDeTeste(srcCasoDeTeste))
                 , artefato.getCaminhoRelativoAoProjeto()
                 , descricao
                 , artefato.getProjetoId()

@@ -61,6 +61,7 @@ CREATE TABLE caso_de_teste (
 
 CREATE TABLE roteiros_teste (
 	codigo VARCHAR(20) PRIMARY KEY,
+	nome VARCHAR(45) NOT NULL,
     descricao TEXT NOT NULL,
     situacao INT NOT NULL,
     projetoID INTEGER NOT NULL,
@@ -68,6 +69,13 @@ CREATE TABLE roteiros_teste (
     CONSTRAINT FOREIGN KEY (emailUsuario) REFERENCES usuario (email)  ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT FOREIGN KEY (projetoID) REFERENCES projeto(id)  ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+CREATE TABLE casos_de_teste_do_Roteiro (
+	codigo VARCHAR(20) NOT NULL REFERENCES roteiros_teste(codigo) ON DELETE CASCADE ON UPDATE CASCADE,
+	projetoID INTEGER NOT NULL REFERENCES projeto(id)
+	cod_caso_de_teste VARCHAR(20) NOT NULL REFERENCES caso_de_teste(codigo)
+);
+
     
 INSERT INTO usuario VALUES ('root', 'root@root', 'root', null, 1,'usuario root do sistema.');
 INSERT INTO usuario VALUES ('Matheus Ale da Silva', 'm.matheus.ale@gmail.com', 'adm', null, 1, '');

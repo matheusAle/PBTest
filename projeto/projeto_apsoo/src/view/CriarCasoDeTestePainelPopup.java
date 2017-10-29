@@ -227,7 +227,7 @@ public class CriarCasoDeTestePainelPopup extends JFrame{
      * O valor de retorno é atribuido ao labelDeAquivoDeTeste
      */
     private void selecionarArquivo() {
-        JFileChooser chooserArquivo = new JFileChooser(ProjetoController.getInformacoesDoProjetoAtivo().getSrc());
+        JFileChooser chooserArquivo = new JFileChooser(ProjetoController.getSrcProjetoAtivo());
         chooserArquivo.setFileSelectionMode(JFileChooser.FILES_ONLY);
         chooserArquivo.setFileFilter(new FileFilter() {
             @Override
@@ -418,11 +418,6 @@ public class CriarCasoDeTestePainelPopup extends JFrame{
         );
 
         pack();
-    }
-
-
-    public static void main(String[] args) {
-        new CriarCasoDeTestePainelPopup();
     }
 
 }

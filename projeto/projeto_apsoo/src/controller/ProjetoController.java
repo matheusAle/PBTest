@@ -77,7 +77,7 @@ public class ProjetoController {
     public synchronized static boolean ativarProjeto(String codigo) {
         try {
             projetoAtivo = dao.buscar("id = " + codigo);
-            CasoDeTesteController.carregarArtefatos(); //TODO este invocação deve ser por thread futuramente!
+            CasoDeTesteController.carregarArtefatos();
             return true;
         }catch (Exception e){e.printStackTrace();}
         return false;
@@ -92,23 +92,12 @@ public class ProjetoController {
         projetoParaEditar = projeto;
     }
 
-
-    /**
-     * @return Retorna um objeto do tipo <link>Projeto</link> com, codigo, nome, src e descrição do projeto ativo.
-     */
-    public static Projeto getInformacoesDoProjetoAtivo(){
-        try {
-            return new Projeto(projetoAtivo.getCodigo(), projetoAtivo.getNome(), projetoAtivo.getDescricao(), projetoAtivo.getSrc());
-        }catch (Exception e ){}
-        return null;
-    }
-
     /**
      * Persiste as mudanças no dos valores passados como parametro no projeto semdo editado.
      * @return true caso seja bem sucedido.
      */
     public synchronized static boolean atualizarProjeto(String nome, String descicao, String src) {
-        src = src.replaceAll("\\\\", "/");
+        src = Utils.srcToStorage(src);
         boolean b =  dao.atualizar(nome, descicao, src, projetoParaEditar.getCodigo());
         projetoParaEditar = null;
         return b;
@@ -134,7 +123,7 @@ public class ProjetoController {
      * @return retorna umas string com o prefixo.
      * @throws ProjetoException pode ser disparado caso algo de errado.
      */
-    public static String gerarPrefixo(String tipo){
+    public static String gerarCodigo(String tipo){
         String s = "  ";
         switch (tipo){
             case "caso de uso":
@@ -154,7 +143,7 @@ public class ProjetoController {
     /**
      * @return Retorna uma referencia para o projeto ativo.
      */
-    static model.Projeto getProjetoAtivo() {
+    public static model.Projeto getProjetoAtivo() {
         return projetoAtivo;
     }
 
@@ -176,5 +165,23 @@ public class ProjetoController {
         listaDeProjetos.removeIf((p) -> {
             return p.getCodigo() == codigo;
         });
+    }
+
+    /**
+     * @return retorna o codigo do projeto ativo
+     */
+    public synchronized static String getCodigoProjetoAtivo(){
+        return projetoAtivo.getCodigo();
+    }
+
+    /**
+     * @return Retorna o src do projeto ativo.
+     */
+    public synchronized static String getSrcProjetoAtivo(){
+        return projetoAtivo.getSrc();
+    }
+
+    public synchronized static  String getNomeProjetoAtivo(){
+        return projetoAtivo.getNome();
     }
 }

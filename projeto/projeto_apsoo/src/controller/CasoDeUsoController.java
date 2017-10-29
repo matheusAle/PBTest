@@ -1,14 +1,12 @@
 package controller;
 
 import controller.exceptions.ProjetoException;
-import model.ArtefatoDeTeste;
 import model.CasoDeUso;
 import model.Factorys.CasosDeUsoFactory;
 
 import java.util.Collection;
 import java.util.LinkedList;
 
-import static controller.ProjetoController.getInformacoesDoProjetoAtivo;
 
 public final class CasoDeUsoController {
     private static CasosDeUsoFactory dao = new CasosDeUsoFactory();
@@ -21,7 +19,7 @@ public final class CasoDeUsoController {
      * @throws ProjetoException Lançada quando não existir um projeto ativo
      */
     public static LinkedList<CasoDeUso> carregarLista() throws ProjetoException {
-        LinkedList<CasoDeUso> l = (LinkedList<CasoDeUso>) dao.listar(getInformacoesDoProjetoAtivo().getCodigo());
+        LinkedList<CasoDeUso> l = (LinkedList<CasoDeUso>) dao.listar(ProjetoController.getCodigoProjetoAtivo());
         return l != null ? l : new LinkedList<CasoDeUso>();
     }
 
@@ -57,7 +55,7 @@ public final class CasoDeUsoController {
      * @return Retorna uma string com o codigo do novo caso de uso
      */
     public static String salvarCasoDeUso(String nome, String objetivo, String atores, String descricao) {
-        String codigo = ProjetoController.gerarPrefixo("caso de uso");
+        String codigo = ProjetoController.gerarCodigo("caso de uso");
         dao.salvar(codigo, nome, objetivo, atores, descricao, ProjetoController.getProjetoAtivo().getCodigo(), UsuarioController.getEmailUsuarioLogado());
         return codigo;
     }
@@ -73,7 +71,7 @@ public final class CasoDeUsoController {
      *
      */
     public static void editarCasoDeUsoDeCodigo(String codigo){
-        casoDeUsoEditavel = dao.buscar(codigo, getInformacoesDoProjetoAtivo().getCodigo());
+        casoDeUsoEditavel = dao.buscar(codigo, ProjetoController.getCodigoProjetoAtivo());
     }
 
     public static CasoDeUso getCasoDeUsoEditavel() {

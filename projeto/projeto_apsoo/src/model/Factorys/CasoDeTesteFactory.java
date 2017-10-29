@@ -1,5 +1,6 @@
 package model.Factorys;
 
+import controller.Utils;
 import controller.exceptions.CasoDeTesteException;
 import controller.exceptions.ProjetoException;
 import model.ArtefatoDeTeste;
@@ -101,13 +102,46 @@ public class CasoDeTesteFactory extends AbstractFactory {
      * @param projetoId id do projeto
      */
     public void deletar(String codigo, String nomeArquivo, String projetoId) {
-        String dml = String.format("DELETE FROM caso_de_teste WHERE codigo = '%s' AND nomeClasseArtefato = '%s' AND projetoID = %s", codigo, nomeArquivo.replaceAll("\\\\", "/"), projetoId);
+        String dml = String.format("DELETE FROM caso_de_teste WHERE codigo = '%s' AND nomeClasseArtefato = '%s' AND projetoID = %s", codigo, Utils.srcToStorage(nomeArquivo), projetoId);
         try {
             execultarAtualizacao(dml);
         } catch (SQLException e) {
             e.printStackTrace();
             throw new CasoDeTesteException("Não foi posivel deletar caso de teste");
         }
+    }
+
+    /**
+     * Busca o caso de teste com o codigo solicitado
+     * @param codigoCasoDeTeste codigo do caso de teste
+     * @param codigoProjeto codigo do projeto
+     * @return retorna um Caso de teste
+     *@throws CasoDeTesteException caso de algum erro.
+     **/
+    public CasoDeTeste buscarPorCodigo(String codigoCasoDeTeste, String codigoProjeto){
+        String query = String.format("SELECT * FROM caso_de_teste WHERE projetoID = %s AND codigo = '%s' ", codigoProjeto, codigoCasoDeTeste);
+        ResultSet resultSet = execultarBusca(query);
+        if (resultSet != null){
+            try {
+                while (resultSet.next()){
+                    return new CasoDeTeste(
+                            resultSet.getString("codigo"),
+                            resultSet.getString("nome"),
+                            Utils.srcToObject(resultSet.getString("nomeClasseTeste")),
+                            Utils.srcToObject(resultSet.getString("nomeClasseArtefato")),
+                            resultSet.getString("descricao"),
+                            resultSet.getString("projetoID"),
+                            resultSet.getString("casoDeUsoCodigo"),
+                            resultSet.getString("resultado"),
+                            resultSet.getString("emailUsuario")
+                    );
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new CasoDeTesteException("Não foi possivel carregar o caso de teste de codigo " + codigoCasoDeTeste + "do projeto " + codigoProjeto );
+            }
+        }
+        return null;
 
     }
 }

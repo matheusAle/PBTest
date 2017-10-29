@@ -35,7 +35,7 @@ public final class ProjetosPainel extends PainelDeListagem{
             JOptionPane.showConfirmDialog(SistemaController.JANELA,"Ocorreu um erro ao ativar o projeto.", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        projetoAtivo = new ProjetoAtivo(ProjetoController.getInformacoesDoProjetoAtivo());
+        projetoAtivo = new ProjetoAtivo(ProjetoController.getProjetoAtivo());
         super.atualizarLista(false);
     }
 

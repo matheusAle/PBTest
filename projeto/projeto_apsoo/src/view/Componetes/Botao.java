@@ -33,7 +33,17 @@ public class Botao extends JButton implements MouseListener{
         super.setBorderPainted(false);
         super.addMouseListener(this);
         super.setFont(Fontes.TEXTO_BTN);
+    }
 
+    public Botao(String titulo) {
+        super(titulo);
+
+        super.setBorder(new EmptyBorder(10, 10, 10, 10));
+        super.setMargin(new Insets(5, 10, 5, 10));
+        super.setFocusPainted(false);
+        super.setBorderPainted(false);
+        super.addMouseListener(this);
+        super.setFont(Fontes.TEXTO_BTN);
     }
 
 
@@ -78,8 +88,9 @@ public class Botao extends JButton implements MouseListener{
         this.corDeFundoHover = getCorDeFundoHover;
     }
 
-    public void setOnMouseClick(Consumer<Component> onMouseClick) {
+    public Botao setOnMouseClick(Consumer<Component> onMouseClick) {
         this.onMouseClick = onMouseClick;
+        return this;
     }
 
     public void setOnMouseEnter(Consumer<Component> onMouseEnter) {

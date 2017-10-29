@@ -146,6 +146,14 @@ public class Janela extends JFrame{
                         JOptionPane.showMessageDialog(Janela.this, "Ative um Projeto!");
                     }
                 });
+
+                btn_roteiros_testes.setOnClick((e) -> {
+                    try {
+                        SistemaController.setPainelDeTrabalho("ROTEIROS_DE_TESTE");
+                    } catch (CasoDeTesteExeption casoDeTesteExeption) {
+                        JOptionPane.showMessageDialog(Janela.this, "Ative um Projeto!");
+                    }
+                });
             }
         }
     }

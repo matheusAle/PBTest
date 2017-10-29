@@ -47,6 +47,30 @@ public class ArvoreDeArtefatos extends JTree implements TreeSelectionListener{
         super.addTreeSelectionListener(this);
     }
 
+
+    public ArvoreDeArtefatos() {
+        super.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        super.setBackground(Cores.FUNDO_MENU_ESQUERDO);
+        super.setForeground(Cores.TEXTOS);
+        super.setShowsRootHandles(true);
+        DefaultTreeCellRenderer render = new DefaultTreeCellRenderer();
+
+        render.setLeafIcon(Icones.ICONE_PONTO_JAVA);
+        render.setClosedIcon(Icones.ICONE_PASTA);
+        render.setOpenIcon(Icones.ICONE_PASTA_OPEN);
+        render.setFont(Fontes.NAV_LABEL.deriveFont(12f));
+
+        render.setBorder(new EmptyBorder(0,0,0,0));
+        render.setBackgroundNonSelectionColor(Cores.FUNDO_MENU_ESQUERDO);
+        render.setBackgroundSelectionColor(Cores.FUNDO_BOTAO);
+        render.setTextNonSelectionColor(Cores.TEXTOS);
+        render.setTextSelectionColor(Cores.TEXTOS);
+        super.putClientProperty ("JTree.lineStyle", "None");
+        render.setIcon(null);
+        super.setCellRenderer(render);
+
+        super.addTreeSelectionListener(this);
+    }
     /**
      * Chama o metodo definido para tratar a seleção de um node da arvore,
      * passando como parametro o objeto ArvoreNode selecionado.

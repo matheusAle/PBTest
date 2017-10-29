@@ -14,7 +14,21 @@ public class MeuPainelComScrollBar extends JScrollPane {
 
         super.getVerticalScrollBar().setUI(new MeuScrollbarUI());
         super.getHorizontalScrollBar().setUI(new MeuScrollbarUI());
-        super.setBorder(new EmptyBorder(1,1,1,1));
+        super.setBorder(new EmptyBorder(0,0,0,0));
+
+        super.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                MeuPainelComScrollBar.super.setPreferredSize(MeuPainelComScrollBar.super.getSize());
+            }
+        });
+    }
+
+    public MeuPainelComScrollBar() {
+
+        super.getVerticalScrollBar().setUI(new MeuScrollbarUI());
+        super.getHorizontalScrollBar().setUI(new MeuScrollbarUI());
+        super.setBorder(new EmptyBorder(0,0,0,0));
 
         super.addComponentListener(new ComponentAdapter() {
             @Override
