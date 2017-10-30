@@ -2,62 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b1eb9c1f-427f-4e6e-a0cd-500c9064f0ac" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/controller/ExecusaoDeTestesController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/controller/exceptions/ExecusaoExeption.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/prop_pbtest.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testes/UtilsTest.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Factorys/RoteiroDeTestes.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/resources/Icones.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/Icones.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/model/Factorys/RoteiroDeTestes.java" afterPath="$PROJECT_DIR$/src/model/RoteiroDeTestes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/CasoDeTesteController.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/CasoDeTesteController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/ProjetoController.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/ProjetoController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/RoteiroDeTesteController.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/RoteiroDeTesteController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Factorys/CasoDeTesteFactory.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Factorys/CasoDeTesteFactory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Factorys/CasosDeUsoFactory.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Factorys/CasosDeUsoFactory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Factorys/RoteiroDeTesteFactory.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Factorys/RoteiroDeTesteFactory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/model/TestesPool.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/model/TestesPool.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Usuario.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/model/Usuario.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CasosDeTestePainel$CasoDeTesteItem.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CasosDeTestePainel$CasoDeTesteItem.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CasosDeTestePainel$PainelDeCasoDeTeste.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CasosDeTestePainel$PainelDeCasoDeTeste.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CasosDeTestePainel.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CasosDeTestePainel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Componetes/ArvoreDeArtefatos.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Componetes/ArvoreDeArtefatos.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CriarCasoDeTestePainelPopup$1.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CriarCasoDeTestePainelPopup$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CriarCasoDeTestePainelPopup.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CriarCasoDeTestePainelPopup.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CriarCasoDeUsoPainel$Formulario.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CriarCasoDeUsoPainel$Formulario.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CriarRoteiroDeTestePainelPopup$1.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CriarRoteiroDeTestePainelPopup$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CriarRoteiroDeTestePainelPopup$2.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CriarRoteiroDeTestePainelPopup$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CriarRoteiroDeTestePainelPopup$3.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CriarRoteiroDeTestePainelPopup$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CriarRoteiroDeTestePainelPopup$myCellListRender.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CriarRoteiroDeTestePainelPopup$myCellListRender.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CriarRoteiroDeTestePainelPopup.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/CriarRoteiroDeTestePainelPopup.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Janela$OpcoesDoPainelAtivo.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Janela$OpcoesDoPainelAtivo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Janela$PainelDeNavegacaoLateral$OpcoesDeNavagacao.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Janela$PainelDeNavegacaoLateral$OpcoesDeNavagacao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Janela$PainelDeNavegacaoLateral$Usuario_logado.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Janela$PainelDeNavegacaoLateral$Usuario_logado.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Janela$PainelDeNavegacaoLateral.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Janela$PainelDeNavegacaoLateral.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Janela.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/Janela.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/RoteirosDeTestePainel$ItemDaLista.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/RoteirosDeTestePainel$ItemDaLista.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/RoteirosDeTestePainel.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/RoteirosDeTestePainel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/UsuariosPainel$PainelInfos.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/view/UsuariosPainel$PainelInfos.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/ProjetoController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/model/TestesPool.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/view/ProjetosPainel$ItemListaProjeto.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/ExecusaoDeTestesController.class" afterPath="$PROJECT_DIR$/out/production/projeto_apsoo/controller/ExecusaoDeTestesController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/projeto_apsoo.iml" afterPath="$PROJECT_DIR$/projeto_apsoo.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/CasoDeTesteController.java" afterPath="$PROJECT_DIR$/src/controller/CasoDeTesteController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/ExecusaoDeTestesController.java" afterPath="$PROJECT_DIR$/src/controller/ExecusaoDeTestesController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/ProjetoController.java" afterPath="$PROJECT_DIR$/src/controller/ProjetoController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/RoteiroDeTesteController.java" afterPath="$PROJECT_DIR$/src/controller/RoteiroDeTesteController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/Utils.java" afterPath="$PROJECT_DIR$/src/controller/Utils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Factorys/CasoDeTesteFactory.java" afterPath="$PROJECT_DIR$/src/model/Factorys/CasoDeTesteFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Factorys/CasosDeUsoFactory.java" afterPath="$PROJECT_DIR$/src/model/Factorys/CasosDeUsoFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Factorys/RoteiroDeTesteFactory.java" afterPath="$PROJECT_DIR$/src/model/Factorys/RoteiroDeTesteFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Factorys/ProjetoFactory.java" afterPath="$PROJECT_DIR$/src/model/Factorys/ProjetoFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Projeto.java" afterPath="$PROJECT_DIR$/src/model/Projeto.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/TestesPool.java" afterPath="$PROJECT_DIR$/src/model/TestesPool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Usuario.java" afterPath="$PROJECT_DIR$/src/model/Usuario.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/CasosDeTestePainel.java" afterPath="$PROJECT_DIR$/src/view/CasosDeTestePainel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/Componetes/ArvoreDeArtefatos.java" afterPath="$PROJECT_DIR$/src/view/Componetes/ArvoreDeArtefatos.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/Componetes/Painel.java" afterPath="$PROJECT_DIR$/src/view/Componetes/Painel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/CriarCasoDeTestePainelPopup.java" afterPath="$PROJECT_DIR$/src/view/CriarCasoDeTestePainelPopup.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/CriarCasoDeUsoPainel.java" afterPath="$PROJECT_DIR$/src/view/CriarCasoDeUsoPainel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/CriarRoteiroDeTestePainelPopup.java" afterPath="$PROJECT_DIR$/src/view/CriarRoteiroDeTestePainelPopup.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/Janela.java" afterPath="$PROJECT_DIR$/src/view/Janela.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/CriarProjetoPainel.java" afterPath="$PROJECT_DIR$/src/view/CriarProjetoPainel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/EditarProjetoPainel.java" afterPath="$PROJECT_DIR$/src/view/EditarProjetoPainel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/ProjetosPainel.java" afterPath="$PROJECT_DIR$/src/view/ProjetosPainel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/RoteirosDeTestePainel.java" afterPath="$PROJECT_DIR$/src/view/RoteirosDeTestePainel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/UsuariosPainel.java" afterPath="$PROJECT_DIR$/src/view/UsuariosPainel.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -77,50 +38,132 @@
       <file leaf-file-name="ProjetoController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controller/ProjetoController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="56" column="66" lean-forward="true" selection-start-line="56" selection-start-column="66" selection-end-line="56" selection-end-column="89" />
+            <state relative-caret-position="444">
+              <caret line="215" column="42" lean-forward="false" selection-start-line="215" selection-start-column="42" selection-end-line="215" selection-end-column="42" />
               <folding>
+                <element signature="method#cadastrarProjeto#0;class#ProjetoController#0" expanded="false" />
                 <element signature="method#gerarCodigo#0;class#ProjetoController#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ExecusaoDeTestesController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ExecusaoDeTestesController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controller/ExecusaoDeTestesController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="23" column="8" lean-forward="true" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+            <state relative-caret-position="127">
+              <caret line="28" column="65" lean-forward="false" selection-start-line="28" selection-start-column="65" selection-end-line="28" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1884#1885#0" expanded="true" />
-                <element signature="e#1918#1919#0" expanded="true" />
-                <element signature="e#2063#2064#0" expanded="true" />
-                <element signature="e#2089#2090#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="prop_pbtest.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/resources/prop_pbtest.properties">
+      <file leaf-file-name="ProjetoFactory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/Factorys/ProjetoFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="14" lean-forward="true" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+            <state relative-caret-position="199">
+              <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+              <folding>
+                <element signature="method#salvar#0;class#ProjetoFactory#0" expanded="false" />
+                <element signature="method#buscar#0;class#ProjetoFactory#0" expanded="false" />
+                <element signature="method#atualizar#0;class#ProjetoFactory#0" expanded="false" />
+                <element signature="method#buscarContador#0;class#ProjetoFactory#0" expanded="false" />
+                <element signature="method#deletar#0;class#ProjetoFactory#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CriarProjetoPainel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/CriarProjetoPainel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="274">
+              <caret line="165" column="55" lean-forward="false" selection-start-line="165" selection-start-column="55" selection-end-line="165" selection-end-column="55" />
+              <folding>
+                <element signature="method#carregarOpcoes#0;class#CriarProjetoPainel#0" expanded="false" />
+                <element signature="method#cadastarProjeto#0;class#CriarProjetoPainel#0" expanded="false" />
+                <element signature="e#5351#5352#0" expanded="true" />
+                <element signature="e#5405#5406#0" expanded="true" />
+                <element signature="e#6244#6245#0" expanded="true" />
+                <element signature="e#6298#6299#0" expanded="true" />
+                <element signature="method#limpar#0;class#CriarProjetoPainel#0" expanded="false" />
+                <element signature="method#iniciarComponentes#0;class#Formulario#0;class#CriarProjetoPainel#0" expanded="false" />
+                <element signature="method#iniciarTextos#0;class#Formulario#0;class#CriarProjetoPainel#0" expanded="false" />
+                <element signature="method#iniciarLayout#0;class#Formulario#0;class#CriarProjetoPainel#0" expanded="false" />
+                <element signature="method#iniciarEstilo#0;class#Formulario#0;class#CriarProjetoPainel#0" expanded="false" />
+                <element signature="method#iniciarListaners#0;class#Formulario#0;class#CriarProjetoPainel#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Utils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controller/Utils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#604#605#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Projeto.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/Projeto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="29">
+              <caret line="30" column="79" lean-forward="false" selection-start-line="30" selection-start-column="79" selection-end-line="30" selection-end-column="79" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProjetosPainel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/ProjetosPainel.java">
+      <file leaf-file-name="CasoDeTesteFactory.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/model/Factorys/CasoDeTesteFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="122" column="68" lean-forward="false" selection-start-line="122" selection-start-column="68" selection-end-line="122" selection-end-column="68" />
+            <state relative-caret-position="497">
+              <caret line="52" column="15" lean-forward="false" selection-start-line="52" selection-start-column="15" selection-end-line="52" selection-end-column="15" />
               <folding>
-                <element signature="method#carregarOpcoes#0;class#ProjetosPainel#0" expanded="false" />
-                <element signature="method#iniciarLayout#0;class#ItemListaProjeto#0;class#ProjetosPainel#0" expanded="false" />
+                <element signature="docComment;method#deletar#0;class#CasoDeTesteFactory#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CriarCasoDeTestePainelPopup.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/CriarCasoDeTestePainelPopup.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="239">
+              <caret line="129" column="50" lean-forward="false" selection-start-line="129" selection-start-column="50" selection-end-line="129" selection-end-column="50" />
+              <folding>
+                <element signature="method#CriarCasoDeTestePainelPopup#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+                <element signature="method#iniciarPopup#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+                <element signature="method#carregarCasoDeTeste#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+                <element signature="method#todosOsCamposValidos#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+                <element signature="method#carregarCasosDeUso#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+                <element signature="method#getCodigoCasoDeUsoSelecionado#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+                <element signature="method#salvarCasoDeTeste#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+                <element signature="method#limparCampos#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+                <element signature="method#iniciarLayout#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+                <element signature="method#iniciarComponentes#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+                <element signature="method#carregarTextos#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+                <element signature="method#carregarEstilo#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+                <element signature="method#carregarlistaners#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EditarProjetoPainel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/EditarProjetoPainel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="53" column="100" lean-forward="false" selection-start-line="53" selection-start-column="100" selection-end-line="53" selection-end-column="100" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -149,9 +192,9 @@
       <find>javax.swing.JTree</find>
       <find>javax.swing.JButton</find>
       <find>Meulabel</find>
-      <find>javax.swing.JLabel</find>
       <find>\\</find>
       <find>\</find>
+      <find>javax.swing.JLabel</find>
     </findStrings>
     <replaceStrings>
       <replace>MeuCampoDeTexto</replace>
@@ -162,8 +205,8 @@
       <replace>ArvoreDeArtefatos</replace>
       <replace>Botao</replace>
       <replace>Meulabel</replace>
-      <replace>MeuLabel</replace>
       <replace>/</replace>
+      <replace>MeuLabel</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -175,6 +218,7 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/view/CriarProjetoPainel.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/view/Componetes/PainelDeListagem.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/view/RoteirosDeTestePainel.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/model/ArtefatoDeTeste.java" root0="SKIP_INSPECTION" />
@@ -193,16 +237,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/model/Factorys/UsuarioFactory.java" />
-        <option value="$PROJECT_DIR$/src/resources/Strings.java" />
         <option value="$PROJECT_DIR$/src/controller/UsuarioController.java" />
-        <option value="$PROJECT_DIR$/src/view/EditarProjetoPainel.java" />
         <option value="$PROJECT_DIR$/src/view/EditarCasoDeUsoPainel.java" />
         <option value="$PROJECT_DIR$/src/view/CriarCasoDeTestePainel.java" />
-        <option value="$PROJECT_DIR$/src/model/Projeto.java" />
         <option value="$PROJECT_DIR$/src/model/ArtefatoDeTeste.java" />
         <option value="$PROJECT_DIR$/src/model/Factorys/AbstractFactory.java" />
-        <option value="$PROJECT_DIR$/src/model/Factorys/ProjetoFactory.java" />
         <option value="$PROJECT_DIR$/src/view/we.java" />
         <option value="$PROJECT_DIR$/src/view/DragDropDemo2.java" />
         <option value="$PROJECT_DIR$/src/view/RoteirosDeTestesPainel.java" />
@@ -216,14 +255,12 @@
         <option value="$PROJECT_DIR$/src/view/Componetes/MeuPainelComScrollBar.java" />
         <option value="$PROJECT_DIR$/src/model/CasoDeTeste.java" />
         <option value="$PROJECT_DIR$/src/controller/CasoDeUsoController.java" />
-        <option value="$PROJECT_DIR$/src/controller/Utils.java" />
         <option value="$PROJECT_DIR$/src/view/CasosDeUsoPainel.java" />
         <option value="$PROJECT_DIR$/src/view/Componetes/PainelDeListagem.java" />
         <option value="$PROJECT_DIR$/src/view/Componetes/MeuItemMenuPopup.java" />
         <option value="$PROJECT_DIR$/src/model/Factorys/RoteiroDeTestes.java" />
         <option value="$PROJECT_DIR$/src/view/CriarCasoDeUsoPainel.java" />
         <option value="$PROJECT_DIR$/src/model/Factorys/CasosDeUsoFactory.java" />
-        <option value="$PROJECT_DIR$/src/model/Factorys/CasoDeTesteFactory.java" />
         <option value="$PROJECT_DIR$/src/model/TestesPool.java" />
         <option value="$PROJECT_DIR$/src/controller/CasoDeTesteController.java" />
         <option value="$PROJECT_DIR$/src/view/CasosDeTestePainel.java" />
@@ -232,7 +269,6 @@
         <option value="$PROJECT_DIR$/src/controller/RoteiroDeTesteController.java" />
         <option value="$PROJECT_DIR$/src/view/RoteirosDeTestePainel.java" />
         <option value="$PROJECT_DIR$/src/view/CriarRoteiroDeTestePainelPopup.java" />
-        <option value="$PROJECT_DIR$/src/view/CriarCasoDeTestePainelPopup.java" />
         <option value="$PROJECT_DIR$/src/controller/exceptions/ExecusaoExeption.java" />
         <option value="$PROJECT_DIR$/src/controller/UtilsTest.java" />
         <option value="$PROJECT_DIR$/testes/UtilsTest.java" />
@@ -242,8 +278,16 @@
         <option value="$PROJECT_DIR$/src/resources/Arquivos.java" />
         <option value="$PROJECT_DIR$/src/resources/prop_pbtest.properties" />
         <option value="$PROJECT_DIR$/src/view/ProjetosPainel.java" />
+        <option value="$PROJECT_DIR$/src/view/Componetes/Painel.java" />
+        <option value="$PROJECT_DIR$/src/view/EditarProjetoPainel.java" />
+        <option value="$PROJECT_DIR$/src/model/Factorys/ProjetoFactory.java" />
         <option value="$PROJECT_DIR$/src/controller/ProjetoController.java" />
+        <option value="$PROJECT_DIR$/src/view/CriarCasoDeTestePainelPopup.java" />
+        <option value="$PROJECT_DIR$/src/view/CriarProjetoPainel.java" />
+        <option value="$PROJECT_DIR$/src/controller/Utils.java" />
         <option value="$PROJECT_DIR$/src/controller/ExecusaoDeTestesController.java" />
+        <option value="$PROJECT_DIR$/src/model/Projeto.java" />
+        <option value="$PROJECT_DIR$/src/model/Factorys/CasoDeTesteFactory.java" />
       </list>
     </option>
   </component>
@@ -293,9 +337,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -306,6 +347,24 @@
             <path>
               <item name="projeto_apsoo" type="b2602c69:ProjectViewProjectNode" />
               <item name="projeto_apsoo" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projeto_apsoo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projeto_apsoo" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projeto_apsoo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projeto_apsoo" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="projeto_apsoo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projeto_apsoo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projeto_apsoo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -318,19 +377,40 @@
               <item name="projeto_apsoo" type="b2602c69:ProjectViewProjectNode" />
               <item name="projeto_apsoo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="ExecusaoDeTestesController.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="projeto_apsoo" type="b2602c69:ProjectViewProjectNode" />
               <item name="projeto_apsoo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="Factorys" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projeto_apsoo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projeto_apsoo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projeto_apsoo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projeto_apsoo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="Componetes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projeto_apsoo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projeto_apsoo" type="462c0819:PsiDirectoryNode" />
+              <item name="testes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -600,7 +680,8 @@
       <workItem from="1509022264380" duration="17180000" />
       <workItem from="1509099062342" duration="1717000" />
       <workItem from="1509210849487" duration="28671000" />
-      <workItem from="1509275451745" duration="31741000" />
+      <workItem from="1509275451745" duration="32070000" />
+      <workItem from="1509359587272" duration="6594000" />
     </task>
     <servers />
   </component>
@@ -613,11 +694,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="150995000" />
+    <option name="totallyTimeSpent" value="157918000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -629,7 +709,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28971255" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2934947" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -678,37 +758,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="25" />
+      <option name="time" value="26" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/view/EditarProjetoPainel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="54" column="30" lean-forward="false" selection-start-line="54" selection-start-column="30" selection-end-line="54" selection-end-column="30" />
-          <folding>
-            <element signature="method#carregarOpcoes#0;class#EditarProjetoPainel#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Factorys/AbstractFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/awt/dnd/DropTarget.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="165" column="11" lean-forward="false" selection-start-line="165" selection-start-column="11" selection-end-line="165" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/DragDropDemo2.java" />
     <entry file="file://$PROJECT_DIR$/src/view/Componetes/MeuLabel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -721,7 +775,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="24" lean-forward="false" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -737,7 +790,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="92" column="20" lean-forward="false" selection-start-line="92" selection-start-column="20" selection-end-line="92" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -753,10 +805,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="71" column="45" lean-forward="true" selection-start-line="71" selection-start-column="45" selection-end-line="71" selection-end-column="45" />
-          <folding>
-            <element signature="e#3288#3289#0" expanded="false" />
-            <element signature="e#3342#3343#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -771,10 +819,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
           <caret line="1647" column="16" lean-forward="true" selection-start-line="1647" selection-start-column="16" selection-end-line="1647" selection-end-column="16" />
-          <folding>
-            <element signature="e#62667#62668#0" expanded="false" />
-            <element signature="e#62699#62700#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -782,9 +826,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
           <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding>
-            <element signature="e#1013#1014#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -792,7 +833,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-170">
           <caret line="5" column="41" lean-forward="true" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -808,7 +848,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="41" column="19" lean-forward="false" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -816,7 +855,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -919,29 +957,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="444">
           <caret line="55" column="42" lean-forward="false" selection-start-line="55" selection-start-column="42" selection-end-line="55" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1110#1111#0" expanded="true" />
-            <element signature="e#1145#1146#0" expanded="true" />
-            <element signature="e#1346#1347#0" expanded="true" />
-            <element signature="e#1386#1387#0" expanded="true" />
-            <element signature="e#1418#1419#0" expanded="true" />
-            <element signature="e#1468#1469#0" expanded="true" />
-            <element signature="e#1510#1511#0" expanded="true" />
-            <element signature="e#1555#1556#0" expanded="true" />
-            <element signature="e#1595#1596#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Factorys/CasoDeTesteFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1139">
-          <caret line="86" column="19" lean-forward="false" selection-start-line="86" selection-start-column="19" selection-end-line="86" selection-end-column="19" />
-          <folding>
-            <element signature="method#salvar#0;class#CasoDeTesteFactory#0" expanded="false" />
-            <element signature="docComment;method#deletar#0;class#CasoDeTesteFactory#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -950,19 +965,7 @@
         <state relative-caret-position="2193">
           <caret line="129" column="0" lean-forward="false" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Factorys/ProjetoFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="128" column="39" lean-forward="true" selection-start-line="128" selection-start-column="39" selection-end-line="128" selection-end-column="39" />
-          <folding>
-            <element signature="method#listar#0;class#ProjetoFactory#0" expanded="false" />
-            <element signature="method#buscar#0;class#ProjetoFactory#0" expanded="false" />
-            <element signature="method#buscarContador#0;class#ProjetoFactory#0" expanded="false" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1003,28 +1006,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/CriarCasoDeTestePainelPopup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1157">
-          <caret line="45" column="40" lean-forward="false" selection-start-line="45" selection-start-column="40" selection-end-line="45" selection-end-column="40" />
-          <folding>
-            <element signature="method#CriarCasoDeTestePainelPopup#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
-            <element signature="method#iniciarPopup#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
-            <element signature="method#carregarCasoDeTeste#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
-            <element signature="method#todosOsCamposValidos#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
-            <element signature="method#carregarCasosDeUso#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
-            <element signature="method#getCodigoCasoDeUsoSelecionado#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
-            <element signature="method#salvarCasoDeTeste#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
-            <element signature="method#limparCampos#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
-            <element signature="method#iniciarLayout#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
-            <element signature="method#iniciarComponentes#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
-            <element signature="method#carregarTextos#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
-            <element signature="method#carregarEstilo#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
-            <element signature="method#carregarlistaners#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/CriarRoteiroDeTestePainelPopup.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -1042,8 +1023,8 @@
             <element signature="method#todosOsCamposValidos#0;class#CriarRoteiroDeTestePainelPopup#0" expanded="false" />
             <element signature="method#iniciarListaners#0;class#CriarRoteiroDeTestePainelPopup#0" expanded="false" />
             <element signature="method#setRoteiro#0;class#CriarRoteiroDeTestePainelPopup#0" expanded="false" />
-            <element signature="e#25407#25408#0" expanded="true" />
-            <element signature="e#25474#25475#0" expanded="true" />
+            <element signature="e#25407#25408#0" expanded="false" />
+            <element signature="e#25474#25475#0" expanded="false" />
             <element signature="class#myCellListRender#0;class#CriarRoteiroDeTestePainelPopup#0" expanded="false" />
           </folding>
         </state>
@@ -1061,10 +1042,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="54" lean-forward="false" selection-start-line="2" selection-start-column="54" selection-end-line="2" selection-end-column="54" />
-          <folding>
-            <element signature="e#127#128#0" expanded="false" />
-            <element signature="e#151#152#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1072,52 +1049,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/UtilsTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="6" lean-forward="true" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/UtilsTest.java" />
     <entry file="file://$PROJECT_DIR$/testes/UtilsTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/properties.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="64" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="17" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="15" lean-forward="true" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/prop_pbtest.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/properties.properties" />
+    <entry file="file://$PROJECT_DIR$/prop_pbtest.properties" />
     <entry file="file://$PROJECT_DIR$/src/view/Janela.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -1141,7 +1085,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1149,65 +1092,154 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="46" lean-forward="false" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/CriarProjetoPainel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
-          <folding>
-            <element signature="method#iniciarComponentes#0;class#Formulario#0;class#CriarProjetoPainel#0" expanded="false" />
-            <element signature="method#iniciarTextos#0;class#Formulario#0;class#CriarProjetoPainel#0" expanded="false" />
-            <element signature="method#iniciarLayout#0;class#Formulario#0;class#CriarProjetoPainel#0" expanded="false" />
-            <element signature="method#iniciarEstilo#0;class#Formulario#0;class#CriarProjetoPainel#0" expanded="false" />
-            <element signature="e#14801#15126#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/ProjetosPainel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="122" column="68" lean-forward="false" selection-start-line="122" selection-start-column="68" selection-end-line="122" selection-end-column="68" />
-          <folding>
-            <element signature="method#carregarOpcoes#0;class#ProjetosPainel#0" expanded="false" />
-            <element signature="method#iniciarLayout#0;class#ItemListaProjeto#0;class#ProjetosPainel#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/ProjetoController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="56" column="66" lean-forward="true" selection-start-line="56" selection-start-column="66" selection-end-line="56" selection-end-column="89" />
-          <folding>
-            <element signature="method#gerarCodigo#0;class#ProjetoController#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/resources/prop_pbtest.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
-          <caret line="16" column="14" lean-forward="true" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+          <caret line="16" column="14" lean-forward="false" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/ProjetosPainel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1073">
+          <caret line="189" column="34" lean-forward="false" selection-start-line="189" selection-start-column="34" selection-end-line="189" selection-end-column="34" />
+          <folding>
+            <element signature="method#carregarOpcoes#0;class#ProjetosPainel#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/javax/swing/JComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="2751" column="16" lean-forward="false" selection-start-line="2751" selection-start-column="16" selection-end-line="2751" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/EditarProjetoPainel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="53" column="100" lean-forward="false" selection-start-line="53" selection-start-column="100" selection-end-line="53" selection-end-column="100" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Componetes/Painel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1378">
+          <caret line="84" column="20" lean-forward="false" selection-start-line="84" selection-start-column="20" selection-end-line="84" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/ProjetoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="215" column="42" lean-forward="false" selection-start-line="215" selection-start-column="42" selection-end-line="215" selection-end-column="42" />
+          <folding>
+            <element signature="method#cadastrarProjeto#0;class#ProjetoController#0" expanded="false" />
+            <element signature="method#gerarCodigo#0;class#ProjetoController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/CriarCasoDeTestePainelPopup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="129" column="50" lean-forward="false" selection-start-line="129" selection-start-column="50" selection-end-line="129" selection-end-column="50" />
+          <folding>
+            <element signature="method#CriarCasoDeTestePainelPopup#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+            <element signature="method#iniciarPopup#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+            <element signature="method#carregarCasoDeTeste#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+            <element signature="method#todosOsCamposValidos#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+            <element signature="method#carregarCasosDeUso#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+            <element signature="method#getCodigoCasoDeUsoSelecionado#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+            <element signature="method#salvarCasoDeTeste#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+            <element signature="method#limparCampos#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+            <element signature="method#iniciarLayout#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+            <element signature="method#iniciarComponentes#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+            <element signature="method#carregarTextos#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+            <element signature="method#carregarEstilo#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+            <element signature="method#carregarlistaners#0;class#CriarCasoDeTestePainelPopup#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/CriarProjetoPainel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="165" column="55" lean-forward="false" selection-start-line="165" selection-start-column="55" selection-end-line="165" selection-end-column="55" />
+          <folding>
+            <element signature="method#carregarOpcoes#0;class#CriarProjetoPainel#0" expanded="false" />
+            <element signature="method#cadastarProjeto#0;class#CriarProjetoPainel#0" expanded="false" />
+            <element signature="e#5351#5352#0" expanded="true" />
+            <element signature="e#5405#5406#0" expanded="true" />
+            <element signature="e#6244#6245#0" expanded="true" />
+            <element signature="e#6298#6299#0" expanded="true" />
+            <element signature="method#limpar#0;class#CriarProjetoPainel#0" expanded="false" />
+            <element signature="method#iniciarComponentes#0;class#Formulario#0;class#CriarProjetoPainel#0" expanded="false" />
+            <element signature="method#iniciarTextos#0;class#Formulario#0;class#CriarProjetoPainel#0" expanded="false" />
+            <element signature="method#iniciarLayout#0;class#Formulario#0;class#CriarProjetoPainel#0" expanded="false" />
+            <element signature="method#iniciarEstilo#0;class#Formulario#0;class#CriarProjetoPainel#0" expanded="false" />
+            <element signature="method#iniciarListaners#0;class#Formulario#0;class#CriarProjetoPainel#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/ExecusaoDeTestesController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="23" column="8" lean-forward="true" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+        <state relative-caret-position="127">
+          <caret line="28" column="65" lean-forward="false" selection-start-line="28" selection-start-column="65" selection-end-line="28" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1884#1885#0" expanded="true" />
-            <element signature="e#1918#1919#0" expanded="true" />
-            <element signature="e#2063#2064#0" expanded="true" />
-            <element signature="e#2089#2090#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Factorys/ProjetoFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding>
+            <element signature="method#salvar#0;class#ProjetoFactory#0" expanded="false" />
+            <element signature="method#buscar#0;class#ProjetoFactory#0" expanded="false" />
+            <element signature="method#atualizar#0;class#ProjetoFactory#0" expanded="false" />
+            <element signature="method#buscarContador#0;class#ProjetoFactory#0" expanded="false" />
+            <element signature="method#deletar#0;class#ProjetoFactory#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#604#605#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Projeto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="30" column="79" lean-forward="false" selection-start-line="30" selection-start-column="79" selection-end-line="30" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Factorys/CasoDeTesteFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="52" column="15" lean-forward="false" selection-start-line="52" selection-start-column="15" selection-end-line="52" selection-end-column="15" />
+          <folding>
+            <element signature="docComment;method#deletar#0;class#CasoDeTesteFactory#0" expanded="false" />
           </folding>
         </state>
       </provider>

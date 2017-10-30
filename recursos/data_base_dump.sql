@@ -15,7 +15,8 @@ CREATE TABLE usuario (
 #tabela de projetos
 CREATE TABLE projeto (
     nome VARCHAR(45) NOT NULL,
-    srcRaiz TEXT NOT NULL,
+    srcProducao TEXT NOT NULL,
+    srcTestes TEXT NOT NULL,
     prefixoCT VARCHAR(10) NOT NULL,
     prefixoCU VARCHAR(10) NOT NULL,
     prefixoRT VARCHAR(10) NOT NULL,
@@ -83,10 +84,3 @@ INSERT INTO usuario VALUES ('Buno silva', 'bruno@live.com', 'jurubeba', null, 2,
 INSERT INTO usuario VALUES ('Eduardo Gonsaga', 'ginsaghinha@gmail.com', 'gugulegal123', null, 3, '');
 INSERT INTO usuario VALUES ('Isabella Bitencurt', 'bela.curt@gmail.com', 'belabela', null, 3, '');
 INSERT INTO usuario VALUES ('Amanda Souza', 'amanda_sozinha@gmail.com', 'WWFFEaw@445UffOOpp', null, 3, '');
-
-INSERT INTO 'projeto' ('nome', 'srcRaiz', 'prefixoCT', 'prefixoCU', 'prefixoRT', 'descricao', 'usuario_dono', 'id', 'contadorCT', 'contadorCU', 'contadorRT') VALUES
-('Exercicios do URI', 'C:/Users/matheus/Google Drive/java/exercicio do URI/src', 'entEx-', 'entrada-', 'lista-', 'Projeto para testar as minhas soluções para aulgus dos exercicios do URI.', 'root@root', 1, 0, 2, 0),
-('Padora Box Test', 'C:/Users/matheus/Dropbox/projetos/APSOO/trabalho_apsoo/projeto/projeto [...]', 'CU-pb-', 'CT-pb-', 'RT-pb-', 'Testar a implementação trabalho pratico de APSOO. ', 'root@root', 2, 0, 3, 0);
-
-INSERT INTO 'caso_de_uso' ('codigo', 'nome', 'atores', 'objetivo', 'descricao', 'projetoID', 'usuario_dono') VALUES
-('CT-pb-0', 'Criar um caso de teste', 'gerente de projeto; gerente de teste; testador;', 'Este caso de Uso descreve o processo de criação de um caso de teste dentro do software. ', 'Fluxo pricipal: \n1 – Informar o nome do caso de teste\n2 –Informar vincula o caso de teste a um caso de uso existente.\n3 – Informar o diretório raiz do projeto;\n4 – Informa a descrição do projeto.\n5 – Finaliza a criação do projeto;\n\nCenários Alternativos:\n2.1 - Se o software verificar que já existem prefixos iguais no banco de dados o software pede para que novos prefixos sejam informados.', 2, 'root@root');

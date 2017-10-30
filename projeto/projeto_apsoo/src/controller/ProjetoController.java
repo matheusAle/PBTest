@@ -5,15 +5,12 @@ import controller.exceptions.ProjetoException;
 import model.Factorys.ProjetoFactory;
 import model.Projeto;
 import resources.Arquivos;
-import view.Componetes.MeuLabel;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.util.LinkedList;
 import java.util.Properties;
 
@@ -25,26 +22,31 @@ public class ProjetoController {
 
     /**
      * Persiste as informações do projeto passadas como paramentro.
+     *
+     * @param text
      * @param nome nome do projeto
      * @param src path do diretorio raiz do projeto
-     * @param CASO_DE_TESTE prefixo dos casos de teste
      * @param CASO_DE_USO  prefixo dos casos de uso
      * @param ROTEIRO_DE_TESTE prefixo dos casos roteiros de teste
+     * @param CASO_DE_TESTE prefixo dos casos de teste
      * @param descricao descrição do projeto
      * @return true se bem sucedido
      */
-    public synchronized static boolean cadastrarProjeto (
+    public synchronized static boolean cadastrarProjeto(
             String nome,
-            String src,
+            String srcProducao,
+            String srcTestes,
             String CASO_DE_USO,
             String ROTEIRO_DE_TESTE,
             String CASO_DE_TESTE,
             String descricao
-            ){
-        String srcP = Utils.srcToStorage(src);
+    ){
+        srcProducao =  Utils.srcToStorage(srcProducao);
+        srcTestes = Utils.srcToStorage(srcTestes);
         Boolean retorno = dao.salvar(
                 nome,
-                srcP,
+                srcProducao,
+                srcTestes,
                 CASO_DE_USO,
                 ROTEIRO_DE_TESTE,
                 CASO_DE_TESTE,
@@ -53,8 +55,7 @@ public class ProjetoController {
         );
         try {
             Properties properties = Arquivos.PROPERTIES_PADRAO;
-
-            FileWriter fileWriter = new FileWriter(new File(src+"/props_pbtest.properties"));
+            FileWriter fileWriter = new FileWriter(new File(srcTestes+"/props_pbtest.properties"));
             properties.store(fileWriter, " Arquivo de propropriedades do projeto\n" +
                     " Estes valores são usados pelo software de testes pbtest\n\n" +
                     " production.class.path: caminho de sistema para o diretorio raiz dos artefatos testávis do sistema\n" +
@@ -112,9 +113,17 @@ public class ProjetoController {
      * Persiste as mudanças no dos valores passados como parametro no projeto semdo editado.
      * @return true caso seja bem sucedido.
      */
-    public synchronized static boolean atualizarProjeto(String nome, String descicao, String src) {
-        src = Utils.srcToStorage(src);
-        boolean b =  dao.atualizar(nome, descicao, src, projetoParaEditar.getCodigo());
+    public synchronized static boolean atualizarProjeto(String nome, String descicao, String srcProducao, String srcTestes) {
+
+        boolean b =  dao.atualizar(nome, descicao, Utils.srcToStorage(srcProducao), Utils.srcToStorage(srcTestes), projetoParaEditar.getCodigo());
+        for (Projeto p : listaDeProjetos){
+            if (p.getCodigo().equals(projetoAtivo.getCodigo())){
+                p.setSrcTestes(srcTestes);
+                p.setDescricao(descicao);
+                p.setNome(nome);
+                break;
+            }
+        }
         projetoParaEditar = null;
         return b;
     }
@@ -178,7 +187,7 @@ public class ProjetoController {
      */
     public synchronized static void deletarProjetoDeCodigo(Projeto p) {
         try {
-            Files.deleteIfExists(Paths.get(p.getSrc().concat("/").concat("props_pbtest.properties")));
+            Files.deleteIfExists(Paths.get(p.getSrcProducao().concat("/").concat("props_pbtest.properties")));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -199,8 +208,12 @@ public class ProjetoController {
     /**
      * @return Retorna o src do projeto ativo.
      */
-    public synchronized static String getSrcProjetoAtivo(){
-        return projetoAtivo.getSrc();
+    public synchronized static String getSrcPruducaoProjetoAtivo(){
+        return projetoAtivo.getSrcProducao();
+    }
+
+    public synchronized static String getSrcTestesProjetoAtivo(){
+        return projetoAtivo.getSrcTestes();
     }
 
     public synchronized static  String getNomeProjetoAtivo(){

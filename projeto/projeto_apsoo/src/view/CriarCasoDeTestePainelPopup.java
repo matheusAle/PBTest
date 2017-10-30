@@ -136,18 +136,18 @@ public class CriarCasoDeTestePainelPopup extends JFrame{
      * O valor de retorno é atribuido ao labelDeAquivoDeTeste
      */
     private void selecionarArquivo() {
-        JFileChooser chooserArquivo = new JFileChooser(ProjetoController.getSrcProjetoAtivo());
+        JFileChooser chooserArquivo = new JFileChooser(ProjetoController.getSrcTestesProjetoAtivo());
         chooserArquivo.setFileSelectionMode(JFileChooser.FILES_ONLY);
         chooserArquivo.setFileFilter(new FileFilter() {
             @Override
             public boolean accept(File f) {
                 if (f.isDirectory()) return true;
-                return f.getName().endsWith(".java") || f.getName().endsWith(".class");
+                return f.getName().endsWith(".class");
             }
 
             @Override
             public String getDescription() {
-                return "Apenas arquivos .java ou .class";
+                return "Apenas arquivos .class";
             }
         });
         chooserArquivo.showOpenDialog(getParent());

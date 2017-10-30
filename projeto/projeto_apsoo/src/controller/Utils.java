@@ -42,7 +42,7 @@ public class Utils {
      * @return src resumido.
      */
     public static String resumeSrcCasoDeTeste(String src){
-        return src.replace(ProjetoController.getSrcProjetoAtivo(), "");
+        return src.replace(ProjetoController.getSrcTestesProjetoAtivo(), "");
     }
 
 }

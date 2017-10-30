@@ -51,7 +51,7 @@ public final class EditarProjetoPainel extends CriarProjetoPainel {
     private void salvarProjeto() {
         if(!super.todosOsCamposEstaoValidos())
             return;
-        if(!ProjetoController.atualizarProjeto(campoNome.getText(), campoDescricao.getText(), campoSrc.getText())){
+        if(!ProjetoController.atualizarProjeto(campoNome.getText(), campoDescricao.getText(), srcProducao, srcTestes)){
             JOptionPane.showMessageDialog(SistemaController.JANELA, "Erro ao atualizar os dados", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -91,7 +91,7 @@ public final class EditarProjetoPainel extends CriarProjetoPainel {
             super();
             campoNome.setText(projeto.getNome());
             campoDescricao.setText(projeto.getDescricao());
-            campoSrc.setText(projeto.getSrc());
+            labelSrcTestes.setText(projeto.getSrcProducao());
             campoPrefixoCT.setText(projeto.getPrefixoCT());
             campoPrefixoCU.setText(projeto.getPrefixoCU());
             campoPrefixoRT.setText(projeto.getPrefixoRT());

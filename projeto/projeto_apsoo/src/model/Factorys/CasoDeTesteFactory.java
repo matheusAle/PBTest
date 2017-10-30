@@ -50,7 +50,7 @@ public class CasoDeTesteFactory extends AbstractFactory {
     }
 
     /**
-     * perssite um caso de teste no banco e dados.
+     * salva o  caso de teste no banco e dados.
      * @param codigo codigo do caso de teste
      * @param nome nome do caso de teste
      * @param srcClasseDeTeste src da calsse que realiza os teste que esta sendo testado
@@ -58,12 +58,11 @@ public class CasoDeTesteFactory extends AbstractFactory {
      * @param descricao descrição deste caso de teste
      * @param pjID projeto do caso dde teste e do artefato
      * @param cuCOD codigo do caso de uso
-     * @param email email do usuario que conculou
+     * @param email email do usuario que cadastrou o caso de teste
      * @return true se a operação dor vem sucediida.
      */
     public synchronized boolean salvar(String codigo, String nome, String srcClasseDeTeste, String srcDoArtefato, String descricao, String pjID, String cuCOD, String email){
         String dml = String.format("INSERT INTO caso_de_teste VALUES ('%s', '%s', '%s', '%s', '%s', %s, '%s', '%s', null)", codigo, nome, srcClasseDeTeste.replaceAll("\\\\", "/"), srcDoArtefato.replaceAll("\\\\", "/"), descricao, pjID, cuCOD, email);
-        System.out.println(dml);
         try {
             AbstractFactory.execultarAtualizacao(dml);
             return true;

@@ -94,7 +94,7 @@ public final class ProjetosPainel extends PainelDeListagem{
 
             nome.setText(projeto.getNome());
             codigo.setText(projeto.getCodigo());
-            src.setText(projeto.getSrc());
+            src.setText(projeto.getSrcProducao());
             descricao.setText(projeto.getDescricao());
         }
 

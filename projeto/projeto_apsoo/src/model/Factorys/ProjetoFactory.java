@@ -26,7 +26,8 @@ public class ProjetoFactory extends AbstractFactory {
      */
     public boolean salvar(
             String nome,
-            String src,
+            String srcProducao,
+            String srcTestes,
             String CASO_DE_TESTE,
             String CASO_DE_USO,
             String ROTEIRO_DE_TESTE,
@@ -34,10 +35,11 @@ public class ProjetoFactory extends AbstractFactory {
             String email
     ){
         String query = "INSERT INTO projeto " +
-                        "(nome, srcRaiz, prefixoCT, prefixoCU, prefixoRT, descricao, usuario_dono)" +
+                        "(nome, srcProducao, srcTestes, prefixoCT, prefixoCU, prefixoRT, descricao, usuario_dono)" +
                         "VALUES (" +
                         "'" + nome + "', " +
-                        "'" + src + "', " +
+                        "'" + srcProducao + "', " +
+                        "'" + srcTestes + "', " +
                         "'" + CASO_DE_TESTE + "', " +
                         "'" + CASO_DE_USO + "', " +
                         "'" + ROTEIRO_DE_TESTE + "', " +
@@ -57,7 +59,7 @@ public class ProjetoFactory extends AbstractFactory {
      * @return retorna uma <link>Collection</link> de <Link>Projeto</Link>
      */
     public synchronized Collection listar() {
-        String query = "SELECT id, nome, srcRaiz, descricao FROM projeto";
+        String query = "SELECT id, nome, srcProducao, descricao FROM projeto";
         ResultSet resultSet = super.execultarBusca(query);
         if (resultSet != null){
             try {
@@ -67,7 +69,7 @@ public class ProjetoFactory extends AbstractFactory {
                             resultSet.getString("id"),
                             resultSet.getString("nome"),
                             resultSet.getString("descricao"),
-                            resultSet.getString("srcRaiz")
+                            resultSet.getString("srcProducao")
                     ));
                 }
                 return lista;
@@ -93,7 +95,8 @@ public class ProjetoFactory extends AbstractFactory {
                         resultSet.getString("id"),
                         resultSet.getString("nome"),
                         resultSet.getString("descricao"),
-                        resultSet.getString("srcRaiz"),
+                        resultSet.getString("srcProducao"),
+                        resultSet.getString("srcTestes"),
                         resultSet.getString("prefixoCT"),
                         resultSet.getString("prefixoRT"),
                         resultSet.getString("prefixoCU")
@@ -110,8 +113,8 @@ public class ProjetoFactory extends AbstractFactory {
      * para a tupla que tiver o <code>id</code> igual ao do objeto passado por paramentro
      * @return true se bem sucedido.
      */
-    public synchronized boolean atualizar(String nome, String descicao, String src, String codigo) {
-        String dml = String.format("UPDATE projeto SET nome = '%s', srcRaiz = '%s', descricao = '%s' WHERE id = %s ", nome, src, descicao, codigo);
+    public synchronized boolean atualizar(String nome, String descicao, String srcProducao, String srcTestes, String codigo) {
+        String dml = String.format("UPDATE projeto SET nome = '%s', srcProducao = '%s', srcTestes = '%s', descricao = '%s' WHERE id = %s ", nome, srcProducao, srcTestes, descicao, codigo);
         try {
             super.execultarAtualizacao(dml);
             return true;

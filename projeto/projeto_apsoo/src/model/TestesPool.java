@@ -6,8 +6,6 @@ import controller.exceptions.CasoDeTesteException;
 import model.Factorys.CasoDeTesteFactory;
 
 import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.LinkedList;
 
 /**
@@ -31,7 +29,7 @@ public final class TestesPool {
      */
     public static synchronized void carregarPool(Projeto projeto) throws CasoDeTesteException {
         try {
-            String path = projeto.getSrc();
+            String path = projeto.getSrcProducao();
             if (Utils.fileExists(path, "")){
                 LinkedList<File> lista = new LinkedList<>();
                 File[] files = (new File(path)).listFiles();

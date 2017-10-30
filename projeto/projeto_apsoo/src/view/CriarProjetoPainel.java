@@ -9,28 +9,35 @@ import view.Componetes.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileFilter;
 import java.awt.*;
+import java.io.File;
 
 public class CriarProjetoPainel extends Painel{
 
 
-    protected Botao btmEscolherDiretorio;
+    protected Botao btnEscolherDiretorioDeProducao;
+    protected Botao btnEscolherDiretorioDeTestes;
     protected javax.swing.JTextArea campoDescricao;
+    protected MeuPainelComScrollBar campoDescricaoContainer;
     protected MeuCampoDeTexto campoNome;
     protected MeuCampoDeTexto campoPrefixoCT;
     protected MeuCampoDeTexto campoPrefixoCU;
     protected MeuCampoDeTexto campoPrefixoRT;
-    protected MeuPainelComScrollBar jScrollPane1;
     protected MeuLabel labelDescricao;
+    protected MeuLabel labelDiretorios;
     protected MeuLabel labelNome;
-    protected MeuLabel labelPrefixo;
-    protected MeuLabel labelSrc;
+    protected MeuLabel labelPrefixos;
+    protected MeuLabel labelSrcProducao;
+    protected MeuLabel labelSrcTestes;
     protected javax.swing.JPanel painelLegenda;
-    protected MeuLabel campoSrc;
 
     protected Botao salvar;
     protected Botao cancelar;
     protected Botao limpar;
+    protected String srcProducao;
+    protected String srcTestes;
+
 
     public CriarProjetoPainel (){
         super(Strings.TITULO_PAINEL_CRIAR_PROJETO);
@@ -93,7 +100,8 @@ public class CriarProjetoPainel extends Painel{
         do {
             resultado = ProjetoController.cadastrarProjeto(
                     campoNome.getText(),
-                    campoSrc.getText(),
+                    srcProducao,
+                    srcTestes,
                     campoPrefixoCU.getText(),
                     campoPrefixoCT.getText(),
                     campoPrefixoRT.getText(),
@@ -120,13 +128,58 @@ public class CriarProjetoPainel extends Painel{
             JOptionPane.showMessageDialog(SistemaController.JANELA, "Os prefixos devem ter no maximo " +campoPrefixoRT.getQuantidadeMaximaDeCaracteres()+ " caractes cada!", "Prefixo invalido", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
-        if (campoSrc.getText().equals(" ")){
-            JOptionPane.showMessageDialog(SistemaController.JANELA, "Você deve imformar o diretório raiz do projeto!", "src invalido", JOptionPane.INFORMATION_MESSAGE);
+        if (srcTestes == null || srcProducao == null){
+            JOptionPane.showMessageDialog(SistemaController.JANELA, "Você deve imformar os diretórios do projeto!", "src invalido", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
         return true;
     }
 
+    /**
+     * Abre uma jenela de seleção de arquivos para o usuario informar ao sistema
+     * a pasta raiz do diretorio de produção do software que será testado.
+     */
+    private void selecionarDiretoriosDeProducao(){
+        JFileChooser chooserArquivo = new JFileChooser();
+        chooserArquivo.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooserArquivo.setFileFilter(new FileFilter() {
+            @Override
+            public boolean accept(File f) {
+                return f.isDirectory();
+            }
+
+            @Override
+            public String getDescription() {
+                return "Selecione o seu diretório raiz dos arquivos .class";
+            }
+        });
+        chooserArquivo.showOpenDialog(SistemaController.JANELA);
+        srcProducao = chooserArquivo.getSelectedFile().getAbsolutePath();
+        labelSrcProducao.setText(srcProducao);
+    }
+
+    /**
+     * Abre uma jenela de seleção de arquivos para o usuario informar ao sistema
+     * a pasta raiz do diretorio de testes do software que será testado.
+     */
+    private void selecionarDiretoriosDeTestes(){
+        JFileChooser chooserArquivo = new JFileChooser();
+        chooserArquivo.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooserArquivo.setFileFilter(new FileFilter() {
+            @Override
+            public boolean accept(File f) {
+                return f.isDirectory();
+            }
+
+            @Override
+            public String getDescription() {
+                return "Selecione o seu diretório raiz dos arquivos .class de teste";
+            }
+        });
+        chooserArquivo.showOpenDialog(SistemaController.JANELA);
+        srcTestes = chooserArquivo.getSelectedFile().getAbsolutePath();
+        labelSrcTestes.setText(srcTestes);
+    }
     /**
      * Limpa todas as informações de todos os campos do formulario.
      */
@@ -134,7 +187,8 @@ public class CriarProjetoPainel extends Painel{
         campoPrefixoCT.setText(null);
         campoPrefixoCU.setText(null);
         campoPrefixoRT.setText(null);
-        campoSrc.setText(" ");
+        labelDescricao.setText(" ");
+        labelSrcTestes.setText(" ");
         campoNome.setText("");
         campoDescricao.setText("");
     }
@@ -155,148 +209,168 @@ public class CriarProjetoPainel extends Painel{
 
         private void iniciarComponentes (){
             painelLegenda = new javax.swing.JPanel();
-
             labelNome = new MeuLabel();
-            labelPrefixo = new MeuLabel();
-            labelSrc = new MeuLabel();
+            labelPrefixos = new MeuLabel();
+            labelDiretorios = new MeuLabel();
             labelDescricao = new MeuLabel();
-            campoSrc = new MeuLabel();
-
             campoNome = new MeuCampoDeTexto();
-            campoPrefixoCU = new MeuCampoDeTexto();
-            campoPrefixoRT = new MeuCampoDeTexto();
             campoPrefixoCT = new MeuCampoDeTexto();
-            btmEscolherDiretorio = new Botao();
+            campoPrefixoRT = new MeuCampoDeTexto();
+            campoPrefixoCU = new MeuCampoDeTexto();
+            btnEscolherDiretorioDeTestes = new Botao();
+            btnEscolherDiretorioDeProducao = new Botao();
+            labelSrcProducao = new MeuLabel();
+            labelSrcTestes = new MeuLabel();
             campoDescricao = new javax.swing.JTextArea();
-            jScrollPane1 = new MeuPainelComScrollBar(campoDescricao);
+            campoDescricaoContainer = new MeuPainelComScrollBar(campoDescricao);
 
             campoPrefixoCU.setQuantidadeMaximaDeCaracteres(10);
             campoPrefixoRT.setQuantidadeMaximaDeCaracteres(10);
             campoPrefixoCT.setQuantidadeMaximaDeCaracteres(10);
-            campoSrc.setQuantidadeMaximaDeCaracteres(-1);
+            labelSrcProducao.setQuantidadeMaximaDeCaracteres(40);
+            labelSrcTestes.setQuantidadeMaximaDeCaracteres(40);
         }
 
         private void iniciarTextos(){
             labelNome.setText(Strings.LG_CRIAR_PROJ_NOME);
-            labelPrefixo.setText(Strings.LG_CRIAR_PROJ_PROFIXOS);
-            labelSrc.setText(Strings.LG_CRIAR_PROJ_DIRETORIO_RAIZ);
+            labelPrefixos.setText(Strings.LG_CRIAR_PROJ_PROFIXOS);
+            labelDiretorios.setText(Strings.LG_CRIAR_PROJ_DIRETORIO_RAIZ);
             labelDescricao.setText(Strings.LG_CRIAR_PROJ_DESCRICAO);
-            btmEscolherDiretorio.setText(Strings.LG_BTN_ESCOLHER_RAIZ);
-            campoSrc.setText(" ");
+            labelSrcTestes.setText(" ");
             campoPrefixoCT.setPlaceHolder(Strings.PLACEHOLDER_PREF_CASO_DE_TESTE);
             campoPrefixoCU.setPlaceHolder(Strings.PLACEHOLDER_PREF_CASO_DE_USO);
             campoPrefixoRT.setPlaceHolder(Strings.PLACEHOLDER_PREF_ROTEIRO_DE_TESTE);
+            btnEscolherDiretorioDeProducao.setText(Strings.LG_BTN_ESCOLHER_RAIZ);
+
+            labelSrcProducao.setText(" ");
+            labelSrcTestes.setText(" ");
+
+            labelNome.setText("NOME:");
+            labelPrefixos.setText("PREFIXOS:");
+            labelDiretorios.setText("DIRETÓRIOS:");
+            labelDescricao.setText("DESCRIÇÃO:");
+
+            btnEscolherDiretorioDeTestes.setText("Diretório de Produção");
+            btnEscolherDiretorioDeProducao.setText("Diretório de Testes");
         }
 
         private void iniciarLayout(){
-            setPreferredSize(new java.awt.Dimension(950, 500));
             javax.swing.GroupLayout painelLegendaLayout = new javax.swing.GroupLayout(painelLegenda);
             painelLegenda.setLayout(painelLegendaLayout);
             painelLegendaLayout.setHorizontalGroup(
                     painelLegendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelLegendaLayout.createSequentialGroup()
-                                    .addContainerGap(37, Short.MAX_VALUE)
-                                    .addGroup(painelLegendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(labelDescricao)
-                                            .addComponent(labelSrc)
-                                            .addComponent(labelPrefixo)
-                                            .addComponent(labelNome))
-                                    .addGap(30, 30, 30))
+                            .addGroup(painelLegendaLayout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addGroup(painelLegendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(labelNome, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(labelDiretorios, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(labelPrefixos, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(labelDescricao, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
             painelLegendaLayout.setVerticalGroup(
                     painelLegendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(painelLegendaLayout.createSequentialGroup()
-                                    .addGap(31, 31, 31)
+                                    .addContainerGap()
                                     .addComponent(labelNome)
-                                    .addGap(28, 28, 28)
-                                    .addComponent(labelPrefixo)
-                                    .addGap(30, 30, 30)
-                                    .addComponent(labelSrc)
-                                    .addGap(41, 41, 41)
+                                    .addGap(26, 26, 26)
+                                    .addComponent(labelPrefixos)
+                                    .addGap(46, 46, 46)
+                                    .addComponent(labelDiretorios)
+                                    .addGap(67, 67, 67)
                                     .addComponent(labelDescricao)
                                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
+
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
             this.setLayout(layout);
             layout.setHorizontalGroup(
                     layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                     .addComponent(painelLegenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(campoNome)
-                                            .addComponent(jScrollPane1)
                                             .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(campoPrefixoCT, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(31, 31, 31)
+                                                    .addComponent(campoPrefixoCU, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(campoPrefixoRT, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                            .addComponent(btnEscolherDiretorioDeProducao, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                                                            .addComponent(labelSrcProducao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                            .addComponent(campoSrc)
-                                                            .addGroup(layout.createSequentialGroup()
-                                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                                            .addComponent(btmEscolherDiretorio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                                                            .addComponent(campoPrefixoCU, javax.swing.GroupLayout.Alignment.LEADING))
-                                                                    .addGap(30, 30, 30)
-                                                                    .addComponent(campoPrefixoRT, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                    .addGap(30, 30, 30)
-                                                                    .addComponent(campoPrefixoCT, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                    .addGap(0, 0, Short.MAX_VALUE)))
+                                                            .addComponent(btnEscolherDiretorioDeTestes, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                                                            .addComponent(labelSrcTestes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addComponent(campoDescricaoContainer))
                                     .addContainerGap())
             );
             layout.setVerticalGroup(
                     layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(painelLegenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(painelLegenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                    .addGap(27, 27, 27)
-                                                    .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(23, 23, 23)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                            .addComponent(campoPrefixoCU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(campoPrefixoRT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(campoPrefixoCT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(btmEscolherDiretorio)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(campoSrc)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(98, 98, 98)))
+                                    .addContainerGap()
+                                    .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(campoPrefixoCT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(campoPrefixoRT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(campoPrefixoCU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(33, 33, 33)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(btnEscolherDiretorioDeTestes)
+                                            .addComponent(btnEscolherDiretorioDeProducao))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(labelSrcProducao)
+                                            .addComponent(labelSrcTestes))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                                    .addComponent(campoDescricaoContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addContainerGap())
             );
-
-
         }
 
-        private void iniciarEstilo(){
+        private void iniciarEstilo() {
             this.setBackground(Cores.TEXTO_MENU_ESQUERDO);
             painelLegenda.setBackground(Cores.FUNDO_MENU_ESQUERDO);
-            for (Component c : painelLegenda.getComponents()){
+            for (Component c : painelLegenda.getComponents()) {
                 c.setFont(Fontes.LEGENDA_ITEM_LISTA);
                 c.setForeground(Cores.TEXTOS);
             }
-            labelSrc.setFont(Fontes.LEGENDA_ITEM_LISTA);
-            labelSrc.setForeground(Cores.TEXTOS);
+            labelSrcProducao.setFont(Fontes.LEGENDA_ITEM_LISTA);
+            labelSrcProducao.setForeground(Cores.TEXTOS);
+            labelSrcTestes.setFont(Fontes.LEGENDA_ITEM_LISTA);
+            labelSrcTestes.setForeground(Cores.TEXTOS);
 
-            campoDescricao.setBorder(new EmptyBorder(10,10,10,10));
+            campoDescricaoContainer.setBorder(new EmptyBorder(0, 0, 0, 0));
+            campoDescricao.setBorder(new EmptyBorder(10, 10, 10, 10));
             campoDescricao.setWrapStyleWord(true);
             campoDescricao.setLineWrap(true);
             campoDescricao.setFont(Fontes.CAMPO_DE_TEXTO);
+            campoDescricao.setEnabled(true);
+            campoDescricao.setEditable(true);
+            campoDescricaoContainer.setEnabled(true);
+            campoDescricaoContainer.setFocusable(true);
+            campoDescricao.setFocusable(true);
+
+            btnEscolherDiretorioDeProducao.setCorDeFundoNormal(Cores.FUNDO_BOTAO);
+            btnEscolherDiretorioDeProducao.setCorDeFundoHover(Color.red);
+            btnEscolherDiretorioDeProducao.setCorDoTextoNormal(Cores.TEXTOS);
+            btnEscolherDiretorioDeProducao.setCorDoTextoHover(Cores.TEXTOS);
 
 
-            btmEscolherDiretorio.setCorDeFundoNormal(Cores.FUNDO_BOTAO);
-            btmEscolherDiretorio.setCorDeFundoHover(Color.red);
-            btmEscolherDiretorio.setCorDoTextoNormal(Cores.TEXTOS);
-            btmEscolherDiretorio.setCorDoTextoHover(Cores.TEXTOS);
-
-
+            btnEscolherDiretorioDeTestes.setCorDeFundoNormal(Cores.FUNDO_BOTAO);
+            btnEscolherDiretorioDeTestes.setCorDeFundoHover(Color.red);
+            btnEscolherDiretorioDeTestes.setCorDoTextoNormal(Cores.TEXTOS);
+            btnEscolherDiretorioDeTestes.setCorDoTextoHover(Cores.TEXTOS);
         }
 
-        private void iniciarListaners() {
-            btmEscolherDiretorio.setOnMouseClick((e) ->{
-                JFileChooser chooserDiretorio = new JFileChooser();
-                chooserDiretorio.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-                chooserDiretorio.showOpenDialog(getParent());
-                campoSrc.setText(chooserDiretorio.getSelectedFile().getAbsolutePath());
-            });
+        private void iniciarListaners(){
+            btnEscolherDiretorioDeProducao.setOnMouseClick((e) -> selecionarDiretoriosDeProducao());
+            btnEscolherDiretorioDeTestes.setOnMouseClick((e) -> selecionarDiretoriosDeTestes());
         }
 
 

@@ -21,12 +21,12 @@ public class ExecusaoDeTestesController {
 
     public static void execultarTestes(LinkedList<CasoDeTeste> seq){
         sequenciaDeExecusao = seq;
-        
+
     }
 
 
     private static void carregarPropriedadesDoProjeto(){
-        String src = ProjetoController.getSrcProjetoAtivo();
+        String src = ProjetoController.getSrcTestesProjetoAtivo();
         Properties propriedade = new Properties();
         try {
             propriedade.load(new FileReader(src.concat("/props_pbtest.properties")));

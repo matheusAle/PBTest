@@ -81,6 +81,9 @@ public class Painel{
         painel.add(painelConteudo, BorderLayout.CENTER);
         painelScroll = new MeuPainelComScrollBar(painel);
         opcoes = new PainelDeOpcoes();
+        painelConteudo.setBackground(Color.white);
+        painelScroll.setBackground(Color.white);
+
     }
 
 
