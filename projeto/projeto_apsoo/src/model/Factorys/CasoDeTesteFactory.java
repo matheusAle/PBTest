@@ -62,9 +62,9 @@ public class CasoDeTesteFactory extends AbstractFactory {
      * @return true se a operação dor vem sucediida.
      */
     public synchronized boolean salvar(String codigo, String nome, String srcClasseDeTeste, String srcDoArtefato, String descricao, String pjID, String cuCOD, String email){
-        String dml = String.format("INSERT INTO caso_de_teste VALUES ('%s', '%s', '%s', '%s', '%s', %s, '%s', '%s', null)", codigo, nome, srcClasseDeTeste.replaceAll("\\\\", "/"), srcDoArtefato.replaceAll("\\\\", "/"), descricao, pjID, cuCOD, email);
+        String dml = String.format("INSERT INTO caso_de_teste VALUES ('%s', '%s', '%s', '%s', '%s', %s, '%s', '%s', null)", codigo, nome, Utils.srcToStorage(srcClasseDeTeste), Utils.srcToStorage(srcDoArtefato), descricao, pjID, cuCOD, email);
         try {
-            AbstractFactory.execultarAtualizacao(dml);
+            execultarAtualizacao(dml);
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -84,7 +84,7 @@ public class CasoDeTesteFactory extends AbstractFactory {
      * @return true se a operação dor vem sucediida.
      */
     public boolean atualizar(String codigo, ArtefatoDeTeste artefatoDeTeste, String projetoId, String nome, String srcCasoDeTeste, String descricao, String codigoCasoDeUsoSelecionado) {
-        String dml = String.format("UPDATE caso_de_teste SET nome = '%s', nomeClasseTeste= '%s', descricao = '%s', casoDeUsoCodigo = '%s' WHERE codigo = '%s' AND nomeClasseArtefato = '%s' AND projetoID = %s", nome, srcCasoDeTeste.replaceAll("\\\\", "/"), descricao, codigoCasoDeUsoSelecionado,  codigo, artefatoDeTeste.getCaminhoRelativoAoProjeto().replaceAll("\\\\", "/"), projetoId);
+        String dml = String.format("UPDATE caso_de_teste SET nome = '%s', nomeClasseTeste= '%s', descricao = '%s', casoDeUsoCodigo = '%s' WHERE codigo = '%s' AND nomeClasseArtefato = '%s' AND projetoID = %s", nome, Utils.srcToStorage(srcCasoDeTeste), descricao, codigoCasoDeUsoSelecionado,  codigo, Utils.srcToStorage(artefatoDeTeste.getCaminhoRelativoAoProjeto()), projetoId);
         try {
             execultarAtualizacao(dml);
             return true;
@@ -141,6 +141,16 @@ public class CasoDeTesteFactory extends AbstractFactory {
             }
         }
         return null;
+    }
 
+    public boolean setResultado(String codigoCasoDeTeste, String codigoProjeto, String srcArtefato, String resultado){
+        String dml = String.format("UPDATE caso_de_teste SET resultado = '%s' WHERE codigo = '%s' AND nomeClasseArtefato = '%s' AND projetoID = %s ",resultado, codigoCasoDeTeste, Utils.srcToStorage(srcArtefato), codigoProjeto);
+        try {
+            execultarAtualizacao(dml);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

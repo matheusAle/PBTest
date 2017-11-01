@@ -45,4 +45,10 @@ public class Utils {
         return src.replace(ProjetoController.getSrcTestesProjetoAtivo(), "");
     }
 
+    public static String srcToCommadLine(String src){
+        String s = src.substring(1, src.length());
+        s = s.replaceAll(".class", "");
+        return s;
+    }
+
 }

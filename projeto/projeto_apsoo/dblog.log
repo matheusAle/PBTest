@@ -1,0 +1,15 @@
+DriverManager.getConnection("jdbc:mysql://localhost/pbtest")
+    trying com.mysql.jdbc.Driver
+getConnection returning com.mysql.jdbc.Driver
+DriverManager.getConnection("jdbc:mysql://localhost/pbtest")
+    trying com.mysql.jdbc.Driver
+getConnection returning com.mysql.jdbc.Driver
+DriverManager.getConnection("jdbc:mysql://localhost/pbtest")
+    trying com.mysql.jdbc.Driver
+getConnection returning com.mysql.jdbc.Driver
+DriverManager.getConnection("jdbc:mysql://localhost/pbtest")
+    trying com.mysql.jdbc.Driver
+getConnection returning com.mysql.jdbc.Driver
+DriverManager.getConnection("jdbc:mysql://localhost/pbtest")
+    trying com.mysql.jdbc.Driver
+getConnection returning com.mysql.jdbc.Driver

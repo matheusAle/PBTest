@@ -91,7 +91,8 @@ public final class EditarProjetoPainel extends CriarProjetoPainel {
             super();
             campoNome.setText(projeto.getNome());
             campoDescricao.setText(projeto.getDescricao());
-            labelSrcTestes.setText(projeto.getSrcProducao());
+            labelSrcProducao.setText(projeto.getSrcProducao());
+            labelSrcTestes.setText(projeto.getSrcTestes());
             campoPrefixoCT.setText(projeto.getPrefixoCT());
             campoPrefixoCU.setText(projeto.getPrefixoCU());
             campoPrefixoRT.setText(projeto.getPrefixoRT());

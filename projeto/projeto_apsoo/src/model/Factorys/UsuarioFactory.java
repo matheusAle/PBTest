@@ -33,7 +33,7 @@ public final class UsuarioFactory extends AbstractFactory {
     public Collection listar() {
         String query  = "SELECT * FROM usuario";
         try {
-            ResultSet resultSet = AbstractFactory.execultarBusca(query);
+            ResultSet resultSet = execultarBusca(query);
             if (resultSet != null){
                 LinkedList<Usuario> lista = new LinkedList<>();
                 while (resultSet.next()){
@@ -57,10 +57,10 @@ public final class UsuarioFactory extends AbstractFactory {
     public Usuario buscar(String restricao) {
         String query  = "SELECT * FROM usuario WHERE " + restricao;
         try {
-            ResultSet resultSet = AbstractFactory.execultarBusca(query);
+            ResultSet resultSet = execultarBusca(query);
             if (resultSet != null){
                 while (resultSet.next()){
-                    return new model.Usuario(
+                    Usuario u =  new model.Usuario(
                             resultSet.getString("nome"),
                             resultSet.getString("email"),
                             getCargo(resultSet.getInt("cargo")),
@@ -68,6 +68,7 @@ public final class UsuarioFactory extends AbstractFactory {
                             resultSet.getString("biografia"),
                             null
                     );
+                    return u;
                 }
             }
         }catch (SQLException e){

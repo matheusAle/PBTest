@@ -137,4 +137,8 @@ public final class TestesPool {
                 }
         );
     }
+
+    public static void setResultadoDoTeste(CasoDeTeste e, String resultado) {
+        e.setResultado(resultado);
+    }
 }

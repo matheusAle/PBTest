@@ -113,4 +113,9 @@ public final class CasoDeTesteController {
         dao.deletar(casoDeTeste.getCodigo(), casoDeTeste.getArtefatoDeTeste().getCaminhoRelativoAoProjeto(), casoDeTeste.getProjetoId());
         TestesPool.deletarCasoDeTesteDoArtefato(casoDeTeste, casoDeTeste.getArtefatoDeTeste());
     }
+
+    public static void salvarResultado(CasoDeTeste e, String resultado) {
+        TestesPool.setResultadoDoTeste(e, resultado);
+        dao.setResultado(e.getCodigo(), e.getProjetoId(), e.getArtefatoDeTeste().getCaminhoRelativoAoProjeto(), resultado);
+    }
 }

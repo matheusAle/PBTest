@@ -24,7 +24,7 @@ public class CasosDeUsoFactory extends AbstractFactory {
         }catch (NullPointerException e){
             return null;
         }
-        ResultSet result = AbstractFactory.execultarBusca(query);
+        ResultSet result = execultarBusca(query);
         LinkedList<CasoDeUso> lista = new LinkedList<>();
         try {
             while (result.next()){
@@ -57,7 +57,7 @@ public class CasosDeUsoFactory extends AbstractFactory {
     public synchronized void salvar(String codigo, String nome, String objetivo, String atores, String descricao, String idPRJ, String email){
         String dml = String.format("INSERT INTO caso_de_uso VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')", codigo, nome, atores, objetivo, descricao, idPRJ, email);
         try {
-            AbstractFactory.execultarAtualizacao(dml);
+            execultarAtualizacao(dml);
         } catch (SQLException e) {
             e.printStackTrace();
             throw new CasoDeUsoExeption("Ocorreu um erro ao salvar o caso de uso no banco de dados!");
@@ -87,7 +87,7 @@ public class CasosDeUsoFactory extends AbstractFactory {
      */
     public CasoDeUso buscar(String codigo, String codProj) {
         String query = String.format("SELECT * FROM caso_de_uso WHERE projetoID = %s AND codigo = '%s' ", codProj, codigo);
-        ResultSet result = AbstractFactory.execultarBusca(query);
+        ResultSet result = execultarBusca(query);
         LinkedList<CasoDeUso> lista = new LinkedList<>();
         try {
             while (result.next()){
@@ -108,7 +108,7 @@ public class CasosDeUsoFactory extends AbstractFactory {
         return null;
     }
 
-    public synchronized static void atualizar(String codigo, String nome, String objetivo, String atores, String descricao, String codP){
+    public void atualizar(String codigo, String nome, String objetivo, String atores, String descricao, String codP){
         String dml = String.format("UPDATE caso_de_uso SET nome = '%s', objetivo = '%s', atores = '%s', descricao = '%s' WHERE projetoID = %s AND codigo = '%s' ", nome, objetivo, atores, descricao, codP, codigo);
         try {
             execultarAtualizacao(dml);

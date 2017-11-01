@@ -1,5 +1,6 @@
 package view;
 
+import controller.ExecusaoDeTestesController;
 import controller.ProjetoController;
 import controller.RoteiroDeTesteController;
 import controller.SistemaController;
@@ -62,7 +63,8 @@ public class RoteirosDeTestePainel extends PainelDeListagem{
      * @param roteiroDeTestes
      */
     private void execultarRoteiro(RoteiroDeTestes roteiroDeTestes) {
-
+        RoteiroDeTesteController.carregarCasosDeTesteDoRoteiro(roteiroDeTestes);
+        ExecusaoDeTestesController.carregar(roteiroDeTestes.getCasosDeTeste());
     }
 
     /**

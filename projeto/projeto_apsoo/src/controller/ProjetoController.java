@@ -149,7 +149,7 @@ public class ProjetoController {
      * @throws ProjetoException pode ser disparado caso algo de errado.
      */
     public static String gerarCodigo(String tipo){
-        String s = "  ";
+        String s = "";
         switch (tipo){
             case "caso de uso":
                 System.out.println(projetoAtivo);
@@ -159,7 +159,7 @@ public class ProjetoController {
                 s = projetoAtivo.getPrefixoCT().concat(dao.buscarContador("contadorCT", projetoAtivo.getCodigo()));
                 break;
             case "roteiro de teste":
-                s = projetoAtivo.getPrefixoCT().concat(dao.buscarContador("contadorRT", projetoAtivo.getCodigo()));
+                s = projetoAtivo.getPrefixoRT().concat(dao.buscarContador("contadorRT", projetoAtivo.getCodigo()));
                 break;
         }
         return s;
