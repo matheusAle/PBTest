@@ -16,6 +16,7 @@ public class EditarCasoDeUsoPainel extends CriarCasoDeUsoPainel {
     public EditarCasoDeUsoPainel (){
         super("editar Caso de Uso");
         carregarOpcoes();
+        super.setQuandoAtivo((e) -> setCasoDeUso(CasoDeUsoController.getCasoDeUsoEditavel()));
     }
     /**
      * Carrega as opçoes deste painel

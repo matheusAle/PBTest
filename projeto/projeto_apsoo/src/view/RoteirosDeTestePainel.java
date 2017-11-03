@@ -17,6 +17,7 @@ public class RoteirosDeTestePainel extends PainelDeListagem{
 
     public RoteirosDeTestePainel() {
         super("Roteiros de teste");
+        super.setAlturaELarguraDosItensDoConteudo(150, 900);
         super.setRecarregarLista((e) -> carregarItems());
         super.setSincronizarLista((e) -> sincronizarItems());
     }
@@ -114,9 +115,17 @@ public class RoteirosDeTestePainel extends PainelDeListagem{
                     .setOnClick((e) -> {deletarRoteiro(roteiroDeTestes); menuPopup.setVisible(false);});
             MeuItemMenuPopup item3 = new MeuItemMenuPopup("Execultar")
                     .setOnClick((e) -> {execultarRoteiro(roteiroDeTeste); menuPopup.setVisible(false);});
+            MeuItemMenuPopup item4 = new MeuItemMenuPopup("Matriz")
+                    .setOnClick((e) -> {
+                        RoteiroDeTesteController.carregarCasosDeTesteDoRoteiro(roteiroDeTestes);
+
+                        RoteiroDeTesteController.MATRIZ = roteiroDeTeste;
+                SistemaController.setPainelDeTrabalho("MATRIZ");
+            });
             menuPopup.add(item1);
             menuPopup.add(item2);
             menuPopup.add(item3);
+            menuPopup.add(item4);
 
             switch (roteiroDeTeste.getSituacao()){
                 case 0:

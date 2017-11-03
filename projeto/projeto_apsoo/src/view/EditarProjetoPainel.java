@@ -20,6 +20,7 @@ public final class EditarProjetoPainel extends CriarProjetoPainel {
     public EditarProjetoPainel(){
         super(Strings.TITULO_PAINEL_EDITAR_PROJETO);
         this.carregarOpcoes();
+        super.setQuandoAtivo((e) -> setProjeto(ProjetoController.getProjetoParaEditar()));
     }
 
     /**

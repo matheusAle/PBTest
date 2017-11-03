@@ -62,11 +62,12 @@ public class SistemaController {
                 break;
             case "EDITAR_PROJETO":
                 p = PaineisDeTabalho.EDITAR_PROJETO;
-                ((EditarProjetoPainel) p).setProjeto(ProjetoController.getProjetoParaEditar());
                 break;
             case "EDITAR_CASO_DE_USO":
                 p = PaineisDeTabalho.EDITAR_CASO_DE_USO;
-                ((EditarCasoDeUsoPainel)p).setCasoDeUso(CasoDeUsoController.getCasoDeUsoEditavel());
+                break;
+            case "MATRIZ":
+                p = PaineisDeTabalho.MATRIZ_DE_RASTREABIBLIDADE;
         }
         JANELA.setPainelAtivo(p);
 

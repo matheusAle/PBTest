@@ -131,7 +131,7 @@ public class ProjetoController {
     /**
      * @return retorna objeto <link>Projeto</link> contento o projeto semdo editado atualmente.
      */
-    static Projeto getProjetoParaEditar(){
+    public static Projeto getProjetoParaEditar(){
         return projetoParaEditar;
     }
 

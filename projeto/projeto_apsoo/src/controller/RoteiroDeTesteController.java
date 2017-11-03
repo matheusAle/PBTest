@@ -10,7 +10,7 @@ import java.util.LinkedList;
 public class RoteiroDeTesteController {
     static RoteiroDeTesteFactory dao = new RoteiroDeTesteFactory();
     private static LinkedList<RoteiroDeTestes> listaDeRoteiros = new LinkedList<>();
-
+    public static RoteiroDeTestes MATRIZ;
     public static String salvarNovoRoteiro(String nomeText, String descricaoText, LinkedList<CasoDeTeste> casosDeTesteDoRoteiro) {
         String codigo = ProjetoController.gerarCodigo("roteiro de teste");
         LinkedList<String> codigos = new LinkedList<>();
