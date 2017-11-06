@@ -4,6 +4,7 @@ import controller.exceptions.ExecusaoExeption;
 import controller.exceptions.ProjetoException;
 import model.Factorys.ProjetoFactory;
 import model.Projeto;
+import model.TestesPool;
 import resources.Arquivos;
 
 import java.io.File;
@@ -191,7 +192,9 @@ public class ProjetoController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        if (p == projetoAtivo){
+            TestesPool.limparPool();
+        }
         dao.deletar("id = " + p.getCodigo());
         listaDeProjetos.removeIf((x) -> {
             return x.getCodigo() == p.getCodigo();
