@@ -29,6 +29,8 @@ public class Usuario {
         this.telefone = telefone;
     }
 
+   
+    
     public String getNome() {
         return nome;
     }
@@ -61,5 +63,5 @@ public class Usuario {
                 ", biografia='" + biografia + '\'' +
                 ", IMG_PERFIL_PADRAO=" + imgPerfil +
                 '}';
-    }
+    } 
 }

@@ -3,6 +3,9 @@ package controller;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import sun.tools.jar.Main;
 
 public class Utils {
     /**
@@ -47,6 +50,21 @@ public class Utils {
         String s = src.substring(1, src.length());
         s = s.replaceAll(".class", "");
         return s;
+    }
+    
+    
+    public static void b(Class classe){
+        try {
+            System.out.println(((Utils)classe.newInstance()).srcToCommadLine("sd"));
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void main(String[] args) {
+        b(Utils.class);
     }
 
 }

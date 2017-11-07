@@ -77,6 +77,7 @@ public class ProjetoFactory extends AbstractFactory {
                         resultSet.getString("usuario_dono")
                 ));
                 }
+                resultSet.close();
                 return lista;
             } catch (SQLException e) {
                 e.printStackTrace();

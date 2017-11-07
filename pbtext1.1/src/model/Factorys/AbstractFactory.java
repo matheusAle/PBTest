@@ -1,13 +1,12 @@
 package model.Factorys;
 
-import model.ArtefatoDeTeste;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
-import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -18,7 +17,7 @@ public abstract class AbstractFactory {
     private static String url = "jdbc:mysql://localhost/pbtest";
     private static String usuario = "root";
     private static String senha = "";
-
+    private static Connection connection;
     static {
         try {
             DriverManager.setLogWriter(new PrintWriter(new File("dblog.log")));
@@ -26,6 +25,20 @@ public abstract class AbstractFactory {
             e.printStackTrace();
         }
         DriverManager.setLoginTimeout(1);
+        try {
+            connection = DriverManager.getConnection(url, usuario, senha);
+        } catch (SQLException ex) {
+            Logger.getLogger(AbstractFactory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() {
+                try {
+                    AbstractFactory.connection.close();
+                } catch (SQLException ex) {
+                }
+            }
+        });
     }
 
     /**
@@ -35,10 +48,11 @@ public abstract class AbstractFactory {
      */
     protected ResultSet execultarBusca(String query){
         try {
-            Connection conexao = DriverManager.getConnection(url, usuario, senha);
-            PreparedStatement pesquisa = conexao.prepareStatement(query);
-            ResultSet r = pesquisa.executeQuery();
-            return r;
+            synchronized(connection){
+                PreparedStatement rx = connection.prepareStatement(query);
+                ResultSet r = rx.executeQuery();
+                return r;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -51,10 +65,13 @@ public abstract class AbstractFactory {
      * @throws SQLException lançada caso haja quanquer erro na execulção da dml
      */
     protected void execultarAtualizacao(String dml) throws SQLException {
-        Connection conexao = DriverManager.getConnection(url, usuario, senha);
-        PreparedStatement p = conexao.prepareStatement(dml);
-        p.executeUpdate();
+        synchronized(connection){;
+            PreparedStatement p = connection.prepareStatement(dml);
+            p.executeUpdate();
+        }
+        
     }
-
+    
+    
 
 }
