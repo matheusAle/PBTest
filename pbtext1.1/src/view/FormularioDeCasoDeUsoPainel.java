@@ -7,17 +7,11 @@ package view;
 
 import view.Componetes.CampoDeTestoFocusListaner;
 import controller.CasoDeUsoController;
-import controller.CasoDeUsoController;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.util.HashMap;
 import java.util.Map;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileFilter;
 import model.CasoDeUso;
 import view.Componetes.MeuScrollbarUI;
 
@@ -53,11 +47,11 @@ public class FormularioDeCasoDeUsoPainel extends javax.swing.JPanel implements P
             return false;
         }
         if (campoAtores.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Informe o(s) atorer(es) deste caso de uso!", "O caso de uso deve pelo menos um  atorer", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Informe o(s) ator(es) deste caso de uso!", "O caso de uso deve pelo menos um  atorer", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
         if (campoDescricao.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Você deve imformar o a descrição do caso de uso!", "O campo descrição não pode ser nulo", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Você deve informar o a descrição do caso de uso!", "O campo descrição não pode ser nulo", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
         return true;
@@ -344,7 +338,6 @@ public class FormularioDeCasoDeUsoPainel extends javax.swing.JPanel implements P
 
     @Override
     public void btnNovoOnClick(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

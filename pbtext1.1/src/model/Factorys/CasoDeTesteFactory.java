@@ -2,13 +2,11 @@ package model.Factorys;
 
 import controller.Utils;
 import controller.exceptions.CasoDeTesteException;
-import controller.exceptions.ProjetoException;
 import model.ArtefatoDeTeste;
 import model.CasoDeTeste;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.LinkedList;
 
 /**
@@ -63,13 +61,9 @@ public class CasoDeTesteFactory extends AbstractFactory {
      */
     public synchronized boolean salvar(String codigo, String nome, String srcClasseDeTeste, String srcDoArtefato, String descricao, String pjID, String cuCOD, String email){
         String dml = String.format("INSERT INTO caso_de_teste VALUES ('%s', '%s', '%s', '%s', '%s', %s, '%s', '%s', null)", codigo, nome, Utils.srcToStorage(srcClasseDeTeste), Utils.srcToStorage(srcDoArtefato), descricao, pjID, cuCOD, email);
-        try {
-            execultarAtualizacao(dml);
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new CasoDeTesteException("Não foi possivel salvar o caso de teste!");
-        }
+        execultarAtualizacao(dml);
+        return true;
+
     }
 
     /**
@@ -85,13 +79,8 @@ public class CasoDeTesteFactory extends AbstractFactory {
      */
     public boolean atualizar(String codigo, ArtefatoDeTeste artefatoDeTeste, String projetoId, String nome, String srcCasoDeTeste, String descricao, String codigoCasoDeUsoSelecionado) {
         String dml = String.format("UPDATE caso_de_teste SET nome = '%s', nomeClasseTeste= '%s', descricao = '%s', casoDeUsoCodigo = '%s' WHERE codigo = '%s' AND nomeClasseArtefato = '%s' AND projetoID = %s", nome, Utils.srcToStorage(srcCasoDeTeste), descricao, codigoCasoDeUsoSelecionado,  codigo, Utils.srcToStorage(artefatoDeTeste.getCaminhoRelativoAoProjeto()), projetoId);
-        try {
-            execultarAtualizacao(dml);
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
+        execultarAtualizacao(dml);
+        return true;
     }
 
     /**
@@ -102,12 +91,7 @@ public class CasoDeTesteFactory extends AbstractFactory {
      */
     public void deletar(String codigo, String nomeArquivo, String projetoId) {
         String dml = String.format("DELETE FROM caso_de_teste WHERE codigo = '%s' AND nomeClasseArtefato = '%s' AND projetoID = %s", codigo, Utils.srcToStorage(nomeArquivo), projetoId);
-        try {
-            execultarAtualizacao(dml);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new CasoDeTesteException("Não foi posivel deletar caso de teste");
-        }
+        execultarAtualizacao(dml);
     }
 
     /**
@@ -145,12 +129,8 @@ public class CasoDeTesteFactory extends AbstractFactory {
 
     public boolean setResultado(String codigoCasoDeTeste, String codigoProjeto, String srcArtefato, String resultado){
         String dml = String.format("UPDATE caso_de_teste SET resultado = '%s' WHERE codigo = '%s' AND nomeClasseArtefato = '%s' AND projetoID = %s ",resultado, codigoCasoDeTeste, Utils.srcToStorage(srcArtefato), codigoProjeto);
-        try {
-            execultarAtualizacao(dml);
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
+        execultarAtualizacao(dml);
+        return true;
+
     }
 }

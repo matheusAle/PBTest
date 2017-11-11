@@ -35,7 +35,7 @@ public class FormularioDeCasoDeTestePainel extends javax.swing.JPanel implements
     private CasoDeTeste casoDeTeste;
     Map<?, ?> dados = null;
             
-    FormularioDeCasoDeTestePainel(){
+    public FormularioDeCasoDeTestePainel(){
         initComponents();
         iniciarlistaners();
     }
@@ -85,7 +85,7 @@ public class FormularioDeCasoDeTestePainel extends javax.swing.JPanel implements
             return false;
         }
         if (campoDescricao.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "o campo 'DESCRIÇÃO' não pode ser nulo.", "", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "o campo 'descrição' não pode ser nulo.", "", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
         if (campoNome.getText().isEmpty() || campoNome.getText().length() > 44){

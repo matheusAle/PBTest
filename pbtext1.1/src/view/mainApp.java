@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import controller.UsuarioController;
 import java.util.Map;
+import javax.swing.JOptionPane;
+import jdk.nashorn.internal.scripts.JO;
 
 /**
  *
@@ -20,7 +17,10 @@ public class mainApp {
         JANELA.trocarDePainel(p, dados);
     }
     
-    
+    public static void relatarErroInterno(String e){
+        JOptionPane.showMessageDialog(null, e, "Erro interno!", JOptionPane.ERROR_MESSAGE);
+        System.exit(1);
+    }
     public static class PaineisDeTRabalho {
         static final Painel USUARIOS = new UsuariosPainel();
         static final Painel PROJETOS = new ProjetosPainel();
@@ -30,7 +30,7 @@ public class mainApp {
         static final Painel CASOS_DE_TESTE = new CasosDeTestePainel();
         static final Painel FORMULARIO_DE_CADASTRO_DE_CASOS_DE_TESTE = new FormularioDeCasoDeTestePainel();
         static final Painel ROTEIROS_DE_TESTE = new RoteirosDeTestePainel();
-        static final Painel FORMULARIO_DE_CADASTRO_DE_ROTEIROS_DE_TESTE = new FormularioDeRoteirDeTestePainel();
+        static final Painel FORMULARIO_DE_CADASTRO_DE_ROTEIROS_DE_TESTE = new FormularioDeRoteiroDeTestePainel();
         static final Painel EXECUCAO_DE_ROTEIRO = new ExecusaoDeTestesPainel();
         static final Painel MATRIZ = new MatrizPainel();
         /*
@@ -41,7 +41,11 @@ public class mainApp {
     
     
     public static void main(String args[]) {
-        UsuarioController.fazerLogin("root@root", "root");
+        try {
+            UsuarioController.fazerLogin("root@root", "root");
+        } catch (Exception e){
+            relatarErroInterno(e.getMessage());
+        }
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -66,6 +70,8 @@ public class mainApp {
                 JANELA.setVisible(true);
             }
         });
+        
+        
     }
     
 }

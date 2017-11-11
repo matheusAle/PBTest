@@ -56,12 +56,7 @@ public class CasosDeUsoFactory extends AbstractFactory {
      */
     public synchronized void salvar(String codigo, String nome, String objetivo, String atores, String descricao, String idPRJ, String email){
         String dml = String.format("INSERT INTO caso_de_uso VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')", codigo, nome, atores, objetivo, descricao, idPRJ, email);
-        try {
-            execultarAtualizacao(dml);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new CasoDeUsoExeption("Ocorreu um erro ao salvar o caso de uso no banco de dados!");
-        }
+        execultarAtualizacao(dml);
     }
 
     /**
@@ -70,12 +65,7 @@ public class CasosDeUsoFactory extends AbstractFactory {
      */
     public void deletar(String s) {
         String dml = "DELETE FROM caso_de_uso WHERE " + s;
-        try {
-            execultarAtualizacao(dml);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new CasoDeUsoExeption("Não foi posivel deletar o caso de uso!");
-        }
+        execultarAtualizacao(dml);
     }
 
     /**
@@ -110,12 +100,7 @@ public class CasosDeUsoFactory extends AbstractFactory {
 
     public void atualizar(String codigo, String nome, String objetivo, String atores, String descricao, String codP){
         String dml = String.format("UPDATE caso_de_uso SET nome = '%s', objetivo = '%s', atores = '%s', descricao = '%s' WHERE projetoID = %s AND codigo = '%s' ", nome, objetivo, atores, descricao, codP, codigo);
-        try {
-            execultarAtualizacao(dml);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new CasoDeUsoExeption("Erro ao atualizar as informações do caso de uso");
-        }
+        execultarAtualizacao(dml);
 
     }
 }

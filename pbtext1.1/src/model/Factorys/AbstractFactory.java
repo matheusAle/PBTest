@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import view.mainApp;
 
 
 /**
@@ -28,7 +29,7 @@ public abstract class AbstractFactory {
         try {
             connection = DriverManager.getConnection(url, usuario, senha);
         } catch (SQLException ex) {
-            Logger.getLogger(AbstractFactory.class.getName()).log(Level.SEVERE, null, ex);
+            mainApp.relatarErroInterno(ex.getMessage());
         }
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
@@ -54,7 +55,7 @@ public abstract class AbstractFactory {
                 return r;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            mainApp.relatarErroInterno(e.getMessage());
             return null;
         }
     }
@@ -62,12 +63,16 @@ public abstract class AbstractFactory {
     /**
      * Tenta execultar a query passa por paramentro.
      * @param dml query do tipo que DML
-     * @throws SQLException lançada caso haja quanquer erro na execulção da dml
      */
-    protected void execultarAtualizacao(String dml) throws SQLException {
+    protected void execultarAtualizacao(String dml){
         synchronized(connection){;
-            PreparedStatement p = connection.prepareStatement(dml);
-            p.executeUpdate();
+            PreparedStatement p;
+            try {
+                p = connection.prepareStatement(dml);
+                p.executeUpdate();
+            } catch (SQLException ex) {
+                mainApp.relatarErroInterno(ex.getMessage());
+            }
         }
         
     }

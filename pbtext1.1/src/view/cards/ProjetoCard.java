@@ -40,7 +40,7 @@ public class ProjetoCard extends javax.swing.JPanel {
         btnAtivar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                ProjetoController.ativarProjeto(projeto.getCodigo());
+                ProjetoController.ativarProjeto(projeto);
                 mainApp.trocarDePainel(Paineis.PROJETOS, null);
             }
         });

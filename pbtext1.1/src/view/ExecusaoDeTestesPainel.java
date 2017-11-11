@@ -15,6 +15,7 @@ import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import javafx.concurrent.Task;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import model.CasoDeTeste;
@@ -204,10 +205,10 @@ public class ExecusaoDeTestesPainel extends javax.swing.JPanel implements Painel
     private void iniciarExecucao() {
         btnIrParaAMatriz.setVisible(false);
         btniniciar.setEnabled(false);
-
         ExecusaoDeTestesController.carregar();
         RoteiroDeTesteController.carregarCasosDeTesteDoRoteiro(roteiro);
         LinkedList<CasoDeTeste> lista = roteiro.getCasosDeTeste();
+        tabelaDeResultado.removeAll();
         barraDeProgresso.setMaximum(lista.size()-1);
         barraDeProgresso.setMinimum(0);
         revalidate();
@@ -220,6 +221,7 @@ public class ExecusaoDeTestesPainel extends javax.swing.JPanel implements Painel
         }
         btnIrParaAMatriz.setVisible(true);
         btniniciar.setEnabled(true);
+        super.revalidate();
 
     }
     
@@ -235,7 +237,5 @@ public class ExecusaoDeTestesPainel extends javax.swing.JPanel implements Painel
         res.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         conteiner.setViewportView(res);
         tabelaDeResultado.addTab(n, null, conteiner);
-        conteiner.revalidate();
-        conteiner.repaint();
     }
 }

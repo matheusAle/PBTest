@@ -6,7 +6,6 @@ import model.Usuario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.LinkedList;
 
 // TODO implementar o doa do usuario!
@@ -77,7 +76,6 @@ public final class UsuarioFactory extends AbstractFactory {
         return null;
     }
 
-    //TODO impementar a atualização dos dados do usuario.
     public Collection atualizar() {
         return null;
     }

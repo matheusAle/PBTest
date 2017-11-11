@@ -45,13 +45,9 @@ public class ProjetoFactory extends AbstractFactory {
                         "'" + ROTEIRO_DE_TESTE + "', " +
                         "'" + descricao + "', " +
                         "'" + email + "')";
-        try {
-            super.execultarAtualizacao(query);
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
+        super.execultarAtualizacao(query);
+        return true;
+            
     }
 
     /**
@@ -122,13 +118,8 @@ public class ProjetoFactory extends AbstractFactory {
      */
     public synchronized boolean atualizar(String nome, String descicao, String srcProducao, String srcTestes, String codigo) {
         String dml = String.format("UPDATE projeto SET nome = '%s', srcProducao = '%s', srcTestes = '%s', descricao = '%s' WHERE id = %s ", nome, srcProducao, srcTestes, descicao, codigo);
-        try {
-            super.execultarAtualizacao(dml);
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
+        super.execultarAtualizacao(dml);
+        return true;
     }
 
     /**
@@ -162,12 +153,7 @@ public class ProjetoFactory extends AbstractFactory {
      */
     public void deletar(String restricao){
         String dml = "DELETE FROM projeto WHERE " + restricao;
-        try {
-            execultarAtualizacao(dml);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new ProjetoException("Não foi posivel deletar o projeto!");
-        }
+        execultarAtualizacao(dml);
     }
 
 }

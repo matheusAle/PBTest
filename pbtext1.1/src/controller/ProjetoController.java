@@ -13,12 +13,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.Properties;
+import model.TestesPool;
 
 public class ProjetoController {
     private static ProjetoFactory dao = new ProjetoFactory();
     private static model.Projeto projetoAtivo;
     private static LinkedList<Projeto> listaDeProjetos  = listarProjetos();
-    private static Projeto projetoParaEditar;
 
     /**
      * Persiste as informações do projeto passadas como paramentro.
@@ -58,8 +58,6 @@ public class ProjetoController {
             FileWriter fileWriter = new FileWriter(new File(srcTestes+"/props_pbtest.properties"));
             properties.store(fileWriter, " Arquivo de propropriedades do projeto\n" +
                     " Estes valores são usados pelo software de testes pbtest\n\n" +
-                    " production.class.path: caminho de sistema para o diretorio raiz dos artefatos testávis do sistema\n" +
-                    " test.class.path: caminho de sistema para o diretorio raiz dos casos de testes junit\n" +
                     " variant.junit.path: caminho para um .jar junit diferente do usado pelo software\n" +
                     " variant.extra.path: caminho para bibliotecas extras usadas pelo sistema\n" +
                     " extra.args.java: argumentos extras para a execução do comando java.\n" +
@@ -92,9 +90,9 @@ public class ProjetoController {
      * @param codigo codigo do projeto a ser ativado.
      * @return true caso a operação seja bem sucedida.
      */
-    public synchronized static boolean ativarProjeto(String codigo) {
+    public synchronized static boolean ativarProjeto(Projeto p) {
         try {
-            projetoAtivo = dao.buscar("id = " + codigo);
+            projetoAtivo = p;
             CasoDeUsoController.recarregarLista();
             CasoDeTesteController.carregarArtefatos();
             RoteiroDeTesteController.carregarRoteirosDoProjetoAtivo();
@@ -104,38 +102,23 @@ public class ProjetoController {
     }
 
     /**
-     * Constroi um <link>Projeto</link> com todas as imformações de um projeto.
-     * @param codigo codigo do projeto que sera atualizado.
-     */
-    public static void setProjetoAtualizavel(String codigo){
-        Projeto projeto = dao.buscar("id = " + codigo);
-        projetoParaEditar = projeto;
-    }
-
-    /**
-     * Persiste as mudanças no dos valores passados como parametro no projeto semdo editado.
+     * Persiste as mudanças no dos valores passados como parametro no projeto.
      * @return true caso seja bem sucedido.
      */
-    public synchronized static boolean atualizarProjeto(String nome, String descicao, String srcProducao, String srcTestes) {
+    public synchronized static boolean atualizarProjeto(Projeto prj, String nome, String descicao, String srcProducao, String srcTestes) {
 
-        boolean b =  dao.atualizar(nome, descicao, Utils.srcToStorage(srcProducao), Utils.srcToStorage(srcTestes), projetoParaEditar.getCodigo());
+        boolean b =  dao.atualizar(nome, descicao, Utils.srcToStorage(srcProducao), Utils.srcToStorage(srcTestes), prj.getCodigo());
         for (Projeto p : listaDeProjetos){
-            if (p.getCodigo().equals(projetoAtivo.getCodigo())){
+            if (p.getCodigo().equals(prj.getCodigo())){
                 p.setSrcTestes(srcTestes);
                 p.setDescricao(descicao);
                 p.setNome(nome);
+                p.setSrcProducao(srcProducao);
+                p.setSrcTestes(srcTestes);
                 break;
             }
         }
-        projetoParaEditar = null;
         return b;
-    }
-
-    /**
-     * @return retorna objeto <link>Projeto</link> contento o projeto semdo editado atualmente.
-     */
-    public static Projeto getProjetoParaEditar(){
-        return projetoParaEditar;
     }
 
     /**
@@ -170,7 +153,7 @@ public class ProjetoController {
     /**
      * @return Retorna uma referencia para o projeto ativo.
      */
-    public static model.Projeto getProjetoAtivo() {
+    public static Projeto getProjetoAtivo() {
         return projetoAtivo;
     }
 
@@ -184,8 +167,8 @@ public class ProjetoController {
 
 
     /**
-     * Deleta o projeto com o codigo informado do banco de dados. E o remove da lista de projetos.
-     * @param codigo
+     * Deleta o projeto informado do banco de dados. E o remove da lista de projetos.
+     * @param p
      */
     public synchronized static void deletarProjetoDeCodigo(Projeto p) {
         try {
@@ -193,11 +176,14 @@ public class ProjetoController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        try {
+            if (p.getCodigo().equals(projetoAtivo.getCodigo())){
+                projetoAtivo = null;
+                TestesPool.limparPool();
+            } 
+        }catch(NullPointerException e){}
         dao.deletar("id = " + p.getCodigo());
-        listaDeProjetos.removeIf((x) -> {
-            return x.getCodigo() == p.getCodigo();
-        });
+        listaDeProjetos.removeIf((x) -> p.getCodigo().equals(x.getCodigo()));
     }
 
     /**

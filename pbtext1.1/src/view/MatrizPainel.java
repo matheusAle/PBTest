@@ -14,12 +14,9 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 import model.CasoDeTeste;
 import model.RoteiroDeTestes;
 

@@ -25,19 +25,10 @@ public class RoteiroDeTesteFactory extends AbstractFactory{
     public void salvar(String codigo, String nomeText, String descricaoText, int i, String codigo1, String emailUsuarioLogado, LinkedList<String> casosDeTeste) {
         String dml = String.format("INSERT INTO roteiros_teste VALUES ('%s', '%s', '%s', %d, %s, '%s')", codigo, nomeText, descricaoText, i, codigo1, emailUsuarioLogado);
         System.out.println(dml);
-        try {
-            execultarAtualizacao(dml);
-            try {
-                for (String codC : casosDeTeste)
-                    execultarAtualizacao(String.format("INSERT INTO casos_de_teste_do_Roteiro VALUES ('%s', %s, '%s')", codigo, codigo1, codC));
-            } catch (SQLException d) {
-                d.printStackTrace();
-                throw new RoteiroDeTesteExeption("Erro ao salvar o os casos de teste do roteiro de teste");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RoteiroDeTesteExeption("Erro ao salvar o roteiro de teste");
-        }
+        execultarAtualizacao(dml);
+        for (String codC : casosDeTeste)
+            execultarAtualizacao(String.format("INSERT INTO casos_de_teste_do_Roteiro VALUES ('%s', %s, '%s')", codigo, codigo1, codC));
+        
     }
 
     /**
@@ -106,26 +97,12 @@ public class RoteiroDeTesteFactory extends AbstractFactory{
      */
     public void atualizar(String codigo, String projetoID, String nome, String descricaoText, LinkedList<String> casosDeTesteDoRoteiro) {
         String dmlUP = String.format("UPDATE roteiros_teste SET nome = '%s', descricao = '%s' WHERE projetoID = %s AND codigo = '%s'", nome, descricaoText, projetoID, codigo);
-        try {
-            super.execultarAtualizacao(dmlUP);
-            try {
-                String dmlDEL = String.format("DELETE FROM casos_de_teste_do_roteiro WHERE projetoID = %s AND codigo = '%s' ", projetoID, codigo);
-                super.execultarAtualizacao(dmlDEL);
-                try {
-                    for (String codC : casosDeTesteDoRoteiro)
-                        execultarAtualizacao(String.format("INSERT INTO casos_de_teste_do_Roteiro VALUES ('%s', %s, '%s')", codigo, projetoID, codC));
-                } catch (SQLException d) {
-                    d.printStackTrace();
-                    throw new RoteiroDeTesteExeption("Erro ao salvar o os novos casos de teste do roteiro");
-                }
-            }catch (SQLException s){
-                s.printStackTrace();
-                throw new RoteiroDeTesteExeption("Erro ao remover os casos de teste atigo do roteiro!");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RoteiroDeTesteExeption("Erro ao atualizar os dados do roteiro de testes");
-        }
+        super.execultarAtualizacao(dmlUP);
+        String dmlDEL = String.format("DELETE FROM casos_de_teste_do_roteiro WHERE projetoID = %s AND codigo = '%s' ", projetoID, codigo);
+        super.execultarAtualizacao(dmlDEL);
+        for (String codC : casosDeTesteDoRoteiro)
+            execultarAtualizacao(String.format("INSERT INTO casos_de_teste_do_Roteiro VALUES ('%s', %s, '%s')", codigo, projetoID, codC));
+                
     }
 
     /**
@@ -135,11 +112,6 @@ public class RoteiroDeTesteFactory extends AbstractFactory{
      */
     public void deletar(String codigo, String projetoID) {
         String dmlDEL = String.format("DELETE FROM roteiros_teste WHERE projetoID = %s AND codigo = '%s' ", projetoID, codigo);
-        try {
-            super.execultarAtualizacao(dmlDEL);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RoteiroDeTesteExeption("Erro ao deletar o roteiro de testes");
-        }
+        super.execultarAtualizacao(dmlDEL);
     }
 }

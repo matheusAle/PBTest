@@ -54,8 +54,6 @@ public class CasosDeTestePainel extends javax.swing.JPanel implements Painel{
         
     }
     
-    
-    
     private void carregarArtefatosDeTeste() {
         HashMap<String, LinkedList<ArtefatoDeTeste>> mapaDeArtefatos = CasoDeTesteController.getMapaDeArtefatos();
         Set<String> chaves = mapaDeArtefatos.keySet();
@@ -153,7 +151,7 @@ public class CasosDeTestePainel extends javax.swing.JPanel implements Painel{
         jScrollPane2.setBorder(null);
 
         painelCasosDeTeste.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        painelCasosDeTeste.setLayout(new java.awt.GridLayout(4, 1, 5, 5));
+        painelCasosDeTeste.setLayout(new java.awt.GridLayout(1, 1, 5, 5));
 
         btnNovoCasoDeTeste.setBackground(new java.awt.Color(255, 255, 255));
         btnNovoCasoDeTeste.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N

@@ -25,7 +25,7 @@ import resources.Cores;
 public class CasosDeUsoPainel extends javax.swing.JPanel implements Painel{
 
     private TipoDePainel tipo = TipoDePainel.LISTAGEM;
-    private int quantidadeDeLinhas = 4, quantidadeDeItensNaLista = 0;
+    private int quantidadeDeLinhas = 1;
     private GridLayout layout;
     /**
      * Creates new form UsuariosPainel1
@@ -33,7 +33,6 @@ public class CasosDeUsoPainel extends javax.swing.JPanel implements Painel{
     public CasosDeUsoPainel() {
         initComponents();
         layout = (GridLayout) this.getLayout();
-        layout.setRows(quantidadeDeItensNaLista);
     }
 
     /**
@@ -66,19 +65,15 @@ public class CasosDeUsoPainel extends javax.swing.JPanel implements Painel{
     }
     
     private void addItemNaLista(CasoDeUsoCard card){
-        if (quantidadeDeItensNaLista >=4){
-            layout.setRows(quantidadeDeLinhas++);        
-        }
-        quantidadeDeItensNaLista++;
+        layout.setRows(quantidadeDeLinhas++);   
         super.add(card);
         super.revalidate();
     }
 
     @Override
     public void preProcessamentoAntesDeAbrir() {
-        quantidadeDeLinhas = 4;
-        quantidadeDeItensNaLista = 0;
         super.removeAll();
+        quantidadeDeLinhas = 1;
         carregarCasosdeUsoNaLista();
     }
 

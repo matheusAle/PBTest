@@ -30,8 +30,9 @@ public class FormularioDeProjetoPainel extends javax.swing.JPanel implements Pai
     private TipoDePainel tipo;
     private String srcProducao, srcTestes;
     Map<?, ?> dados = null;
+    private Projeto projetoSendoEditado;
             
-    FormularioDeProjetoPainel(){
+    public FormularioDeProjetoPainel(){
         initComponents();
         iniciarlistaners();
     }
@@ -40,23 +41,30 @@ public class FormularioDeProjetoPainel extends javax.swing.JPanel implements Pai
     private boolean cadastarProjeto(){
         if (!todosOsCamposEstaoValidos())
             return false;
-        boolean resultado;
-        do {
-            resultado = ProjetoController.cadastrarProjeto(
-                    campoNome.getText(),
-                    srcProducao,
-                    srcTestes,
-                    campoDePFCasoDeUso.getText(),
-                    campoDePFCasoDeTeste.getText(),
-                    campoDePFRoteiroDeTeste.getText(),
-                    campoDescricao.getText()
+        if (projetoSendoEditado == null){
+            ProjetoController.cadastrarProjeto(
+                   campoNome.getText(),
+                   srcProducao,
+                   srcTestes,
+                   campoDePFCasoDeUso.getText(),
+                   campoDePFCasoDeTeste.getText(),
+                   campoDePFRoteiroDeTeste.getText(),
+                   campoDescricao.getText()
             );
-            if (!resultado){
-
-            }
-        }while (!resultado);
-        limpar();
-        return true;
+            JOptionPane.showMessageDialog(null, "Novo projeto salvo!", "", JOptionPane.INFORMATION_MESSAGE);
+            limpar();
+            return true;
+        } else {
+            ProjetoController.atualizarProjeto(projetoSendoEditado,
+                    campoNome.getText(),
+                    campoDescricao.getText(),
+                    srcProducao,
+                    srcTestes
+            );
+            JOptionPane.showMessageDialog(null, "As mudanças no projeto foram salvas!", "", JOptionPane.INFORMATION_MESSAGE);
+            this.btnCancelarOnClick(null);
+            return true;
+        }
     }
 
     /**
@@ -102,8 +110,10 @@ public class FormularioDeProjetoPainel extends javax.swing.JPanel implements Pai
             }
         });
         chooserArquivo.showOpenDialog(null);
-        srcProducao = chooserArquivo.getSelectedFile().getAbsolutePath();
-        labelSrcProducao.setText(srcProducao);
+        try {
+            srcProducao = chooserArquivo.getSelectedFile().getAbsolutePath();
+            labelSrcProducao.setText(srcProducao);
+        } catch (NullPointerException e){}
     }
 
     /**
@@ -121,12 +131,15 @@ public class FormularioDeProjetoPainel extends javax.swing.JPanel implements Pai
 
             @Override
             public String getDescription() {
-                return "Selecione o seu diretório raiz dos arquivos .class de teste";
+                return "Selecione o diretório raiz dos arquivos .class de teste";
             }
         });
         chooserArquivo.showOpenDialog(null);
-        srcTestes = chooserArquivo.getSelectedFile().getAbsolutePath();
-        labelSrcTestes.setText(srcTestes);
+        try {
+            srcTestes = chooserArquivo.getSelectedFile().getAbsolutePath();
+            labelSrcTestes.setText(srcTestes);
+        } catch (NullPointerException e){}
+
     }
     /**
      * Limpa todas as informações de todos os campos do formulario.
@@ -139,6 +152,10 @@ public class FormularioDeProjetoPainel extends javax.swing.JPanel implements Pai
         campoNome.setText("");
         campoDescricao.setText("");
         labelSrcProducao.setText("");
+        campoDePFCasoDeTeste.setEditable(true);
+        campoDePFCasoDeUso.setEditable(true);
+        campoDePFRoteiroDeTeste.setEditable(true);
+        revalidate();
     }
     
     
@@ -581,19 +598,19 @@ public class FormularioDeProjetoPainel extends javax.swing.JPanel implements Pai
     public void preProcessamentoAntesDeAbrir() {
         tipo = TipoDePainel.FORMULARIO_DE_CRIACAO;
         if (dados != null){
-            Projeto p = (Projeto) dados.get("projeto");
-            campoDePFCasoDeTeste.setText(p.getPrefixoCT());
-            campoDePFCasoDeUso.setText(p.getPrefixoCU());
-            campoDePFRoteiroDeTeste.setText(p.getPrefixoRT());
-            labelSrcTestes.setText(p.getSrcTestes());
-            labelSrcProducao.setText(p.getSrcProducao());
-            campoNome.setText(p.getNome());
-            campoDescricao.setText(p.getDescricao());
+            projetoSendoEditado = (Projeto) dados.get("projeto");
+            campoDePFCasoDeTeste.setText(projetoSendoEditado.getPrefixoCT());
+            campoDePFCasoDeUso.setText(projetoSendoEditado.getPrefixoCU());
+            campoDePFRoteiroDeTeste.setText(projetoSendoEditado.getPrefixoRT());
+            labelSrcTestes.setText(projetoSendoEditado.getSrcTestes());
+            labelSrcProducao.setText(projetoSendoEditado.getSrcProducao());
+            campoNome.setText(projetoSendoEditado.getNome());
+            campoDescricao.setText(projetoSendoEditado.getDescricao());
             campoDePFCasoDeTeste.setEditable(false);
             campoDePFCasoDeUso.setEditable(false);
             campoDePFRoteiroDeTeste.setEditable(false);
-            srcProducao = p.getSrcProducao();
-            srcTestes = p.getSrcTestes();
+            srcProducao = projetoSendoEditado.getSrcProducao();
+            srcTestes = projetoSendoEditado.getSrcTestes();
             tipo = TipoDePainel.FORMULARIO_DE_EDICAO;
         }
     }
@@ -609,7 +626,6 @@ public class FormularioDeProjetoPainel extends javax.swing.JPanel implements Pai
 
     @Override
     public void btnNovoOnClick(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -619,6 +635,7 @@ public class FormularioDeProjetoPainel extends javax.swing.JPanel implements Pai
 
     @Override
     public void btnCancelarOnClick(MouseEvent e) {
+        limpar();
         mainApp.trocarDePainel(Paineis.PROJETOS, null);
     }
 

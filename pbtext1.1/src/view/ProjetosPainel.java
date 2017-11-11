@@ -5,6 +5,7 @@
  */
 package view;
 
+import view.mainApp;
 import view.cards.ProjetoCard;
 import controller.ProjetoController;
 import java.awt.Color;
@@ -53,19 +54,15 @@ public class ProjetosPainel extends javax.swing.JPanel implements Painel{
     private void carregarProjetosNaLista () {
         
         if (ProjetoController.temProjetoAtivo()){
-            ProjetoCard c = novoCard(ProjetoController.getProjetoAtivo());
+            ProjetoCard c = new ProjetoCard(ProjetoController.getProjetoAtivo());
             c.setBackground(new Color(251, 85, 85));
             c.repaint();
             addItemNaLista(c);
         }
         ProjetoController.getListaDeProjetos().forEach(u -> {
-            addItemNaLista(novoCard(u));
+            addItemNaLista(new ProjetoCard(u));
         });
         
-    }
-    
-    private ProjetoCard novoCard(Projeto u){
-        return new ProjetoCard(u);
     }
     
     private void addItemNaLista(ProjetoCard card){
@@ -77,6 +74,7 @@ public class ProjetosPainel extends javax.swing.JPanel implements Painel{
     @Override
     public void preProcessamentoAntesDeAbrir() {
         quantidadeDeLinhas = 1;
+        layout.setRows(1);
         super.removeAll();
         carregarProjetosNaLista();
     }
