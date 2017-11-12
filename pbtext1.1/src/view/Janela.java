@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import resources.Arquivos;
 import view.Componetes.MeuScrollbarUI;
 
 /**
@@ -42,6 +43,7 @@ public class Janela extends javax.swing.JFrame {
         btnCancelar.setVisible(false);
         btnLimpar.setVisible(false);
         campoDeBuscaContainer.setVisible(false);
+        super.setIconImage(Arquivos.ICONE_APP);
     }
 
     /**
@@ -76,7 +78,7 @@ public class Janela extends javax.swing.JFrame {
         conteudoContainer = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("PBTest1.1");
+        setTitle("PBTest");
         setBackground(new java.awt.Color(255, 255, 255));
         setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
 
@@ -377,6 +379,8 @@ public class Janela extends javax.swing.JFrame {
 
         conteudoContainer.getHorizontalScrollBar().setUI(new MeuScrollbarUI());
         conteudoContainer.getVerticalScrollBar().setUI(new MeuScrollbarUI());
+
+        getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

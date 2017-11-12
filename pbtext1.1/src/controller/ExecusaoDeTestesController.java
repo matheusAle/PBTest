@@ -82,21 +82,12 @@ public class ExecusaoDeTestesController {
         }
 
         String extraLibs = propriedade.getProperty("variant.extra.path");
-        srcExtraLibs.concat(extraLibs.equals("void") ? "" : ";".concat(extraLibs));
+        srcExtraLibs = srcExtraLibs.concat(extraLibs.equals("void") ? "" : ";".concat(extraLibs));
 
         String extrajavaArgs = propriedade.getProperty("extra.args.java");
-        javaArgs.concat(extrajavaArgs.equals("void")? "" : " ".concat(extrajavaArgs).concat(" "));
+        javaArgs = javaArgs.concat(extrajavaArgs.equals("void")? "" : " ".concat(extrajavaArgs).concat(" "));
 
         junitArgs = propriedade.getProperty("extra.args.junit");
-
-        String classpathReplace = propriedade.getProperty("production.class.path");
-        String classTestpathReplace = propriedade.getProperty("test.class.path");
-        if (!classpathReplace.equals("void")){
-            srcClasses = classpathReplace;
-        }
-        if (!classTestpathReplace.equals("void")) {
-            srcCasoDeTeste = classTestpathReplace;
-        }
 
         String custonJunitpath = propriedade.getProperty("variant.junit.path");
         if (!custonJunitpath.equals("void")){
