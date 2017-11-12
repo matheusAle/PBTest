@@ -1,4 +1,8 @@
 *.class
+
 /pbtest1.1/build
+
 /pbtest1.1/blog.log
 
+
+/pbtext1.1/dist
