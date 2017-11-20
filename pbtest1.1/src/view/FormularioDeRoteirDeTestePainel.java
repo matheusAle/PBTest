@@ -495,6 +495,7 @@ public class FormularioDeRoteirDeTestePainel extends javax.swing.JPanel implemen
 
     @Override
     public void preProcessamentoAntesDeFechar() {
+        limparCampos();
     }
 
     @Override

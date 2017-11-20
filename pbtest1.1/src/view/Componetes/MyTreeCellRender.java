@@ -29,6 +29,4 @@ public class MyTreeCellRender extends DefaultTreeCellRenderer{
         super.setTextNonSelectionColor(Color.DARK_GRAY);
         super.setTextSelectionColor(Color.BLACK);
     }
-    
-    
 }

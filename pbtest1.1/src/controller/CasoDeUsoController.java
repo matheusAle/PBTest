@@ -10,7 +10,6 @@ import java.util.LinkedList;
 
 public final class CasoDeUsoController {
     private static CasosDeUsoFactory dao = new CasosDeUsoFactory();
-    private static CasoDeUso casoDeUsoEditavel;
     private static LinkedList<CasoDeUso> listaDeCasosDeUso;
 
     /**
@@ -66,21 +65,11 @@ public final class CasoDeUsoController {
         listaDeCasosDeUso.removeIf((p) -> p.getCodigo() == text);
     }
 
-    /**
-     * Seta o caso de uso que será editado.
-     * @param codigo codigo do caso de uso
-     *
-     */
-    public static void editarCasoDeUsoDeCodigo(String codigo){
-        casoDeUsoEditavel = dao.buscar(codigo, ProjetoController.getCodigoProjetoAtivo());
-    }
-
-    public static CasoDeUso getCasoDeUsoEditavel() {
-        return casoDeUsoEditavel;
-    }
-
-    public static void salvarMudancas(String nome, String objetivo, String atore, String descicao) {
-        dao.atualizar(casoDeUsoEditavel.getCodigo(), nome, objetivo, atore, descicao, casoDeUsoEditavel.getProjetoID());
-        casoDeUsoEditavel = null;
+    public static void salvarMudancas(CasoDeUso c, String nome, String objetivo, String atore, String descicao) {
+        dao.atualizar(c.getCodigo(), nome, objetivo, atore, descicao, c.getProjetoID());
+        c.setNome(nome);
+        c.setDescricao(descicao);
+        c.setAtores(atore);
+        c.setObjetovo(objetivo);
     }
 }

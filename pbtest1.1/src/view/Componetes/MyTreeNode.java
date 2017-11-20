@@ -21,6 +21,7 @@ public class MyTreeNode extends DefaultMutableTreeNode{
     public MyTreeNode(Object root, ArtefatoDeTeste artefato) {
         super(root);
         this.artefato = artefato;
+        
     }
 
     public MyTreeNode(TreeNode root) {

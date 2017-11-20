@@ -38,6 +38,7 @@ public class MatrizPainel extends javax.swing.JPanel implements Painel{
     public void carregarMatriz(){
         HashMap<String, ListaEncadeada<CasoDeTeste>> mapa = new HashMap<>();
         RoteiroDeTesteController.carregarCasosDeTesteDoRoteiro(roteiro);
+        
         for (CasoDeTeste ct : roteiro.getCasosDeTeste()){ // mapeia os casos de teste com seis artefatos
             String nomeArtefato = ct.getArtefatoDeTeste().getNomeArquivo();
             if (mapa.containsKey(nomeArtefato)) {
@@ -74,8 +75,8 @@ public class MatrizPainel extends javax.swing.JPanel implements Painel{
                 @Override
                 public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                     JLabel l = new JLabel(String.valueOf(value));
-                    l.setVerticalAlignment(l.CENTER);
-                    l.setHorizontalAlignment(l.CENTER);
+                    l.setVerticalAlignment(JLabel.CENTER);
+                    l.setHorizontalAlignment(JLabel.CENTER);
                     l.setSize(500, 75);
                     l.setFont(new java.awt.Font("Ubuntu", 0, 16));
                     if (((String)value).equals("OK")){

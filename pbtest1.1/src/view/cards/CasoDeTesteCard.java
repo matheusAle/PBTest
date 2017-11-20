@@ -38,8 +38,9 @@ public class CasoDeTesteCard extends javax.swing.JPanel {
         btnVerEditar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                HashMap<String, CasoDeTeste> hashMap = new HashMap<String, CasoDeTeste>();
+                HashMap<String, Object> hashMap = new HashMap<>();
                 hashMap.put("caso de teste", casoDeTeste);
+                hashMap.put("artefato", casoDeTeste.getArtefatoDeTeste());
                 mainApp.trocarDePainel(Paineis.FORMULARIO_DE_CADASTRO_DE_CASOS_DE_TESTE, hashMap);
             }
         });
@@ -50,7 +51,10 @@ public class CasoDeTesteCard extends javax.swing.JPanel {
                 int i = JOptionPane.showConfirmDialog(null, "Você está certo disso?", "tem certeza?", JOptionPane.YES_NO_OPTION);
                 if (i == 0){
                     CasoDeTesteController.deletarCasoDeTeste(casoDeTeste);
-                    mainApp.trocarDePainel(Paineis.CASOS_DE_TESTE, null);
+                    HashMap<String, Object> hashMap = new HashMap<>();
+                    hashMap.put("artefato", casoDeTeste.getArtefatoDeTeste());
+                    hashMap.put("atualizar", "sim");
+                    mainApp.trocarDePainel(Paineis.CASOS_DE_TESTE, hashMap);
                 }                
             }
         });

@@ -46,4 +46,22 @@ public class CasoDeUso {
     public String getProjetoID() {
         return projetoID;
     }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setObjetovo(String objetovo) {
+        this.objetovo = objetovo;
+    }
+
+    public void setAtores(String atores) {
+        this.atores = atores;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+    
+    
 }

@@ -159,6 +159,7 @@ public class CasosDeTestePainel extends javax.swing.JPanel implements Painel{
         btnNovoCasoDeTeste.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNovoCasoDeTeste.setFocusPainted(false);
         btnNovoCasoDeTeste.setFocusable(false);
+        btnNovoCasoDeTeste.setPreferredSize(null);
         painelCasosDeTeste.add(btnNovoCasoDeTeste);
 
         jScrollPane2.setViewportView(painelCasosDeTeste);
@@ -191,7 +192,7 @@ public class CasosDeTestePainel extends javax.swing.JPanel implements Painel{
         try {
             ArtefatoDeTeste artefato = (ArtefatoDeTeste) dados.get("artefato");
             String atualizar = (String) dados.get("atualizar");
-            if (atualizar.equals("sim") && artefato != null) {
+            if (atualizar.equals("sim")) {
                 carregarCasosDeTesteDoArtefato(artefato);
             }
         }catch (NullPointerException e){}

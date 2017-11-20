@@ -24,7 +24,8 @@ public class FormularioDeCasoDeUsoPainel extends javax.swing.JPanel implements P
     private TipoDePainel tipo;
     private String srcProducao, srcTestes;
     Map<?, ?> dados = null;
-
+    private CasoDeUso casoDeUso;
+    
     public FormularioDeCasoDeUsoPainel() {
         initComponents();
         iniciarlistaners();
@@ -58,7 +59,7 @@ public class FormularioDeCasoDeUsoPainel extends javax.swing.JPanel implements P
     }
 
     
-    public void limpar (){
+    private void limpar (){
         campoObjetivo.setText("");
         campoAtores.setText("");
         campoDescricao.setText("");
@@ -316,17 +317,18 @@ public class FormularioDeCasoDeUsoPainel extends javax.swing.JPanel implements P
                 tipo = TipoDePainel.FORMULARIO_DE_CRIACAO;
 
         if (dados != null){
-            CasoDeUso p = (CasoDeUso) dados.get("caso de uso");
-            campoNome.setText(p.getNome());
-            campoDescricao.setText(p.getDescricao());
-            campoAtores.setText(p.getAtores());
-            campoObjetivo.setText(p.getObjetivo());
-                    tipo = TipoDePainel.FORMULARIO_DE_EDICAO;
-}
+            casoDeUso = (CasoDeUso) dados.get("caso de uso");
+            campoNome.setText(casoDeUso.getNome());
+            campoDescricao.setText(casoDeUso.getDescricao());
+            campoAtores.setText(casoDeUso.getAtores());
+            campoObjetivo.setText(casoDeUso.getObjetivo());
+            tipo = TipoDePainel.FORMULARIO_DE_EDICAO;
+        }
     }
 
     @Override
     public void preProcessamentoAntesDeFechar() {
+        limpar();
     }
 
     @Override
@@ -343,13 +345,26 @@ public class FormularioDeCasoDeUsoPainel extends javax.swing.JPanel implements P
     @Override
     public void btnSalvarOnClick(MouseEvent e) {
         if (todosOsCamposEstaoValidos()){
-            CasoDeUsoController.salvarCasoDeUso(
-                    campoNome.getText(),
-                    campoObjetivo.getText(),
-                    campoAtores.getText(),
-                    campoDescricao.getText()
-            );
-            limpar();
+            if (casoDeUso == null){
+                CasoDeUsoController.salvarCasoDeUso(
+                        campoNome.getText(),
+                        campoObjetivo.getText(),
+                        campoAtores.getText(),
+                        campoDescricao.getText()
+                );
+                limpar();    
+            } else {
+                CasoDeUsoController.salvarMudancas(
+                        casoDeUso,
+                        campoNome.getText(),
+                        campoObjetivo.getText(),
+                        campoAtores.getText(),
+                        campoDescricao.getText()
+                );
+                limpar();
+                btnCancelarOnClick(null);
+            }
+            
         }
     }
 

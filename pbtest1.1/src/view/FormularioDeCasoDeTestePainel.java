@@ -299,6 +299,7 @@ public class FormularioDeCasoDeTestePainel extends javax.swing.JPanel implements
     
     @Override
     public void preProcessamentoAntesDeFechar() {
+        limparCampos();
     }
 
     @Override
@@ -344,8 +345,8 @@ public class FormularioDeCasoDeTestePainel extends javax.swing.JPanel implements
                         srcClasseDeTeste,
                         getCodigoCasoDeUsoSelecionado()
                 );
-                JOptionPane.showMessageDialog(this, "As alterações foram slavas!", "Sucesso!",  JOptionPane.PLAIN_MESSAGE);
-                
+                JOptionPane.showMessageDialog(this, "As alterações foram salvas!", "Sucesso!",  JOptionPane.PLAIN_MESSAGE);
+                btnCancelarOnClick(null);                
             }
         }
     }
