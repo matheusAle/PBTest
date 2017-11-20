@@ -12,9 +12,9 @@ Cada roteiro de teste deve ser executado pelo sistema quando solicitado pelo usu
 
 ## Documentação
  - Manual do sistema: [Documento no google docs](https://docs.google.com/document/d/1AjWuZbuOO-Qt2sVYGYHp02sNtGhvaWNTshqkfg6jZWc/edit?usp=sharing)
-e [pdf]();
+e [pdf](https://github.com/matheusAle/PBTest/blob/master/recursos/PBTest%20-%20manual%20do%20sistema.pdf);
  - Apresentação do sistema: [slides no google apresentações](https://docs.google.com/presentation/d/1Cx5sLlpQOnTa0ejFvDROhzNnOGxgAtU_4IrUvI0Ef3E/edit?usp=sharing)
- e [pdf]();
+ e [pdf](https://github.com/matheusAle/PBTest/blob/master/recursos/Apresenta%C3%A7%C3%A3o%20do%20software%20PBTest.pdf);
  - Diagramas: [projeto no astah](https://github.com/matheusAle/PBTest/blob/master/recursos/diagramas/PBTestV1.11.15.asta), 
  [diagrama de classes](https://github.com/matheusAle/PBTest/blob/master/recursos/diagramas/diagrama%20de%20classes.png);
  - banco de dados: [dump mysql](https://github.com/matheusAle/PBTest/blob/master/recursos/data_base_dump.sql)
